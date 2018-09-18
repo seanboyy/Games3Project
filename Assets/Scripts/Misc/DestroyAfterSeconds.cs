@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyAfterSeconds : MonoBehaviour {
+public class DestroyAfterSeconds : MonoBehaviour
+{
 
     public float waitTime;
 
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(DestroyAfter(waitTime));	
-	}
+    // Use this for initialization
+    void Start()
+    {
+        StartCoroutine(DestroyAfter(waitTime));
+    }
 
     IEnumerator DestroyAfter(float seconds)
     {

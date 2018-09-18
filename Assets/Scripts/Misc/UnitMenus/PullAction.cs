@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefaultUnit : MonoBehaviour
+public class PullAction : ActionButton
 {
-
-    public GameObject unitMenu;
-
     private void OnMouseDown()
     {
-        unitMenu.SetActive(true);
+
     }
 }
