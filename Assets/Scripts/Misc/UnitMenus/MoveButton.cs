@@ -18,6 +18,11 @@ public class MoveButton : MonoBehaviour
 
     float x, z, distX, distY;
 
+    private void Awake()
+    {
+        Messenger<Vector3>.AddListener(Messages.MOVETILECLICKED, UpdateGhost);
+    }
+
     private void Start()
     {
         main = FindObjectOfType<MainManager>();
@@ -31,22 +36,6 @@ public class MoveButton : MonoBehaviour
 
     private void Update()
     {
-        foreach (MoveGrid move in gridPositions)
-        {
-            if (move.isClicked)
-            {
-                /*
-                if(activeGhost != null)
-                {
-                    Destroy(activeGhost);
-                }
-                activeGhost = Instantiate(ghostManPrefab, move.transform.position, Quaternion.identity);
-                move.isClicked = false;
-                */
-                Debug.Log("Clicked a tile");
-                move.isClicked = false;
-            }
-        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             DestroyMoveGrid();
@@ -74,25 +63,34 @@ public class MoveButton : MonoBehaviour
 
     private void GenerateMoveGrid()
     {
-        //MoveGrid grid = moveGridPrefab.GetComponent<MoveGrid>();
         for(int i = -main.moveAmount + 1; i <= main.moveAmount - 1; ++i)
         {
             for(int j = -main.moveAmount + 1; j <= main.moveAmount - 1; ++j)
             {
-                gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * i, transform.root.position.y + distY * j), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+                gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + (distX * i), transform.root.position.y + (distY * j)), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
             }
         }
-        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * main.moveAmount, 0), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
-        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * -main.moveAmount, 0), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
-        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(0, transform.root.position.y + distY * main.moveAmount), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
-        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(0, transform.root.position.y + distY * -main.moveAmount), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + (distX * main.moveAmount), transform.root.position.y), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + (distX * -main.moveAmount), transform.root.position.y), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x, transform.root.position.y + (distY * main.moveAmount)), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x, transform.root.position.y + (distY * -main.moveAmount)), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
     }
 
     private void DestroyMoveGrid()
     {
-        foreach (MoveGrid move in gridPositions)
+        while(gridPositions.Count > 0)
         {
-            Destroy(move.gameObject);
+            Destroy(gridPositions[0].gameObject);
+            gridPositions.RemoveAt(0);
         }
+    }
+
+    private void UpdateGhost(Vector3 position)
+    {
+        if (activeGhost)
+        {
+            Destroy(activeGhost);
+        }
+        activeGhost = Instantiate(ghostManPrefab, position, Quaternion.identity);
     }
 }

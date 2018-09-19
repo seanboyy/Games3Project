@@ -1,4 +1,4 @@
 ﻿public static class Messages
 {
-    public const string EXAMPLE = "Your message here";
+    public const string MOVETILECLICKED = "clicked a move tile";
 }
