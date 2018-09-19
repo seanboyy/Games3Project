@@ -9,6 +9,12 @@ public class MainManager : MonoBehaviour
 
     public Image timeBar;
 
+    public float tileOffset = 0.01F;
+
+    public int moveAmount = 2;
+
+    public float moveDist = 0.5F;
+
     // Use this for initialization
     void Start()
     {

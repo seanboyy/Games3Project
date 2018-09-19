@@ -341,8 +341,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161737b9e7a394e45876a385ccd0133e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 0}
-  moveAmount: 2
+  moveGridPrefab: {fileID: 1296443201867762, guid: d73055f120a3ba645afe52ebf3e380b8,
+    type: 2}
+  ghostManPrefab: {fileID: 1199462711418252, guid: f731ec7d8b67af449b42d11737382acd,
+    type: 2}
+  spacesMoved: 0
 --- !u!114 &114757051624868582
 MonoBehaviour:
   m_ObjectHideFlags: 1

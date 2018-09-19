@@ -4,53 +4,95 @@ using UnityEngine;
 
 public class MoveButton : MonoBehaviour
 {
-    public GameObject ghostPrefab;
+    public GameObject moveGridPrefab;
 
-    public int moveAmount = 2;
+    public GameObject ghostManPrefab;
 
-    private int movesTaken = 0;
+    private MainManager main;
+
+    private List<MoveGrid> gridPositions = new List<MoveGrid>();
 
     private GameObject activeGhost;
 
+    public int spacesMoved = 0;
+
+    float x, z, distX, distY;
+
+    private void Start()
+    {
+        main = FindObjectOfType<MainManager>();
+        x = moveGridPrefab.transform.localScale.x;
+        z = moveGridPrefab.transform.localScale.z;
+        distX = x * 10;
+        distY = z * 10;
+        distX += 2 * main.tileOffset;
+        distY += 2 * main.tileOffset;
+    }
+
     private void Update()
     {
-
-        if (activeGhost != null && movesTaken < 2)
+        foreach (MoveGrid move in gridPositions)
         {
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+            if (move.isClicked)
             {
-                activeGhost.transform.position += new Vector3(0, 0.5F);
-                movesTaken++;
-            }
-            if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                activeGhost.transform.position += new Vector3(-0.5F, 0);
-                movesTaken++;
-            }
-            if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                activeGhost.transform.position += new Vector3(0, -0.5F);
-                movesTaken++;
-            }
-            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
-            {
-                activeGhost.transform.position += new Vector3(0.5F, 0);
-                movesTaken++;
+                /*
+                if(activeGhost != null)
+                {
+                    Destroy(activeGhost);
+                }
+                activeGhost = Instantiate(ghostManPrefab, move.transform.position, Quaternion.identity);
+                move.isClicked = false;
+                */
+                Debug.Log("Clicked a tile");
+                move.isClicked = false;
             }
         }
-        if (activeGhost != null && Input.GetKeyUp(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DestroyMoveGrid();
+            if(activeGhost != null)
+            {
+                Destroy(activeGhost);
+            }
+            transform.parent.position += new Vector3(-10000, 0, 0);
+        }
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             transform.root.position = activeGhost.transform.position;
-            Destroy(activeGhost.gameObject);
-            transform.parent.position += new Vector3(0, 0, 100);
+            Destroy(activeGhost);
+            DestroyMoveGrid();
+            transform.parent.position += new Vector3(-10000, 0, 0);
             transform.parent.gameObject.SetActive(false);
-            movesTaken = 0;
         }
     }
 
     private void OnMouseDown()
     {
-        activeGhost = Instantiate(ghostPrefab, transform.root.position, Quaternion.identity);
-        transform.parent.position += new Vector3(0, 0, -100);
+        transform.parent.position += new Vector3(10000, 0, 0);
+        GenerateMoveGrid();
+    }
+
+    private void GenerateMoveGrid()
+    {
+        //MoveGrid grid = moveGridPrefab.GetComponent<MoveGrid>();
+        for(int i = -main.moveAmount + 1; i <= main.moveAmount - 1; ++i)
+        {
+            for(int j = -main.moveAmount + 1; j <= main.moveAmount - 1; ++j)
+            {
+                gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * i, transform.root.position.y + distY * j), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+            }
+        }
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * main.moveAmount, 0), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(transform.root.position.x + distX * -main.moveAmount, 0), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(0, transform.root.position.y + distY * main.moveAmount), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+        gridPositions.Add(Instantiate(moveGridPrefab, new Vector3(0, transform.root.position.y + distY * -main.moveAmount), Quaternion.Euler(-90, 0, 0)).GetComponent<MoveGrid>());
+    }
+
+    private void DestroyMoveGrid()
+    {
+        foreach (MoveGrid move in gridPositions)
+        {
+            Destroy(move.gameObject);
+        }
     }
 }
