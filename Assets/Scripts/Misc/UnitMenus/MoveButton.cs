@@ -43,21 +43,28 @@ public class MoveButton : MonoBehaviour
             {
                 Destroy(activeGhost);
             }
-            transform.parent.position += new Vector3(-10000, 0, 0);
+            if (transform.parent.position.x == 0)
+            {
+                transform.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.parent.position = new Vector3(0, 0, 0);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
             transform.root.position = activeGhost.transform.position;
             Destroy(activeGhost);
             DestroyMoveGrid();
-            transform.parent.position += new Vector3(-10000, 0, 0);
+            transform.parent.position = new Vector3(0, 0, 0);
             transform.parent.gameObject.SetActive(false);
         }
     }
 
     private void OnMouseDown()
     {
-        transform.parent.position += new Vector3(10000, 0, 0);
+        transform.parent.position = new Vector3(10000, 0, 0);
         GenerateMoveGrid();
     }
 
