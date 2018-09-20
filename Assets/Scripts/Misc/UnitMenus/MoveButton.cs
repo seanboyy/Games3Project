@@ -57,14 +57,20 @@ public class MoveButton : MonoBehaviour
             transform.root.position = activeGhost.transform.position;
             Destroy(activeGhost);
             DestroyMoveGrid();
-            transform.parent.position = new Vector3(0, 0, 0);
-            transform.parent.gameObject.SetActive(false);
+            transform.position = new Vector3(0, 0, 0);
+            transform.gameObject.SetActive(false);
         }
     }
 
     private void OnMouseDown()
     {
         transform.parent.position = new Vector3(10000, 0, 0);
+        GenerateMoveGrid();
+    }
+
+    public void MouseClick_MoveGrid()
+    {
+        transform.position = new Vector3(10000, 0, 0);
         GenerateMoveGrid();
     }
 
