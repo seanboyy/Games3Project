@@ -21,6 +21,7 @@ public class MoveButton : MonoBehaviour
     private void Awake()
     {
         Messenger<Vector3>.AddListener(Messages.MOVETILECLICKED, UpdateGhost);
+        Messenger<RaycastHit>.AddListener(Messages.CURSORCLICK, CheckRaycast);
     }
 
     private void Start()
@@ -36,35 +37,53 @@ public class MoveButton : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //Cancel
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Escape))
         {
             DestroyMoveGrid();
-            if(activeGhost != null)
+            if(activeGhost)
             {
                 Destroy(activeGhost);
             }
-            if (transform.position.x == 0)
+            if (transform.parent.position.x == 0)
             {
-                transform.gameObject.SetActive(false);
+                transform.parent.gameObject.SetActive(false);
             }
             else
             {
-                transform.position = new Vector3(0, 0, 0);
+                transform.parent.localPosition = new Vector3(0, 0, 0);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        //Confirm
+        if (Input.GetKeyDown(KeyCode.JoystickButton5) || Input.GetKeyDown(KeyCode.Return))
         {
-            transform.root.position = activeGhost.transform.position;
-            Destroy(activeGhost);
+            if (activeGhost)
+            {
+                transform.root.position = activeGhost.transform.position;
+                Destroy(activeGhost);
+            }
             DestroyMoveGrid();
-            transform.position = new Vector3(0, 0, 0);
-            transform.gameObject.SetActive(false);
+            transform.parent.localPosition = new Vector3(0, 0, 0);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 
-    public void MouseClick_MoveGrid()
+    private void OnMouseDown()
     {
-        transform.position = new Vector3(10000, 0, 0);
+        OnCursorClick();
+    }
+
+    void CheckRaycast(RaycastHit info)
+    {
+        if (info.collider.gameObject == gameObject)
+        {
+            OnCursorClick();
+        }
+    }
+
+    private void OnCursorClick()
+    {
+        transform.parent.localPosition = new Vector3(10000, 0, 0);
         GenerateMoveGrid();
     }
 
@@ -99,5 +118,11 @@ public class MoveButton : MonoBehaviour
             Destroy(activeGhost);
         }
         activeGhost = Instantiate(ghostManPrefab, position, Quaternion.identity);
+    }
+
+    private void OnDestroy()
+    {
+        Messenger<RaycastHit>.RemoveListener(Messages.CURSORCLICK, CheckRaycast);
+        Messenger<Vector3>.RemoveListener(Messages.MOVETILECLICKED, UpdateGhost);
     }
 }

@@ -21,13 +21,13 @@ public class MainManager : MonoBehaviour
 
     float x, z, distX, distY;
 
-    public GameObject gridTile;
+    //public GameObject gridTile;
 
     // Use this for initialization
     void Start()
     {
-        x = gridTile.transform.localScale.x;
-        z = gridTile.transform.localScale.z;
+        //x = gridTile.transform.localScale.x;
+        //z = gridTile.transform.localScale.z;
         distX = x * 10;
         distY = z * 10;
         distX += 2 * tileOffset;
