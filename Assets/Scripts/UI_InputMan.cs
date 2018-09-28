@@ -15,6 +15,8 @@ public class UI_InputMan : MonoBehaviour
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
 
+    private float prevHorAxis = 0;
+    private float prevVerAxis = 0;
 
 	// Use this for initialization
 	void Start ()
@@ -25,23 +27,44 @@ public class UI_InputMan : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            SelectElement(selectedGO.GetComponent<ElementButton>().northNeighbor);
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0)
             SelectElement(selectedGO.GetComponent<ElementButton>().eastNeighbor);
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            SelectElement(selectedGO.GetComponent<ElementButton>().southNeighbor);
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.JoystickButton1))
+        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0)
             SelectElement(selectedGO.GetComponent<ElementButton>().westNeighbor);
+        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0)
+            SelectElement(selectedGO.GetComponent<ElementButton>().northNeighbor);
+        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0)
+            SelectElement(selectedGO.GetComponent<ElementButton>().southNeighbor);
 
+        prevHorAxis = Input.GetAxisRaw("Horizontal");
+        prevVerAxis = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            ActivateElement();
     }
 
     void SelectElement(GameObject newElement)
     {
         if (newElement == null) return;
-        selectedGO.GetComponent<Image>().color = defaultColor;
+        if (selectedGO != activeGO)
+            selectedGO.GetComponent<Image>().color = defaultColor;
+        else
+            selectedGO.GetComponent<Image>().color = activeColor;
         selectedGO = newElement;
         selectedGO.GetComponent<Image>().color = selectedColor;
+    }
 
+    void ActivateElement()
+    {
+        if (activeGO != null)
+            activeGO.GetComponent<Image>().color = defaultColor;
+        if (activeGO == selectedGO)
+        {
+            activeGO.GetComponent<Image>().color = selectedColor;
+            activeGO = null;
+            return;
+        }
+        activeGO = selectedGO;
+        activeGO.GetComponent<Image>().color = activeColor;
     }
 }
