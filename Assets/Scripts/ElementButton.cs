@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ElementButton : MonoBehaviour
 {
@@ -93,5 +94,22 @@ public class ElementButton : MonoBehaviour
             //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the south");
         }
 
+    }
+
+    // Change the color of all tiles that can be accessed in movesRemaining moves from the current tile. 
+    // Recursive
+    public void DisplayMoveTiles(int movesRemaining, Color tileColor)
+    {
+        GetComponent<Image>().color = tileColor;
+        if (movesRemaining <= 0)
+            return;
+        if (eastNeighbor != null)
+            eastNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1,  tileColor);
+        if (westNeighbor != null)
+            westNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
+        if (northNeighbor != null)
+            northNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
+        if (southNeighbor != null)
+            southNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
     }
 }

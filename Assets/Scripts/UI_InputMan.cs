@@ -9,6 +9,7 @@ public class UI_InputMan : MonoBehaviour
     public Color defaultColor;   // the color for non-active, non-selected UI elements
     public Color selectedColor;  // the color for non-active, selected UI elements
     public Color activeColor;    // the color for active UI elements
+    public Color moveColor;      // the color of elements that can be moved to
 
     [Header("GameObject the Player is currently on")]
     public GameObject selectedGO;
@@ -18,10 +19,13 @@ public class UI_InputMan : MonoBehaviour
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
 
+    private Color prevColor;    // the color of the previous selectedElement
+
 	// Use this for initialization
 	void Start ()
     {
         SelectElement(selectedGO);
+        prevColor = defaultColor;
 	}
 	
 	// Update is called once per frame
@@ -46,25 +50,28 @@ public class UI_InputMan : MonoBehaviour
     void SelectElement(GameObject newElement)
     {
         if (newElement == null) return;
-        if (selectedGO != activeGO)
-            selectedGO.GetComponent<Image>().color = defaultColor;
-        else
-            selectedGO.GetComponent<Image>().color = activeColor;
+        selectedGO.GetComponent<Image>().color = prevColor;
         selectedGO = newElement;
+        prevColor = selectedGO.GetComponent<Image>().color;
         selectedGO.GetComponent<Image>().color = selectedColor;
     }
 
     void ActivateElement()
     {
         if (activeGO != null)
+        {
+            activeGO.GetComponent<ElementButton>().DisplayMoveTiles(2, defaultColor);
             activeGO.GetComponent<Image>().color = defaultColor;
+        }
         if (activeGO == selectedGO)
         {
+            activeGO.GetComponent<ElementButton>().DisplayMoveTiles(2, defaultColor);
             activeGO.GetComponent<Image>().color = selectedColor;
             activeGO = null;
             return;
         }
         activeGO = selectedGO;
+        activeGO.GetComponent<ElementButton>().DisplayMoveTiles(2, moveColor);
         activeGO.GetComponent<Image>().color = activeColor;
     }
 }
