@@ -11,6 +11,8 @@ public class ElementButton : MonoBehaviour
     public GameObject southNeighbor;
     public GameObject westNeighbor;
 
+    [Header("Set Dynamically")]
+    public bool canMoveHere = false;
 
 	// Use this for initialization
 	void Start ()
@@ -98,18 +100,19 @@ public class ElementButton : MonoBehaviour
 
     // Change the color of all tiles that can be accessed in movesRemaining moves from the current tile. 
     // Recursive
-    public void DisplayMoveTiles(int movesRemaining, Color tileColor)
+    public void DisplayMoveTiles(int movesRemaining, Color tileColor, bool showingMoves)
     {
         GetComponent<Image>().color = tileColor;
+        canMoveHere = showingMoves;
         if (movesRemaining <= 0)
             return;
         if (eastNeighbor != null)
-            eastNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1,  tileColor);
+            eastNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1,  tileColor, showingMoves);
         if (westNeighbor != null)
-            westNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
+            westNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
         if (northNeighbor != null)
-            northNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
+            northNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
         if (southNeighbor != null)
-            southNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor);
+            southNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
     }
 }
