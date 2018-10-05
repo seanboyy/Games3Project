@@ -12,6 +12,8 @@ public class UI_InputMan : Menu
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
 
+    public GameObject selectedPiece;
+
 	// Use this for initialization
 	protected override void Start ()
     {
@@ -48,35 +50,52 @@ public class UI_InputMan : Menu
         //      If that piece wants to move, it should call what this used to do but is now in a public function
         //          This should use the Unit script's numMoves as a parameter for showing movement
         //      If there is not, do nothing
-        
-        // set up raycast to look for a piece above this tile
-        Ray ray;
-        RaycastHit info;
-
-        // Look towards the camera (-z direction)
-        ray = new Ray(selectedGO.transform.position, new Vector3(0, 0, -1));
-        Physics.Raycast(ray, out info);
-        if (info.collider != null)
+        if (activeGO == null)
         {
-            // look for a pop up menu, indicating this is a movable piece
-            if (info.collider.gameObject.transform.root.gameObject.GetComponent<PopUp_Menu>() != null)
+            // set up raycast to look for a piece above this tile
+            Ray ray;
+            RaycastHit info;
+
+            // Look towards the camera (-z direction)
+            ray = new Ray(selectedGO.transform.position, new Vector3(0, 0, -1));
+            Physics.Raycast(ray, out info);
+            if (info.collider != null)
             {
-                Debug.Log("UI_InputMan::ActivateElement() - Found a piece above " + selectedGO.name);
-                info.collider.gameObject.transform.root.gameObject.GetComponent<PopUp_Menu>().ShowContextMenu(gameObject);
+                // look for a pop up menu, indicating this is a movable piece
+                if (info.collider.gameObject.transform.root.gameObject.GetComponent<PopUp_Menu>() != null)
+                {
+                    Debug.Log("UI_InputMan::ActivateElement() - Found a piece above " + selectedGO.name);
+                    selectedPiece = info.collider.gameObject.transform.root.gameObject;
+                    selectedPiece.GetComponent<PopUp_Menu>().ShowContextMenu(gameObject);
+                }
+                else
+                    Debug.Log("UI_InputMan::ActivateElement() - ERROR - Found a non-unit piece: " + info.collider.gameObject.name);
             }
             else
-                Debug.Log("UI_InputMan::ActivateElement() - ERROR - Found a non-unit piece: " + info.collider.gameObject.name);
+            {
+                Debug.Log("UI_InputMan::ActivateElement() - No pieces found above " + selectedGO.name);
+            }
         }
-        else
-        {
-            Debug.Log("UI_InputMan::ActivateElement() - No pieces found above " + selectedGO.name);
-        }
-
 
         // ASSUMING SOMETHING *HAS* BEEN SELECTED (that is, we're already displaying a movement grid
         // Check to see if this element is a valid movement target for the piece
         //      If it is, turn off the movement grid and move the piece here
         //      If it isn't, cancel the move action? Do nothing? Do nothing for now
+        else
+        {
+            // don't do anything if we reselect the active game object
+            if (selectedGO == activeGO)
+                return;
+            else if (selectedPiece != null)
+                if (selectedGO.GetComponent<ElementButton>().canMoveHere)
+                {
+                    selectedPiece.transform.position = new Vector3 (selectedGO.transform.position.x - 0.5f, selectedGO.transform.parent.transform.position.y - 0.5f);
+                    activeGO.GetComponent<ElementButton>().DisplayMoveTiles(selectedPiece.GetComponent<Unit>().remainingMoves, defaultColor, false);
+                    activeGO = null;
+                    selectedGO.GetComponent<Image>().color = selectedColor;
+                    prevColor = selectedColor;
+                }
+        }
 
     }
 
