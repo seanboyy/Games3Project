@@ -37,8 +37,11 @@ public class UI_InputMan : Menu
             prevHorAxis = Input.GetAxisRaw("Horizontal");
             prevVerAxis = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
                 ActivateElement();
+
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                Cancel();
         }
     }
 
@@ -96,7 +99,14 @@ public class UI_InputMan : Menu
                     prevColor = defaultColor;
                 }
         }
+    }
 
+    void Cancel()
+    {
+        activeGO.GetComponent<ElementButton>().DisplayMoveTiles(selectedPiece.GetComponent<Unit>().remainingMoves, defaultColor, false);
+        activeGO = null;
+        selectedGO.GetComponent<Image>().color = selectedColor;
+        prevColor = defaultColor;
     }
 
     public void ToggleMovement(int moves)
