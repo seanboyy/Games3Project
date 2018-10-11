@@ -20,12 +20,13 @@ public class Menu : MonoBehaviour {
     protected Color prevColor;    // the color of the previous selectedElement
 
     // Use this for initialization
-    protected virtual void Start () {
+    protected virtual void Start ()
+    {
         SelectElement(selectedGO);
         prevColor = defaultColor;
     }
 
-    protected void SelectElement(GameObject newElement)
+    protected virtual void SelectElement(GameObject newElement)
     {
         if (newElement == null) return;
         selectedGO.GetComponent<Image>().color = prevColor;

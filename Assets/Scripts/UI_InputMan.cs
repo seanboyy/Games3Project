@@ -93,7 +93,7 @@ public class UI_InputMan : Menu
                     activeGO.GetComponent<ElementButton>().DisplayMoveTiles(selectedPiece.GetComponent<Unit>().remainingMoves, defaultColor, false);
                     activeGO = null;
                     selectedGO.GetComponent<Image>().color = selectedColor;
-                    prevColor = selectedColor;
+                    prevColor = defaultColor;
                 }
         }
 
@@ -120,5 +120,24 @@ public class UI_InputMan : Menu
         activeGO = selectedGO;
         activeGO.GetComponent<ElementButton>().DisplayMoveTiles(moves, moveColor, true);
         activeGO.GetComponent<Image>().color = activeColor;
+        prevColor = moveColor;
+    }
+
+    protected override void SelectElement(GameObject newElement)
+    {
+        if (newElement == null) return;
+
+        selectedGO.GetComponent<Image>().color = prevColor;
+        selectedGO = newElement;
+        prevColor = selectedGO.GetComponent<Image>().color;
+        if (activeGO != null)
+        {
+            if (selectedGO == activeGO)
+                selectedGO.GetComponent<Image>().color = activeColor;
+            else
+                selectedGO.GetComponent<Image>().color = selectedColor;
+        }
+        else
+            selectedGO.GetComponent<Image>().color = selectedColor;
     }
 }
