@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ElementButton : MonoBehaviour
+public class GridElement : MonoBehaviour
 {
+    [Header("Wall Placements")]
+    public bool northWall = false;
+    public bool eastWall = false;
+    public bool southWall = false;
+    public bool westWall = false;
+
     [Header("Neighboring UI Elements - Set Dynamically")]
     public GameObject northNeighbor;
     public GameObject eastNeighbor;
@@ -13,22 +19,18 @@ public class ElementButton : MonoBehaviour
 
     [Header("Set Dynamically")]
     public bool isHighlighted = false;
+    public int distance = -1;
+    public GameObject piece;
 
 	// Use this for initialization
 	void Start ()
     {
         FindNeighbors();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
 
     public void PrintButtonClick()
     {
-        Debug.Log("ElementButton::PrintButtonClick() - " + gameObject.name + " was clicked");
+        Debug.Log("GridElement::PrintButtonClick() - " + gameObject.name + " was clicked");
     }
 
     // Find the neighboring UI elements dynamically through raycasts (won't find UI elements without a collider)
@@ -49,12 +51,12 @@ public class ElementButton : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("ElementButton::FindNeighbors() - Neighbor found to the east! - " + info.collider.gameObject.name);
+            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the east! - " + info.collider.gameObject.name);
             eastNeighbor = info.collider.gameObject;
         }
         else
         {
-            //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the east");
+            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the east");
         }
 
         // look to the left (west)
@@ -62,12 +64,12 @@ public class ElementButton : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("ElementButton::FindNeighbors() - Neighbor found to the west! - " + info.collider.gameObject.name);
+            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the west! - " + info.collider.gameObject.name);
             westNeighbor = info.collider.gameObject;
         }
         else
         {
-            //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the west");
+            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the west");
         }
 
         // look to the up (north)
@@ -75,12 +77,12 @@ public class ElementButton : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("ElementButton::FindNeighbors() - Neighbor found to the north! - " + info.collider.gameObject.name);
+            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the north! - " + info.collider.gameObject.name);
             northNeighbor = info.collider.gameObject;
         }
         else
         {
-            //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the north");
+            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the north");
         }    
             
         // look to the down (south)
@@ -88,12 +90,12 @@ public class ElementButton : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("ElementButton::FindNeighbors() - Neighbor found to the south! - " + info.collider.gameObject.name);
+            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the south! - " + info.collider.gameObject.name);
             southNeighbor = info.collider.gameObject;
         }
         else
         {
-            //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the south");
+            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the south");
         }
     }
 
@@ -103,15 +105,19 @@ public class ElementButton : MonoBehaviour
     {
         GetComponent<Image>().color = tileColor;
         isHighlighted = showingMoves;
+        if (showingMoves)
+            distance = movesRemaining;
+        else
+            distance = -1;
         if (movesRemaining <= 0)
             return;
-        if (eastNeighbor != null)
-            eastNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1,  tileColor, showingMoves);
-        if (westNeighbor != null)
-            westNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
-        if (northNeighbor != null)
-            northNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
-        if (southNeighbor != null)
-            southNeighbor.GetComponent<ElementButton>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
+        if (!eastWall && eastNeighbor != null)
+            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1,  tileColor, showingMoves);
+        if (!westWall && westNeighbor != null)
+            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
+        if (!northWall &&northNeighbor != null)
+            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
+        if (!southWall && southNeighbor != null)
+            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
     }
 }

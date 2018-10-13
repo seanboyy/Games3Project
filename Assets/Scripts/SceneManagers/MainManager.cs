@@ -26,19 +26,6 @@ public class MainManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //x = gridTile.transform.localScale.x;
-        //z = gridTile.transform.localScale.z;
-        distX = x * 10;
-        distY = z * 10;
-        distX += 2 * tileOffset;
-        distY += 2 * tileOffset;
-        for (int i = -((gridHeight + (gridHeight % 2) / 2)); i < ((gridHeight + (gridHeight % 2) / 2)); ++i)
-        {
-            for (int j = -((gridWidth + (gridWidth % 2) / 2)); j < ((gridWidth + (gridWidth % 2) / 2)); ++j)
-            {
-
-            }
-        }
         timeBar.sprite = timeBarImgs[28];
     }
 

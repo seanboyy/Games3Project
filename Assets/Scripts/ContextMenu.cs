@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopUp_Menu : Menu
+public class ContextMenu : Menu
 {
     public GameObject menuCanvas;
 

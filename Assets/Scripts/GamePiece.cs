@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PullMan : DefaultUnit {
-
+public class GamePiece : MonoBehaviour
+{
+    string pieceName;
 }
