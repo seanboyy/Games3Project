@@ -627,6 +627,36 @@ Prefab:
       propertyPath: m_Name
       value: Element (1, 1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: westWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: northWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: eastWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: southWall
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
   m_IsPrefabAsset: 0
@@ -7121,8 +7151,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: m_Type
