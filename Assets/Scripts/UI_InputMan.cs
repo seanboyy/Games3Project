@@ -90,7 +90,7 @@ public class UI_InputMan : Menu
             if (selectedGO == activeGO)
                 return;
             else if (selectedPiece != null)
-                if (selectedGO.GetComponent<ElementButton>().canMoveHere)
+                if (selectedGO.GetComponent<ElementButton>().isHighlighted)
                 {
                     selectedPiece.transform.position = new Vector3 (selectedGO.transform.position.x - 0.5f, selectedGO.transform.parent.transform.position.y - 0.5f);
                     activeGO.GetComponent<ElementButton>().DisplayMoveTiles(selectedPiece.GetComponent<Unit>().remainingMoves, defaultColor, false);

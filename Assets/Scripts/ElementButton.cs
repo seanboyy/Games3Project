@@ -12,7 +12,7 @@ public class ElementButton : MonoBehaviour
     public GameObject westNeighbor;
 
     [Header("Set Dynamically")]
-    public bool canMoveHere = false;
+    public bool isHighlighted = false;
 
 	// Use this for initialization
 	void Start ()
@@ -95,7 +95,6 @@ public class ElementButton : MonoBehaviour
         {
             //Debug.Log("ElementButton::FindNeighbors() - No neighbor found to the south");
         }
-
     }
 
     // Change the color of all tiles that can be accessed in movesRemaining moves from the current tile. 
@@ -103,7 +102,7 @@ public class ElementButton : MonoBehaviour
     public void DisplayMoveTiles(int movesRemaining, Color tileColor, bool showingMoves)
     {
         GetComponent<Image>().color = tileColor;
-        canMoveHere = showingMoves;
+        isHighlighted = showingMoves;
         if (movesRemaining <= 0)
             return;
         if (eastNeighbor != null)

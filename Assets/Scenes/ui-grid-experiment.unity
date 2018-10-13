@@ -1972,11 +1972,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224927195433340590, guid: 92f86779563b9fb4fb492cf42af997fc,
     type: 2}
   m_PrefabInternal: {fileID: 27557679}
---- !u!1 &720705786 stripped
+--- !u!1 &744416554 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1137145424502822, guid: 285bab1f2bb87574fa54f8f74da19a12,
     type: 2}
-  m_PrefabInternal: {fileID: 1757639715}
+  m_PrefabInternal: {fileID: 190103447}
 --- !u!1001 &778577185
 Prefab:
   m_ObjectHideFlags: 0
@@ -3208,11 +3208,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   selectedColor: {r: 0, g: 0.8125751, b: 1, a: 1}
-  selectedGO: {fileID: 720705786}
+  selectedGO: {fileID: 744416554}
   activeUIMenu: 1
   activeColor: {r: 0, g: 0.18730927, b: 1, a: 1}
   moveColor: {r: 0.9556836, g: 1, b: 0, a: 1}
   activeGO: {fileID: 0}
+  selectedPiece: {fileID: 0}
 --- !u!1 &1075214341
 GameObject:
   m_ObjectHideFlags: 0
@@ -6197,7 +6198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 129ee01e7a2f72b4d9557e511bc44d68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainingMoves: 2
+  remainingMoves: 3
   grid: {fileID: 1073615896}
 --- !u!114 &1798059453
 MonoBehaviour:
