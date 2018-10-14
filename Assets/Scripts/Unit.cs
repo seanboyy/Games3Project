@@ -11,7 +11,7 @@ public class Unit : GamePiece
     public GridMenu grid;
     public GridElement gridElement; // what grid element this piece is on
     private ContextMenu contextMenu;
-    private string action = "";     // what action this piece is to perform; should we make this an enum?
+    protected string action = "";     // what action this piece is to perform; should we make this an enum?
 
 	// Use this for initialization
 	void Start ()

@@ -8,6 +8,7 @@ public class GridMenu  : Menu
     [Header("Colors for UI Grid Elements")]
     public Color activeColor;    // the color for active UI elements
     public Color moveColor;      // the color of elements that can be moved to
+    public Color pushColor;      // the color of elements that can be influenced by pusher
 
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;

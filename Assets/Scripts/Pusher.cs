@@ -11,6 +11,22 @@ public class Pusher : Unit {
 
     public void ActivatePushButtion()
     {
+        action = "push";
+        gridElement.DisplayPusherInfluence(grid.pushColor);
+    }
+
+    public override void PerformAction(GameObject actionLocGO)
+    {
+        if(action == "move")
+            base.PerformAction(actionLocGO);
+        if(action == "push")
+        {
+            PushUnits();
+        }
+    }
+
+    private void PushUnits()
+    {
 
     }
 }
