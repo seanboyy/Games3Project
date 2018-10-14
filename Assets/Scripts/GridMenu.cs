@@ -15,10 +15,13 @@ public class GridMenu  : Menu
 
     public GameObject selectedPiece;
 
+    private ContextMenu contextMenu;
+
 	// Use this for initialization
 	protected override void Start ()
     {
         base.Start();
+        contextMenu = GetComponent<ContextMenu>();
 	}
 	
 	// Update is called once per frame
@@ -61,6 +64,22 @@ public class GridMenu  : Menu
             {
                 selectedPiece = selectedGO.GetComponent<GridElement>().piece;
                 selectedPiece.GetComponent<Unit>().ShowContextMenu();
+            }
+            else if (selectedGO.GetComponent<GridElement>().spawnable)
+            {
+                Debug.Log("GridMenu::ActivateElement() - Piece can be spawned here");
+                // Display a ContextMenu with all the pieces that can be spawned
+                contextMenu.ShowContextMenu(gameObject);
+                // Move the canvas to SelectedGO's location
+                contextMenu.menuCanvas.transform.position = selectedGO.transform.position;
+                // Long term, this must be dynamic, but we can settle for short term for now
+
+            }
+
+            else
+            {
+                Debug.Log("GridMenu::ActivateElement() - Piece can not be spawned here");
+                activeGO = null;
             }
         }
 
@@ -115,5 +134,16 @@ public class GridMenu  : Menu
     {
         prevColor = newPrevColor;
         element.GetComponent<Image>().color = newColor;
+    }
+
+    public void PlaceUnit(UnitType unitType)
+    {
+        Debug.Log("GridMenu::PlaceUnit() - Spawning Unit");
+    }
+
+    public void PlaceUnit(string unitType)
+    {
+        if (unitType == "unit")
+            PlaceUnit(UnitType.Unit);
     }
 }
