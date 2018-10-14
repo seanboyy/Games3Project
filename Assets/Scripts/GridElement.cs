@@ -25,11 +25,11 @@ public class GridElement : MonoBehaviour
     public int distance = -1;
     public GameObject piece;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         FindNeighbors();
-	}
+    }
 
     public void PrintButtonClick()
     {
@@ -86,8 +86,8 @@ public class GridElement : MonoBehaviour
         else
         {
             //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the north");
-        }    
-            
+        }
+
         // look to the down (south)
         ray = new Ray(transform.position, new Vector3(0, -1));
         Physics.Raycast(ray, out info);
@@ -115,12 +115,65 @@ public class GridElement : MonoBehaviour
         if (movesRemaining <= 0)
             return;
         if (!eastWall && eastNeighbor != null)
-            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1,  tileColor, showingMoves);
+            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
         if (!westWall && westNeighbor != null)
-            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
-        if (!northWall &&northNeighbor != null)
-            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
+            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+        if (!northWall && northNeighbor != null)
+            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
         if (!southWall && southNeighbor != null)
-            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining-1, tileColor, showingMoves);
+            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+    }
+
+    public void DisplayPusherInfluence(Color tileColor)
+    {
+        DisplayPusherInfluenceAll(tileColor);
+    }
+
+    private void DisplayPusherInfluenceAll(Color tileColor)
+    {
+        DisplayPusherInfluenceNorth(tileColor);
+        DisplayPusherInfluenceEast(tileColor);
+        DisplayPusherInfluenceSouth(tileColor);
+        DisplayPusherInfluenceWest(tileColor);
+    }
+
+    private void DisplayPusherInfluenceNorth(Color tileColor)
+    {
+
+        if (northNeighbor && northNeighbor.GetComponent<GridElement>().piece)
+        {
+            northNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
+            northNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceNorth(tileColor);
+        }
+    }
+
+    private void DisplayPusherInfluenceEast(Color tileColor)
+    {
+
+        if (eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece)
+        {
+            eastNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
+            eastNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceEast(tileColor);
+        }
+    }
+
+    private void DisplayPusherInfluenceSouth(Color tileColor)
+    {
+
+        if (southNeighbor && southNeighbor.GetComponent<GridElement>().piece)
+        {
+            southNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
+            southNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceSouth(tileColor);
+        }
+    }
+
+    private void DisplayPusherInfluenceWest(Color tileColor)
+    {
+
+        if (westNeighbor && westNeighbor.GetComponent<GridElement>().piece)
+        {
+            westNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
+            westNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceWest(tileColor);
+        }
     }
 }
