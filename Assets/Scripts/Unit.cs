@@ -10,7 +10,7 @@ public enum UnitType
     Puller,
     Spinner,
     Flagbearer,
-    PortalPusher
+    PortalPlacer
 }
 
 public class Unit : GamePiece
