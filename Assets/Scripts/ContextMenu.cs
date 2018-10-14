@@ -28,7 +28,7 @@ public class ContextMenu : Menu
                 SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
             }
             // Move right or move down
-            if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
+            else if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
             {
                 SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
             }
