@@ -3,25 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainManager : MonoBehaviour
+public class TimeBar : MonoBehaviour
 {
     public Sprite[] timeBarImgs;
-
     public Image timeBar;
-
     public float tileOffset = 0.01F;
-
-    public int moveAmount = 2;
-
-    public float moveDist = 0.5F;
-
-    public int gridWidth = 10;
-
-    public int gridHeight = 10;
-
-    float x, z, distX, distY;
-
-    //public GameObject gridTile;
 
     // Use this for initialization
     void Start()
