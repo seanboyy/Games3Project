@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PopUp_Button : MonoBehaviour
+public class ContextButton : MonoBehaviour
 {
     public GameObject northNeighbor;
     public GameObject southNeighbor;

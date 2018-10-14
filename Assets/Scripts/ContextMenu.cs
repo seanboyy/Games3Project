@@ -25,12 +25,12 @@ public class ContextMenu : Menu
             // Move left or move up
             if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0))
             {
-                SelectElement(selectedGO.GetComponent<PopUp_Button>().northNeighbor);
+                SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
             }
             // Move right or move down
             if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
             {
-                SelectElement(selectedGO.GetComponent<PopUp_Button>().southNeighbor);
+                SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
             }
 
             prevHorAxis = Input.GetAxisRaw("Horizontal");
@@ -38,10 +38,13 @@ public class ContextMenu : Menu
 
             if (canPressButtons)
             {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
                 {
                     selectedGO.GetComponent<Button>().onClick.Invoke();
                 }
+
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                    HideContextMenu();
             }
             else
                 canPressButtons = true;

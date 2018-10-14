@@ -11,6 +11,7 @@ public class Unit : GamePiece
     public GridMenu grid;
     public GridElement gridElement; // what grid element this piece is on
     private ContextMenu contextMenu;
+    private string action = "";     // what action this piece is to perform; should we make this an enum?
 
 	// Use this for initialization
 	void Start ()
@@ -58,6 +59,8 @@ public class Unit : GamePiece
 
     public void ActivateMoveButton()
     {
+        // set the action to "move"
+        action = "move";
         // Close the ContextMenu
         contextMenu.HideContextMenu();
         // Show the Movement Grid
@@ -66,8 +69,18 @@ public class Unit : GamePiece
         grid.activeGO = gridElement.gameObject;
     }
 
+    public virtual void PerformAction(GameObject actionLocGO)
+    {
+        if (action == "move")
+            MoveUnit(actionLocGO);
+        else
+            Debug.Log("Unit::PerformAction() - Unknown Action: " + action);
+    }
+
     public void MoveUnit(GameObject newLoc)
     {
+        // set the action to null
+        action = "";
         // Get the distance to new element
         int distance = newLoc.GetComponent<GridElement>().distance;
         // Turn off the movement grid

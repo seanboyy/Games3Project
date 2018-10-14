@@ -74,7 +74,7 @@ public class GridMenu  : Menu
             else if (selectedPiece != null)
                 if (selectedGO.GetComponent<GridElement>().isHighlighted)
                 {
-                    selectedPiece.GetComponent<Unit>().MoveUnit(selectedGO);
+                    selectedPiece.GetComponent<Unit>().PerformAction(selectedGO);
                 }
         }
     }
