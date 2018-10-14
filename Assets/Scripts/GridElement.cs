@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GridElement : MonoBehaviour
 {
+    [Header("Can a piece spawn here?")]
+    public bool spawnable = true; // Can a unit be spawned here?
+
     [Header("Wall Placements")]
     public bool northWall = false;
     public bool eastWall = false;

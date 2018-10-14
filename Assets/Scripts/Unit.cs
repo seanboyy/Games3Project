@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UnitType
+{
+    Unit,
+    Pusher,
+    Puller,
+    Spinner,
+    Flagbearer,
+    PortalPusher
+}
+
 public class Unit : GamePiece
 {
     public const int MAX_NUM_MOVES = 2;
