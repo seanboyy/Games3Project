@@ -56,6 +56,7 @@ public class GridMenu  : Menu
         //      If there is not, do nothing
         if (activeGO == null)
         {
+            activeGO = selectedGO;
             if (selectedGO.GetComponent<GridElement>().piece != null)
             {
                 selectedPiece = selectedGO.GetComponent<GridElement>().piece;

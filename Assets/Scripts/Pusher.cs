@@ -12,6 +12,7 @@ public class Pusher : Unit {
     public void ActivatePushButtion()
     {
         action = "push";
+        contextMenu.HideContextMenu();
         gridElement.DisplayPusherInfluence(grid.pushColor);
     }
 
