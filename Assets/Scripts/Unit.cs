@@ -48,12 +48,10 @@ public class Unit : GamePiece
                 gridElement = foundGameObject.GetComponent<GridElement>();
                 gridElement.piece = gameObject;
             }
-            else
-                Debug.Log("Unit::FindGridElement() - ERROR - Found a non-grid-element piece: " + foundGameObject.name);
+            else { }
         }
         else
         {
-            Debug.Log("Unit::FindGridElement() - No elements found above " + name);
         }
     }
 
@@ -82,9 +80,9 @@ public class Unit : GamePiece
     public virtual void PerformAction(GameObject actionLocGO)
     {
         if (action == "move")
+        {
             MoveUnit(actionLocGO);
-        else
-            Debug.Log("Unit::PerformAction() - Unknown Action: " + action);
+        }
     }
 
     public void MoveUnit(GameObject newLoc)
@@ -105,6 +103,14 @@ public class Unit : GamePiece
         gridElement = newLoc.GetComponent<GridElement>();
         gridElement.piece = gameObject;
         grid.SetElementColor(gridElement.gameObject, grid.selectedColor, grid.defaultColor);
+    }
+
+    public void MoveUnitNoAction(GameObject newLoc)
+    {
+        transform.position = new Vector3(newLoc.transform.position.x - 0.5f, newLoc.transform.parent.transform.position.y - 0.5f, transform.position.z);
+        gridElement.piece = null;
+        gridElement = newLoc.GetComponent<GridElement>();
+        gridElement.piece = gameObject;
     }
 
     public void HideMovementGrid()

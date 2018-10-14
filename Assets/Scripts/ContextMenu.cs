@@ -61,7 +61,6 @@ public class ContextMenu : Menu
 
     public void HideContextMenu()
     {
-        Debug.Log("PopUp_Menu::HideContextMenu() - Hiding Menu");
         activeUIMenu = false;
         menuCanvas.SetActive(false);
         prevMenu.GetComponent<Menu>().activeUIMenu = true;

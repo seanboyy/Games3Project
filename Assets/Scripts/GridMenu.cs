@@ -67,7 +67,6 @@ public class GridMenu  : Menu
             }
             else if (selectedGO.GetComponent<GridElement>().spawnable)
             {
-                Debug.Log("GridMenu::ActivateElement() - Piece can be spawned here");
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);
                 // Move the canvas to SelectedGO's location
@@ -78,7 +77,6 @@ public class GridMenu  : Menu
 
             else
             {
-                Debug.Log("GridMenu::ActivateElement() - Piece can not be spawned here");
                 activeGO = null;
             }
         }
@@ -138,7 +136,6 @@ public class GridMenu  : Menu
 
     public void PlaceUnit(UnitType unitType)
     {
-        Debug.Log("GridMenu::PlaceUnit() - Spawning Unit");
     }
 
     public void PlaceUnit(string unitType)

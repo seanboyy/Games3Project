@@ -19,7 +19,6 @@ namespace WytriamSTD
         // Use this for initialization
         void Start()
         {
-            Debug.Log("Scene_Manager::Start() - You are using the generic Scene_Manager. Please create a SM_SceneName that inherits from this class instead and override the Start() method.");
         }
 
         // Update is called once per frame
@@ -30,13 +29,11 @@ namespace WytriamSTD
 
         public void announce(string announcement)
         {
-            //Debug.Log("Scene_Manager::announce() - " + announcement);
             Announcements.getInstance().DisplayAnnouncement(announcement);
         }
 
         public void announce(string announcement, int duration)
         {
-            //Debug.Log("Scene_Manager::announce() - " + announcement);
             Announcements.getInstance().DisplayAnnouncement(announcement, duration);
         }
 

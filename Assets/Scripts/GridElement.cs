@@ -31,11 +31,6 @@ public class GridElement : MonoBehaviour
         FindNeighbors();
     }
 
-    public void PrintButtonClick()
-    {
-        Debug.Log("GridElement::PrintButtonClick() - " + gameObject.name + " was clicked");
-    }
-
     // Find the neighboring UI elements dynamically through raycasts (won't find UI elements without a collider)
     public void FindNeighbors()
     {
@@ -54,12 +49,7 @@ public class GridElement : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the east! - " + info.collider.gameObject.name);
             eastNeighbor = info.collider.gameObject;
-        }
-        else
-        {
-            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the east");
         }
 
         // look to the left (west)
@@ -67,12 +57,7 @@ public class GridElement : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the west! - " + info.collider.gameObject.name);
             westNeighbor = info.collider.gameObject;
-        }
-        else
-        {
-            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the west");
         }
 
         // look to the up (north)
@@ -80,12 +65,7 @@ public class GridElement : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the north! - " + info.collider.gameObject.name);
             northNeighbor = info.collider.gameObject;
-        }
-        else
-        {
-            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the north");
         }
 
         // look to the down (south)
@@ -93,12 +73,7 @@ public class GridElement : MonoBehaviour
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
-            //Debug.Log("GridElement::FindNeighbors() - Neighbor found to the south! - " + info.collider.gameObject.name);
             southNeighbor = info.collider.gameObject;
-        }
-        else
-        {
-            //Debug.Log("GridElement::FindNeighbors() - No neighbor found to the south");
         }
     }
 
@@ -124,56 +99,51 @@ public class GridElement : MonoBehaviour
             southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
     }
 
-    public void DisplayPusherInfluence(Color tileColor)
+    public void DisplayPusherInfluence(Color tileColor, bool shouldHighlight)
     {
-        DisplayPusherInfluenceAll(tileColor);
+        DisplayPusherInfluenceNorth(tileColor, shouldHighlight);
+        DisplayPusherInfluenceEast(tileColor, shouldHighlight);
+        DisplayPusherInfluenceSouth(tileColor, shouldHighlight);
+        DisplayPusherInfluenceWest(tileColor, shouldHighlight);
     }
 
-    private void DisplayPusherInfluenceAll(Color tileColor)
+    private void DisplayPusherInfluenceNorth(Color tileColor, bool shouldHighlight)
     {
-        DisplayPusherInfluenceNorth(tileColor);
-        DisplayPusherInfluenceEast(tileColor);
-        DisplayPusherInfluenceSouth(tileColor);
-        DisplayPusherInfluenceWest(tileColor);
-    }
-
-    private void DisplayPusherInfluenceNorth(Color tileColor)
-    {
-
-        if (northNeighbor && northNeighbor.GetComponent<GridElement>().piece)
+        if (northNeighbor && northNeighbor.GetComponent<GridElement>().piece && (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
+            northNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             northNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
-            northNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceNorth(tileColor);
+            northNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceNorth(tileColor, shouldHighlight);
         }
     }
 
-    private void DisplayPusherInfluenceEast(Color tileColor)
+    private void DisplayPusherInfluenceEast(Color tileColor, bool shouldHighlight)
     {
-
-        if (eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece)
+        if (eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece && (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
+            eastNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             eastNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
-            eastNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceEast(tileColor);
+            eastNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceEast(tileColor, shouldHighlight);
         }
     }
 
-    private void DisplayPusherInfluenceSouth(Color tileColor)
+    private void DisplayPusherInfluenceSouth(Color tileColor, bool shouldHighlight)
     {
-
-        if (southNeighbor && southNeighbor.GetComponent<GridElement>().piece)
+        if (southNeighbor && southNeighbor.GetComponent<GridElement>().piece && (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
+            southNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             southNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
-            southNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceSouth(tileColor);
+            southNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceSouth(tileColor, shouldHighlight);
         }
     }
 
-    private void DisplayPusherInfluenceWest(Color tileColor)
+    private void DisplayPusherInfluenceWest(Color tileColor, bool shouldHighlight)
     {
-
-        if (westNeighbor && westNeighbor.GetComponent<GridElement>().piece)
+        if (westNeighbor && westNeighbor.GetComponent<GridElement>().piece && (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
+            westNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             westNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
-            westNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceWest(tileColor);
+            westNeighbor.GetComponent<GridElement>().DisplayPusherInfluenceWest(tileColor, shouldHighlight);
         }
     }
 }

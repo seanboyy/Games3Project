@@ -39,7 +39,6 @@ namespace WytriamSTD
         {
             anncmntText = GetComponentInChildren<Text>();
             if (anncmntText == null)
-                Debug.Log("Announcements::Start() - Could not find Announcements Text");
             anncmntText.enabled = false;
             announcementLog = new List<string>();
         }

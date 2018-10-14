@@ -23,7 +23,6 @@ namespace WytriamSTD
 
         void FixedUpdate(){
             sun.transform.rotation = sunRotation;
-            //Debug.Log(sunRotation.eulerAngles.x);
             if((sunRotation.eulerAngles.x < 180 - nightAngle || sunRotation.eulerAngles.x >= 180 + (180 - nightAngle))) {
                 sunRotation *= Quaternion.Euler(speed * (1 + dayLengthMultiplier) * Time.fixedDeltaTime, 0, 0);
                 foreach (Light light in sceneLights){
