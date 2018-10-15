@@ -145,6 +145,9 @@ public class GridMenu  : Menu
                 gameMan.PlaceUnit(selectedGO);
                 break;
         };
+        contextMenu.HideContextMenu();
+        SetElementColor(selectedGO, selectedColor, defaultColor);
+        activeGO = null;
     }
 
     public void PlaceUnit(string unitType)

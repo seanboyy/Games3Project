@@ -21,6 +21,10 @@ public class GameMan : MonoBehaviour
 
     public void PlaceUnit(GameObject location)
     {
-
+        GameObject unitGO = unitPool.GetObject();
+        if (unitGO)
+            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, transform.position.z);
+        else
+            Debug.Log("GameMan::PlaceUnit() - no more GenericUnits available");
     }
 }
