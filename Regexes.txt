@@ -1,0 +1,7 @@
+Remove Debug.Log:
+
+( |\t)*(//|)Debug\.Log\((.*?)\);\r\n
+
+Remove empty else:
+
+(\t| )*else\s+{\s+}\r\n
