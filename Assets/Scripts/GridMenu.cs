@@ -141,7 +141,7 @@ public class GridMenu  : Menu
         switch(unitType)
         {
             case UnitType.Unit:
-                gameMan.PlaceUnit(seclectedGO);
+                gameMan.PlaceUnit(selectedGO);
                 break;
         };
     }
