@@ -471,10 +471,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4def3c1fb502fe9449721515a5964218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualObject: {fileID: 1940386144825696}
+  canvas: {fileID: 1137000698445546}
+  rotated: 0
   remainingMoves: 2
   grid: {fileID: 0}
   gridElement: {fileID: 0}
-  rotationAmount: -90
+  rotationAmount: 90
 --- !u!114 &114798701694921970
 MonoBehaviour:
   m_ObjectHideFlags: 1

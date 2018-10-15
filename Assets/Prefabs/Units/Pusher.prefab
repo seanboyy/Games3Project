@@ -537,6 +537,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e7aeba0b4af63489d0d9bc1349f0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualObject: {fileID: 1483755194348000}
+  canvas: {fileID: 1883857411431042}
+  rotated: 0
   remainingMoves: 2
   grid: {fileID: 0}
   gridElement: {fileID: 0}

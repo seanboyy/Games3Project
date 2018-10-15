@@ -1168,6 +1168,22 @@ Prefab:
       propertyPath: m_Name
       value: Element (-2, -1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: westWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168,
+        type: 3}
+    - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
   m_IsPrefabAsset: 0
@@ -3357,7 +3373,7 @@ MonoBehaviour:
   selectedGO: {fileID: 744416554}
   activeUIMenu: 1
   activeColor: {r: 0, g: 0.18730927, b: 1, a: 1}
-  moveColor: {r: 0.85490197, g: 1, b: 0, a: 1}
+  moveColor: {r: 1, g: 0.9372549, b: 0, a: 1}
   pushColor: {r: 0.45382977, g: 0, b: 1, a: 1}
   pullColor: {r: 1, g: 0.4122849, b: 0, a: 1}
   activeGO: {fileID: 0}
@@ -7585,11 +7601,6 @@ Prefab:
       propertyPath: grid
       value: 
       objectReference: {fileID: 1108008728}
-    - target: {fileID: 23578238758757212, guid: eaa1e2cb6df247f4b91ef34587fe602c,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1bfd3ac9fef8d9348a01493c9c3a2890, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa1e2cb6df247f4b91ef34587fe602c, type: 2}
   m_IsPrefabAsset: 0
