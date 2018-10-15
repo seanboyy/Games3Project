@@ -24,14 +24,19 @@ public class ObjectPool
 
     public GameObject GetObject()
     {
-        // Get the current available object in the pool
-        GameObject retVal = pool.Pop();
-        if (retVal == null)
+        GameObject retVal = null;
+        // Check to make sure the pool isn't empty
+        if (pool.Count != 0)
+        {
+            // Get the current available object in the pool
+            retVal = pool.Pop();
+            retVal.SetActive(true);
+        }
+        else
         {
             if (canGrow)
                 retVal = GameObject.Instantiate<GameObject>(prototype);
         }
-        retVal.SetActive(true);
         return retVal;
     }
 
