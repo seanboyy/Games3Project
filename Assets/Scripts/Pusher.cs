@@ -28,7 +28,6 @@ public class Pusher : Unit
 
     private void PushUnits(GameObject pushLoc)
     {
-        Debug.Log("Trying to push units starting at " + pushLoc.name);
         action = "";
         if (gridElement.northNeighbor == pushLoc
             || gridElement.eastNeighbor == pushLoc
@@ -42,7 +41,7 @@ public class Pusher : Unit
                 lastPiece = FindLastPieceInChain(gridElement, 0);
                 while(lastPiece != gridElement)
                 {
-                    lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.northNeighbor);
+                    if(!lastPiece.northWall && lastPiece.northNeighbor) lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.northNeighbor);
                     lastPiece = lastPiece.southNeighbor.GetComponent<GridElement>();
                 }
             }
@@ -51,7 +50,7 @@ public class Pusher : Unit
                 lastPiece = FindLastPieceInChain(gridElement, 1);
                 while (lastPiece != gridElement)
                 {
-                    lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.eastNeighbor);
+                    if(!lastPiece.eastWall && lastPiece.eastNeighbor) lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.eastNeighbor);
                     lastPiece = lastPiece.westNeighbor.GetComponent<GridElement>();
                 }
             }
@@ -60,7 +59,7 @@ public class Pusher : Unit
                 lastPiece = FindLastPieceInChain(gridElement, 2);
                 while (lastPiece != gridElement)
                 {
-                    lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.southNeighbor);
+                    if(!lastPiece.southWall && lastPiece.southNeighbor) lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.southNeighbor);
                     lastPiece = lastPiece.northNeighbor.GetComponent<GridElement>();
                 }
             }
@@ -69,7 +68,7 @@ public class Pusher : Unit
                 lastPiece = FindLastPieceInChain(gridElement, 3);
                 while (lastPiece != gridElement)
                 {
-                    lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.westNeighbor);
+                    if(!lastPiece.westWall && lastPiece.westNeighbor) lastPiece.piece.GetComponent<Unit>().MoveUnitNoAction(lastPiece.westNeighbor);
                     lastPiece = lastPiece.eastNeighbor.GetComponent<GridElement>();
                 }
             }
@@ -87,27 +86,38 @@ public class Pusher : Unit
         switch (direction)
         {
             case 0:
-                neighborPiece = location.northNeighbor.GetComponent<GridElement>().piece;
-                if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
-                    return FindLastPieceInChain(location.northNeighbor.GetComponent<GridElement>(), 0);
+                if (location.northNeighbor && ! location.northWall)
+                {
+                    neighborPiece = location.northNeighbor.GetComponent<GridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
+                        return FindLastPieceInChain(location.northNeighbor.GetComponent<GridElement>(), 0);
+                }
                 break;
             case 1:
-                neighborPiece = location.eastNeighbor.GetComponent<GridElement>().piece;
-                if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
-                    return FindLastPieceInChain(location.eastNeighbor.GetComponent<GridElement>(), 1);
+                if (location.eastNeighbor && !location.eastWall)
+                {
+                    neighborPiece = location.eastNeighbor.GetComponent<GridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
+                        return FindLastPieceInChain(location.eastNeighbor.GetComponent<GridElement>(), 1);
+                }
                 break;
             case 2:
-                neighborPiece = location.southNeighbor.GetComponent<GridElement>().piece;
-                if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
-                    return FindLastPieceInChain(location.southNeighbor.GetComponent<GridElement>(), 2);
+                if (location.southNeighbor && !location.southWall)
+                {
+                    neighborPiece = location.southNeighbor.GetComponent<GridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
+                        return FindLastPieceInChain(location.southNeighbor.GetComponent<GridElement>(), 2);
+                }
                 break;
             case 3:
-                neighborPiece = location.westNeighbor.GetComponent<GridElement>().piece;
-                if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
-                    return FindLastPieceInChain(location.westNeighbor.GetComponent<GridElement>(), 3);
+                if (location.westNeighbor && !location.westWall)
+                {
+                    neighborPiece = location.westNeighbor.GetComponent<GridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit)
+                        return FindLastPieceInChain(location.westNeighbor.GetComponent<GridElement>(), 3);
+                }
                 break;
         }
-        Debug.Log("Last piece in chain is at: " + location.name);
         return location;
     }
 }

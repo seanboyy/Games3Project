@@ -109,7 +109,7 @@ public class GridElement : MonoBehaviour
 
     private void DisplayPusherInfluenceNorth(Color tileColor, bool shouldHighlight)
     {
-        if (northNeighbor && northNeighbor.GetComponent<GridElement>().piece && (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!northWall && northNeighbor && northNeighbor.GetComponent<GridElement>().piece && (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             northNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             northNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
@@ -119,7 +119,7 @@ public class GridElement : MonoBehaviour
 
     private void DisplayPusherInfluenceEast(Color tileColor, bool shouldHighlight)
     {
-        if (eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece && (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece && (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             eastNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             eastNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
@@ -129,7 +129,7 @@ public class GridElement : MonoBehaviour
 
     private void DisplayPusherInfluenceSouth(Color tileColor, bool shouldHighlight)
     {
-        if (southNeighbor && southNeighbor.GetComponent<GridElement>().piece && (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!southWall && southNeighbor && southNeighbor.GetComponent<GridElement>().piece && (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             southNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             southNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;
@@ -139,7 +139,7 @@ public class GridElement : MonoBehaviour
 
     private void DisplayPusherInfluenceWest(Color tileColor, bool shouldHighlight)
     {
-        if (westNeighbor && westNeighbor.GetComponent<GridElement>().piece && (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!westWall && westNeighbor && westNeighbor.GetComponent<GridElement>().piece && (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             westNeighbor.GetComponent<GridElement>().isHighlighted = shouldHighlight;
             westNeighbor.GetComponent<GridElement>().GetComponent<Image>().color = tileColor;

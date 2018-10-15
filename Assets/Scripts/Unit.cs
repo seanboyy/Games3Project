@@ -48,10 +48,6 @@ public class Unit : GamePiece
                 gridElement = foundGameObject.GetComponent<GridElement>();
                 gridElement.piece = gameObject;
             }
-            else { }
-        }
-        else
-        {
         }
     }
 
