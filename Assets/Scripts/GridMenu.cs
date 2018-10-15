@@ -13,6 +13,8 @@ public class GridMenu  : Menu
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
 
+    [Header("GameManager")]
+    public GameMan gameMan;
     public GameObject selectedPiece;
 
     private ContextMenu contextMenu;
@@ -72,9 +74,7 @@ public class GridMenu  : Menu
                 // Move the canvas to SelectedGO's location
                 contextMenu.menuCanvas.transform.position = selectedGO.transform.position;
                 // Long term, this must be dynamic, but we can settle for short term for now
-
             }
-
             else
             {
                 activeGO = null;
@@ -94,6 +94,8 @@ public class GridMenu  : Menu
                 if (selectedGO.GetComponent<GridElement>().isHighlighted)
                 {
                     selectedPiece.GetComponent<Unit>().PerformAction(selectedGO);
+                    SetElementColor(selectedGO, selectedColor, defaultColor);
+                    activeGO = null;
                 }
         }
     }
@@ -136,6 +138,12 @@ public class GridMenu  : Menu
 
     public void PlaceUnit(UnitType unitType)
     {
+        switch(unitType)
+        {
+            case UnitType.Unit:
+                gameMan.PlaceUnit(seclectedGO);
+                break;
+        };
     }
 
     public void PlaceUnit(string unitType)

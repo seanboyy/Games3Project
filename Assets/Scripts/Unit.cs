@@ -97,12 +97,10 @@ public class Unit : GamePiece
         remainingMoves = distance;
         // Go to the new element location
         transform.position = new Vector3(newLoc.transform.position.x - 0.5f, newLoc.transform.parent.transform.position.y - 0.5f, transform.position.z);
-        grid.activeGO = null;
         gridElement.piece = null;
         // Update the gridElement this is on
         gridElement = newLoc.GetComponent<GridElement>();
         gridElement.piece = gameObject;
-        grid.SetElementColor(gridElement.gameObject, grid.selectedColor, grid.defaultColor);
     }
 
     public void MoveUnitNoAction(GameObject newLoc)

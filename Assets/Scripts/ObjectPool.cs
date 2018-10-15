@@ -5,27 +5,39 @@ using UnityEngine;
 public class ObjectPool
 {
     GameObject prototype;
-    List<GameObject> pool;
+    Stack<GameObject> pool;
     public bool canGrow;
-    private int index;
 
     public ObjectPool(GameObject prefab, bool resizeable, int count)
     {
         prototype = prefab;
         canGrow = resizeable;
-        pool = new List<GameObject>(count);
-        index = 0;
+        pool = new Stack<GameObject>(count);
 
         for (int i=0; i<count; i++)
         {
-            pool[i] = GameObject.Instantiate<GameObject>(prefab);
+            GameObject temp = GameObject.Instantiate<GameObject>(prototype);
+            temp.SetActive(false);
+            pool.Push(temp);
         }
     }
 
     public GameObject GetObject()
     {
         // Get the current available object in the pool
-        GameObject retVal = pool[index];
+        GameObject retVal = pool.Pop();
+        if (retVal == null)
+        {
+            if (canGrow)
+                retVal = GameObject.Instantiate<GameObject>(prototype);
+        }
+        retVal.SetActive(true);
         return retVal;
+    }
+
+    public void ReturnObject(GameObject returned)
+    {
+        returned.SetActive(false);
+        pool.Push(returned);
     }
 }
