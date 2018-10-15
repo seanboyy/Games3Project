@@ -41,6 +41,35 @@ public class Twister : Unit
         if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece) gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.forward, rotationAmount);
         if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece) gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.forward, rotationAmount);
         if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece) gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.forward, rotationAmount);
-
+        gridElement.FindNeighbors();
+        gridElement.northNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.southNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.westNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+        gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor) gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor) gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor) gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor) gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor) gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor) gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor) gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor) gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor) gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor) gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor) gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
+        if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor) gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
+        //if (gridElement.piece) gridElement.piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.northNeighbor.GetComponent<GridElement>().piece) gridElement.northNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.eastNeighbor.GetComponent<GridElement>().piece) gridElement.eastNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.southNeighbor.GetComponent<GridElement>().piece) gridElement.southNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.westNeighbor.GetComponent<GridElement>().piece) gridElement.westNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece) gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece) gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece) gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece) gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 }
