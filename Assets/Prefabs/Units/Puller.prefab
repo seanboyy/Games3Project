@@ -271,8 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5207e03a788246a439521c13376d279c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  northNeighbor: {fileID: 1537969394526174}
-  southNeighbor: {fileID: 0}
+  northNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 1537969394526174}
 --- !u!114 &114268598971666622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -506,6 +506,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c28048fd1a1833499054b313f48966b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualObject: {fileID: 1789640755068116}
+  canvas: {fileID: 1397515239754350}
+  rotated: 0
   remainingMoves: 2
   grid: {fileID: 0}
   gridElement: {fileID: 0}

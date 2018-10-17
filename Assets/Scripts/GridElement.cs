@@ -25,10 +25,14 @@ public class GridElement : MonoBehaviour
     public int distance = -1;
     public GameObject piece;
 
+    //private GridMenu grid;
+
     // Use this for initialization
     void Start()
     {
+        //grid = FindObjectOfType<GridMenu>();
         FindNeighbors();
+        UpdateWalls();
     }
 
     // Find the neighboring UI elements dynamically through raycasts (won't find UI elements without a collider)
@@ -77,6 +81,112 @@ public class GridElement : MonoBehaviour
         }
     }
 
+    public void UpdateWalls()
+    {
+        UpdateWallSprite(gameObject);
+        if (northWall && northNeighbor)
+        {
+            northNeighbor.GetComponent<GridElement>().southWall = true;
+            UpdateWallSprite(northNeighbor);
+        }
+        if (eastWall && eastNeighbor)
+        {
+            eastNeighbor.GetComponent<GridElement>().westWall = true;
+            UpdateWallSprite(eastNeighbor);
+        }
+        if (southWall && southNeighbor)
+        {
+            southNeighbor.GetComponent<GridElement>().northWall = true;
+            UpdateWallSprite(southNeighbor);
+        }
+        if (westWall && westNeighbor)
+        {
+            westNeighbor.GetComponent<GridElement>().eastWall = true;
+            UpdateWallSprite(westNeighbor);
+        }
+    }
+
+    public static void UpdateWallSprite(GameObject GO)
+    {
+        GridMenu grid = FindObjectOfType<GridMenu>();
+        GridElement element = GO.GetComponent<GridElement>();
+        if (element.northWall && element.eastWall && element.southWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.FourWalls;
+        }
+        else if (element.northWall && element.eastWall && element.southWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.ThreeWalls;
+            GO.transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (element.northWall && element.eastWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.ThreeWalls;
+        }
+        else if (element.northWall && element.southWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.ThreeWalls;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (element.eastWall && element.southWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.ThreeWalls;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (element.northWall && element.eastWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsL;
+            GO.transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (element.northWall && element.southWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsHall;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (element.northWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsL;
+        }
+        else if (element.eastWall && element.southWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsL;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (element.eastWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsHall;
+        }
+        else if (element.southWall && element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.TwoWallsL;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (element.northWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.OneWall;
+            GO.transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (element.eastWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.OneWall;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+        else if (element.southWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.OneWall;
+            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if (element.westWall)
+        {
+            GO.GetComponent<Image>().sprite = grid.OneWall;
+        }
+        else
+        {
+            GO.GetComponent<Image>().sprite = grid.NoWalls;
+            GO.transform.rotation = Quaternion.identity;
+        }
+    }
+
     // Change the color of all tiles that can be accessed in movesRemaining moves from the current tile. 
     // Recursive
     public void DisplayMoveTiles(int movesRemaining, Color tileColor, bool showingMoves)
@@ -99,6 +209,7 @@ public class GridElement : MonoBehaviour
             southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
     }
 
+    #region Pusher Influence
     public void DisplayPusherInfluence(Color tileColor, bool shouldHighlight)
     {
         DisplayPusherInfluenceNorth(tileColor, shouldHighlight);
@@ -150,7 +261,9 @@ public class GridElement : MonoBehaviour
             west.DisplayPusherInfluenceWest(tileColor, shouldHighlight);
         }
     }
+    #endregion
 
+    #region Puller Influence
     public void DisplayPullerInfluence(int distance, Color tileColor, bool shouldHighlight)
     {
         DisplayPullerInfluenceNorth(distance, tileColor, shouldHighlight);
@@ -206,4 +319,5 @@ public class GridElement : MonoBehaviour
             west.DisplayPullerInfluenceWest(distance - 1, tileColor, shouldHighlight);
         }
     }
+    #endregion
 }
