@@ -223,8 +223,7 @@ Prefab:
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: m_Type
@@ -233,6 +232,21 @@ Prefab:
     - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: westWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: southWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: eastWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: northWall
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1171,14 +1185,13 @@ Prefab:
     - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: westWall
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114273485456195322, guid: 285bab1f2bb87574fa54f8f74da19a12,
         type: 2}
       propertyPath: m_Type
@@ -1412,6 +1425,11 @@ Prefab:
       propertyPath: spawnable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: eastWall
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
   m_IsPrefabAsset: 0
@@ -1637,6 +1655,16 @@ Prefab:
         type: 2}
       propertyPath: spawnable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: southWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114319631535282000, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
@@ -2072,6 +2100,11 @@ Prefab:
         type: 2}
       propertyPath: spawnable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: northWall
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
@@ -2975,6 +3008,21 @@ Prefab:
       propertyPath: m_Name
       value: Element (-2, -2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: northWall
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: eastWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: westWall
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
   m_IsPrefabAsset: 0
@@ -3379,6 +3427,12 @@ MonoBehaviour:
   activeGO: {fileID: 0}
   gameMan: {fileID: 571666587}
   selectedPiece: {fileID: 0}
+  NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
+  OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}
+  TwoWallsL: {fileID: 21300000, guid: 90c249ef19801404eaa12e3801667177, type: 3}
+  TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
+  ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
+  FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4136,6 +4190,11 @@ Prefab:
         type: 2}
       propertyPath: spawnable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: westWall
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}
@@ -5885,6 +5944,21 @@ Prefab:
         type: 2}
       propertyPath: spawnable
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: southWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: eastWall
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636936112963010, guid: 285bab1f2bb87574fa54f8f74da19a12,
+        type: 2}
+      propertyPath: northWall
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 285bab1f2bb87574fa54f8f74da19a12, type: 2}

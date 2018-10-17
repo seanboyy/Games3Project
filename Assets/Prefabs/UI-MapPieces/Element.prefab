@@ -159,8 +159,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114636936112963010}
-        m_MethodName: PrintButtonClick
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -183,6 +183,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnable: 1
+  northWall: 0
+  eastWall: 0
+  southWall: 0
+  westWall: 0
+  northNeighbor: {fileID: 0}
+  eastNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 0}
+  westNeighbor: {fileID: 0}
+  isHighlighted: 0
+  distance: -1
+  piece: {fileID: 0}
 --- !u!222 &222489457635693558
 CanvasRenderer:
   m_ObjectHideFlags: 1
