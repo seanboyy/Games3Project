@@ -271,8 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5207e03a788246a439521c13376d279c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  northNeighbor: {fileID: 1537969394526174}
-  southNeighbor: {fileID: 0}
+  northNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 1537969394526174}
 --- !u!114 &114268598971666622
 MonoBehaviour:
   m_ObjectHideFlags: 1

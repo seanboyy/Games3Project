@@ -27,9 +27,10 @@ public class GridMenu  : Menu
     public Sprite FourWalls;
 
     private ContextMenu contextMenu;
+    private bool canPressButtons = false;
 
-	// Use this for initialization
-	protected override void Start ()
+    // Use this for initialization
+    protected override void Start ()
     {
         base.Start();
         contextMenu = GetComponent<ContextMenu>();
@@ -52,11 +53,16 @@ public class GridMenu  : Menu
             prevHorAxis = Input.GetAxisRaw("Horizontal");
             prevVerAxis = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-                ActivateElement();
+            if (!canPressButtons)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+                    ActivateElement();
 
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-                Cancel();
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                    Cancel();
+            }
+            else
+                canPressButtons = true;
         }
     }
 
@@ -74,7 +80,8 @@ public class GridMenu  : Menu
             if (selectedGO.GetComponent<GridElement>().piece != null)
             {
                 selectedPiece = selectedGO.GetComponent<GridElement>().piece;
-                selectedPiece.GetComponent<Unit>().ShowContextMenu();
+                if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
+                canPressButtons = false;
             }
             else if (selectedGO.GetComponent<GridElement>().spawnable)
             {
@@ -82,6 +89,7 @@ public class GridMenu  : Menu
                 contextMenu.ShowContextMenu(gameObject);
                 // Move the canvas to SelectedGO's location
                 contextMenu.menuCanvas.transform.position = selectedGO.transform.position;
+                canPressButtons = false;
                 // Long term, this must be dynamic, but we can settle for short term for now
             }
             else
@@ -105,6 +113,7 @@ public class GridMenu  : Menu
                     selectedPiece.GetComponent<Unit>().PerformAction(selectedGO);
                     SetElementColor(selectedGO, selectedColor, defaultColor);
                     activeGO = null;
+                    selectedPiece = null;
                 }
         }
     }
@@ -113,6 +122,7 @@ public class GridMenu  : Menu
     {
         if (!selectedPiece) return;
         selectedPiece.GetComponent<Unit>().HideMovementGrid();
+        selectedPiece = null;
     }
 
     protected override void SelectElement(GameObject newElement)
