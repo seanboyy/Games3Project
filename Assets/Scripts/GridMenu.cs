@@ -18,6 +18,14 @@ public class GridMenu  : Menu
     public GameMan gameMan;
     public GameObject selectedPiece;
 
+    [Header("Other Miscellaneous")]
+    public Sprite NoWalls;
+    public Sprite OneWall;
+    public Sprite TwoWallsL;
+    public Sprite TwoWallsHall;
+    public Sprite ThreeWalls;
+    public Sprite FourWalls;
+
     private ContextMenu contextMenu;
 
 	// Use this for initialization
