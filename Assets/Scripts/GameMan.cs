@@ -23,7 +23,13 @@ public class GameMan : MonoBehaviour
     {
         GameObject unitGO = unitPool.GetObject();
         if (unitGO)
-            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, transform.position.z);
+        {
+            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, unitGO.transform.position.z);
+            if (unitGO.GetComponent<Unit>())
+            {
+                Debug.Log("GameMan::PlaceUnit() - Assigned a Grid Element to newly spawned unit: " + unitGO.GetComponent<Unit>().FindGridElement());
+            }
+        }
         else
             Debug.Log("GameMan::PlaceUnit() - no more GenericUnits available");
     }

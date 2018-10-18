@@ -24,13 +24,14 @@ public class Unit : GamePiece
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
 
 	// Use this for initialization
-	void Start ()
+	void Start()
     {
         contextMenu = GetComponent<ContextMenu>();
+        grid = FindObjectOfType<GridMenu>();
         FindGridElement();	
 	}
 
-    public void FindGridElement()
+    public bool FindGridElement()
     {
         // set up raycast
         Ray ray;
@@ -39,6 +40,7 @@ public class Unit : GamePiece
         // Look towards the grid (+z direction)
         ray = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), Vector3.forward);
         Physics.Raycast(ray, out info);
+        Debug.Log(info.collider.gameObject.name);
         if (info.collider != null)
         {
             GameObject foundGameObject = info.collider.gameObject;
@@ -47,8 +49,10 @@ public class Unit : GamePiece
             {
                 gridElement = foundGameObject.GetComponent<GridElement>();
                 gridElement.piece = gameObject;
+                return true;
             }
         }
+        return false;
     }
 
     public void ShowContextMenu()
