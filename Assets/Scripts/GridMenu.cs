@@ -90,7 +90,7 @@ public class GridMenu  : Menu
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);
                 // Move the canvas to SelectedGO's location
-                contextMenu.menuCanvas.transform.position = selectedGO.transform.position;
+                contextMenu.menuCanvas.transform.position = selectedGO.transform.position + 2 * Vector3.back;
                 canPressButtons = false;
                 // Long term, this must be dynamic, but we can settle for short term for now
             }

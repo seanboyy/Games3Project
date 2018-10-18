@@ -234,113 +234,165 @@ public class GridElement : MonoBehaviour
     }
 
     #region Pusher Influence
-    public void DisplayPusherInfluence(Color tileColor, bool shouldHighlight)
+    public void DisplayPusherInfluence(bool shouldHighlight)
     {
-        DisplayPusherInfluenceNorth(tileColor, shouldHighlight);
-        DisplayPusherInfluenceEast(tileColor, shouldHighlight);
-        DisplayPusherInfluenceSouth(tileColor, shouldHighlight);
-        DisplayPusherInfluenceWest(tileColor, shouldHighlight);
+        if (shouldHighlight)
+            ChangeColor(GridMenu.pushColor);
+        else
+            ChangeColor(Menu.defaultColor);
+        DisplayPusherInfluenceNorth(shouldHighlight, true);
+        DisplayPusherInfluenceEast(shouldHighlight, true);
+        DisplayPusherInfluenceSouth(shouldHighlight, true);
+        DisplayPusherInfluenceWest(shouldHighlight, true);
     }
 
-    private void DisplayPusherInfluenceNorth(Color tileColor, bool shouldHighlight)
+    private void DisplayPusherInfluenceNorth(bool shouldHighlight, bool immediateNeighbor)
     {
         if (!northWall && northNeighbor && northNeighbor.GetComponent<GridElement>().piece && (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             GridElement north = northNeighbor.GetComponent<GridElement>();
             north.isHighlighted = shouldHighlight;
-            north.GetComponent<Image>().color = tileColor;
-            north.DisplayPusherInfluenceNorth(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
+            if (shouldHighlight)
+            {
+                north.ChangeColor(GridMenu.pushColor);
+                if (!immediateNeighbor)
+                    north.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+            }
+            else
+                north.ChangeColor(Menu.defaultColor);
+            north.DisplayPusherInfluenceNorth(shouldHighlight, false);
         }
     }
 
-    private void DisplayPusherInfluenceEast(Color tileColor, bool shouldHighlight)
+    private void DisplayPusherInfluenceEast(bool shouldHighlight, bool immediateNeighbor)
     {
         if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece && (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             GridElement east = eastNeighbor.GetComponent<GridElement>();
             east.isHighlighted = shouldHighlight;
-            east.GetComponent<Image>().color = tileColor;
-            east.DisplayPusherInfluenceEast(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
+            if (shouldHighlight)
+            {
+                east.ChangeColor(GridMenu.pushColor);
+                if (!immediateNeighbor)
+                    east.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+            }
+            else
+                east.ChangeColor(Menu.defaultColor);
+            east.DisplayPusherInfluenceEast(shouldHighlight, false);
         }
     }
 
-    private void DisplayPusherInfluenceSouth(Color tileColor, bool shouldHighlight)
+    private void DisplayPusherInfluenceSouth(bool shouldHighlight, bool immediateNeighbor)
     {
         if (!southWall && southNeighbor && southNeighbor.GetComponent<GridElement>().piece && (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             GridElement south = southNeighbor.GetComponent<GridElement>();
             south.isHighlighted = shouldHighlight;
-            south.GetComponent<Image>().color = tileColor;
-            south.DisplayPusherInfluenceSouth(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
+            if (shouldHighlight)
+            {
+                south.ChangeColor(GridMenu.pushColor);
+                if (!immediateNeighbor)
+                    south.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+            }
+            else
+                south.ChangeColor(Menu.defaultColor);
+            south.DisplayPusherInfluenceSouth(shouldHighlight, false);
         }
     }
 
-    private void DisplayPusherInfluenceWest(Color tileColor, bool shouldHighlight)
+    private void DisplayPusherInfluenceWest(bool shouldHighlight, bool immediateNeighbor)
     {
         if (!westWall && westNeighbor && westNeighbor.GetComponent<GridElement>().piece && (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
         {
             GridElement west = westNeighbor.GetComponent<GridElement>();
             west.isHighlighted = shouldHighlight;
-            west.GetComponent<Image>().color = tileColor;
-            west.DisplayPusherInfluenceWest(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
+            if (shouldHighlight)
+            {
+                west.ChangeColor(GridMenu.pushColor);
+                if (!immediateNeighbor)
+                    west.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+            }
+            else
+                west.ChangeColor(Menu.defaultColor);
+            west.DisplayPusherInfluenceWest(shouldHighlight, false);
         }
     }
     #endregion
 
     #region Puller Influence
-    public void DisplayPullerInfluence(int distance, Color tileColor, bool shouldHighlight)
+    public void DisplayPullerInfluence(int distance, bool shouldHighlight)
     {
-        DisplayPullerInfluenceNorth(distance, tileColor, shouldHighlight);
-        DisplayPullerInfluenceEast(distance, tileColor, shouldHighlight);
-        DisplayPullerInfluenceSouth(distance, tileColor, shouldHighlight);
-        DisplayPullerInfluenceWest(distance, tileColor, shouldHighlight);
+        DisplayPullerInfluenceNorth(distance, shouldHighlight);
+        DisplayPullerInfluenceEast(distance, shouldHighlight);
+        DisplayPullerInfluenceSouth(distance, shouldHighlight);
+        DisplayPullerInfluenceWest(distance, shouldHighlight);
     }
 
-    private void DisplayPullerInfluenceNorth(int distance, Color tileColor, bool shouldHighlight)
+    private void DisplayPullerInfluenceNorth(int distance, bool shouldHighlight)
     {
         if (!northWall && northNeighbor && distance > 0)
         {
             GridElement north = northNeighbor.GetComponent<GridElement>();
-            north.GetComponent<Image>().color = tileColor;
-            if (north.piece && north.piece.GetComponent<GamePiece>() is Unit) north.isHighlighted = shouldHighlight;
-            else north.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
-            north.DisplayPullerInfluenceNorth(distance - 1, tileColor, shouldHighlight);
+            if (shouldHighlight)
+            {
+                north.ChangeColor(GridMenu.pullColor);
+                if (north.piece && north.piece.GetComponent<GamePiece>() is Unit) north.isHighlighted = shouldHighlight;
+                else north.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
+            }
+            else
+                north.ChangeColor(Menu.defaultColor);
+            north.DisplayPullerInfluenceNorth(distance - 1, shouldHighlight);
         }
     }
 
-    private void DisplayPullerInfluenceEast(int distance, Color tileColor, bool shouldHighlight)
+    private void DisplayPullerInfluenceEast(int distance, bool shouldHighlight)
     {
         if (!eastWall && eastNeighbor && distance > 0)
         {
             GridElement east = eastNeighbor.GetComponent<GridElement>();
-            east.GetComponent<Image>().color = tileColor;
-            if (east.piece && east.piece.GetComponent<GamePiece>() is Unit) east.isHighlighted = shouldHighlight;
-            else east.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
-            east.DisplayPullerInfluenceEast(distance - 1, tileColor, shouldHighlight);
+            if (shouldHighlight)
+            {
+                east.ChangeColor(GridMenu.pullColor);
+                if (east.piece && east.piece.GetComponent<GamePiece>() is Unit) east.isHighlighted = shouldHighlight;
+                else east.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
+            }
+            else
+                east.ChangeColor(Menu.defaultColor);
+            east.DisplayPullerInfluenceEast(distance - 1, shouldHighlight);
         }
     }
 
-    private void DisplayPullerInfluenceSouth(int distance, Color tileColor, bool shouldHighlight)
+    private void DisplayPullerInfluenceSouth(int distance, bool shouldHighlight)
     {
         if (!southWall && southNeighbor && distance > 0)
         {
             GridElement south = southNeighbor.GetComponent<GridElement>();
-            south.GetComponent<Image>().color = tileColor;
-            if (south.piece && south.piece.GetComponent<GamePiece>() is Unit) south.isHighlighted = shouldHighlight;
-            else south.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
-            south.DisplayPullerInfluenceSouth(distance - 1, tileColor, shouldHighlight);
+            if (shouldHighlight)
+            {
+                south.ChangeColor(GridMenu.pullColor);
+                if (south.piece && south.piece.GetComponent<GamePiece>() is Unit) south.isHighlighted = shouldHighlight;
+                else south.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
+            }
+            else
+                south.ChangeColor(Menu.defaultColor);
+            south.DisplayPullerInfluenceSouth(distance - 1, shouldHighlight);
         }
     }
 
-    private void DisplayPullerInfluenceWest(int distance, Color tileColor, bool shouldHighlight)
+    private void DisplayPullerInfluenceWest(int distance, bool shouldHighlight)
     {
         if (!westWall && westNeighbor && distance > 0)
         {
             GridElement west = westNeighbor.GetComponent<GridElement>();
-            west.GetComponent<Image>().color = tileColor;
-            if (west.piece && west.piece.GetComponent<GamePiece>() is Unit) west.isHighlighted = shouldHighlight;
-            else west.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
-            west.DisplayPullerInfluenceWest(distance - 1, tileColor, shouldHighlight);
+            if (shouldHighlight)
+            {
+                west.ChangeColor(GridMenu.pullColor);
+                if (west.piece && west.piece.GetComponent<GamePiece>() is Unit) west.isHighlighted = shouldHighlight;
+                else west.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
+            }
+            else
+                west.ChangeColor(Menu.defaultColor);
+            west.DisplayPullerInfluenceWest(distance - 1, shouldHighlight);
         }
     }
     #endregion

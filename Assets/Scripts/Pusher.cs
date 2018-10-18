@@ -20,7 +20,7 @@ public class Pusher : Unit
     {
         action = "push";
         contextMenu.HideContextMenu();
-        gridElement.DisplayPusherInfluence(GridMenu.pushColor, true);
+        gridElement.DisplayPusherInfluence(true);
     }
 
     public override void PerformAction(GameObject actionLocGO)
@@ -39,7 +39,7 @@ public class Pusher : Unit
             || gridElement.southNeighbor == pushLoc
             || gridElement.westNeighbor == pushLoc)
         {
-            gridElement.DisplayPusherInfluence(Menu.defaultColor, false);
+            gridElement.DisplayPusherInfluence(false);
             GridElement lastPiece;
             if (pushLoc == gridElement.northNeighbor)
             {
