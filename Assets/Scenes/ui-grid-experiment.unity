@@ -2684,6 +2684,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224360519209921394, guid: 285bab1f2bb87574fa54f8f74da19a12,
     type: 2}
   m_PrefabInternal: {fileID: 190103447}
+--- !u!1 &1015556536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1537969394526174, guid: 3e34d574bf8e1274983b3d2fdc34d738,
+    type: 2}
+  m_PrefabInternal: {fileID: 1952485513}
 --- !u!1001 &1019868410
 Prefab:
   m_ObjectHideFlags: 0
@@ -7387,6 +7392,16 @@ Prefab:
       propertyPath: grid
       value: 
       objectReference: {fileID: 1108008728}
+    - target: {fileID: 114058882523192130, guid: 3e34d574bf8e1274983b3d2fdc34d738,
+        type: 2}
+      propertyPath: southNeighbor
+      value: 
+      objectReference: {fileID: 1015556536}
+    - target: {fileID: 114058882523192130, guid: 3e34d574bf8e1274983b3d2fdc34d738,
+        type: 2}
+      propertyPath: northNeighbor
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e34d574bf8e1274983b3d2fdc34d738, type: 2}
   m_IsPrefabAsset: 0
