@@ -225,7 +225,7 @@ public class GridElement : MonoBehaviour
             GridElement north = northNeighbor.GetComponent<GridElement>();
             north.isHighlighted = shouldHighlight;
             north.GetComponent<Image>().color = tileColor;
-            north.DisplayPusherInfluenceNorth(tileColor, shouldHighlight);
+            north.DisplayPusherInfluenceNorth(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
         }
     }
 
@@ -236,7 +236,7 @@ public class GridElement : MonoBehaviour
             GridElement east = eastNeighbor.GetComponent<GridElement>();
             east.isHighlighted = shouldHighlight;
             east.GetComponent<Image>().color = tileColor;
-            east.DisplayPusherInfluenceEast(tileColor, shouldHighlight);
+            east.DisplayPusherInfluenceEast(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
         }
     }
 
@@ -247,7 +247,7 @@ public class GridElement : MonoBehaviour
             GridElement south = southNeighbor.GetComponent<GridElement>();
             south.isHighlighted = shouldHighlight;
             south.GetComponent<Image>().color = tileColor;
-            south.DisplayPusherInfluenceSouth(tileColor, shouldHighlight);
+            south.DisplayPusherInfluenceSouth(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
         }
     }
 
@@ -258,7 +258,7 @@ public class GridElement : MonoBehaviour
             GridElement west = westNeighbor.GetComponent<GridElement>();
             west.isHighlighted = shouldHighlight;
             west.GetComponent<Image>().color = tileColor;
-            west.DisplayPusherInfluenceWest(tileColor, shouldHighlight);
+            west.DisplayPusherInfluenceWest(tileColor + new Color(0.4F, 0.4F, 0.4F), false);
         }
     }
     #endregion
