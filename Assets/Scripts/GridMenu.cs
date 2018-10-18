@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class GridMenu  : Menu
 {
     [Header("Colors for UI Grid Elements")]
-    public static Color activeColor = Color.blue;    // the color for active UI elements
-    public static Color moveColor = Color.yellow;      // the color of elements that can be moved to
-    public static Color pushColor = new Color(0.4F, 0, 1);      // the color of elements that can be influenced by pusher
-    public static Color pullColor = new Color(1F, 0.4F, 0);      // the color of elements that can be influenced by puller
-    public static Color spawnColor = Color.green;
+    public static Color activeColor = Color.blue;                   // the color for active UI elements
+    public static Color moveColor = Color.yellow;                   // the color of elements that can be moved to
+    public static Color pushColor = new Color(0.4F, 0, 1);          // the color of elements that can be influenced by pusher
+    public static Color pullColor = new Color(1F, 0.4F, 0);         // the color of elements that can be influenced by puller
+    public static Color spawnColor = new Color(0.6F, 1, 0.6F);      // the color of elements that can hold spawn pieces
+    public static Color goalColor = new Color(1, 0.6F, 1);          // the color of elements that are goal zones
 
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
@@ -130,30 +131,30 @@ public class GridMenu  : Menu
     {
         if (newElement == null) return;
 
-        selectedGO.GetComponent<Image>().color = prevColor;
+        selectedGO.GetComponent<GridElement>().ChangeColor(prevColor);
         selectedGO = newElement;
         prevColor = selectedGO.GetComponent<Image>().color;
         if (activeGO != null)
         {
             if (selectedGO == activeGO)
-                selectedGO.GetComponent<Image>().color = activeColor;
+                selectedGO.GetComponent<GridElement>().ChangeColor(activeColor);
             else
-                selectedGO.GetComponent<Image>().color = selectedColor;
+                selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
         }
         else
-            selectedGO.GetComponent<Image>().color = selectedColor;
+            selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
     }
 
     public void SetElementColor(GameObject element, Color newColor)
     {
         prevColor = element.GetComponent<Image>().color;
-        element.GetComponent<Image>().color = newColor;
+        element.GetComponent<GridElement>().ChangeColor(newColor);
     }
 
     public void SetElementColor(GameObject element, Color newColor, Color newPrevColor)
     {
         prevColor = newPrevColor;
-        element.GetComponent<Image>().color = newColor;
+        element.GetComponent<GridElement>().ChangeColor(newColor);
     }
 
     public void PlaceUnit(string unitType)
@@ -161,16 +162,16 @@ public class GridMenu  : Menu
         switch (unitType)
         {
             case "unit":
-                gameMan.PlaceUnit(selectedGO);
+                gameMan.PlaceUnit(selectedGO, UnitType.Unit);
                 break;
             case "pusher":
-                gameMan.PlacePusher(selectedGO);
+                gameMan.PlaceUnit(selectedGO, UnitType.Pusher);
                 break;
             case "puller":
-                gameMan.PlacePuller(selectedGO);
+                gameMan.PlaceUnit(selectedGO, UnitType.Puller);
                 break;
             case "twister":
-                gameMan.PlaceTwister(selectedGO);
+                gameMan.PlaceUnit(selectedGO, UnitType.Twister);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

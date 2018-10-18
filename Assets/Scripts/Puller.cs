@@ -32,16 +32,16 @@ public class Puller : Unit
         switch (FindDirection(pullLoc))
         {
             case 0:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().MoveUnitNoAction(location.southNeighbor);
+                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.southNeighbor);
                 break;
             case 1:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().MoveUnitNoAction(location.westNeighbor);
+                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.westNeighbor);
                 break;
             case 2:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().MoveUnitNoAction(location.northNeighbor);
+                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.northNeighbor);
                 break;
             case 3:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().MoveUnitNoAction(location.eastNeighbor);
+                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.eastNeighbor);
                 break;
         }
     }

@@ -185,6 +185,9 @@ public class Twister : Unit
                 if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece)
                     UpdateRotation(gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
                 #endregion
+                #region Fix Grid Attributes and Colors
+                UpdateGridAttributes();
+                #endregion
             }
     }
 
@@ -219,5 +222,113 @@ public class Twister : Unit
         piece.gameObject.transform.rotation = Quaternion.identity;
         piece.rotated++;
         piece.UpdateVisual();
+    }
+
+    private void UpdateGridAttributes()
+    {
+        GridElement north = gridElement.northNeighbor.GetComponent<GridElement>();
+        GridElement east = gridElement.eastNeighbor.GetComponent<GridElement>();
+        GridElement south = gridElement.southNeighbor.GetComponent<GridElement>();
+        GridElement west = gridElement.westNeighbor.GetComponent<GridElement>();
+        GridElement northeast = gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>();
+        GridElement southeast = gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>();
+        GridElement northwest = gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>();
+        GridElement southwest = gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>();
+        bool temp = north.spawnable;
+        bool temp2 = west.spawnable;
+        bool temp3 = north.goal;
+        bool temp4 = west.goal;
+        bool temp5 = northeast.spawnable;
+        bool temp6 = northwest.spawnable;
+        bool temp7 = northeast.goal;
+        bool temp8 = northwest.goal;
+        if (north.spawnable)
+        {
+            west.spawnable = true;
+            north.spawnable = false;
+        }
+        if (east.spawnable)
+        {
+            north.spawnable = true;
+            east.spawnable = false;
+        }
+        if (south.spawnable)
+        {
+            east.spawnable = true;
+            south.spawnable = false;
+        }
+        if (temp2)
+        {
+            south.spawnable = true;
+            if (!temp) west.spawnable = false;
+        }
+        if (northeast.spawnable)
+        {
+            northwest.spawnable = true;
+            northeast.spawnable = false;
+        }
+        if (southeast.spawnable)
+        {
+            northeast.spawnable = true;
+            southeast.spawnable = false;
+        }
+        if (southwest.spawnable)
+        {
+            southeast.spawnable = true;
+            southwest.spawnable = false;
+        }
+        if (temp6)
+        {
+            southwest.spawnable = true;
+            if (!temp5) northwest.spawnable = false;
+        }
+        if (north.goal)
+        {
+            west.goal = true;
+            north.goal = false;
+        }
+        if (east.goal)
+        {
+            north.goal = true;
+            east.goal = false;
+        }
+        if (south.goal)
+        {
+            east.goal = true;
+            south.goal = false;
+        }
+        if (temp4)
+        {
+            south.goal = true;
+            if (!temp3) west.goal = false;
+        }
+        if (northeast.goal)
+        {
+            northwest.goal = true;
+            northeast.goal = false;
+        }
+        if (southeast.goal)
+        {
+            northeast.goal = true;
+            southeast.goal = false;
+        }
+        if (southwest.goal)
+        {
+            southeast.goal = true;
+            southwest.goal = false;
+        }
+        if (temp8)
+        {
+            southwest.goal = true;
+            if (!temp7) northwest.goal = false;
+        }
+        grid.SetElementColor(north.gameObject, Menu.defaultColor);
+        grid.SetElementColor(east.gameObject, Menu.defaultColor);
+        grid.SetElementColor(south.gameObject, Menu.defaultColor);
+        grid.SetElementColor(west.gameObject, Menu.defaultColor);
+        grid.SetElementColor(northeast.gameObject, Menu.defaultColor);
+        grid.SetElementColor(northwest.gameObject, Menu.defaultColor);
+        grid.SetElementColor(southeast.gameObject, Menu.defaultColor);
+        grid.SetElementColor(southwest.gameObject, Menu.defaultColor);
     }
 }

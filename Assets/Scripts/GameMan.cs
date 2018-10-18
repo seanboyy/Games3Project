@@ -23,52 +23,31 @@ public class GameMan : MonoBehaviour
         twisterPool = new ObjectPool(twisterPrefab, false, 1);
     }
 
-    public void PlaceUnit(GameObject location)
+    public void PlaceUnit(GameObject location, UnitType type)
     {
-        GameObject unitGO = unitPool.GetObject();
+        GameObject unitGO = null; 
+        switch(type)
+        {
+            case UnitType.Unit:
+                unitGO = unitPool.GetObject();
+                break;
+            case UnitType.Puller:
+                unitGO = pullerPool.GetObject();
+                break;
+            case UnitType.Pusher:
+                unitGO = pusherPool.GetObject();
+                break;
+            case UnitType.Twister:
+                unitGO = twisterPool.GetObject();
+                break;
+        }
         if (unitGO)
         {
-            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, unitGO.transform.position.z);
-            if (unitGO.GetComponent<Unit>())
-            {
-                Debug.Log("GameMan::PlaceUnit() - Assigned a Grid Element to newly spawned unit: " + unitGO.GetComponent<Unit>().FindGridElement());
-            }
+            unitGO.GetComponent<Unit>().FindGridElement();
+            unitGO.GetComponent<Unit>().SetLocation(location);
         }
         else
-            Debug.Log("GameMan::PlaceUnit() - no more GenericUnits available");
-    }
-
-    public void PlacePuller(GameObject location)
-    {
-        GameObject unitGO = pullerPool.GetObject();
-        if (unitGO)
-        {
-            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, unitGO.transform.position.z);
-        }
-        else
-            Debug.Log("GameMan::PlaceUnit() - no more Pullers available");
-    }
-
-    public void PlacePusher(GameObject location)
-    {
-        GameObject unitGO = pusherPool.GetObject();
-        if (unitGO)
-        {
-            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, unitGO.transform.position.z);
-        }
-        else
-            Debug.Log("GameMan::PlaceUnit() - no more Pushers available");
-    }
-
-    public void PlaceTwister(GameObject location)
-    {
-        GameObject unitGO = twisterPool.GetObject();
-        if (unitGO)
-        {
-            unitGO.transform.position = new Vector3(location.transform.position.x - 0.5f, location.transform.parent.transform.position.y - 0.5f, unitGO.transform.position.z);
-        }
-        else
-            Debug.Log("GameMan::PlaceUnit() - no more Twisters available");
+            Debug.Log("GameMan::PlaceUnit() - Insufficient " + type + " units");
     }
 
     public void ReturnUnit(GameObject unit)

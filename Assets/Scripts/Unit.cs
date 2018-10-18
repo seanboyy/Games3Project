@@ -24,14 +24,14 @@ public class Unit : GamePiece
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
 
-	// Use this for initialization
-	protected virtual void Start()
+    // Use this for initialization
+    protected virtual void Start()
     {
         contextMenu = GetComponent<ContextMenu>();
         grid = FindObjectOfType<GridMenu>();
         FindGridElement();
         unitType = UnitType.Unit;
-	}
+    }
 
     public bool FindGridElement()
     {
@@ -42,12 +42,11 @@ public class Unit : GamePiece
         // Look towards the grid (+z direction)
         ray = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), Vector3.forward);
         Physics.Raycast(ray, out info);
-        Debug.Log(info.collider.gameObject.name);
         if (info.collider != null)
         {
             GameObject foundGameObject = info.collider.gameObject;
             // look for a GridElement, indicating this is on the grid
-            if (foundGameObject.GetComponent<GridElement>() != null)
+            if (foundGameObject.GetComponent<GridElement>())
             {
                 gridElement = foundGameObject.GetComponent<GridElement>();
                 gridElement.piece = gameObject;
@@ -74,7 +73,7 @@ public class Unit : GamePiece
         // Close the ContextMenu
         contextMenu.HideContextMenu();
         // Show the Movement Grid
-        gridElement.DisplayMoveTiles(remainingMoves, GridMenu.moveColor, true);
+        gridElement.DisplayMoveTiles(remainingMoves, true);
         grid.SetElementColor(gridElement.gameObject, GridMenu.activeColor);
         grid.activeGO = gridElement.gameObject;
     }
@@ -94,15 +93,15 @@ public class Unit : GamePiece
         // Get the distance to new element
         int distance = newLoc.GetComponent<GridElement>().distance;
         // Turn off the movement grid
-        gridElement.DisplayMoveTiles(remainingMoves, Menu.defaultColor, false);
+        gridElement.DisplayMoveTiles(remainingMoves, false);
         // Set the remaining moves appropriately
         remainingMoves = distance;
-        MoveUnitNoAction(newLoc);
+        SetLocation(newLoc);
     }
 
-    public void MoveUnitNoAction(GameObject newLoc)
+    public void SetLocation(GameObject newLoc)
     {
-        transform.position = new Vector3(newLoc.transform.position.x - 0.5f, newLoc.transform.parent.transform.position.y - 0.5f, transform.position.z);
+        transform.position = newLoc.transform.TransformPoint(Vector3.zero) + new Vector3(-0.5F, -0.5F, gameObject.transform.position.z);
         // Handle Collisions; We're assuming newLoc always has a GridElement
         GridElement otherGE = newLoc.GetComponent<GridElement>();
         if (otherGE && otherGE.piece)
@@ -116,6 +115,8 @@ public class Unit : GamePiece
         }
         else
         {
+            //if (!gridElement)
+            //    gridElement = newLoc.GetComponent<GridElement>();
             gridElement.piece = null;
             gridElement = newLoc.GetComponent<GridElement>();
             gridElement.piece = gameObject;
@@ -124,7 +125,7 @@ public class Unit : GamePiece
 
     public void HideMovementGrid()
     {
-        gridElement.DisplayMoveTiles(remainingMoves, Menu.defaultColor, false);
+        gridElement.DisplayMoveTiles(remainingMoves, false);
         grid.activeGO = null;
         grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }

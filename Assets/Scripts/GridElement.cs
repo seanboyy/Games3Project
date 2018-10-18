@@ -7,6 +7,8 @@ public class GridElement : MonoBehaviour
 {
     [Header("Can a piece spawn here?")]
     public bool spawnable = true; // Can a unit be spawned here?
+    [Header("Is this a goal element?")]
+    public bool goal = false;
 
     [Header("Wall Placements")]
     public bool northWall = false;
@@ -33,6 +35,23 @@ public class GridElement : MonoBehaviour
         //grid = FindObjectOfType<GridMenu>();
         FindNeighbors();
         UpdateWalls();
+        if (spawnable)
+            GetComponent<Image>().color = GridMenu.spawnColor;
+        if (goal)
+            GetComponent<Image>().color = GridMenu.goalColor;
+    }
+
+    public void ChangeColor(Color color)
+    {
+        Image image = GetComponent<Image>();
+        if (color == Menu.defaultColor)
+        {
+            if (spawnable)
+                color = GridMenu.spawnColor;
+            if (goal)
+                color = GridMenu.goalColor;
+        }
+        image.color = color;
     }
 
     // Find the neighboring UI elements dynamically through raycasts (won't find UI elements without a collider)
@@ -189,24 +208,29 @@ public class GridElement : MonoBehaviour
 
     // Change the color of all tiles that can be accessed in movesRemaining moves from the current tile. 
     // Recursive
-    public void DisplayMoveTiles(int movesRemaining, Color tileColor, bool showingMoves)
+    public void DisplayMoveTiles(int movesRemaining, bool showingMoves)
     {
-        GetComponent<Image>().color = tileColor;
         isHighlighted = showingMoves;
         if (showingMoves)
+        {
             distance = movesRemaining;
+            ChangeColor(GridMenu.moveColor);
+        }
         else
+        {
             distance = -1;
+            ChangeColor(GridMenu.defaultColor);
+        }
         if (movesRemaining <= 0)
             return;
         if (!eastWall && eastNeighbor != null)
-            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!westWall && westNeighbor != null)
-            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!northWall && northNeighbor != null)
-            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!southWall && southNeighbor != null)
-            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, tileColor, showingMoves);
+            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
     }
 
     #region Pusher Influence
