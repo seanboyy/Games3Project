@@ -45,6 +45,7 @@ public class GameMan : MonoBehaviour
         {
             unitGO.GetComponent<Unit>().FindGridElement();
             unitGO.GetComponent<Unit>().SetLocation(location);
+            unitGO.GetComponent<Unit>().remainingMoves = 2;
         }
         else
             Debug.Log("GameMan::PlaceUnit() - Insufficient " + type + " units");
