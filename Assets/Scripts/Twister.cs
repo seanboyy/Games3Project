@@ -6,6 +6,12 @@ public class Twister : Unit
 {
     public int rotationAmount = 1;
 
+    protected override void Start()
+    {
+        base.Start();
+        unitType = UnitType.Twister;
+    }
+
     public void ActivateTwistButton()
     {
         contextMenu.HideContextMenu();

@@ -156,22 +156,28 @@ public class GridMenu  : Menu
         element.GetComponent<Image>().color = newColor;
     }
 
-    public void PlaceUnit(UnitType unitType)
+    public void PlaceUnit(string unitType)
     {
-        switch(unitType)
+        switch (unitType)
         {
-            case UnitType.Unit:
+            case "unit":
                 gameMan.PlaceUnit(selectedGO);
+                break;
+            case "pusher":
+                gameMan.PlacePusher(selectedGO);
+                break;
+            case "puller":
+                gameMan.PlacePuller(selectedGO);
+                break;
+            case "twister":
+                gameMan.PlaceTwister(selectedGO);
+                break;
+            default:
+                Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);
                 break;
         };
         contextMenu.HideContextMenu();
         SetElementColor(selectedGO, selectedColor, defaultColor);
         activeGO = null;
-    }
-
-    public void PlaceUnit(string unitType)
-    {
-        if (unitType == "unit")
-            PlaceUnit(UnitType.Unit);
     }
 }

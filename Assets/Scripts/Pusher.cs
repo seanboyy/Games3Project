@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Pusher : Unit
 {
+    protected override void Start()
+    {
+        base.Start();
+        unitType = UnitType.Pusher;
+    }
 
     // Update is called once per frame
     void Update()

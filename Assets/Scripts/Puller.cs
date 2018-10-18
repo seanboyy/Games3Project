@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Puller : Unit
 {
+    protected override void Start()
+    {
+        base.Start();
+        unitType = UnitType.Puller;
+    }
 
     public void ActivatePullButton()
     {

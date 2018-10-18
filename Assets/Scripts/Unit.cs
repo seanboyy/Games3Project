@@ -8,7 +8,7 @@ public enum UnitType
     Unit,
     Pusher,
     Puller,
-    Spinner,
+    Twister,
     Flagbearer,
     PortalPlacer
 }
@@ -22,13 +22,15 @@ public class Unit : GamePiece
     public GridElement gridElement; // what grid element this piece is on
     protected ContextMenu contextMenu;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
+    public UnitType unitType;
 
 	// Use this for initialization
-	void Start()
+	protected virtual void Start()
     {
         contextMenu = GetComponent<ContextMenu>();
         grid = FindObjectOfType<GridMenu>();
-        FindGridElement();	
+        FindGridElement();
+        unitType = UnitType.Unit;
 	}
 
     public bool FindGridElement()
@@ -95,20 +97,29 @@ public class Unit : GamePiece
         gridElement.DisplayMoveTiles(remainingMoves, Menu.defaultColor, false);
         // Set the remaining moves appropriately
         remainingMoves = distance;
-        // Go to the new element location
-        transform.position = new Vector3(newLoc.transform.position.x - 0.5f, newLoc.transform.parent.transform.position.y - 0.5f, transform.position.z);
-        gridElement.piece = null;
-        // Update the gridElement this is on
-        gridElement = newLoc.GetComponent<GridElement>();
-        gridElement.piece = gameObject;
+        MoveUnitNoAction(newLoc);
     }
 
     public void MoveUnitNoAction(GameObject newLoc)
     {
         transform.position = new Vector3(newLoc.transform.position.x - 0.5f, newLoc.transform.parent.transform.position.y - 0.5f, transform.position.z);
-        gridElement.piece = null;
-        gridElement = newLoc.GetComponent<GridElement>();
-        gridElement.piece = gameObject;
+        // Handle Collisions; We're assuming newLoc always has a GridElement
+        GridElement otherGE = newLoc.GetComponent<GridElement>();
+        if (otherGE && otherGE.piece)
+        {
+            // We can assume that this is a Unit because only Units modify gridElement.piece
+            grid.gameMan.ReturnUnit(otherGE.piece);
+            otherGE.piece = null;
+            // Don't forget to kill yourself
+            grid.gameMan.ReturnUnit(gameObject);
+            gridElement.piece = null;
+        }
+        else
+        {
+            gridElement.piece = null;
+            gridElement = newLoc.GetComponent<GridElement>();
+            gridElement.piece = gameObject;
+        }
     }
 
     public void HideMovementGrid()
@@ -117,4 +128,5 @@ public class Unit : GamePiece
         grid.activeGO = null;
         grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }
+
 }
