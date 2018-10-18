@@ -6,14 +6,11 @@ using UnityEngine.UI;
 public class GridMenu  : Menu
 {
     [Header("Colors for UI Grid Elements")]
-    [SerializeField]
     public static Color activeColor = Color.blue;    // the color for active UI elements
-    [SerializeField]
     public static Color moveColor = Color.yellow;      // the color of elements that can be moved to
-    [SerializeField]
     public static Color pushColor = new Color(0.4F, 0, 1);      // the color of elements that can be influenced by pusher
-    [SerializeField]
     public static Color pullColor = new Color(1F, 0.4F, 0);      // the color of elements that can be influenced by puller
+    public static Color spawnColor = Color.green;
 
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
