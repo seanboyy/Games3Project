@@ -1,7 +1,7 @@
 Remove Debug.Log:
 
-( |\t)*(//|)Debug\.Log\((.*?)\);\r\n
+( |\t)*(//|)Debug\.Log\((.*?)\);(\r|\n|\r\n)
 
 Remove empty else:
 
-(\t| )*else\s+{\s+}\r\n
+(\t| )*else\s*{\s*}(\r\n|\n|\r)

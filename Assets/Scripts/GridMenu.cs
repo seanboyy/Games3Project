@@ -6,10 +6,14 @@ using UnityEngine.UI;
 public class GridMenu  : Menu
 {
     [Header("Colors for UI Grid Elements")]
-    public Color activeColor;    // the color for active UI elements
-    public Color moveColor;      // the color of elements that can be moved to
-    public Color pushColor;      // the color of elements that can be influenced by pusher
-    public Color pullColor;      // the color of elements that can be influenced by puller
+    [SerializeField]
+    public static Color activeColor = Color.blue;    // the color for active UI elements
+    [SerializeField]
+    public static Color moveColor = Color.yellow;      // the color of elements that can be moved to
+    [SerializeField]
+    public static Color pushColor = new Color(0.4F, 0, 1);      // the color of elements that can be influenced by pusher
+    [SerializeField]
+    public static Color pullColor = new Color(1F, 0.4F, 0);      // the color of elements that can be influenced by puller
 
     [Header("GameObject the Player has pressed a button on")]
     public GameObject activeGO;
@@ -53,7 +57,7 @@ public class GridMenu  : Menu
             prevHorAxis = Input.GetAxisRaw("Horizontal");
             prevVerAxis = Input.GetAxisRaw("Vertical");
 
-            if (!canPressButtons)
+            if (canPressButtons)
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
                     ActivateElement();
@@ -121,7 +125,7 @@ public class GridMenu  : Menu
     void Cancel()
     {
         if (!selectedPiece) return;
-        selectedPiece.GetComponent<Unit>().HideMovementGrid();
+        if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().HideMovementGrid();
         selectedPiece = null;
     }
 

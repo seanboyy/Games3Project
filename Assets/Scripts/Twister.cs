@@ -11,7 +11,7 @@ public class Twister : Unit
         contextMenu.HideContextMenu();
         TwistBoard(gridElement.gameObject);
         grid.activeGO = null;
-        grid.SetElementColor(grid.selectedGO, grid.selectedColor, grid.defaultColor);
+        grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }
 
     private void TwistBoard(GameObject twistLoc)

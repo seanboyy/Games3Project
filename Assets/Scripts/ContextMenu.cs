@@ -44,7 +44,7 @@ public class ContextMenu : Menu
                 }
 
                 if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-                    HideContextMenu();
+                    Cancel();
             }
             else
                 canPressButtons = true;
@@ -68,4 +68,15 @@ public class ContextMenu : Menu
         canPressButtons = false;
     }
 
+    public void Cancel()
+    {
+        if (prevMenu.GetComponent<Menu>() is GridMenu)
+        {
+            GridMenu gm = prevMenu.GetComponent<GridMenu>();
+            gm.activeGO = null;
+            gm.SetElementColor(gm.selectedGO, Menu.selectedColor, Menu.defaultColor);
+            HideContextMenu();
+
+        }
+    }
 }

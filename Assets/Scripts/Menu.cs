@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour {
 
     [Header("Colors for UI Elements")]
-    public Color defaultColor;   // the color for non-selected Buttons
-    public Color selectedColor;  // the color for non-active, selected UI elements
+    [SerializeField]
+    public static Color defaultColor = Color.white;   // the color for non-selected Buttons
+    [SerializeField]
+    public static Color selectedColor = Color.cyan;  // the color for non-active, selected UI elements
 
     public GameObject selectedGO;
 

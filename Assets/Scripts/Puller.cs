@@ -9,7 +9,7 @@ public class Puller : Unit
     {
         action = "pull";
         contextMenu.HideContextMenu();
-        gridElement.DisplayPullerInfluence(2, grid.pullColor, true);
+        gridElement.DisplayPullerInfluence(2, GridMenu.pullColor, true);
     }
 
     public override void PerformAction(GameObject actionLocGO)
@@ -22,7 +22,7 @@ public class Puller : Unit
     private void PullUnits(GameObject pullLoc)
     {
         action = "";
-        gridElement.DisplayPullerInfluence(2, grid.defaultColor, false);
+        gridElement.DisplayPullerInfluence(2, Menu.defaultColor, false);
         GridElement location = pullLoc.GetComponent<GridElement>();
         switch (FindDirection(pullLoc))
         {

@@ -361,8 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dda06fb9d1a3f489fb62927d7562ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedColor: {r: 0, g: 0.8125751, b: 1, a: 1}
   selectedGO: {fileID: 1735887852710784}
   activeUIMenu: 0
   menuCanvas: {fileID: 1137000698445546}
@@ -477,7 +475,7 @@ MonoBehaviour:
   remainingMoves: 2
   grid: {fileID: 0}
   gridElement: {fileID: 0}
-  rotationAmount: 90
+  rotationAmount: 1
 --- !u!114 &114798701694921970
 MonoBehaviour:
   m_ObjectHideFlags: 1

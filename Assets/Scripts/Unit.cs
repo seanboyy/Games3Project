@@ -68,8 +68,8 @@ public class Unit : GamePiece
         // Close the ContextMenu
         contextMenu.HideContextMenu();
         // Show the Movement Grid
-        gridElement.DisplayMoveTiles(remainingMoves, grid.moveColor, true);
-        grid.SetElementColor(gridElement.gameObject, grid.activeColor);
+        gridElement.DisplayMoveTiles(remainingMoves, GridMenu.moveColor, true);
+        grid.SetElementColor(gridElement.gameObject, GridMenu.activeColor);
         grid.activeGO = gridElement.gameObject;
     }
 
@@ -88,7 +88,7 @@ public class Unit : GamePiece
         // Get the distance to new element
         int distance = newLoc.GetComponent<GridElement>().distance;
         // Turn off the movement grid
-        gridElement.DisplayMoveTiles(remainingMoves, grid.defaultColor, false);
+        gridElement.DisplayMoveTiles(remainingMoves, Menu.defaultColor, false);
         // Set the remaining moves appropriately
         remainingMoves = distance;
         // Go to the new element location
@@ -109,8 +109,8 @@ public class Unit : GamePiece
 
     public void HideMovementGrid()
     {
-        gridElement.DisplayMoveTiles(remainingMoves, grid.defaultColor, false);
+        gridElement.DisplayMoveTiles(remainingMoves, Menu.defaultColor, false);
         grid.activeGO = null;
-        grid.SetElementColor(grid.selectedGO, grid.selectedColor, grid.defaultColor);
+        grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }
 }
