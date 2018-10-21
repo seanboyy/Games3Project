@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPool
 {
-    GameObject prototype;
+    readonly GameObject prototype;
     Stack<GameObject> pool;
     public bool canGrow;
 
@@ -16,7 +16,7 @@ public class ObjectPool
 
         for (int i=0; i<count; i++)
         {
-            GameObject temp = GameObject.Instantiate<GameObject>(prototype);
+            GameObject temp = Object.Instantiate(prototype);
             temp.SetActive(false);
             pool.Push(temp);
         }
@@ -35,7 +35,7 @@ public class ObjectPool
         else
         {
             if (canGrow)
-                retVal = GameObject.Instantiate<GameObject>(prototype);
+                retVal = Object.Instantiate(prototype);
         }
         return retVal;
     }

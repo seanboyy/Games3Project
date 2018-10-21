@@ -27,6 +27,8 @@ public class GridMenu  : Menu
     public Sprite TwoWallsHall;
     public Sprite ThreeWalls;
     public Sprite FourWalls;
+    public GridElement portalLocation;
+    public bool portalPlaced = false;
 
     private ContextMenu contextMenu;
     private bool canPressButtons = false;
@@ -85,7 +87,7 @@ public class GridMenu  : Menu
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if (selectedGO.GetComponent<GridElement>().spawnable)
+            else if (selectedGO.GetComponent<GridElement>().spawnable || selectedGO.GetComponent<GridElement>().portal)
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);
@@ -172,6 +174,9 @@ public class GridMenu  : Menu
                 break;
             case "twister":
                 gameMan.PlaceUnit(selectedGO, UnitType.Twister);
+                break;
+            case "portalPlacer":
+                gameMan.PlaceUnit(selectedGO, UnitType.PortalPlacer);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

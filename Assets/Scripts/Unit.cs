@@ -109,12 +109,18 @@ public class Unit : GamePiece
             // We can assume that this is a Unit because only Units modify gridElement.piece
             grid.gameMan.ReturnUnit(otherGE.piece);
             if (otherGE.piece.GetComponent<Unit>().unitType == UnitType.PortalPlacer)
-                otherGE.spawnable = true;
+            {
+                if (grid.portalPlaced)
+                    grid.portalLocation.portal = false;
+                grid.portalLocation = otherGE;
+                grid.portalPlaced = true;
+                otherGE.portal = true;
+            }
             otherGE.piece = null;
             // Don't forget to kill yourself
             grid.gameMan.ReturnUnit(gameObject);
             if (unitType == UnitType.PortalPlacer)
-                otherGE.spawnable = true;
+                otherGE.portal = true;
             gridElement.piece = null;
         }
         else

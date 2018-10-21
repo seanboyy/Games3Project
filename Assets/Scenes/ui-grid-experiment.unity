@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -417,6 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -565,6 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -752,6 +755,7 @@ Transform:
   - {fileID: 2113935967}
   - {fileID: 726211192}
   - {fileID: 1481248839}
+  - {fileID: 1941062090}
   m_Father: {fileID: 1108008727}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -936,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -1084,6 +1089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -1390,6 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -1617,6 +1624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -1765,6 +1773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -1933,6 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -2754,6 +2764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -3265,6 +3276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -3492,6 +3504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -3640,6 +3653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -4059,6 +4073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -4207,6 +4222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -4355,6 +4371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -4523,6 +4540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -4581,6 +4599,8 @@ MonoBehaviour:
   pullerPrefab: {fileID: 1984337312112470, guid: 3e34d574bf8e1274983b3d2fdc34d738,
     type: 2}
   twisterPrefab: {fileID: 1466865108219648, guid: cadb5d20b215ecb43b6c707419b435cb,
+    type: 2}
+  portalPlacerPrefab: {fileID: 1231148030691686, guid: 979afdaefd8550d4b8de71e23553b417,
     type: 2}
 --- !u!1 &583602066
 GameObject:
@@ -4797,6 +4817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -5024,6 +5045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -5332,6 +5354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -5382,7 +5405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: -0.75}
+  m_AnchoredPosition: {x: 0.25, y: -0.5}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &726211193
@@ -5637,6 +5660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -5785,6 +5809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -6032,6 +6057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 1
   eastWall: 0
@@ -6279,6 +6305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -6427,6 +6454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7010,6 +7038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7257,6 +7286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -7405,6 +7435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7632,6 +7663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7780,6 +7812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -8146,6 +8179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -8294,6 +8328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -8502,6 +8537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -8789,6 +8825,8 @@ MonoBehaviour:
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
+  portalLocation: {fileID: 0}
+  portalPlaced: 0
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9118,6 +9156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -9365,6 +9404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -9592,6 +9632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 1
   eastWall: 1
@@ -9740,6 +9781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 1
@@ -10132,6 +10174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10280,6 +10323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10428,6 +10472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10814,6 +10859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -11120,6 +11166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -11288,6 +11335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -11534,7 +11582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: -1.25}
+  m_AnchoredPosition: {x: 0.25, y: -1}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1481248840
@@ -11550,7 +11598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 726211191}
-  southNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 1941062089}
 --- !u!65 &1481248841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12036,6 +12084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 1
@@ -12184,6 +12233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -12431,6 +12481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -12579,6 +12630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -12849,6 +12901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -13255,6 +13308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -13561,6 +13615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -13651,6 +13706,87 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1724168011}
+  m_CullTransparentMesh: 0
+--- !u!1 &1729421714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1830676357362760, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1729421715}
+  - component: {fileID: 1729421717}
+  - component: {fileID: 1729421716}
+  m_Layer: 0
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1729421715
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 224953984295296064, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729421714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1941062090}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1729421716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114964675851621428, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729421714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Portal Placer
+
+'
+--- !u!222 &1729421717
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 222739877617926458, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729421714}
   m_CullTransparentMesh: 0
 --- !u!1 &1736375415
 GameObject:
@@ -13907,6 +14043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -14273,6 +14410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -14758,6 +14896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -14770,6 +14909,163 @@ MonoBehaviour:
   isHighlighted: 0
   distance: -1
   piece: {fileID: 0}
+--- !u!1 &1941062089
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1183976261726248, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1941062090}
+  - component: {fileID: 1941062095}
+  - component: {fileID: 1941062094}
+  - component: {fileID: 1941062093}
+  - component: {fileID: 1941062092}
+  - component: {fileID: 1941062091}
+  m_Layer: 0
+  m_Name: Context Button - Spawn Portal Placer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1941062090
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 224936646415713708, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01563, y: 0.01563, z: 1}
+  m_Children:
+  - {fileID: 1729421715}
+  m_Father: {fileID: 84864117}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.25, y: -1.5}
+  m_SizeDelta: {x: 128, y: 32}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1941062091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114094839348070982, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5207e03a788246a439521c13376d279c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northNeighbor: {fileID: 1481248838}
+  southNeighbor: {fileID: 0}
+--- !u!65 &1941062092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 65620430446221372, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 128, y: 32, z: 0.25}
+  m_Center: {x: 64, y: 18, z: 0}
+--- !u!114 &1941062093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114113672001105710, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1941062094}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1108008728}
+        m_MethodName: PlaceUnit
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: portalPlacer
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1941062094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 114275512057745488, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1941062095
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 222520804601430858, guid: 55298d80fc168764ca86832366a6ccdd,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941062089}
+  m_CullTransparentMesh: 0
 --- !u!1 &1946079269
 GameObject:
   m_ObjectHideFlags: 0
@@ -14906,6 +15202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -14935,7 +15232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: 0.25}
+  m_AnchoredPosition: {x: 0.25, y: 0.5}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1955310186
@@ -15153,6 +15450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -15301,6 +15599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -15746,6 +16045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0
@@ -16014,7 +16314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.25, y: -0.25}
+  m_AnchoredPosition: {x: 0.25, y: 0}
   m_SizeDelta: {x: 128, y: 32}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2113935968
@@ -16348,6 +16648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 0
   eastWall: 0
@@ -16496,6 +16797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 1
   northWall: 1
   eastWall: 1
@@ -16644,6 +16946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  portal: 0
   goal: 0
   northWall: 0
   eastWall: 0

@@ -8,11 +8,13 @@ public class GameMan : MonoBehaviour
     public GameObject pusherPrefab;
     public GameObject pullerPrefab;
     public GameObject twisterPrefab;
+    public GameObject portalPlacerPrefab;
 
     private ObjectPool unitPool;
     private ObjectPool pusherPool;
     private ObjectPool pullerPool;
     private ObjectPool twisterPool;
+    private ObjectPool portalPlacerPool;
 
 	// Use this for initialization
 	void Start ()
@@ -21,6 +23,7 @@ public class GameMan : MonoBehaviour
         pusherPool = new ObjectPool(pusherPrefab, false, 1);
         pullerPool = new ObjectPool(pullerPrefab, false, 1);
         twisterPool = new ObjectPool(twisterPrefab, false, 1);
+        portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)
@@ -39,6 +42,9 @@ public class GameMan : MonoBehaviour
                 break;
             case UnitType.Twister:
                 unitGO = twisterPool.GetObject();
+                break;
+            case UnitType.PortalPlacer:
+                unitGO = portalPlacerPool.GetObject();
                 break;
         }
         if (unitGO)
@@ -67,6 +73,9 @@ public class GameMan : MonoBehaviour
                 break;
             case UnitType.Twister:
                 twisterPool.ReturnObject(unit);
+                break;
+            case UnitType.PortalPlacer:
+                portalPlacerPool.ReturnObject(unit);
                 break;
         }
     }
