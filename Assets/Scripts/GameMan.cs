@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMan : MonoBehaviour
 {
+    public string nextSceneName;
+
     public GameObject unitPrefab;
     public GameObject pusherPrefab;
     public GameObject pullerPrefab;
@@ -89,7 +92,7 @@ public class GameMan : MonoBehaviour
     public void EndLevel()
     {
         // Go to a menu between levels asking if you want to go to the next level, or if you want to return to the main menu
-        Debug.Log("next level");
+        SceneManager.LoadScene(nextSceneName);
     }
 
     public void EndTurn()
