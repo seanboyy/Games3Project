@@ -237,10 +237,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualObject: {fileID: 1682517665268042}
   canvas: {fileID: 1292676080417910}
+  gridElement: {fileID: 0}
   rotated: 0
   remainingMoves: 2
   grid: {fileID: 0}
-  gridElement: {fileID: 0}
+  unitType: 0
+  flag: {fileID: 0}
 --- !u!114 &114353937407466006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,7 +431,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1292676080417910}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224571217697863028}

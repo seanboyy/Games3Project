@@ -12,6 +12,7 @@ public class GamePiece : MonoBehaviour
 
     protected string pieceName;
     
+    [HideInInspector]
     public int rotated;
 
     // used to fix rotating
@@ -54,6 +55,12 @@ public class GamePiece : MonoBehaviour
             if (foundGameObject.GetComponent<GridElement>())
             {
                 gridElement = foundGameObject.GetComponent<GridElement>();
+                if (gridElement.piece)
+                {
+                    Debug.Log("there's a piece here");
+                    // There is probably just a flag here
+                    return false;
+                }
                 gridElement.piece = gameObject;
                 return true;
             }

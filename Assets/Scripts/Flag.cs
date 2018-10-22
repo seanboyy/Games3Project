@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Flag : GamePiece
 {
-
 	// Use this for initialization
 	void Start ()
     {

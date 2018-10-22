@@ -81,7 +81,7 @@ public class GridMenu  : Menu
         if (activeGO == null)
         {
             activeGO = selectedGO;
-            if (selectedGO.GetComponent<GridElement>().piece != null)
+            if (selectedGO.GetComponent<GridElement>().piece && !(selectedGO.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Flag) && selectedGO.GetComponent<GridElement>().piece != null)
             {
                 selectedPiece = selectedGO.GetComponent<GridElement>().piece;
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
@@ -92,7 +92,7 @@ public class GridMenu  : Menu
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);
                 // Move the canvas to SelectedGO's location
-                contextMenu.menuCanvas.transform.position = selectedGO.transform.position + 2 * Vector3.back;
+                contextMenu.menuCanvas.transform.position = selectedGO.transform.position + contextMenu.menuCanvas.transform.position.z * Vector3.forward;
                 canPressButtons = false;
                 // Long term, this must be dynamic, but we can settle for short term for now
             }

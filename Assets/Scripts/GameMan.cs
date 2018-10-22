@@ -26,6 +26,11 @@ public class GameMan : MonoBehaviour
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
     }
 
+    void Update()
+    {
+        //find out if the user wants to end their turn
+    }
+
     public void PlaceUnit(GameObject location, UnitType type)
     {
         GameObject unitGO = null; 
@@ -59,6 +64,7 @@ public class GameMan : MonoBehaviour
 
     public void ReturnUnit(GameObject unit)
     {
+        unit.transform.position = new Vector3(-50, -50, unit.transform.position.z);
         UnitType unitType = unit.GetComponent<Unit>().unitType;
         switch (unitType)
         {
@@ -78,5 +84,16 @@ public class GameMan : MonoBehaviour
                 portalPlacerPool.ReturnObject(unit);
                 break;
         }
+    }
+
+    public void EndLevel()
+    {
+        // Go to a menu between levels asking if you want to go to the next level, or if you want to return to the main menu
+        Debug.Log("next level");
+    }
+
+    public void EndTurn()
+    {
+
     }
 }
