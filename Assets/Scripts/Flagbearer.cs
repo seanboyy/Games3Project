@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flagbearer : Unit {
+public class Flagbearer : Unit
+{
 
-    public bool hasFlag;
+    public GameObject flag;
 
     public override void PerformAction(GameObject actionLocGO)
     {
-        if(action == "move" && !hasFlag) base.PerformAction(actionLocGO);
-        if (action == "move" && hasFlag) MoveUnitWithFlag(actionLocGO);
+        if (action == "move" && !flag) base.PerformAction(actionLocGO);
+        if (action == "move" && flag) MoveUnitWithFlag(actionLocGO);
     }
 
     public void MoveUnitWithFlag(GameObject moveLoc)
     {
-
+        MoveUnit(moveLoc);
     }
 }
