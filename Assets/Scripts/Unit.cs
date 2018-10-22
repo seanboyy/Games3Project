@@ -125,6 +125,8 @@ public class Unit : GamePiece
             else    // assume it's the flag
             {
                 flag = otherGE.piece;
+                canAct = false;
+                remainingMoves = 0;
             }
         }
         gridElement.piece = null;
@@ -150,4 +152,12 @@ public class Unit : GamePiece
         grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }
 
+    public void ResetPiece()
+    {
+        if (!flag)
+        {
+            canAct = true;
+        }
+        remainingMoves = MAX_NUM_MOVES;
+    }
 }

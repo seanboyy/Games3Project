@@ -99,8 +99,7 @@ public class GameMan : MonoBehaviour
     {
         foreach(Unit unit in FindObjectsOfType<Unit>())
         {
-            unit.canAct = true;
-            unit.remainingMoves = 2;
+            unit.ResetPiece();
         }
         Debug.Log("Turn Over");
     }
