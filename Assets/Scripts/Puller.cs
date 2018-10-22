@@ -12,9 +12,13 @@ public class Puller : Unit
 
     public void ActivatePullButton()
     {
-        action = "pull";
-        contextMenu.HideContextMenu();
-        gridElement.DisplayPullerInfluence(2, true);
+        if (canAct)
+        {
+            action = "pull";
+            contextMenu.HideContextMenu();
+            gridElement.DisplayPullerInfluence(2, true);
+            canAct = false;
+        }
     }
 
     public override void PerformAction(GameObject actionLocGO)

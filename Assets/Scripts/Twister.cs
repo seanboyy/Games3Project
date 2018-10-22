@@ -14,10 +14,14 @@ public class Twister : Unit
 
     public void ActivateTwistButton()
     {
-        contextMenu.HideContextMenu();
-        TwistBoard(gridElement.gameObject);
-        grid.activeGO = null;
-        grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
+        if (canAct)
+        {
+            contextMenu.HideContextMenu();
+            TwistBoard(gridElement.gameObject);
+            grid.activeGO = null;
+            grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
+            canAct = false;
+        }
     }
 
     private void TwistBoard(GameObject twistLoc)

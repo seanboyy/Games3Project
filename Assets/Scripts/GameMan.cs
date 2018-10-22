@@ -28,7 +28,7 @@ public class GameMan : MonoBehaviour
 
     void Update()
     {
-        //find out if the user wants to end their turn
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2)) EndTurn();
     }
 
     public void PlaceUnit(GameObject location, UnitType type)
@@ -94,6 +94,11 @@ public class GameMan : MonoBehaviour
 
     public void EndTurn()
     {
-
+        foreach(Unit unit in FindObjectsOfType<Unit>())
+        {
+            unit.canAct = true;
+            unit.remainingMoves = 2;
+        }
+        Debug.Log("Turn Over");
     }
 }

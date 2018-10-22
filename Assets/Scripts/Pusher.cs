@@ -10,17 +10,15 @@ public class Pusher : Unit
         unitType = UnitType.Pusher;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ActivatePushButtion()
     {
-        action = "push";
-        contextMenu.HideContextMenu();
-        gridElement.DisplayPusherInfluence(true);
+        if (canAct)
+        {
+            action = "push";
+            contextMenu.HideContextMenu();
+            gridElement.DisplayPusherInfluence(true);
+            canAct = false;
+        }
     }
 
     public override void PerformAction(GameObject actionLocGO)
