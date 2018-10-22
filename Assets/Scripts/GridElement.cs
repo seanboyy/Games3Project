@@ -69,7 +69,7 @@ public class GridElement : MonoBehaviour
         RaycastHit info;
 
         // Look to the right (east)
-        ray = new Ray(transform.position, new Vector3(1, 0));
+        ray = new Ray(transform.position, Vector3.right);
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
@@ -77,7 +77,7 @@ public class GridElement : MonoBehaviour
         }
 
         // look to the left (west)
-        ray = new Ray(transform.position, new Vector3(-1, 0));
+        ray = new Ray(transform.position, Vector3.left);
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
@@ -85,7 +85,7 @@ public class GridElement : MonoBehaviour
         }
 
         // look to the up (north)
-        ray = new Ray(transform.position, new Vector3(0, 1));
+        ray = new Ray(transform.position, Vector3.up);
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
@@ -93,7 +93,7 @@ public class GridElement : MonoBehaviour
         }
 
         // look to the down (south)
-        ray = new Ray(transform.position, new Vector3(0, -1));
+        ray = new Ray(transform.position, Vector3.down);
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
