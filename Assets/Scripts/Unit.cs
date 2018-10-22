@@ -83,6 +83,8 @@ public class Unit : GamePiece
     public void SetLocation(GameObject newLoc)
     {
         transform.position = newLoc.transform.TransformPoint(Vector3.zero) + new Vector3(-0.5F, -0.5F, gameObject.transform.position.z);
+        visualObject.transform.localPosition = (Vector3.one - Vector3.forward) / 2F;
+        canvas.transform.localPosition = Vector3.back * 2F;
         if (flag)
             flag.transform.position = newLoc.transform.TransformPoint(Vector3.zero) + new Vector3(-0.5F, -0.5F, flag.transform.position.z);
         // Handle Collisions; We're assuming newLoc always has a GridElement
