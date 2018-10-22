@@ -19,7 +19,7 @@ public class GamePiece : MonoBehaviour
         RaycastHit info;
 
         // Look towards the grid (+z direction)
-        ray = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), Vector3.forward);
+        ray = new Ray(transform.position, Vector3.forward);
         Physics.Raycast(ray, out info);
         if (info.collider != null)
         {
