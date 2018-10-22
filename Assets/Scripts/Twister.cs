@@ -56,35 +56,35 @@ public class Twister : Unit
                 }
                 #endregion
                 #region Rotate Tiles
-                gridElement.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.northNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.eastNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.southNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.westNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
-                gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                gridElement.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.northNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.eastNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.southNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.westNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 #endregion
                 #region Rotate Pieces
                 if (gridElement.piece)
-                    gridElement.piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.northNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.eastNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.southNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.westNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece)
-                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, -Vector3.forward, 90);
+                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 #endregion
                 #region Fix Neighbors
                 gridElement.FindNeighbors();
@@ -224,8 +224,6 @@ public class Twister : Unit
     private void UpdateRotation(GamePiece piece)
     {
         piece.gameObject.transform.rotation = Quaternion.identity;
-        piece.rotated++;
-        piece.UpdateVisual();
     }
 
     private void UpdateGridAttributes()

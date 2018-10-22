@@ -11,43 +11,6 @@ public class GamePiece : MonoBehaviour
     public GridElement gridElement; // what grid element this piece is on
 
     protected string pieceName;
-    
-    [HideInInspector]
-    public int rotated;
-
-    // used to fix rotating
-    public void UpdateVisual()
-    {
-        //visualObject.transform.position += Vector3.down;
-        //if (canvas) canvas.transform.position += Vector3.down;
-        
-        switch(rotated % 4)
-        {
-            case 0:
-                Debug.Log("moving " + name + " right");
-                visualObject.transform.position += Vector3.right;
-                if(canvas) canvas.transform.position += Vector3.right;
-                break;
-            case 1:
-                Debug.Log("moving " + name + " down");
-                visualObject.transform.position += Vector3.down;
-                if(canvas) canvas.transform.position += Vector3.down;
-                break;
-            case 2:
-                Debug.Log("moving " + name + " left");
-                visualObject.transform.position += Vector3.down;
-                if (canvas) canvas.transform.position += Vector3.down;
-                visualObject.transform.position += Vector3.left;
-                if(canvas) canvas.transform.position += Vector3.left;
-                break;
-            case 3:
-                Debug.Log("moving " + name + " up");
-                visualObject.transform.position += Vector3.up;
-                if(canvas) canvas.transform.position += Vector3.up;
-                break;
-        }
-        //*/
-    }
 
     public bool FindGridElement()
     {
