@@ -8,10 +8,13 @@ public class GamePiece : MonoBehaviour
 
     public GameObject canvas;
 
+    public GridElement gridElement; // what grid element this piece is on
+
     protected string pieceName;
     
     public int rotated;
 
+    // used to fix rotating
     public void UpdateVisual()
     {
         switch(rotated % 4)
@@ -34,4 +37,28 @@ public class GamePiece : MonoBehaviour
                 break;
         }
     }
+
+    public bool FindGridElement()
+    {
+        // set up raycast
+        Ray ray;
+        RaycastHit info;
+
+        // Look towards the grid (+z direction)
+        ray = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), Vector3.forward);
+        Physics.Raycast(ray, out info);
+        if (info.collider != null)
+        {
+            GameObject foundGameObject = info.collider.gameObject;
+            // look for a GridElement, indicating this is on the grid
+            if (foundGameObject.GetComponent<GridElement>())
+            {
+                gridElement = foundGameObject.GetComponent<GridElement>();
+                gridElement.piece = gameObject;
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

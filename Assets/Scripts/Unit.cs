@@ -19,10 +19,11 @@ public class Unit : GamePiece
     public int remainingMoves = 2;
 
     public GridMenu grid;
-    public GridElement gridElement; // what grid element this piece is on
     protected ContextMenu contextMenu;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
+
+    private GameObject flag;            // a reference to the flag; only used if this unit has the flag
 
     // Use this for initialization
     protected virtual void Start()
@@ -31,29 +32,6 @@ public class Unit : GamePiece
         grid = FindObjectOfType<GridMenu>();
         FindGridElement();
         unitType = UnitType.Unit;
-    }
-
-    public bool FindGridElement()
-    {
-        // set up raycast
-        Ray ray;
-        RaycastHit info;
-
-        // Look towards the grid (+z direction)
-        ray = new Ray(transform.position + new Vector3(0.5f, 0.5f, 0), Vector3.forward);
-        Physics.Raycast(ray, out info);
-        if (info.collider != null)
-        {
-            GameObject foundGameObject = info.collider.gameObject;
-            // look for a GridElement, indicating this is on the grid
-            if (foundGameObject.GetComponent<GridElement>())
-            {
-                gridElement = foundGameObject.GetComponent<GridElement>();
-                gridElement.piece = gameObject;
-                return true;
-            }
-        }
-        return false;
     }
 
     public void ShowContextMenu()
