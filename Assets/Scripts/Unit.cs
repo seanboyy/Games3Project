@@ -25,7 +25,7 @@ public class Unit : GamePiece
     [HideInInspector]
     public bool canAct = true;
 
-    [HideInInspector]
+    //[HideInInspector]
     public GameObject flag;            // a reference to the flag; only used if this unit has the flag
 
     // Use this for initialization
@@ -83,20 +83,16 @@ public class Unit : GamePiece
     public void SetLocation(GameObject newLoc)
     {
         transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * gameObject.transform.position.z;
-        //visualObject.transform.localPosition = (Vector3.one - Vector3.forward) / 2F;
-        //canvas.transform.localPosition = Vector3.back * 2F;
         if (flag)
             flag.transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * flag.transform.position.z;
         // Handle Collisions; We're assuming newLoc always has a GridElement
         GridElement otherGE = newLoc.GetComponent<GridElement>();
         if (otherGE && otherGE.piece)
         {
-            Debug.Log(otherGE.name);
-            Debug.Log(otherGE.piece.name);
+            Debug.Log("Collided with: " + otherGE.piece.name);
             // Check to make sure we're working with a unit
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
-                Debug.Log("Collided with non-Flag unit");
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
                 grid.gameMan.ReturnUnit(otherGE.piece);
                 if (otherUnit.unitType == UnitType.PortalPlacer)
@@ -126,6 +122,7 @@ public class Unit : GamePiece
             }
             else    // assume it's the flag
             {
+                Debug.Log("Ran into flag");
                 flag = otherGE.piece;
                 canAct = false;
                 remainingMoves = 0;

@@ -30,7 +30,6 @@ public class GamePiece : MonoBehaviour
                 gridElement = foundGameObject.GetComponent<GridElement>();
                 if (gridElement.piece)
                 {
-                    Debug.Log("there's a piece here");
                     // There is probably just a flag here
                     return false;
                 }

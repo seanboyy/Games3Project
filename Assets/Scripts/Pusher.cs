@@ -38,41 +38,41 @@ public class Pusher : Unit
             || gridElement.westNeighbor == pushLoc)
         {
             gridElement.DisplayPusherInfluence(false);
-            GridElement lastPiece;
+            GridElement lastGridElement;
             if (pushLoc == gridElement.northNeighbor)
             {
-                lastPiece = FindLastPieceInChain(gridElement, 0);
-                while(lastPiece != gridElement)
+                lastGridElement = FindLastPieceInChain(gridElement, 0);
+                while(lastGridElement != gridElement)
                 {
-                    if(!lastPiece.northWall && lastPiece.northNeighbor) lastPiece.piece.GetComponent<Unit>().SetLocation(lastPiece.northNeighbor);
-                    lastPiece = lastPiece.southNeighbor.GetComponent<GridElement>();
+                    if(!lastGridElement.northWall && lastGridElement.northNeighbor) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.northNeighbor);
+                    lastGridElement = lastGridElement.southNeighbor.GetComponent<GridElement>();
                 }
             }
             if (pushLoc == gridElement.eastNeighbor)
             {
-                lastPiece = FindLastPieceInChain(gridElement, 1);
-                while (lastPiece != gridElement)
+                lastGridElement = FindLastPieceInChain(gridElement, 1);
+                while (lastGridElement != gridElement)
                 {
-                    if(!lastPiece.eastWall && lastPiece.eastNeighbor) lastPiece.piece.GetComponent<Unit>().SetLocation(lastPiece.eastNeighbor);
-                    lastPiece = lastPiece.westNeighbor.GetComponent<GridElement>();
+                    if(!lastGridElement.eastWall && lastGridElement.eastNeighbor) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.eastNeighbor);
+                    lastGridElement = lastGridElement.westNeighbor.GetComponent<GridElement>();
                 }
             }
             if (pushLoc == gridElement.southNeighbor)
             {
-                lastPiece = FindLastPieceInChain(gridElement, 2);
-                while (lastPiece != gridElement)
+                lastGridElement = FindLastPieceInChain(gridElement, 2);
+                while (lastGridElement != gridElement)
                 {
-                    if(!lastPiece.southWall && lastPiece.southNeighbor) lastPiece.piece.GetComponent<Unit>().SetLocation(lastPiece.southNeighbor);
-                    lastPiece = lastPiece.northNeighbor.GetComponent<GridElement>();
+                    if(!lastGridElement.southWall && lastGridElement.southNeighbor) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.southNeighbor);
+                    lastGridElement = lastGridElement.northNeighbor.GetComponent<GridElement>();
                 }
             }
             if (pushLoc == gridElement.westNeighbor)
             {
-                lastPiece = FindLastPieceInChain(gridElement, 3);
-                while (lastPiece != gridElement)
+                lastGridElement = FindLastPieceInChain(gridElement, 3);
+                while (lastGridElement != gridElement)
                 {
-                    if(!lastPiece.westWall && lastPiece.westNeighbor) lastPiece.piece.GetComponent<Unit>().SetLocation(lastPiece.westNeighbor);
-                    lastPiece = lastPiece.eastNeighbor.GetComponent<GridElement>();
+                    if(!lastGridElement.westWall && lastGridElement.westNeighbor) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.westNeighbor);
+                    lastGridElement = lastGridElement.eastNeighbor.GetComponent<GridElement>();
                 }
             }
         }
