@@ -84,7 +84,6 @@ public class GameMan : MonoBehaviour
         }
         if (unitGO)
         {
-            unitGO.GetComponent<Unit>().FindGridElement();
             unitGO.GetComponent<Unit>().SetLocation(location);
             unitGO.GetComponent<Unit>().remainingMoves = 2;
         }
@@ -119,7 +118,10 @@ public class GameMan : MonoBehaviour
     // Goes to the next level
     public void EndLevel()
     {
-        Debug.Log("Level Ending");
+        if (!limitedMoves)
+            turnsUsedText.text = "Turns Used: " + ++turnsUsed;
+        else
+            turnsUsedText.text = "Turns Remaining: " + (moveLimit - ++turnsUsed);
         // Go to a menu between levels asking if you want to go to the next level, or if you want to return to the main menu
         // Right now, that's not implemented - you just go to wherever it's set in the editor
         nextLevel = true;

@@ -4160,8 +4160,8 @@ MonoBehaviour:
   portal: 0
   goal: 0
   northWall: 0
-  eastWall: 1
-  southWall: 1
+  eastWall: 0
+  southWall: 0
   westWall: 0
   northNeighbor: {fileID: 0}
   eastNeighbor: {fileID: 0}
@@ -5011,8 +5011,8 @@ MonoBehaviour:
   spawnable: 0
   portal: 0
   goal: 0
-  northWall: 1
-  eastWall: 1
+  northWall: 0
+  eastWall: 0
   southWall: 0
   westWall: 0
   northNeighbor: {fileID: 0}
@@ -6423,7 +6423,7 @@ MonoBehaviour:
   portal: 0
   goal: 0
   northWall: 0
-  eastWall: 1
+  eastWall: 0
   southWall: 0
   westWall: 0
   northNeighbor: {fileID: 0}

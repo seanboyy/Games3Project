@@ -85,9 +85,14 @@ public class Unit : GamePiece
         transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * gameObject.transform.position.z;
         if (flag)
             flag.transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * flag.transform.position.z;
+        // Check if gridElement has been assigned (this is for spawning)
+        if (!gridElement)
+        {
+            FindGridElement();
+        }
         // Handle Collisions; We're assuming newLoc always has a GridElement
         GridElement otherGE = newLoc.GetComponent<GridElement>();
-        if (otherGE && otherGE.piece)
+        if (otherGE && otherGE.piece && otherGE.piece != gameObject)
         {
             Debug.Log("Collided with: " + otherGE.piece.name);
             // Check to make sure we're working with a unit
