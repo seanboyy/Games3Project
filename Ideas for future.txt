@@ -1,0 +1,1 @@
+take a screenshot of the game everytime a piece moves, stitch them together at the end of a match to make a movie to show the player which they can then save or ignore
