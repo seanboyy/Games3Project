@@ -67,6 +67,14 @@ public class Unit : GamePiece
         }
     }
 
+    public virtual void HideAction()
+    {
+        grid.activeGO = null;
+        grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
+        if (action == "move")
+            HideMovementGrid();
+    }
+
     public void MoveUnit(GameObject newLoc)
     {
         // set the action to null
@@ -152,8 +160,6 @@ public class Unit : GamePiece
     public void HideMovementGrid()
     {
         gridElement.DisplayMoveTiles(remainingMoves, false);
-        grid.activeGO = null;
-        grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
     }
 
     public void ResetPiece()

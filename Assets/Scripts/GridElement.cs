@@ -257,7 +257,7 @@ public class GridElement : MonoBehaviour
             {
                 north.ChangeColor(GridMenu.pushColor);
                 if (!immediateNeighbor)
-                    north.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+                    north.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
                 north.ChangeColor(Menu.defaultColor);
@@ -275,7 +275,7 @@ public class GridElement : MonoBehaviour
             {
                 east.ChangeColor(GridMenu.pushColor);
                 if (!immediateNeighbor)
-                    east.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+                    east.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
                 east.ChangeColor(Menu.defaultColor);
@@ -293,7 +293,7 @@ public class GridElement : MonoBehaviour
             {
                 south.ChangeColor(GridMenu.pushColor);
                 if (!immediateNeighbor)
-                    south.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+                    south.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
                 south.ChangeColor(Menu.defaultColor);
@@ -311,7 +311,7 @@ public class GridElement : MonoBehaviour
             {
                 west.ChangeColor(GridMenu.pushColor);
                 if (!immediateNeighbor)
-                    west.ChangeColor(GridMenu.pullColor + new Color(0.4F, 0.4F, 0.4F));
+                    west.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
                 west.ChangeColor(Menu.defaultColor);

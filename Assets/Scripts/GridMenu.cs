@@ -125,7 +125,7 @@ public class GridMenu  : Menu
     void Cancel()
     {
         if (!selectedPiece) return;
-        if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().HideMovementGrid();
+        if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().HideAction();
         selectedPiece = null;
     }
 

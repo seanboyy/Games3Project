@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90afeb1e962152642a3700f1fdb6a69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playScene: ui-grid-experiment
+  playScene: level-1
   instructions: {fileID: 1833542146}
   playButton: {fileID: 1515464234}
   instructionsButton: {fileID: 1326542260}

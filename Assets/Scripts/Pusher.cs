@@ -29,6 +29,16 @@ public class Pusher : Unit
             PushUnits(actionLocGO);
     }
 
+    public override void HideAction()
+    {
+        base.HideAction();  // covers if action == move
+        if (action == "push")
+        {
+            gridElement.DisplayPusherInfluence(false);
+            canAct = true;
+        }
+    }
+
     private void PushUnits(GameObject pushLoc)
     {
         action = "";

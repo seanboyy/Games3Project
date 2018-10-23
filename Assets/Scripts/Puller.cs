@@ -28,6 +28,16 @@ public class Puller : Unit
             PullUnits(actionLocGO);
     }
 
+    public override void HideAction()
+    {
+        base.HideAction();
+        if(action == "pull")
+        {
+            gridElement.DisplayPullerInfluence(2, false);
+            canAct = true;
+        }
+    }
+
     private void PullUnits(GameObject pullLoc)
     {
         action = "";
