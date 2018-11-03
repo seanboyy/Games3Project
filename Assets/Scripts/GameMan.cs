@@ -15,33 +15,19 @@ public class GameMan : MonoBehaviour
     public Text instructions1;
     public Text instructions2;
 
-    public GameObject unitPrefab;
-    public GameObject pusherPrefab;
-    public GameObject pullerPrefab;
-    public GameObject twisterPrefab;
-    public GameObject portalPlacerPrefab;
-
-    private ObjectPool unitPool;
-    private ObjectPool pusherPool;
-    private ObjectPool pullerPool;
-    private ObjectPool twisterPool;
-    private ObjectPool portalPlacerPool;
-
     private int turnsUsed = 0;
     private bool nextLevel = false;
     private bool gameOver = false; //Player has lost
+
+    public GameObject player1;  
+    public GameObject player2;
+    public PlayerEnum activePlayer = PlayerEnum.Player1;
+
 	// Use this for initialization
 	void Start ()
     {
-        unitPool = new ObjectPool(unitPrefab, false, 1);
-        pusherPool = new ObjectPool(pusherPrefab, false, 1);
-        pullerPool = new ObjectPool(pullerPrefab, false, 1);
-        twisterPool = new ObjectPool(twisterPrefab, false, 1);
-        portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
-
         if (limitedMoves)
             turnsUsedText.text = "Turns Remaining: " + (moveLimit - turnsUsed);
-
     }
 
     void Update()
@@ -63,56 +49,39 @@ public class GameMan : MonoBehaviour
 
     public void PlaceUnit(GameObject location, UnitType type)
     {
-        GameObject unitGO = null; 
-        switch(type)
+        switch(activePlayer)
         {
-            case UnitType.Unit:
-                unitGO = unitPool.GetObject();
+            case PlayerEnum.Player1:
+                if (player1) player1.GetComponent<Player>().PlaceUnit(location, type);
+                else Debug.Log("GameMan::PlaceUnit - Player 1 not defined");
                 break;
-            case UnitType.Puller:
-                unitGO = pullerPool.GetObject();
+            case PlayerEnum.Player2:
+                if (player2) player2.GetComponent<Player>().PlaceUnit(location, type);
+                else Debug.Log("GameMan::PlaceUnit - Player 2 not defined");
                 break;
-            case UnitType.Pusher:
-                unitGO = pusherPool.GetObject();
+            default:
+                Debug.Log("GameMan::PlaceUnit - Player not recognized");
                 break;
-            case UnitType.Twister:
-                unitGO = twisterPool.GetObject();
-                break;
-            case UnitType.PortalPlacer:
-                unitGO = portalPlacerPool.GetObject();
-                break;
-        }
-        if (unitGO)
-        {
-            unitGO.GetComponent<Unit>().SetLocation(location);
-            unitGO.GetComponent<Unit>().remainingMoves = 2;
-        }
-        else
-            Debug.Log("GameMan::PlaceUnit() - Insufficient " + type + " units");
+        };
     }
 
-    public void ReturnUnit(GameObject unit)
+
+    public void ReturnUnit(GameObject unit, PlayerEnum owner)
     {
-        unit.transform.position = new Vector3(-50, -50, unit.transform.position.z);
-        UnitType unitType = unit.GetComponent<Unit>().unitType;
-        switch (unitType)
+        switch (owner)
         {
-            case UnitType.Unit:
-                unitPool.ReturnObject(unit);
+            case PlayerEnum.Player1:
+                if (player1) player1.GetComponent<Player>().ReturnUnit(unit);
+                else Debug.Log("GameMan::PlaceUnit - Player 1 not defined");
                 break;
-            case UnitType.Puller:
-                pullerPool.ReturnObject(unit);
+            case PlayerEnum.Player2:
+                if (player2) player2.GetComponent<Player>().ReturnUnit(unit);
+                else Debug.Log("GameMan::PlaceUnit - Player 2 not defined");
                 break;
-            case UnitType.Pusher:
-                pusherPool.ReturnObject(unit);
+            default:
+                Debug.Log("GameMan::PlaceUnit - Player not recognized");
                 break;
-            case UnitType.Twister:
-                twisterPool.ReturnObject(unit);
-                break;
-            case UnitType.PortalPlacer:
-                portalPlacerPool.ReturnObject(unit);
-                break;
-        }
+        };
     }
 
     // Goes to the next level
@@ -143,6 +112,13 @@ public class GameMan : MonoBehaviour
 
     public void EndTurn()
     {
+        if (player1 && player2)
+        {
+            if (activePlayer == PlayerEnum.Player1)
+                activePlayer = PlayerEnum.Player2;
+            else
+                activePlayer = PlayerEnum.Player1;
+        }
         foreach(Unit unit in FindObjectsOfType<Unit>())
         {
             unit.ResetPiece();

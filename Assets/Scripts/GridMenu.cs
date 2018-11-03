@@ -80,14 +80,15 @@ public class GridMenu  : Menu
         //      If there is not, do nothing
         if (activeGO == null)
         {
+            GridElement selectedGE = selectedGO.GetComponent<GridElement>();
             activeGO = selectedGO;
-            if (selectedGO.GetComponent<GridElement>().piece && !(selectedGO.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Flag) && selectedGO.GetComponent<GridElement>().piece != null)
+            if (selectedGE.piece && !(selectedGE.piece.GetComponent<GamePiece>() is Flag) && selectedGE.piece != null)
             {
-                selectedPiece = selectedGO.GetComponent<GridElement>().piece;
+                selectedPiece = selectedGE.piece;
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if (selectedGO.GetComponent<GridElement>().spawnable || selectedGO.GetComponent<GridElement>().portal)
+            else if ((selectedGE.spawnable && selectedGE.owner == gameMan.activePlayer) || (selectedGE.portal && selectedGE.portalOwner == gameMan.activePlayer))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);

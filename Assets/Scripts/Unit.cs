@@ -22,6 +22,7 @@ public class Unit : GamePiece
     protected ContextMenu contextMenu;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
+    public PlayerEnum owner = PlayerEnum.Player1;
     [HideInInspector]
     public bool canAct = true;
 
@@ -107,7 +108,7 @@ public class Unit : GamePiece
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                grid.gameMan.ReturnUnit(otherGE.piece);
+                grid.gameMan.ReturnUnit(otherGE.piece, owner);
                 if (otherUnit.unitType == UnitType.PortalPlacer)
                 {
                     if (grid.portalPlaced)
@@ -134,7 +135,7 @@ public class Unit : GamePiece
                     flag = null;
                 }
                 // Don't forget to kill yourself
-                grid.gameMan.ReturnUnit(gameObject);
+                grid.gameMan.ReturnUnit(gameObject, owner);
                 if (unitType == UnitType.PortalPlacer)
                     otherGE.portal = true;
                 gridElement.piece = null;
@@ -151,7 +152,7 @@ public class Unit : GamePiece
                 }
                 else if (otherGE.piece.GetComponent<GamePiece>() is Trap)
                 {
-                    grid.gameMan.ReturnUnit(gameObject);
+                    grid.gameMan.ReturnUnit(gameObject, owner);
                     if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
                                 // so if a flag lands on one, it must either destroy the trap or the game is unwinnable
                                 // it may be better to have traps pull/pushable, while the flag remains aloof. This would 

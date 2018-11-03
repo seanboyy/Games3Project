@@ -7,7 +7,9 @@ public class GridElement : MonoBehaviour
 {
     [Header("Can a piece spawn here?")]
     public bool spawnable = true; // Can a unit be spawned here?
+    public PlayerEnum owner = PlayerEnum.none;
     public bool portal = false;
+    public PlayerEnum portalOwner = PlayerEnum.none;
     [Header("Is this a goal element?")]
     public bool goal = false;
 
