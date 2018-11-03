@@ -111,7 +111,10 @@ public class Unit : GamePiece
                 if (otherUnit.unitType == UnitType.PortalPlacer)
                 {
                     if (grid.portalPlaced)
+                    {
                         grid.portalLocation.portal = false;
+                        grid.portalLocation.ChangeColor(Menu.defaultColor);
+                    }
                     grid.portalLocation = otherGE;
                     grid.portalPlaced = true;
                     otherGE.portal = true;
@@ -119,12 +122,16 @@ public class Unit : GamePiece
                 otherGE.piece = null;
                 // check to see if the other piece has the flag
                 if (otherUnit.flag)
+                {
                     otherGE.piece = otherUnit.flag;
+                    flag = null;
+                }
                 // make sure you don't have the flag
                 if (flag)
                 {
                     otherGE.piece = flag;
                     flag.GetComponent<GamePiece>().gridElement = otherGE;
+                    flag = null;
                 }
                 // Don't forget to kill yourself
                 grid.gameMan.ReturnUnit(gameObject);
@@ -133,12 +140,29 @@ public class Unit : GamePiece
                 gridElement.piece = null;
                 return;
             }
-            else    // assume it's the flag
+            else    
             {
-                Debug.Log("Ran into flag");
-                flag = otherGE.piece;
-                canAct = false;
-                remainingMoves = 0;
+                // Check for flag
+                if (otherGE.piece.GetComponent<GamePiece>() is Flag)
+                {
+                    flag = otherGE.piece;
+                    canAct = false;
+                    remainingMoves = 0;
+                }
+                else if (otherGE.piece.GetComponent<GamePiece>() is Trap)
+                {
+                    grid.gameMan.ReturnUnit(gameObject);
+                    if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
+                                // so if a flag lands on one, it must either destroy the trap or the game is unwinnable
+                                // it may be better to have traps pull/pushable, while the flag remains aloof. This would 
+                                // prevent the need to destroy the trap
+                    {
+                        Destroy(otherGE.piece);
+                        otherGE.piece = flag;
+                        flag.GetComponent<GamePiece>().gridElement = otherGE;
+                        flag = null;
+                    }
+                }
             }
         }
         gridElement.piece = null;

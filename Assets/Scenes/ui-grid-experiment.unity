@@ -4260,6 +4260,48 @@ MonoBehaviour:
   isHighlighted: 0
   distance: -1
   piece: {fileID: 0}
+--- !u!1001 &549828717
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611572782725060, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c5784aba52614e849b3906c23d69204c, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &553982647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4618,6 +4660,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787274c7a1a073743b1377965b64ad63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: 
+  limitedMoves: 0
+  moveLimit: 5
+  turnsUsedText: {fileID: 0}
+  instructions1: {fileID: 0}
+  instructions2: {fileID: 0}
   unitPrefab: {fileID: 1329261611802802, guid: 75c94d37c5cd4c34c8642db7a2fcf043, type: 2}
   pusherPrefab: {fileID: 1975659319581058, guid: eaa1e2cb6df247f4b91ef34587fe602c,
     type: 2}
@@ -13651,7 +13699,6 @@ MonoBehaviour:
   visualObject: {fileID: 747002468}
   canvas: {fileID: 0}
   gridElement: {fileID: 0}
-  rotated: 0
 --- !u!1 &1721335653
 GameObject:
   m_ObjectHideFlags: 0
