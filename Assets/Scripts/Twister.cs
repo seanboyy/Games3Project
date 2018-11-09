@@ -244,6 +244,50 @@ public class Twister : Unit
         bool temp6 = northwest.spawnable;
         bool temp7 = northeast.goal;
         bool temp8 = northwest.goal;
+        PlayerEnum temp9 = north.owner;
+        PlayerEnum temp10 = west.owner;
+        PlayerEnum temp11 = northeast.owner;
+        PlayerEnum temp12 = northwest.owner;
+        if (north.owner != PlayerEnum.none)
+        {
+            west.owner = north.owner;
+            north.owner = PlayerEnum.none;
+        }
+        if (east.owner != PlayerEnum.none)
+        {
+            north.owner = east.owner;
+            east.owner = PlayerEnum.none;
+        }
+        if (south.owner != PlayerEnum.none)
+        {
+            east.owner = south.owner;
+            south.owner = PlayerEnum.none;
+        }
+        if (temp10 != PlayerEnum.none)
+        {
+            south.owner = temp10;
+            if (temp9 == PlayerEnum.none) west.owner = PlayerEnum.none;
+        }
+        if (northeast.owner != PlayerEnum.none)
+        {
+            northwest.owner = northeast.owner;
+            northeast.owner = PlayerEnum.none;
+        }
+        if (southeast.owner != PlayerEnum.none)
+        {
+            northeast.owner = southeast.owner;
+            southeast.owner = PlayerEnum.none;
+        }
+        if (southwest.owner != PlayerEnum.none)
+        {
+            southeast.owner = southwest.owner;
+            southwest.owner = PlayerEnum.none;
+        }
+        if (temp12 != PlayerEnum.none)
+        {
+            southwest.owner = temp12;
+            if (temp11 == PlayerEnum.none) northwest.owner = PlayerEnum.none;
+        }
         if (north.spawnable)
         {
             west.spawnable = true;
