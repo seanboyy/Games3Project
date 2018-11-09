@@ -12,6 +12,7 @@ public class MultiMan : GameMan
     // Use this for initialization
     void Start ()
     {
+        turnQueue = new Queue<GameObject>();
         if (player1 && player2)
         {
             if (Random.Range(0F, 1F) < 0.5)

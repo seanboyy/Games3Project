@@ -22,7 +22,7 @@ public class Unit : GamePiece
     protected ContextMenu contextMenu;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
-    public PlayerEnum owner = PlayerEnum.Player1;
+    public GameObject owner;
     [HideInInspector]
     public bool canAct = true;
 

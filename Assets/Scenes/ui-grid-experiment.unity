@@ -4738,18 +4738,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 571666585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 787274c7a1a073743b1377965b64ad63, type: 3}
+  m_Script: {fileID: 11500000, guid: 94ad5d03f8c333f4ab52c192a73d860d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 
-  limitedMoves: 0
-  moveLimit: 0
-  turnsUsedText: {fileID: 0}
-  instructions1: {fileID: 0}
-  instructions2: {fileID: 0}
+  nextSceneName: menu
+  activePlayer: {fileID: 0}
   player1: {fileID: 2115976076}
   player2: {fileID: 557497783}
-  activePlayer: 0
 --- !u!1 &583602066
 GameObject:
   m_ObjectHideFlags: 0
@@ -9100,7 +9095,7 @@ MonoBehaviour:
   selectedGO: {fileID: 744416554}
   activeUIMenu: 1
   activeGO: {fileID: 0}
-  gameMan: {fileID: 571666587}
+  gameMan: {fileID: 0}
   selectedPiece: {fileID: 0}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
   OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}

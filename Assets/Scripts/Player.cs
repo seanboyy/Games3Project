@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
             Unit uScript = unitGO.GetComponent<Unit>();
             uScript.SetLocation(location);
             uScript.remainingMoves = 2;
-            uScript.owner = identity;
+            uScript.owner = gameObject;
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");
