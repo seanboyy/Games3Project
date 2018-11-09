@@ -89,7 +89,7 @@ public class GridMenu  : Menu
                 canPressButtons = false;
             }
             else if ((selectedGE.spawnable && selectedGE.owner == gameMan.activePlayer.GetComponent<Player>().identity) || 
-                    (selectedGE.portal && selectedGE.portalOwner == gameMan.activePlayer.GetComponent<Player>().identity))
+                     (selectedGE.portal && selectedGE.portalOwner == gameMan.activePlayer.GetComponent<Player>().identity))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(gameObject);

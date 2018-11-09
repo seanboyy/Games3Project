@@ -365,7 +365,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -514,7 +516,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -680,7 +684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -64, y: 0}
+  m_AnchoredPosition: {x: -16, y: 0}
   m_SizeDelta: {x: 128, y: 256}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &94792110
@@ -985,7 +989,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -1134,7 +1140,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -1283,7 +1291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -2128,7 +2138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -2277,7 +2289,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -2618,7 +2632,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -2767,7 +2783,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -2936,7 +2954,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -2986,24 +3006,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 571666585}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 787274c7a1a073743b1377965b64ad63, type: 3}
+  m_Script: {fileID: 11500000, guid: 0596b68bae2eefd47b7237f298713bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: level-3
+  activePlayer: {fileID: 1872963598}
   limitedMoves: 0
   moveLimit: 5
   turnsUsedText: {fileID: 1533795272}
   instructions1: {fileID: 1698901188}
   instructions2: {fileID: 94792110}
-  unitPrefab: {fileID: 1329261611802802, guid: 75c94d37c5cd4c34c8642db7a2fcf043, type: 2}
-  pusherPrefab: {fileID: 1975659319581058, guid: eaa1e2cb6df247f4b91ef34587fe602c,
-    type: 2}
-  pullerPrefab: {fileID: 1984337312112470, guid: 3e34d574bf8e1274983b3d2fdc34d738,
-    type: 2}
-  twisterPrefab: {fileID: 1466865108219648, guid: cadb5d20b215ecb43b6c707419b435cb,
-    type: 2}
-  portalPlacerPrefab: {fileID: 1231148030691686, guid: 979afdaefd8550d4b8de71e23553b417,
-    type: 2}
 --- !u!1 &636673511
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -3449,7 +3463,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -3784,7 +3800,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -3933,7 +3951,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -4181,7 +4201,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 1
@@ -4429,7 +4451,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -5033,7 +5057,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 1
   eastWall: 1
@@ -5182,7 +5208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -5450,7 +5478,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -5639,7 +5669,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -6295,7 +6327,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -6444,7 +6478,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 1
@@ -6593,7 +6629,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -6887,7 +6925,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -7036,7 +7076,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7324,7 +7366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -7572,7 +7616,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -8293,7 +8339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -8541,7 +8589,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -8765,7 +8815,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -9016,7 +9068,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 1
   northWall: 0
   eastWall: 0
@@ -9446,7 +9500,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 64, y: 0}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: 128, y: 256}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1698901188
@@ -9628,7 +9682,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10019,6 +10075,53 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 0}
   m_SizeDelta: {x: 0.95, y: 0.95}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1872963597
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &1872963598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1569881800512948, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
+    type: 2}
+  m_PrefabInternal: {fileID: 1872963597}
 --- !u!1 &1874858120
 GameObject:
   m_ObjectHideFlags: 0
@@ -10510,7 +10613,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10659,7 +10764,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 0
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -10887,7 +10994,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
@@ -11430,7 +11539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
+  owner: 2
   portal: 0
+  portalOwner: 2
   goal: 0
   northWall: 0
   eastWall: 0
