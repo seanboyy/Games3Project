@@ -64,6 +64,11 @@ public class MultiMan : GameMan
 
     private IEnumerator FlipArrow()
     {
+        if (!turnArrow)
+        {
+            Debug.Log("MultiMan::Flip Arrow() - Arrow not set");
+            yield return null;
+        }
         for(int i = 0; i < 20; ++i)
         {
             turnArrow.transform.rotation = Quaternion.Lerp(turnArrow.transform.rotation, Quaternion.Euler(0, 0, 180 * turnCount), Time.deltaTime * 20);
