@@ -7,7 +7,6 @@ public class TimeBar : MonoBehaviour
 {
     public Sprite[] timeBarImgs;
     public Image timeBar;
-    public float tileOffset = 0.01F;
 
     // Use this for initialization
     void Start()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MultiMan : GameMan
 {
@@ -8,6 +9,8 @@ public class MultiMan : GameMan
     public GameObject player1;
     public GameObject player2;
     public Queue<GameObject> turnQueue;
+    public Image turnArrow;
+    private int turnCount = 0;
 
     // Use this for initialization
     void Start ()
@@ -20,6 +23,8 @@ public class MultiMan : GameMan
                 activePlayer = player1;
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
+                turnArrow.transform.rotation = Quaternion.Euler(0, 0, 180);
+                turnCount = 1;
             }
             else
             {
@@ -32,7 +37,7 @@ public class MultiMan : GameMan
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (Input.GetKeyDown(KeyCode.Return)) EndTurn();
 	}
 
     public override void EndGame()
@@ -52,6 +57,18 @@ public class MultiMan : GameMan
             turnQueue.Enqueue(activePlayer);
             activePlayer = turnQueue.Dequeue();
         }
+        turnCount = ++turnCount % 2;
+        StartCoroutine("FlipArrow");
         base.EndTurn();
+    }
+
+    private IEnumerator FlipArrow()
+    {
+        for(int i = 0; i < 20; ++i)
+        {
+            turnArrow.transform.rotation = Quaternion.Lerp(turnArrow.transform.rotation, Quaternion.Euler(0, 0, 180 * turnCount), Time.deltaTime * 20);
+            yield return new WaitForEndOfFrame();
+        }
+        yield return null;
     }
 }
