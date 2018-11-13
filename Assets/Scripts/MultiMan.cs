@@ -11,6 +11,7 @@ public class MultiMan : GameMan
     public Queue<GameObject> turnQueue;
     public Image turnArrow;
     private int turnCount = 0;
+    private bool justSwitched = false;
 
     // Use this for initialization
     void Start ()
@@ -23,7 +24,6 @@ public class MultiMan : GameMan
                 activePlayer = player1;
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
-                turnArrow.transform.rotation = Quaternion.Euler(0, 0, 180);
                 turnCount = 1;
             }
             else
@@ -33,11 +33,11 @@ public class MultiMan : GameMan
                 turnQueue.Enqueue(player2);
             }
         }
+        StartCoroutine("FlipArrow");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Return)) EndTurn();
 	}
 
     public override void EndGame()
@@ -54,11 +54,12 @@ public class MultiMan : GameMan
     {
         if (player1 && player2)
         {
-            turnQueue.Enqueue(activePlayer);
+            justSwitched = true;
             activePlayer = turnQueue.Dequeue();
+            turnQueue.Enqueue(activePlayer);
+            turnCount = ++turnCount % 2;
+            StartCoroutine("FlipArrow");
         }
-        turnCount = ++turnCount % 2;
-        StartCoroutine("FlipArrow");
         base.EndTurn();
     }
 
@@ -74,6 +75,7 @@ public class MultiMan : GameMan
             turnArrow.transform.rotation = Quaternion.Lerp(turnArrow.transform.rotation, Quaternion.Euler(0, 0, 180 * turnCount), Time.deltaTime * 20);
             yield return new WaitForEndOfFrame();
         }
+        justSwitched = false;
         yield return null;
     }
 
@@ -97,8 +99,8 @@ public class MultiMan : GameMan
 
     public override void HandleTriangleButton(GameObject player)
     {
-        if (player == activePlayer)
-            activeMenu.HandleTriangleButton();
+        if (player == activePlayer && !justSwitched)
+            EndTurn();
     }
 
     public override void HandleCircleButton(GameObject player)

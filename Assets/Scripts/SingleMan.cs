@@ -25,11 +25,7 @@ public class SingleMan : GameMan
 
     private void Update()
     {
-        if (!nextLevel && !gameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2)) EndTurn();
-        }
-        else if (nextLevel)
+        if (nextLevel)
         {
             if (Input.anyKeyDown) SceneManager.LoadScene(nextSceneName);
         }
@@ -96,7 +92,8 @@ public class SingleMan : GameMan
 
     public override void HandleTriangleButton(GameObject player)
     {
-        activeMenu.HandleTriangleButton();
+        if (!nextLevel && !gameOver)
+            EndTurn();
     }
 
     public override void HandleCircleButton(GameObject player)

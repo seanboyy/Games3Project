@@ -15,6 +15,8 @@ public abstract class Menu : MonoBehaviour {
     public bool activeUIMenu = false;
 
     protected Color prevColor;    // the color of the previous selectedElement
+    protected Menu prevMenu;
+
 
     // Use this for initialization
     protected virtual void Start ()
@@ -49,5 +51,4 @@ public abstract class Menu : MonoBehaviour {
 
     // Handle the square button being pressed
     public abstract void HandleSquareButton();
-
 }

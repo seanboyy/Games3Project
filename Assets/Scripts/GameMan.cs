@@ -12,12 +12,17 @@ public abstract class GameMan : MonoBehaviour
     public Menu activeMenu;
     public Menu prevMenu;
 
+    public void SetActiveMenu(Menu newMenu)
+    {
+        prevMenu = activeMenu;
+        activeMenu = newMenu;
+    }
+
     public void PlaceUnit(GameObject location, UnitType type)
     {
         if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
         else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
     }
-
 
     public void ReturnUnit(GameObject unit, GameObject owner)
     {

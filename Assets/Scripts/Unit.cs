@@ -40,7 +40,7 @@ public class Unit : GamePiece
 
     public void ShowContextMenu()
     {
-        contextMenu.ShowContextMenu(grid.gameObject);
+        contextMenu.ShowContextMenu(grid);
     }
 
     public void HideContextMenu()

@@ -59,8 +59,13 @@ public class GridMenu  : Menu
         {
             GridElement selectedGE = selectedGO.GetComponent<GridElement>();
             activeGO = selectedGO;
-            if (selectedGE.piece && !(selectedGE.piece.GetComponent<GamePiece>() is Flag) && selectedGE.piece != null)
+            if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
             {
+                if (selectedGE.piece.GetComponent<Unit>().owner != gameMan.activePlayer)
+                {
+                    activeGO = null;
+                    return;
+                }
                 selectedPiece = selectedGE.piece;
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
@@ -69,7 +74,7 @@ public class GridMenu  : Menu
                      (selectedGE.portal && selectedGE.portalOwner == gameMan.activePlayer.GetComponent<Player>().identity))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
-                contextMenu.ShowContextMenu(gameObject);
+                contextMenu.ShowContextMenu(this);
                 // Move the canvas to SelectedGO's location
                 contextMenu.menuCanvas.transform.position = selectedGO.transform.position + contextMenu.menuCanvas.transform.position.z * Vector3.forward;
                 canPressButtons = false;

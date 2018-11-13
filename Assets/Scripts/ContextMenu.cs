@@ -7,7 +7,6 @@ public class ContextMenu : Menu
 {
     public GameObject menuCanvas;
 
-    private GameObject prevMenu;
     private bool canPressButtons = false;
 
     // Use this for initialization
@@ -24,10 +23,12 @@ public class ContextMenu : Menu
             canPressButtons = true;
     }
 
-    public void ShowContextMenu(GameObject callingMenu)
+    public void ShowContextMenu(Menu callingMenu)
     {
         prevMenu = callingMenu;
-        prevMenu.GetComponent<Menu>().activeUIMenu = false;
+        prevMenu.activeUIMenu = false;
+        if (prevMenu is GridMenu)
+            prevMenu.GetComponent<GridMenu>().gameMan.SetActiveMenu(this);
         activeUIMenu = true;
         menuCanvas.SetActive(true);
     }
@@ -37,6 +38,8 @@ public class ContextMenu : Menu
         activeUIMenu = false;
         menuCanvas.SetActive(false);
         prevMenu.GetComponent<Menu>().activeUIMenu = true;
+        if (prevMenu is GridMenu)
+            prevMenu.GetComponent<GridMenu>().gameMan.SetActiveMenu(prevMenu);
         prevMenu = null;
         canPressButtons = false;
     }
