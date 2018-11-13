@@ -35,4 +35,19 @@ public abstract class GameMan : MonoBehaviour
             unit.ResetPiece();
         }
     }
+
+    // Handle up/down left/right inputs
+    public abstract void HandleMovement(Player player, float horizontal, float vertical);
+
+    // Handle the X button being pressed
+    public abstract void HandleCrossButton(Player player);
+
+    // Handle the triangle button being pressed
+    public abstract void HandleTriangleButton(Player player);
+
+    // Handle the circle button being pressed
+    public abstract void HandleCircleButton(Player player);
+
+    // Handle the square button being pressed
+    public abstract void HandleSquareButton(Player player);
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour {
+public abstract class Menu : MonoBehaviour {
 
     [Header("Colors for UI Elements")]
     public static Color defaultColor = Color.white;   // the color for non-selected Buttons
@@ -34,4 +34,20 @@ public class Menu : MonoBehaviour {
         prevColor = selectedGO.GetComponent<Image>().color;
         selectedGO.GetComponent<Image>().color = selectedColor;
     }
+
+    // Handle up/down left/right inputs
+    public abstract void HandleMovement(float horizontal, float vertical);
+
+    // Handle the X button being pressed
+    public abstract void HandleCrossButton();
+
+    // Handle the triangle button being pressed
+    public abstract void HandleTriangleButton();
+
+    // Handle the circle button being pressed
+    public abstract void HandleCircleButton();
+
+    // Handle the square button being pressed
+    public abstract void HandleSquareButton();
+
 }

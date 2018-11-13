@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class menu_manager : MonoBehaviour
+public class menu_manager : Menu
 {
     public string playScene;
     public GameObject instructions;
@@ -12,56 +12,51 @@ public class menu_manager : MonoBehaviour
     public GameObject instructionsButton;
     public GameObject returnButton;
 
-    private GameObject selectButton;
+    private bool canPressButtons = false;
 
 
-	// Use this for initialization
-	void Start ()
+    // Update is called once per frame
+    void Update ()
     {
-        returnButton.SetActive(false);
-        instructions.SetActive(false);
-    }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-            SelectButton();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (activeUIMenu)
         {
-            if (selectButton == null)
-                SelectButton();
-            selectButton.GetComponent<Button>().onClick.Invoke();
-        }
-	}
+            // Move left or move up
+            if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0))
+            {
+                SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+            }
+            // Move right or move down
+            else if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
+            {
+                SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+            }
 
-    void SelectButton()
-    {
-        if (selectButton == null)
-        {
-            if (playButton.activeInHierarchy)
-                selectButton = playButton;
+            prevHorAxis = Input.GetAxisRaw("Horizontal");
+            prevVerAxis = Input.GetAxisRaw("Vertical");
+
+            if (canPressButtons)
+            {
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+                {
+                    selectedGO.GetComponent<Button>().onClick.Invoke();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+                    //Cancel();
+            }
             else
-                selectButton = returnButton;
+                canPressButtons = true;
         }
-        else if (selectButton == playButton)
-            selectButton = instructionsButton;
-        else if (selectButton == instructionsButton)
-            selectButton = playButton;
-
-        selectButton.GetComponent<Button>().Select();
-
     }
 
     public void PlayButton()
     {
-        selectButton = null;
         SceneManager.LoadScene(playScene);
     }
 
     public void InstructionsButton()
     {
-        selectButton = null;
+        //selectButton = null;
         playButton.SetActive(false);
         instructionsButton.SetActive(false);
         returnButton.SetActive(true);
@@ -70,11 +65,10 @@ public class menu_manager : MonoBehaviour
 
     public void ReturnButton()
     {
-        selectButton = null;
+        //selectButton = null;
         playButton.SetActive(true);
         instructionsButton.SetActive(true);
         returnButton.SetActive(false);
         instructions.SetActive(false);
-
     }
 }
