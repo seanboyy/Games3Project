@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4636035693008994}
   - component: {fileID: 114133773903870066}
+  - component: {fileID: 114182104421572042}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   identity: 0
+  gameManager: {fileID: 0}
   unitPrefab: {fileID: 1329261611802802, guid: 75c94d37c5cd4c34c8642db7a2fcf043, type: 2}
   pusherPrefab: {fileID: 1975659319581058, guid: eaa1e2cb6df247f4b91ef34587fe602c,
     type: 2}
@@ -61,3 +63,35 @@ MonoBehaviour:
     type: 2}
   portalPlacerPrefab: {fileID: 1231148030691686, guid: 979afdaefd8550d4b8de71e23553b417,
     type: 2}
+--- !u!114 &114182104421572042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1569881800512948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 116
+    i1: 246
+    i2: 122
+    i3: 236
+    i4: 79
+    i5: 241
+    i6: 111
+    i7: 100
+    i8: 202
+    i9: 14
+    i10: 137
+    i11: 185
+    i12: 160
+    i13: 153
+    i14: 255
+    i15: 118
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
