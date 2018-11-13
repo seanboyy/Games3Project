@@ -4707,7 +4707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: menu
   activePlayer: {fileID: 0}
-  activeMenu: {fileID: 0}
+  activeMenu: {fileID: 1108008728}
   prevMenu: {fileID: 0}
   player1: {fileID: 2115976076}
   player2: {fileID: 557497783}
