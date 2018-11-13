@@ -1,30 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class menu_manager : Menu
-{
-    public string playScene;
-    public GameObject instructions;
-    public GameObject playButton;
-    public GameObject instructionsButton;
-    public GameObject returnButton;
+public class LobbyMan : Menu {
 
-    private float prevHorAxis = 0;
-    private float prevVerAxis = 0;
+    float prevHorAxis = 0F;
+    float prevVerAxis = 0F;
 
-    protected override void Start()
-    {
+    public NetworkLobbyManager lobbyManager;
+
+    // Use this for initialization
+    protected override void Start () {
         base.Start();
-        returnButton.SetActive(false);
-        instructions.SetActive(false);
-        activeUIMenu = true;
-    }
-
-    // We're being hacky with this menu and pretending that like a player, it can get input
-    void Update()
+	}
+	
+	// Update is called once per frame
+	void Update ()
     {
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
@@ -42,6 +33,11 @@ public class menu_manager : Menu
             HandleTriangleButton();
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
             HandleSquareButton();
+    }
+
+    public void LoadMap0()
+    {
+        lobbyManager.playScene = Statics.multiplayerScenes[0];
     }
 
     public override void HandleHorizontalMovement(float horizontal)
@@ -80,40 +76,11 @@ public class menu_manager : Menu
 
     public override void HandleCircleButton()
     {
-        if (selectedGO == returnButton)
-            ReturnButton();
+        throw new System.NotImplementedException();
     }
 
     public override void HandleSquareButton()
     {
         throw new System.NotImplementedException();
-    }
-
-    public void PlayButton()
-    {
-        SceneManager.LoadScene(playScene);
-    }
-
-    public void MultiplayerPlayButton()
-    {
-        SceneManager.LoadScene("lobby");
-    }
-
-    public void InstructionsButton()
-    {
-        SelectElement(returnButton);
-        playButton.SetActive(false);
-        instructionsButton.SetActive(false);
-        returnButton.SetActive(true);
-        instructions.SetActive(true);
-    }
-
-    public void ReturnButton()
-    {
-        SelectElement(instructionsButton);
-        playButton.SetActive(true);
-        instructionsButton.SetActive(true);
-        returnButton.SetActive(false);
-        instructions.SetActive(false);
     }
 }

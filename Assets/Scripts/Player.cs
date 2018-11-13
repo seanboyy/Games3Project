@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public enum PlayerEnum
 {
     Player1,
-    Player2, 
+    Player2,
     none
 }
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     public PlayerEnum identity = PlayerEnum.Player1;
     public GameMan gameManager;
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     private float prevVerAxis = 0;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         unitPool = new ObjectPool(unitPrefab, false, 1);
         pusherPool = new ObjectPool(pusherPrefab, false, 1);
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour
             gameManager.HandleHorizontalMovement(gameObject, Input.GetAxisRaw("Horizontal"));
         if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
             gameManager.HandleVerticalMovement(gameObject, Input.GetAxisRaw("Vertical"));
-
         prevHorAxis = Input.GetAxisRaw("Horizontal");
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
