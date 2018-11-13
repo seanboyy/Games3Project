@@ -16,6 +16,7 @@ public class SingleMan : GameMan
     private int turnsUsed = 0;
     private bool nextLevel = false;
     private bool gameOver = false; //Player has lost
+    private bool canPressButtons = false;
 
     void Start()
     {
@@ -25,14 +26,19 @@ public class SingleMan : GameMan
 
     private void Update()
     {
-        if (nextLevel)
+        if (canPressButtons)
         {
-            if (Input.anyKeyDown) SceneManager.LoadScene(nextSceneName);
+            if (nextLevel)
+            {
+                if (Input.anyKeyDown) SceneManager.LoadScene(nextSceneName);
+            }
+            else if (gameOver)
+            {
+                if (Input.anyKeyDown) SceneManager.LoadScene("menu");
+            }
         }
-        else if (gameOver)
-        {
-            if (Input.anyKeyDown) SceneManager.LoadScene("menu");
-        }
+        else if (nextLevel || gameOver)
+            canPressButtons = true;
 
     }
 
