@@ -2987,6 +2987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: menu
   activePlayer: {fileID: 1130541932}
+  activeMenu: {fileID: 0}
+  prevMenu: {fileID: 0}
   limitedMoves: 1
   moveLimit: 2
   turnsUsedText: {fileID: 1474303023}
@@ -3509,6 +3511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 2113935966}
   southNeighbor: {fileID: 1481248838}
+  locked: 0
 --- !u!65 &726211194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5986,6 +5989,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114133773903870066, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 571666587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
   m_IsPrefabAsset: 0
@@ -7960,6 +7968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 726211191}
   southNeighbor: {fileID: 1941062089}
+  locked: 0
 --- !u!65 &1481248841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8117,6 +8126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 2113935966}
+  locked: 0
 --- !u!65 &1509582841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10241,6 +10251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1481248838}
   southNeighbor: {fileID: 0}
+  locked: 0
 --- !u!65 &1941062092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11216,6 +11227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1509582839}
   southNeighbor: {fileID: 726211191}
+  locked: 0
 --- !u!65 &2113935969
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -43,31 +43,8 @@ public class GridMenu  : Menu
 	// Update is called once per frame
 	void Update ()
     {
-        if (activeUIMenu)
-        {
-            if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0)
-                SelectElement(selectedGO.GetComponent<GridElement>().eastNeighbor);
-            if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0)
-                SelectElement(selectedGO.GetComponent<GridElement>().westNeighbor);
-            if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0)
-                SelectElement(selectedGO.GetComponent<GridElement>().northNeighbor);
-            if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0)
-                SelectElement(selectedGO.GetComponent<GridElement>().southNeighbor);
-
-            prevHorAxis = Input.GetAxisRaw("Horizontal");
-            prevVerAxis = Input.GetAxisRaw("Vertical");
-
-            if (canPressButtons)
-            {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-                    ActivateElement();
-
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-                    Cancel();
-            }
-            else
-                canPressButtons = true;
-        }
+        if (activeUIMenu && !canPressButtons)
+            canPressButtons = true;
     }
 
     void ActivateElement()
@@ -187,5 +164,45 @@ public class GridMenu  : Menu
         contextMenu.HideContextMenu();
         SetElementColor(selectedGO, selectedColor, defaultColor);
         activeGO = null;
+    }
+
+    public override void HandleHorizontalMovement(float horizontal)
+    {
+        if (!activeUIMenu) return;
+        if (horizontal > 0)
+            SelectElement(selectedGO.GetComponent<GridElement>().eastNeighbor);
+        else
+            SelectElement(selectedGO.GetComponent<GridElement>().westNeighbor);
+    }
+
+    public override void HandleVerticalMovement(float vertical)
+    {
+        if (!activeUIMenu) return;
+        if (vertical > 0)
+            SelectElement(selectedGO.GetComponent<GridElement>().northNeighbor);
+        else
+            SelectElement(selectedGO.GetComponent<GridElement>().southNeighbor);
+    }
+
+    public override void HandleCrossButton()
+    {
+        if (!activeUIMenu || !canPressButtons) return;
+        ActivateElement();
+    }
+
+    public override void HandleTriangleButton()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleCircleButton()
+    {
+        if (!activeUIMenu || !canPressButtons) return;
+        Cancel();
+    }
+
+    public override void HandleSquareButton()
+    {
+        throw new System.NotImplementedException();
     }
 }

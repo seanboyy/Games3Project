@@ -4480,6 +4480,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114133773903870066, guid: 762a661042799ab49b170f7019cb266f,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 571666587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 762a661042799ab49b170f7019cb266f, type: 2}
   m_IsPrefabAsset: 0
@@ -4702,6 +4707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: menu
   activePlayer: {fileID: 0}
+  activeMenu: {fileID: 0}
+  prevMenu: {fileID: 0}
   player1: {fileID: 2115976076}
   player2: {fileID: 557497783}
   turnArrow: {fileID: 2048119600}
@@ -5573,6 +5580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 2113935966}
   southNeighbor: {fileID: 1481248838}
+  locked: 0
 --- !u!65 &726211194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8188,7 +8196,7 @@ RectTransform:
   - {fileID: 2005023955}
   - {fileID: 2048119599}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11994,6 +12002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 726211191}
   southNeighbor: {fileID: 1941062089}
+  locked: 0
 --- !u!65 &1481248841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12151,6 +12160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 2113935966}
+  locked: 0
 --- !u!65 &1509582841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15423,6 +15433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1481248838}
   southNeighbor: {fileID: 0}
+  locked: 0
 --- !u!65 &1941062092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16936,6 +16947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1509582839}
   southNeighbor: {fileID: 726211191}
+  locked: 0
 --- !u!65 &2113935969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17156,6 +17168,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114133773903870066, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 571666587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
   m_IsPrefabAsset: 0

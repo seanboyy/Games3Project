@@ -76,4 +76,40 @@ public class MultiMan : GameMan
         }
         yield return null;
     }
+
+    public override void HandleHorizontalMovement(GameObject player, float horizontal)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleHorizontalMovement(horizontal);
+    }
+
+    public override void HandleVerticalMovement(GameObject player, float vertical)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleVerticalMovement(vertical);
+    }
+
+    public override void HandleCrossButton(GameObject player)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleCrossButton();
+    }
+
+    public override void HandleTriangleButton(GameObject player)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleTriangleButton();
+    }
+
+    public override void HandleCircleButton(GameObject player)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleCircleButton();
+    }
+
+    public override void HandleSquareButton(GameObject player)
+    {
+        if (player == activePlayer)
+            activeMenu.HandleSquareButton();
+    }
 }

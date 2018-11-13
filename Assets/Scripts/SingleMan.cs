@@ -78,4 +78,34 @@ public class SingleMan : GameMan
         }
 
     }
+
+    public override void HandleHorizontalMovement(GameObject player, float horizontal)
+    {
+        activeMenu.HandleHorizontalMovement(horizontal);
+    }
+
+    public override void HandleVerticalMovement(GameObject player, float vertical)
+    {
+        activeMenu.HandleVerticalMovement(vertical);
+    }
+
+    public override void HandleCrossButton(GameObject player)
+    {
+        activeMenu.HandleCrossButton();
+    }
+
+    public override void HandleTriangleButton(GameObject player)
+    {
+        activeMenu.HandleTriangleButton();
+    }
+
+    public override void HandleCircleButton(GameObject player)
+    {
+        activeMenu.HandleCircleButton();
+    }
+
+    public override void HandleSquareButton(GameObject player)
+    {
+        activeMenu.HandleSquareButton();
+    }
 }

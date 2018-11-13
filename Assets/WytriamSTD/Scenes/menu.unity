@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90afeb1e962152642a3700f1fdb6a69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedGO: {fileID: 1515464234}
+  activeUIMenu: 1
   playScene: level-1
   instructions: {fileID: 1833542146}
   playButton: {fileID: 1515464234}
@@ -631,6 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1515464234}
   southNeighbor: {fileID: 0}
+  locked: 0
 --- !u!1 &1504972700
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +836,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
-  southNeighbor: {fileID: 1515464234}
+  southNeighbor: {fileID: 1326542260}
+  locked: 0
 --- !u!1 &1721209895
 GameObject:
   m_ObjectHideFlags: 0

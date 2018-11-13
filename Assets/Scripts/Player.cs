@@ -12,6 +12,7 @@ public enum PlayerEnum
 public class Player : MonoBehaviour
 {
     public PlayerEnum identity = PlayerEnum.Player1;
+    public GameMan gameManager;
 
     public GameObject unitPrefab;
     public GameObject pusherPrefab;
@@ -25,6 +26,9 @@ public class Player : MonoBehaviour
     private ObjectPool twisterPool;
     private ObjectPool portalPlacerPool;
 
+    private float prevHorAxis = 0;
+    private float prevVerAxis = 0;
+
     // Use this for initialization
     void Start ()
     {
@@ -33,6 +37,28 @@ public class Player : MonoBehaviour
         pullerPool = new ObjectPool(pullerPrefab, false, 1);
         twisterPool = new ObjectPool(twisterPrefab, false, 1);
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
+        if (!gameManager)
+            Debug.Log("No Game Manager has been assigned to this player!");
+    }
+
+    void Update()
+    {
+        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
+            gameManager.HandleHorizontalMovement(gameObject, Input.GetAxisRaw("Horizontal"));
+        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
+            gameManager.HandleVerticalMovement(gameObject, Input.GetAxisRaw("Vertical"));
+
+        prevHorAxis = Input.GetAxisRaw("Horizontal");
+        prevVerAxis = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            gameManager.HandleCrossButton(gameObject);
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            gameManager.HandleCircleButton(gameObject);
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            gameManager.HandleTriangleButton(gameObject);
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            gameManager.HandleSquareButton(gameObject);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)

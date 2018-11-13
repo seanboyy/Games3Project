@@ -20,35 +20,8 @@ public class ContextMenu : Menu
     // Update is called once per frame
     void Update()
     {
-        if (activeUIMenu)
-        {
-            // Move left or move up
-            if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0))
-            {
-                SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
-            }
-            // Move right or move down
-            else if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
-            {
-                SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
-            }
-
-            prevHorAxis = Input.GetAxisRaw("Horizontal");
-            prevVerAxis = Input.GetAxisRaw("Vertical");
-
-            if (canPressButtons)
-            {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-                {
-                    selectedGO.GetComponent<Button>().onClick.Invoke();
-                }
-
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-                    Cancel();
-            }
-            else
-                canPressButtons = true;
-        }
+        if (activeUIMenu && !canPressButtons)
+            canPressButtons = true;
     }
 
     public void ShowContextMenu(GameObject callingMenu)
@@ -76,7 +49,47 @@ public class ContextMenu : Menu
             gm.activeGO = null;
             gm.SetElementColor(gm.selectedGO, Menu.selectedColor, Menu.defaultColor);
             HideContextMenu();
-
         }
     }
+
+    public override void HandleHorizontalMovement(float horizontal)
+    {
+        if (!activeUIMenu) return;
+        if (horizontal > 0)
+            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+        else
+            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+    }
+
+    public override void HandleVerticalMovement(float vertical)
+    {
+        if (!activeUIMenu) return;
+        if (vertical > 0)
+            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+        else
+            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+    }
+
+    public override void HandleCrossButton()
+    {
+        if (!activeUIMenu || !canPressButtons) return;
+        selectedGO.GetComponent<Button>().onClick.Invoke();
+    }
+
+    public override void HandleTriangleButton()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleCircleButton()
+    {
+        if (!activeUIMenu || !canPressButtons) return;
+        Cancel();
+    }
+
+    public override void HandleSquareButton()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

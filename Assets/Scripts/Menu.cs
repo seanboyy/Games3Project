@@ -14,9 +14,6 @@ public abstract class Menu : MonoBehaviour {
     [Header("Is this menu under active player control?")]
     public bool activeUIMenu = false;
 
-    protected float prevHorAxis = 0;
-    protected float prevVerAxis = 0;
-
     protected Color prevColor;    // the color of the previous selectedElement
 
     // Use this for initialization
@@ -36,7 +33,10 @@ public abstract class Menu : MonoBehaviour {
     }
 
     // Handle up/down left/right inputs
-    public abstract void HandleMovement(float horizontal, float vertical);
+    public abstract void HandleHorizontalMovement(float horizontal);
+
+    // Handle left/right inputs
+    public abstract void HandleVerticalMovement(float vertical);
 
     // Handle the X button being pressed
     public abstract void HandleCrossButton();

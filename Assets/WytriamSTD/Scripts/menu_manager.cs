@@ -12,41 +12,81 @@ public class menu_manager : Menu
     public GameObject instructionsButton;
     public GameObject returnButton;
 
-    private bool canPressButtons = false;
+    private float prevHorAxis = 0;
+    private float prevVerAxis = 0;
 
-
-    // Update is called once per frame
-    void Update ()
+    protected override void Start()
     {
-        if (activeUIMenu)
+        base.Start();
+        returnButton.SetActive(false);
+        instructions.SetActive(false);
+        activeUIMenu = true;
+    }
+
+    // We're being hacky with this menu and pretending that like a player, it can get input
+    void Update()
+    {
+        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
+            HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
+        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
+            HandleVerticalMovement(Input.GetAxisRaw("Vertical"));
+
+        prevHorAxis = Input.GetAxisRaw("Horizontal");
+        prevVerAxis = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            HandleCrossButton();
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            HandleCircleButton();
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            HandleTriangleButton();
+        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            HandleSquareButton();
+    }
+
+    public override void HandleHorizontalMovement(float horizontal)
+    {
+        if (horizontal > 0)
         {
-            // Move left or move up
-            if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") < 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") > 0))
-            {
-                SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
-            }
-            // Move right or move down
-            else if ((prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") > 0) || (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") < 0))
-            {
-                SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
-            }
-
-            prevHorAxis = Input.GetAxisRaw("Horizontal");
-            prevVerAxis = Input.GetAxisRaw("Vertical");
-
-            if (canPressButtons)
-            {
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-                {
-                    selectedGO.GetComponent<Button>().onClick.Invoke();
-                }
-
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-                    //Cancel();
-            }
-            else
-                canPressButtons = true;
+            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
         }
+        else
+        {
+            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+        }
+    }
+
+    public override void HandleVerticalMovement(float vertical)
+    {
+        if (vertical > 0)
+        {
+            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+        }
+        else
+        {
+            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+        }
+    }
+
+    public override void HandleCrossButton()
+    {
+        selectedGO.GetComponent<Button>().onClick.Invoke();
+    }
+
+    public override void HandleTriangleButton()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleCircleButton()
+    {
+        if (selectedGO == returnButton)
+            ReturnButton();
+    }
+
+    public override void HandleSquareButton()
+    {
+        throw new System.NotImplementedException();
     }
 
     public void PlayButton()
@@ -56,7 +96,7 @@ public class menu_manager : Menu
 
     public void InstructionsButton()
     {
-        //selectButton = null;
+        SelectElement(returnButton);
         playButton.SetActive(false);
         instructionsButton.SetActive(false);
         returnButton.SetActive(true);
@@ -65,7 +105,7 @@ public class menu_manager : Menu
 
     public void ReturnButton()
     {
-        //selectButton = null;
+        SelectElement(instructionsButton);
         playButton.SetActive(true);
         instructionsButton.SetActive(true);
         returnButton.SetActive(false);
