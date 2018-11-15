@@ -29,6 +29,7 @@ public class Twister : Unit
         if (gridElement.northNeighbor && gridElement.eastNeighbor && gridElement.southNeighbor && gridElement.westNeighbor)
             for (int i = 0; i < rotationAmount; ++i)
             {
+                List<GameObject> neighbors = new List<GameObject>();
                 #region DisconnectWalls
                 if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor)
                 {
@@ -68,23 +69,50 @@ public class Twister : Unit
                 #endregion
                 #region Rotate Pieces
                 if (gridElement.piece)
+                {
                     gridElement.piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.piece);
+                }
                 if (gridElement.northNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.northNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.eastNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.eastNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.southNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.southNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.westNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.westNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece);
+                }
                 if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece)
+                {
                     gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece);
+                }
                 #endregion
                 #region Fix Neighbors
                 gridElement.FindNeighbors();
@@ -191,6 +219,18 @@ public class Twister : Unit
                 #endregion
                 #region Fix Grid Attributes and Colors
                 UpdateGridAttributes();
+                #endregion
+                #region Fix Flag if carried
+                foreach (GameObject neighbor in neighbors)
+                {
+                    Unit neighborUnit = neighbor.GetComponent<Unit>();
+                    if (neighborUnit && neighborUnit.flag)
+                    {
+                        Vector3 flagPosn = neighbor.transform.position;
+                        flagPosn.z = neighborUnit.flag.transform.position.z;
+                        neighborUnit.flag.transform.position = flagPosn;
+                    }
+                }
                 #endregion
             }
     }

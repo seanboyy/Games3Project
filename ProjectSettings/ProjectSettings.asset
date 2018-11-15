@@ -631,9 +631,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 3ffc9eef-ae37-4465-a519-ab557b44d2fd
+  cloudProjectId: ced028ba-ed7b-4b83-9c79-be8a5de21b89
   projectName: Minos
-  organizationId: seanboyy
+  organizationId: thomas-frick
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

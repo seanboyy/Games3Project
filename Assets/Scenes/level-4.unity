@@ -676,6 +676,58 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 143436989}
   m_CullTransparentMesh: 0
+--- !u!1001 &164893269
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133773903870066, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 571666587}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1 &164893270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1569881800512948, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
+    type: 2}
+  m_PrefabInternal: {fileID: 164893269}
 --- !u!1 &188968726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +1097,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hint: \n\nPushers can move pieces carrying the flag!"
+  m_Text: 'Instructions:
+
+'
 --- !u!222 &216531615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2612,10 +2666,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Instructions:
-
-
-    This level has a limited number of turns. Good luck!'
+  m_Text: "Instructions:\n\nThe Puller can pull unts up to two spaces away towards
+    itself. \n\nCareful, if you a pull a piece onto the puller, it will destroy them
+    both!"
 --- !u!222 &529162781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2985,8 +3038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0596b68bae2eefd47b7237f298713bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: level-4
-  activePlayer: {fileID: 1130541932}
+  nextSceneName: menu
+  activePlayer: {fileID: 164893270}
   activeMenu: {fileID: 1108008728}
   prevMenu: {fileID: 0}
   limitedMoves: 1
@@ -5950,58 +6003,6 @@ MonoBehaviour:
   selectedGO: {fileID: 1509582839}
   activeUIMenu: 0
   menuCanvas: {fileID: 728810564}
---- !u!1001 &1130541931
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114133773903870066, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
-        type: 2}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 571666587}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &1130541932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1569881800512948, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
-    type: 2}
-  m_PrefabInternal: {fileID: 1130541931}
 --- !u!1 &1135230254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6094,7 +6095,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4529910213903484, guid: 3b5c9a8380b98f743a4f5e1fa9e9f1e3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4529910213903484, guid: 3b5c9a8380b98f743a4f5e1fa9e9f1e3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -7905,7 +7906,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Turns Remaining: 5'
+  m_Text: 'Turns Used: 0
+
+'
 --- !u!222 &1474303024
 CanvasRenderer:
   m_ObjectHideFlags: 0

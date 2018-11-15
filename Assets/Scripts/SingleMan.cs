@@ -22,6 +22,8 @@ public class SingleMan : GameMan
     {
         if (limitedMoves)
             turnsUsedText.text = "Turns Remaining: " + (moveLimit - turnsUsed);
+        if (activePlayer && !activePlayer.activeInHierarchy)
+            activePlayer.SetActive(true);
     }
 
     private void Update()
