@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class menu_manager : Menu
 {
@@ -12,11 +13,24 @@ public class menu_manager : Menu
     public GameObject instructionsButton;
     public GameObject returnButton;
 
+    private NetworkLobbyManager lobbyMan;
+
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
 
     protected override void Start()
     {
+        lobbyMan = null;
+        lobbyMan = FindObjectOfType<NetworkLobbyManager>();
+        if (lobbyMan)
+        {
+            lobbyMan.gameObject.SetActive(false);
+        }
+        Player[] players = FindObjectsOfType<Player>();
+        foreach(Player player in players)
+        {
+            Destroy(player.gameObject);
+        }
         base.Start();
         returnButton.SetActive(false);
         instructions.SetActive(false);
@@ -96,6 +110,7 @@ public class menu_manager : Menu
 
     public void MultiplayerPlayButton()
     {
+        if (lobbyMan && !lobbyMan.gameObject.activeInHierarchy) lobbyMan.gameObject.SetActive(true);
         SceneManager.LoadScene("lobby");
     }
 

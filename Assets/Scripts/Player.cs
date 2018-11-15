@@ -33,6 +33,11 @@ public class Player : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        gameManager = FindObjectOfType<GameMan>();
+        if(gameManager is MultiMan)
+        {
+            ((MultiMan)gameManager).RegisterPlayer(gameObject);
+        }
         unitPool = new ObjectPool(unitPrefab, false, 1);
         pusherPool = new ObjectPool(pusherPrefab, false, 1);
         pullerPool = new ObjectPool(pullerPrefab, false, 1);

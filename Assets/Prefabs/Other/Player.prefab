@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4519280166288086}
   - component: {fileID: 114331641721905766}
+  - component: {fileID: 114485392156055608}
   m_Layer: 0
-  m_Name: PlayerDummy
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,4 +72,26 @@ MonoBehaviour:
     i14: 19
     i15: 199
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114485392156055608
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997626392827532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5caffcd8c97b6504fa2ede9ea3e46c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identity: 0
+  gameManager: {fileID: 0}
+  unitPrefab: {fileID: 1329261611802802, guid: 75c94d37c5cd4c34c8642db7a2fcf043, type: 2}
+  pusherPrefab: {fileID: 1975659319581058, guid: eaa1e2cb6df247f4b91ef34587fe602c,
+    type: 2}
+  pullerPrefab: {fileID: 1984337312112470, guid: 3e34d574bf8e1274983b3d2fdc34d738,
+    type: 2}
+  twisterPrefab: {fileID: 1466865108219648, guid: cadb5d20b215ecb43b6c707419b435cb,
+    type: 2}
+  portalPlacerPrefab: {fileID: 1231148030691686, guid: 979afdaefd8550d4b8de71e23553b417,
+    type: 2}

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 
 public class MultiMan : GameMan
 {
@@ -16,24 +18,7 @@ public class MultiMan : GameMan
     // Use this for initialization
     void Start ()
     {
-        turnQueue = new Queue<GameObject>();
-        if (player1 && player2)
-        {
-            if (Random.Range(0F, 1F) < 0.5)
-            {
-                activePlayer = player1;
-                turnQueue.Enqueue(player2);
-                turnQueue.Enqueue(player1);
-                turnCount = 1;
-            }
-            else
-            {
-                activePlayer = player2;
-                turnQueue.Enqueue(player1);
-                turnQueue.Enqueue(player2);
-            }
-        }
-        StartCoroutine("FlipArrow");
+        SetupTurnQueue();
     }
 	
 	// Update is called once per frame
@@ -42,12 +27,20 @@ public class MultiMan : GameMan
 
     public override void EndGame()
     {
-
+        EndLevel();
     }
 
     public override void EndLevel()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Stopping Client");
+        NetworkManager.singleton.StopClient();
+        Debug.Log("Stopping Host");
+        NetworkManager.singleton.StopHost();
+        Debug.Log("Stopping Server");
+        NetworkManager.singleton.StopServer();
+        Debug.Log("Disconnecting connections");
+        NetworkServer.DisconnectAll();
+        SceneManager.LoadScene("lobby");
     }
 
     public override void EndTurn()
@@ -113,5 +106,42 @@ public class MultiMan : GameMan
     {
         if (player == activePlayer)
             activeMenu.HandleSquareButton();
+    }
+
+    public void RegisterPlayer(GameObject player)
+    {
+        if (!player1)
+        {
+            player1 = player;
+            player.GetComponent<Player>().identity = PlayerEnum.Player1;
+        }
+        else if (!player2)
+        {
+            player2 = player;
+            player.GetComponent<Player>().identity = PlayerEnum.Player2;
+        }
+        SetupTurnQueue();
+    }
+
+    private void SetupTurnQueue()
+    {
+        if(turnQueue == null) turnQueue = new Queue<GameObject>();
+        if (player1 && player2)
+        {
+            if (Random.Range(0F, 1F) < 0.5)
+            {
+                activePlayer = player1;
+                turnQueue.Enqueue(player2);
+                turnQueue.Enqueue(player1);
+                turnCount = 1;
+            }
+            else
+            {
+                activePlayer = player2;
+                turnQueue.Enqueue(player1);
+                turnQueue.Enqueue(player2);
+            }
+        }
+        StartCoroutine("FlipArrow");
     }
 }

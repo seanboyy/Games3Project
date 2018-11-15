@@ -1,16 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyMan : Menu {
 
     float prevHorAxis = 0F;
     float prevVerAxis = 0F;
 
+    public bool flag = false;
+
+    public GameObject lobbyManagerPrefab;
+
     public NetworkLobbyManager lobbyManager;
 
     // Use this for initialization
     protected override void Start () {
+        lobbyManager = null;
+        lobbyManager = FindObjectOfType<NetworkLobbyManager>();
+        if (!lobbyManager)
+        {
+            Debug.Log("No manager found: Creating!");
+            lobbyManager = Instantiate(lobbyManagerPrefab).GetComponent<NetworkLobbyManager>();
+        }
+        else
+        {
+            Debug.Log("Manager found: " + lobbyManager.gameObject.name);
+        }
         base.Start();
 	}
 	
@@ -38,6 +56,24 @@ public class LobbyMan : Menu {
     public void LoadMap0()
     {
         lobbyManager.playScene = Statics.multiplayerScenes[0];
+    }
+
+    public void ToMenu()
+    {
+        foreach (NetworkLobbyPlayer player in FindObjectsOfType<NetworkLobbyPlayer>())
+        {
+            Debug.Log("Destroying NetworkLobbyPlayer");
+            Destroy(player.gameObject);
+        }
+        StartCoroutine("GotoMenu");
+    }
+
+    private IEnumerator GotoMenu()
+    {
+        yield return new WaitForSeconds(0.1F);
+        Debug.Log("Loading Main Menu");
+        SceneManager.LoadScene("menu");
+        yield return null;
     }
 
     public override void HandleHorizontalMovement(float horizontal)
