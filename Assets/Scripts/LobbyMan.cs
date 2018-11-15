@@ -58,6 +58,11 @@ public class LobbyMan : Menu {
         lobbyManager.playScene = Statics.multiplayerScenes[0];
     }
 
+    public void LoadMap1()
+    {
+        lobbyManager.playScene = Statics.multiplayerScenes[1];
+    }
+
     public void ToMenu()
     {
         foreach (NetworkLobbyPlayer player in FindObjectsOfType<NetworkLobbyPlayer>())

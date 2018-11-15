@@ -4,8 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SingleMan : GameMan
+public class SingleMan : MonoBehaviour, IGameMan
 {
+    public string nextSceneName;
+    public GameObject activePlayer;
+
+    public Menu activeMenu;
+    public Menu prevMenu;
+
     public bool limitedMoves = false;
     public int moveLimit = 5;
 
@@ -44,7 +50,7 @@ public class SingleMan : GameMan
 
     }
 
-    public override void EndLevel()
+    public void EndLevel()
     {
         if (!limitedMoves)
             turnsUsedText.text = "Turns Used: " + ++turnsUsed;
@@ -59,7 +65,7 @@ public class SingleMan : GameMan
         instructions2.text = "Congratulations! You win!\n\nPress any key to continue";
     }
 
-    public override void EndGame()
+    public void EndGame()
     {
         gameOver = true;
         instructions1.gameObject.SetActive(true);
@@ -68,9 +74,12 @@ public class SingleMan : GameMan
         instructions2.text = "Sorry! You lose!\n\nPress any key to continue";
     }
 
-    public override void EndTurn()
+    public void EndTurn()
     {
-        base.EndTurn();
+        foreach (Unit unit in FindObjectsOfType<Unit>())
+        {
+            unit.ResetPiece();
+        }
         if (!limitedMoves)
             turnsUsedText.text = "Turns Used: " + ++turnsUsed;
         else
@@ -83,34 +92,52 @@ public class SingleMan : GameMan
 
     }
 
-    public override void HandleHorizontalMovement(GameObject player, float horizontal)
+    public void HandleHorizontalMovement(GameObject player, float horizontal)
     {
         activeMenu.HandleHorizontalMovement(horizontal);
     }
 
-    public override void HandleVerticalMovement(GameObject player, float vertical)
+    public void HandleVerticalMovement(GameObject player, float vertical)
     {
         activeMenu.HandleVerticalMovement(vertical);
     }
 
-    public override void HandleCrossButton(GameObject player)
+    public void HandleCrossButton(GameObject player)
     {
         activeMenu.HandleCrossButton();
     }
 
-    public override void HandleTriangleButton(GameObject player)
+    public void HandleTriangleButton(GameObject player)
     {
         if (!nextLevel && !gameOver)
             EndTurn();
     }
 
-    public override void HandleCircleButton(GameObject player)
+    public void HandleCircleButton(GameObject player)
     {
         activeMenu.HandleCircleButton();
     }
 
-    public override void HandleSquareButton(GameObject player)
+    public void HandleSquareButton(GameObject player)
     {
         activeMenu.HandleSquareButton();
+    }
+
+    public void SetActiveMenu(Menu newMenu)
+    {
+        prevMenu = activeMenu;
+        activeMenu = newMenu;
+    }
+
+    public void PlaceUnit(GameObject location, UnitType type)
+    {
+        if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
+        else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
+    }
+
+    public void ReturnUnit(GameObject unit, GameObject owner)
+    {
+        if (owner.GetComponent<Player>())
+            owner.GetComponent<Player>().ReturnUnit(unit);
     }
 }

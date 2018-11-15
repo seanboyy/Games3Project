@@ -17,7 +17,7 @@ public class GridMenu  : Menu
     public GameObject activeGO;
 
     [Header("GameManager")]
-    public GameMan gameMan;
+    public IGameMan gameMan;
     public GameObject selectedPiece;
 
     [Header("Other Miscellaneous")]
@@ -36,6 +36,8 @@ public class GridMenu  : Menu
     // Use this for initialization
     protected override void Start ()
     {
+        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
+        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
         base.Start();
         contextMenu = GetComponent<ContextMenu>();
 	}
@@ -57,11 +59,12 @@ public class GridMenu  : Menu
         //      If there is not, do nothing
         if (activeGO == null)
         {
+            GameObject activePlayer = gameMan is SingleMan ? ((SingleMan)gameMan).activePlayer : ((MultiMan)gameMan).activePlayer;
             GridElement selectedGE = selectedGO.GetComponent<GridElement>();
             activeGO = selectedGO;
             if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
             {
-                if (selectedGE.piece.GetComponent<Unit>().owner != gameMan.activePlayer)
+                if (selectedGE.piece.GetComponent<Unit>().owner != activePlayer)
                 {
                     activeGO = null;
                     return;
@@ -70,8 +73,8 @@ public class GridMenu  : Menu
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if ((selectedGE.spawnable && selectedGE.owner == gameMan.activePlayer.GetComponent<Player>().identity) || 
-                     (selectedGE.portal && selectedGE.portalOwner == gameMan.activePlayer.GetComponent<Player>().identity))
+            else if ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<Player>().identity) || 
+                     (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<Player>().identity))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(this);
@@ -148,19 +151,24 @@ public class GridMenu  : Menu
         switch (unitType)
         {
             case "unit":
-                gameMan.PlaceUnit(selectedGO, UnitType.Unit);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Unit);
+                else gameMan.PlaceUnit(selectedGO, UnitType.Unit);
                 break;
             case "pusher":
-                gameMan.PlaceUnit(selectedGO, UnitType.Pusher);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Pusher);
+                else gameMan.PlaceUnit(selectedGO, UnitType.Pusher);
                 break;
             case "puller":
-                gameMan.PlaceUnit(selectedGO, UnitType.Puller);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Puller);
+                else gameMan.PlaceUnit(selectedGO, UnitType.Puller);
                 break;
             case "twister":
-                gameMan.PlaceUnit(selectedGO, UnitType.Twister);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Twister);
+                else gameMan.PlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                gameMan.PlaceUnit(selectedGO, UnitType.PortalPlacer);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
+                else gameMan.PlaceUnit(selectedGO, UnitType.PortalPlacer);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

@@ -13,7 +13,7 @@ public enum PlayerEnum
 public class Player : NetworkBehaviour
 {
     public PlayerEnum identity = PlayerEnum.Player1;
-    public GameMan gameManager;
+    public IGameMan gameManager;
 
     public GameObject unitPrefab;
     public GameObject pusherPrefab;
@@ -33,7 +33,10 @@ public class Player : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        gameManager = FindObjectOfType<GameMan>();
+        if (FindObjectOfType<MultiMan>())
+            gameManager = FindObjectOfType<MultiMan>();
+        if (FindObjectOfType<SingleMan>())
+            gameManager = FindObjectOfType<SingleMan>();
         if(gameManager is MultiMan)
         {
             ((MultiMan)gameManager).RegisterPlayer(gameObject);
@@ -43,7 +46,7 @@ public class Player : NetworkBehaviour
         pullerPool = new ObjectPool(pullerPrefab, false, 1);
         twisterPool = new ObjectPool(twisterPrefab, false, 1);
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
-        if (!gameManager)
+        if (gameManager == null)
             Debug.Log("No Game Manager has been assigned to this player!");
     }
 
@@ -57,13 +60,17 @@ public class Player : NetworkBehaviour
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            gameManager.HandleCrossButton(gameObject);
+            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleCrossButton(isLocalPlayer, gameObject);
+            else gameManager.HandleCrossButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            gameManager.HandleCircleButton(gameObject);
+            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleCircleButton(isLocalPlayer, gameObject);
+            else gameManager.HandleCircleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            gameManager.HandleTriangleButton(gameObject);
+            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleTriangleButton(isLocalPlayer, gameObject);
+            else gameManager.HandleTriangleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            gameManager.HandleSquareButton(gameObject);
+            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleSquareButton(isLocalPlayer, gameObject);
+            else gameManager.HandleSquareButton(gameObject);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)

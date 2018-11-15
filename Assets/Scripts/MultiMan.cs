@@ -5,8 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
-public class MultiMan : GameMan
+public class MultiMan : NetworkBehaviour, IGameMan
 {
+
+    public string nextSceneName;
+    public GameObject activePlayer;
+
+    public Menu activeMenu;
+    public Menu prevMenu;
 
     public GameObject player1;
     public GameObject player2;
@@ -16,21 +22,21 @@ public class MultiMan : GameMan
     private bool justSwitched = false;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        SetupTurnQueue();
+        CmdSetupTurnQueue();
+        CmdDoTimeBar();
     }
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
-    public override void EndGame()
+    // Update is called once per frame
+    void Update() { }
+
+    public void EndGame()
     {
         EndLevel();
     }
 
-    public override void EndLevel()
+    public void EndLevel()
     {
         Debug.Log("Stopping Client");
         NetworkManager.singleton.StopClient();
@@ -43,7 +49,7 @@ public class MultiMan : GameMan
         SceneManager.LoadScene("lobby");
     }
 
-    public override void EndTurn()
+    public void EndTurn()
     {
         if (player1 && player2)
         {
@@ -53,7 +59,12 @@ public class MultiMan : GameMan
             turnCount = ++turnCount % 2;
             StartCoroutine("FlipArrow");
         }
-        base.EndTurn();
+        foreach (Unit unit in FindObjectsOfType<Unit>())
+        {
+            unit.ResetPiece();
+        }
+        FindObjectOfType<TimeBar>().StopAllCoroutines();
+        CmdDoTimeBar();
     }
 
     private IEnumerator FlipArrow()
@@ -63,7 +74,7 @@ public class MultiMan : GameMan
             Debug.Log("MultiMan::Flip Arrow() - Arrow not set");
             yield return null;
         }
-        for(int i = 0; i < 20; ++i)
+        for (int i = 0; i < 20; ++i)
         {
             turnArrow.transform.rotation = Quaternion.Lerp(turnArrow.transform.rotation, Quaternion.Euler(0, 0, 180 * turnCount), Time.deltaTime * 20);
             yield return new WaitForEndOfFrame();
@@ -72,37 +83,67 @@ public class MultiMan : GameMan
         yield return null;
     }
 
-    public override void HandleHorizontalMovement(GameObject player, float horizontal)
+    [Command]
+    public void CmdHandleCrossButton(bool local, GameObject player)
+    {
+        if (local) HandleCrossButton(player);
+    }
+
+    [Command]
+    public void CmdHandleCircleButton(bool local, GameObject player)
+    {
+        if (local) HandleCircleButton(player);
+    }
+
+    [Command]
+    public void CmdHandleTriangleButton(bool local, GameObject player)
+    {
+        if (local) HandleTriangleButton(player);
+    }
+
+    [Command]
+    public void CmdHandleSquareButton(bool local, GameObject player)
+    {
+        if (local) HandleSquareButton(player);
+    }
+
+    [Command]
+    public void CmdPlaceUnit(GameObject location, UnitType type)
+    {
+        Debug.Log("Player asked for a unit!");
+    }
+
+    public void HandleHorizontalMovement(GameObject player, float horizontal)
     {
         if (player == activePlayer)
             activeMenu.HandleHorizontalMovement(horizontal);
     }
 
-    public override void HandleVerticalMovement(GameObject player, float vertical)
+    public void HandleVerticalMovement(GameObject player, float vertical)
     {
         if (player == activePlayer)
             activeMenu.HandleVerticalMovement(vertical);
     }
 
-    public override void HandleCrossButton(GameObject player)
+    public void HandleCrossButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleCrossButton();
     }
 
-    public override void HandleTriangleButton(GameObject player)
+    public void HandleTriangleButton(GameObject player)
     {
         if (player == activePlayer && !justSwitched)
             EndTurn();
     }
 
-    public override void HandleCircleButton(GameObject player)
+    public void HandleCircleButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleCircleButton();
     }
 
-    public override void HandleSquareButton(GameObject player)
+    public void HandleSquareButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleSquareButton();
@@ -120,28 +161,61 @@ public class MultiMan : GameMan
             player2 = player;
             player.GetComponent<Player>().identity = PlayerEnum.Player2;
         }
-        SetupTurnQueue();
+        CmdSetupTurnQueue();
     }
 
-    private void SetupTurnQueue()
+    [Command]
+    private void CmdSetupTurnQueue()
     {
-        if(turnQueue == null) turnQueue = new Queue<GameObject>();
+        if (turnQueue == null) turnQueue = new Queue<GameObject>();
         if (player1 && player2)
         {
-            if (Random.Range(0F, 1F) < 0.5)
-            {
-                activePlayer = player1;
-                turnQueue.Enqueue(player2);
-                turnQueue.Enqueue(player1);
-                turnCount = 1;
-            }
-            else
-            {
-                activePlayer = player2;
-                turnQueue.Enqueue(player1);
-                turnQueue.Enqueue(player2);
-            }
+            if (turnQueue.Count < 2)
+                if (Random.Range(0F, 1F) < 0.5)
+                {
+                    activePlayer = player1;
+                    turnQueue.Enqueue(player2);
+                    turnQueue.Enqueue(player1);
+                    turnCount = 1;
+                }
+                else
+                {
+                    activePlayer = player2;
+                    turnQueue.Enqueue(player1);
+                    turnQueue.Enqueue(player2);
+                }
         }
         StartCoroutine("FlipArrow");
+    }
+
+    public void SetActiveMenu(Menu newMenu)
+    {
+        prevMenu = activeMenu;
+        activeMenu = newMenu;
+    }
+
+    public void PlaceUnit(GameObject location, UnitType type)
+    {
+        if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
+        else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
+    }
+
+    public void ReturnUnit(GameObject unit, GameObject owner)
+    {
+        if (owner.GetComponent<Player>())
+            owner.GetComponent<Player>().ReturnUnit(unit);
+    }
+
+    [Command]
+    public void CmdDoTimeBar()
+    {
+        RpcDoTimeBar();
+    }
+
+    [ClientRpc]
+    public void RpcDoTimeBar()
+    {
+        Debug.Log("Timebar Activated!");
+        //FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
     }
 }

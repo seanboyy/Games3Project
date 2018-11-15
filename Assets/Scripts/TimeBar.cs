@@ -16,6 +16,8 @@ public class TimeBar : MonoBehaviour
             //Value determined by taking number of different time bar sprites (28) and using math to make them all appear in sequence over a 90 second time interval
             yield return new WaitForSecondsRealtime(3.2143F);
         }
+        if (FindObjectOfType<MultiMan>()) FindObjectOfType<MultiMan>().EndTurn();
+        if (FindObjectOfType<SingleMan>()) FindObjectOfType<SingleMan>().EndTurn();
         yield return null;
     }
 }
