@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class LobbyMan : Menu {
 
@@ -18,16 +19,15 @@ public class LobbyMan : Menu {
 
     // Use this for initialization
     protected override void Start () {
-        lobbyManager = null;
-        lobbyManager = FindObjectOfType<NetworkLobbyManager>();
+        NetworkLobbyManager temp = Resources.FindObjectsOfTypeAll<NetworkLobbyManager>()[0];
+        lobbyManager = !EditorUtility.IsPersistent(temp.gameObject.transform.root) ? temp : null;
         if (!lobbyManager)
         {
-            Debug.Log("No manager found: Creating!");
             lobbyManager = Instantiate(lobbyManagerPrefab).GetComponent<NetworkLobbyManager>();
         }
         else
         {
-            Debug.Log("Manager found: " + lobbyManager.gameObject.name);
+            lobbyManager.gameObject.SetActive(true);
         }
         base.Start();
 	}
@@ -62,7 +62,6 @@ public class LobbyMan : Menu {
     {
         foreach (NetworkLobbyPlayer player in FindObjectsOfType<NetworkLobbyPlayer>())
         {
-            Debug.Log("Destroying NetworkLobbyPlayer");
             Destroy(player.gameObject);
         }
         StartCoroutine("GotoMenu");
@@ -71,7 +70,8 @@ public class LobbyMan : Menu {
     private IEnumerator GotoMenu()
     {
         yield return new WaitForSeconds(0.1F);
-        Debug.Log("Loading Main Menu");
+        lobbyManager.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.1F);
         SceneManager.LoadScene("menu");
         yield return null;
     }

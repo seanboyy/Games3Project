@@ -10,22 +10,16 @@ public class menu_manager : Menu
     public string playScene;
     public GameObject instructions;
     public GameObject playButton;
+    public GameObject multiplayButton;
     public GameObject instructionsButton;
     public GameObject returnButton;
-
-    private NetworkLobbyManager lobbyMan;
+    
 
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
 
     protected override void Start()
     {
-        lobbyMan = null;
-        lobbyMan = FindObjectOfType<NetworkLobbyManager>();
-        if (lobbyMan)
-        {
-            lobbyMan.gameObject.SetActive(false);
-        }
         Player[] players = FindObjectsOfType<Player>();
         foreach(Player player in players)
         {
@@ -110,7 +104,6 @@ public class menu_manager : Menu
 
     public void MultiplayerPlayButton()
     {
-        if (lobbyMan && !lobbyMan.gameObject.activeInHierarchy) lobbyMan.gameObject.SetActive(true);
         SceneManager.LoadScene("lobby");
     }
 
@@ -118,6 +111,7 @@ public class menu_manager : Menu
     {
         SelectElement(returnButton);
         playButton.SetActive(false);
+        multiplayButton.SetActive(false);
         instructionsButton.SetActive(false);
         returnButton.SetActive(true);
         instructions.SetActive(true);
@@ -127,6 +121,7 @@ public class menu_manager : Menu
     {
         SelectElement(instructionsButton);
         playButton.SetActive(true);
+        multiplayButton.SetActive(true);
         instructionsButton.SetActive(true);
         returnButton.SetActive(false);
         instructions.SetActive(false);

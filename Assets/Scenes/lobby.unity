@@ -727,6 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 884247788}
   activeUIMenu: 0
+  flag: 0
   lobbyManagerPrefab: {fileID: 1201460536600168, guid: 9966e5ed2de16884689c724d0e28d6e8,
     type: 2}
   lobbyManager: {fileID: 0}
