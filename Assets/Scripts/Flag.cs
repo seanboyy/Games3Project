@@ -9,4 +9,10 @@ public class Flag : GamePiece
     {
         FindGridElement();
 	}
+
+    void Update()
+    {
+        if (!gridElement)
+            FindGridElement();
+    }
 }
