@@ -30,21 +30,28 @@ public class LobbyMan : NetworkBehaviour
     protected Menu prevMenu;
 
 
-    // Use this for initialization
-    protected virtual void Start()
+    private void Awake()
     {
-        SelectElement(selectedGO);
-        prevColor = defaultColor;
-        lobbyManager = Statics.lobbyManager;
-        if (!lobbyManager)
+        if (lobbyManager)
         {
-            lobbyManager = Instantiate(lobbyManagerPrefab).GetComponent<NetworkLobbyManager>();
             Statics.lobbyManager = lobbyManager;
         }
         else
         {
-            lobbyManager.gameObject.SetActive(true);
+            lobbyManager = Statics.lobbyManager;
         }
+    }
+
+    // Use this for initialization
+    protected void Start()
+    {
+        SelectElement(selectedGO);
+        prevColor = defaultColor;
+    }
+
+    private void OnEnable()
+    {
+        if (!Statics.lobbyManager) Statics.lobbyManager = lobbyManager;
     }
 
     protected virtual void SelectElement(GameObject newElement)
@@ -77,14 +84,11 @@ public class LobbyMan : NetworkBehaviour
             HandleSquareButton();
     }
 
-    public void LoadMap0()
+    public void LoadMap(int mapNum)
     {
-        RpcSetScene(Statics.multiplayerScenes[0]);
-    }
-
-    public void LoadMap1()
-    {
-        lobbyManager.playScene = Statics.multiplayerScenes[1];
+        Debug.Log(Statics.multiplayerScenes[mapNum]);
+        if (!isServer) CmdSetScene(Statics.multiplayerScenes[mapNum]);
+        else RpcSetScene(Statics.multiplayerScenes[mapNum]);
     }
 
     [Command]
