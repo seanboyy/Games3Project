@@ -18,6 +18,6 @@ public class LobbyPlayer : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (isLocalPlayer) (lobbyManager.OnLobbyServerCreateGamePlayer(connectionToClient, playerControllerId)).GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+        if (isLocalPlayer && lobbyManager && lobbyManager.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId)) (lobbyManager.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId)).GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToServer);
 	}
 }
