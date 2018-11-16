@@ -121,7 +121,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [Command]
     public void CmdPlaceUnit(GameObject location, UnitType type)
     {
-        Debug.Log("Player asked for a unit!");
+        RpcPlaceUnit(location, type);
     }
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
@@ -206,7 +206,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
         activeMenu = newMenu;
     }
 
-    public void PlaceUnit(GameObject location, UnitType type)
+    [ClientRpc]
+    public void RpcPlaceUnit(GameObject location, UnitType type)
     {
         if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
         else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
@@ -247,6 +248,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
     }
 
     public void HandleSquareButton(GameObject player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PlaceUnit(GameObject location, UnitType type)
     {
         throw new System.NotImplementedException();
     }
