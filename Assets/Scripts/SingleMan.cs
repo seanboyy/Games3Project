@@ -30,6 +30,7 @@ public class SingleMan : MonoBehaviour, IGameMan
             turnsUsedText.text = "Turns Remaining: " + (moveLimit - turnsUsed);
         if (activePlayer && !activePlayer.activeInHierarchy)
             activePlayer.SetActive(true);
+        if (activeMenu is GridMenu) ((GridMenu)activeMenu).TurnOnChildren();
     }
 
     private void Update()
