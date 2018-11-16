@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114273485456195322}
   - component: {fileID: 114319631535282000}
   - component: {fileID: 65902300795546342}
+  - component: {fileID: 114069059164708510}
   m_Layer: 5
   m_Name: Element
   m_TagString: Untagged
@@ -60,6 +61,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.25}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114069059164708510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1137145424502822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 40
+    i1: 91
+    i2: 171
+    i3: 31
+    i4: 43
+    i5: 184
+    i6: 117
+    i7: 116
+    i8: 250
+    i9: 84
+    i10: 248
+    i11: 247
+    i12: 77
+    i13: 161
+    i14: 154
+    i15: 18
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114094724080026536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,6 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
+  owner: 2
+  portal: 0
+  portalOwner: 2
+  goal: 0
   northWall: 0
   eastWall: 0
   southWall: 0
