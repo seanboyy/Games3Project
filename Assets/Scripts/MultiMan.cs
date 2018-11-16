@@ -24,8 +24,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
     // Use this for initialization
     void Start()
     {
-        CmdSetupTurnQueue();
-        CmdDoTimeBar();
+        if (isServer) Debug.Log(gameObject.name + " is the server!");
+        else Debug.Log(gameObject.name + " is not the server!");
+        RpcSetupTurnQueue();
+        RpcDoTimeBar();
     }
 
     // Update is called once per frame
@@ -68,6 +70,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
         {
             Debug.Log("Telling players to do timeBar");
             RpcDoTimeBar();
+        }
+        else
+        {
+            Debug.Log("Telling server to tell players to do timeBar");
+            CmdDoTimeBar();
         }
     }
 
@@ -165,11 +172,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player2 = player;
             player.GetComponent<Player>().identity = PlayerEnum.Player2;
         }
-        CmdSetupTurnQueue();
+        RpcSetupTurnQueue();
     }
 
-    [Command]
-    private void CmdSetupTurnQueue()
+    [ClientRpc]
+    private void RpcSetupTurnQueue()
     {
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
         if (player1 && player2)
