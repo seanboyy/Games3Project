@@ -87,8 +87,8 @@ public class LobbyMan : NetworkBehaviour
     public void LoadMap(int mapNum)
     {
         Debug.Log(Statics.multiplayerScenes[mapNum]);
-        if (!isServer) CmdSetScene(Statics.multiplayerScenes[mapNum]);
-        else RpcSetScene(Statics.multiplayerScenes[mapNum]);
+        CmdSetScene(Statics.multiplayerScenes[mapNum]);
+        //else RpcSetScene(Statics.multiplayerScenes[mapNum]);
     }
 
     [Command]
