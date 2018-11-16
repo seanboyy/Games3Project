@@ -12,6 +12,7 @@ public class LobbyPlayer : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         lobbyMan = FindObjectOfType<LobbyMan>();
+        lobbyManager = FindObjectOfType<NetworkLobbyManager>();
         if (isLocalPlayer) lobbyPlayer = GetComponent<NetworkLobbyPlayer>();
 	}
 

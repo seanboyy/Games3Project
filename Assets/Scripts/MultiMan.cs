@@ -57,7 +57,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
     void Update()
     {
         if (!player1 || !player2) RegisterPlayers();
-        Debug.Log(localPlayerAuthority);
     }
 
     public void EndGame()
