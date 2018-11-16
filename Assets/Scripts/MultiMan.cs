@@ -64,7 +64,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
             unit.ResetPiece();
         }
         FindObjectOfType<TimeBar>().StopAllCoroutines();
-        CmdDoTimeBar();
+        if (isServer)
+        {
+            Debug.Log("Telling players to do timeBar");
+            RpcDoTimeBar();
+        }
     }
 
     private IEnumerator FlipArrow()
