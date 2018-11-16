@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class LobbyMan : Menu {
 
@@ -19,11 +18,11 @@ public class LobbyMan : Menu {
 
     // Use this for initialization
     protected override void Start () {
-        NetworkLobbyManager temp = Resources.FindObjectsOfTypeAll<NetworkLobbyManager>()[0];
-        lobbyManager = !EditorUtility.IsPersistent(temp.gameObject.transform.root) ? temp : null;
+        lobbyManager = Statics.lobbyManager;
         if (!lobbyManager)
         {
             lobbyManager = Instantiate(lobbyManagerPrefab).GetComponent<NetworkLobbyManager>();
+            Statics.lobbyManager = lobbyManager;
         }
         else
         {

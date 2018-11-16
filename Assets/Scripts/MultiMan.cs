@@ -215,7 +215,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [ClientRpc]
     public void RpcDoTimeBar()
     {
-        Debug.Log("Timebar Activated!");
-        //FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
+        //Debug.Log("Timebar Activated!");
+        FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
     }
 }

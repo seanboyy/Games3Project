@@ -33,25 +33,35 @@ public class Player : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        if (FindObjectOfType<MultiMan>())
-            gameManager = FindObjectOfType<MultiMan>();
-        if (FindObjectOfType<SingleMan>())
-            gameManager = FindObjectOfType<SingleMan>();
-        if(gameManager is MultiMan)
-        {
-            ((MultiMan)gameManager).RegisterPlayer(gameObject);
-        }
+        FindGameManager();
         unitPool = new ObjectPool(unitPrefab, false, 1);
         pusherPool = new ObjectPool(pusherPrefab, false, 1);
         pullerPool = new ObjectPool(pullerPrefab, false, 1);
         twisterPool = new ObjectPool(twisterPrefab, false, 1);
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
         if (gameManager == null)
-            Debug.Log("No Game Manager has been assigned to this player!");
+            FindGameManager();
+    }
+
+    void FindGameManager()
+    {
+        if (FindObjectOfType<MultiMan>())
+        {
+            gameManager = FindObjectOfType<MultiMan>();
+        }
+        if (FindObjectOfType<SingleMan>())
+        {
+            gameManager = FindObjectOfType<SingleMan>();
+        }
+        if (gameManager is MultiMan)
+        {
+            ((MultiMan)gameManager).RegisterPlayer(gameObject);
+        }
     }
 
     void Update()
     {
+        if (gameManager == null) FindGameManager();
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             gameManager.HandleHorizontalMovement(gameObject, Input.GetAxisRaw("Horizontal"));
         if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)

@@ -4622,6 +4622,7 @@ GameObject:
   - component: {fileID: 571666586}
   - component: {fileID: 571666587}
   - component: {fileID: 571666588}
+  - component: {fileID: 571666589}
   m_Layer: 0
   m_Name: GameMan
   m_TagString: Untagged
@@ -4702,6 +4703,38 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 798b3bad06ce6ea4ca372a9ad763a0b9, type: 3}
   - {fileID: 21300000, guid: ad9dad45a50ab0646b046a3a017bcbad, type: 3}
   timeBar: {fileID: 1314002595}
+--- !u!114 &571666589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 571666585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!1 &583602066
 GameObject:
   m_ObjectHideFlags: 0
@@ -8978,7 +9011,6 @@ MonoBehaviour:
   selectedGO: {fileID: 744416554}
   activeUIMenu: 1
   activeGO: {fileID: 0}
-  gameMan: {fileID: 571666587}
   selectedPiece: {fileID: 0}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
   OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}
