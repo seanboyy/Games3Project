@@ -96,6 +96,8 @@ public class Unit : GamePiece
         {
             flag.transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * flag.transform.position.z;
             flag.GetComponent<GamePiece>().gridElement = newLoc.GetComponent<GridElement>();
+            if (newLoc.GetComponent<GridElement>().goal)
+                grid.gameMan.EndLevel();
         }
         // Check if gridElement has been assigned (this is for spawning)
         if (!gridElement)

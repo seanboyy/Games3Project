@@ -54,9 +54,9 @@ public class SingleMan : MonoBehaviour, IGameMan
     public void EndLevel()
     {
         if (!limitedMoves)
-            turnsUsedText.text = "Turns Used: " + ++turnsUsed;
+            turnsUsedText.text = "Turns Used: " + turnsUsed;
         else
-            turnsUsedText.text = "Turns Remaining: " + (moveLimit - ++turnsUsed);
+            turnsUsedText.text = "Turns Remaining: " + (moveLimit - turnsUsed);
         // Go to a menu between levels asking if you want to go to the next level, or if you want to return to the main menu
         // Right now, that's not implemented - you just go to wherever it's set in the editor
         nextLevel = true;
@@ -95,11 +95,13 @@ public class SingleMan : MonoBehaviour, IGameMan
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
     {
+        Debug.Log("Handling Horizontal Player Input");
         activeMenu.HandleHorizontalMovement(horizontal);
     }
 
     public void HandleVerticalMovement(GameObject player, float vertical)
     {
+        Debug.Log("Handling Vertical Player Input");
         activeMenu.HandleVerticalMovement(vertical);
     }
 
