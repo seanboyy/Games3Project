@@ -55,7 +55,7 @@ public class Player : NetworkBehaviour
         }
         if (gameManager is MultiMan)
         {
-            ((MultiMan)gameManager).RegisterPlayer(gameObject);
+            ((MultiMan)gameManager).CmdRegisterPlayer(gameObject);
         }
     }
 

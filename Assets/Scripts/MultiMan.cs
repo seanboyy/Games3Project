@@ -97,25 +97,25 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [Command]
     public void CmdHandleCrossButton(bool local, GameObject player)
     {
-        if (local) HandleCrossButton(player);
+        if (local && player == activePlayer) RpcHandleCrossButton(player);
     }
 
     [Command]
     public void CmdHandleCircleButton(bool local, GameObject player)
     {
-        if (local) HandleCircleButton(player);
+        if (local && player == activePlayer) RpcHandleCircleButton(player);
     }
 
     [Command]
     public void CmdHandleTriangleButton(bool local, GameObject player)
     {
-        if (local) HandleTriangleButton(player);
+        if (local && player == activePlayer) RpcHandleTriangleButton(player);
     }
 
     [Command]
     public void CmdHandleSquareButton(bool local, GameObject player)
     {
-        if (local) HandleSquareButton(player);
+        if (local && player == activePlayer) RpcHandleSquareButton(player);
     }
 
     [Command]
@@ -136,31 +136,32 @@ public class MultiMan : NetworkBehaviour, IGameMan
             activeMenu.HandleVerticalMovement(vertical);
     }
 
-    public void HandleCrossButton(GameObject player)
+    public void RpcHandleCrossButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleCrossButton();
     }
 
-    public void HandleTriangleButton(GameObject player)
+    public void RpcHandleTriangleButton(GameObject player)
     {
         if (player == activePlayer && !justSwitched)
             EndTurn();
     }
 
-    public void HandleCircleButton(GameObject player)
+    public void RpcHandleCircleButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleCircleButton();
     }
 
-    public void HandleSquareButton(GameObject player)
+    public void RpcHandleSquareButton(GameObject player)
     {
         if (player == activePlayer)
             activeMenu.HandleSquareButton();
     }
 
-    public void RegisterPlayer(GameObject player)
+    [Command]
+    public void CmdRegisterPlayer(GameObject player)
     {
         if (!player1)
         {
@@ -228,5 +229,25 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
+    }
+
+    public void HandleCrossButton(GameObject player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void HandleTriangleButton(GameObject player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void HandleCircleButton(GameObject player)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void HandleSquareButton(GameObject player)
+    {
+        throw new System.NotImplementedException();
     }
 }
