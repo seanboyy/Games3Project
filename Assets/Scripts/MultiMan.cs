@@ -15,7 +15,9 @@ public class MultiMan : NetworkBehaviour, IGameMan
     public Menu activeMenu;
     public Menu prevMenu;
 
+    [SyncVar]
     public GameObject player1;
+    [SyncVar]
     public GameObject player2;
     public Queue<GameObject> turnQueue;
     public Image turnArrow;
@@ -32,22 +34,23 @@ public class MultiMan : NetworkBehaviour, IGameMan
         {
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
             RegisterPlayers();
-            SetupTurnQueue();
             RpcDoTimeBar();
         }
     }
 
     void RegisterPlayers()
     {
+        if (FindObjectsOfType<Player>().Length < 2) return;
         player1 = FindObjectsOfType<Player>()[0].gameObject;
         player1.GetComponent<Player>().identity = PlayerEnum.Player1;
         player2 = FindObjectsOfType<Player>()[1].gameObject;
         player2.GetComponent<Player>().identity = PlayerEnum.Player2;
+        SetupTurnQueue();
     }
 
     // Update is called once per frame
     void Update() {
-
+        if (!player1 || !player2) RegisterPlayers();
     }
 
     public void EndGame()
@@ -85,12 +88,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
         FindObjectOfType<TimeBar>().StopAllCoroutines();
         if (isServer)
         {
-            Debug.Log("Telling players to do timeBar");
             RpcDoTimeBar();
         }
         else
         {
-            Debug.Log("Telling server to tell players to do timeBar");
             CmdDoTimeBar();
         }
     }
@@ -138,6 +139,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [Command]
     public void CmdPlaceUnit(GameObject location, UnitType type)
     {
+        Debug.Log(location);
         RpcPlaceUnit(location, type);
     }
 
@@ -199,7 +201,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
     private void SetupTurnQueue()
     {
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
-        Debug.Log(player1 + ", " + player2);
         if (player1 && player2)
         {
             if (player1GoesFirst)
