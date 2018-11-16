@@ -38,7 +38,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         }
         else
         {
-            GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+            GetComponent<NetworkIdentity>().AssignClientAuthority(GetComponent<NetworkIdentity>().connectionToClient);
         }
     }
 
