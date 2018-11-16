@@ -77,17 +77,41 @@ public class Player : NetworkBehaviour
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleCrossButton(isLocalPlayer, gameObject);
+            if (gameManager is MultiMan) CmdHandleCrossButton(gameObject);
             else gameManager.HandleCrossButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleCircleButton(isLocalPlayer, gameObject);
+            if (gameManager is MultiMan) CmdHandleCircleButton(gameObject);
             else gameManager.HandleCircleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleTriangleButton(isLocalPlayer, gameObject);
+            if (gameManager is MultiMan) CmdHandleTriangleButton(gameObject);
             else gameManager.HandleTriangleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (gameManager is MultiMan) ((MultiMan)gameManager).CmdHandleSquareButton(isLocalPlayer, gameObject);
+            if (gameManager is MultiMan) CmdHandleSquareButton(gameObject);
             else gameManager.HandleSquareButton(gameObject);
+    }
+
+    [Command]
+    public void CmdHandleCrossButton(GameObject player)
+    {
+        if (isLocalPlayer) gameManager.HandleCrossButton(player);
+    }
+
+    [Command]
+    public void CmdHandleCircleButton(GameObject player)
+    {
+        if (isLocalPlayer) gameManager.HandleCircleButton(player);
+    }
+
+    [Command]
+    public void CmdHandleTriangleButton(GameObject player)
+    {
+        if (isLocalPlayer) gameManager.HandleTriangleButton(player);
+    }
+
+    [Command]
+    public void CmdHandleSquareButton(GameObject player)
+    {
+        if (isLocalPlayer) gameManager.HandleSquareButton(player);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)

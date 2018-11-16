@@ -169,23 +169,23 @@ public class GridMenu  : Menu
         switch (unitType)
         {
             case "unit":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Unit);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Unit);
                 else gameMan.PlaceUnit(selectedGO, UnitType.Unit);
                 break;
             case "pusher":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Pusher);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Pusher);
                 else gameMan.PlaceUnit(selectedGO, UnitType.Pusher);
                 break;
             case "puller":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Puller);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Puller);
                 else gameMan.PlaceUnit(selectedGO, UnitType.Puller);
                 break;
             case "twister":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.Twister);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Twister);
                 else gameMan.PlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
+                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.PortalPlacer);
                 else gameMan.PlaceUnit(selectedGO, UnitType.PortalPlacer);
                 break;
             default:

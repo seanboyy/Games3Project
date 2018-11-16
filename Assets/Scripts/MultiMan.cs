@@ -38,7 +38,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         }
         else
         {
-            GetComponent<NetworkIdentity>().AssignClientAuthority(GetComponent<NetworkIdentity>().connectionToClient);
+            //GetComponent<NetworkIdentity>().AssignClientAuthority(GetComponent<NetworkIdentity>().connectionToClient);
         }
     }
 
@@ -93,14 +93,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             unit.ResetPiece();
         }
         FindObjectOfType<TimeBar>().StopAllCoroutines();
-        if (isServer)
-        {
-            RpcDoTimeBar();
-        }
-        else
-        {
-            CmdDoTimeBar();
-        }
+        if(isServer) RpcDoTimeBar();
     }
 
     private IEnumerator FlipArrow()
@@ -119,35 +112,29 @@ public class MultiMan : NetworkBehaviour, IGameMan
         yield return null;
     }
 
-    [Command]
-    public void CmdHandleCrossButton(bool local, GameObject player)
+    public void HandleCrossButton(GameObject player)
     {
-        if (local && player == activePlayer) RpcHandleCrossButton(player);
+        if (player == activePlayer && isServer) RpcHandleCrossButton(player);
     }
-
-    [Command]
-    public void CmdHandleCircleButton(bool local, GameObject player)
+    
+    public void HandleCircleButton(GameObject player)
     {
-        if (local && player == activePlayer) RpcHandleCircleButton(player);
+        if (player == activePlayer && isServer) RpcHandleCircleButton(player);
     }
-
-    [Command]
-    public void CmdHandleTriangleButton(bool local, GameObject player)
+    
+    public void HandleTriangleButton(GameObject player)
     {
-        if (local && player == activePlayer) RpcHandleTriangleButton(player);
+        if (player == activePlayer && isServer) RpcHandleTriangleButton(player);
     }
-
-    [Command]
-    public void CmdHandleSquareButton(bool local, GameObject player)
+    
+    public void HandleSquareButton(GameObject player)
     {
-        if (local && player == activePlayer) RpcHandleSquareButton(player);
+        if (player == activePlayer && isServer) RpcHandleSquareButton(player);
     }
-
-    [Command]
-    public void CmdPlaceUnit(GameObject location, UnitType type)
+    
+    public void PlaceUnit(GameObject location, UnitType type)
     {
-        Debug.Log(location);
-        RpcPlaceUnit(location, type);
+        if(isServer) RpcPlaceUnit(location, type);
     }
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
@@ -245,41 +232,18 @@ public class MultiMan : NetworkBehaviour, IGameMan
             owner.GetComponent<Player>().ReturnUnit(unit);
     }
 
+    /*
     [Command]
     public void CmdDoTimeBar()
     {
         RpcDoTimeBar();
     }
+    */
 
     [ClientRpc]
     public void RpcDoTimeBar()
     {
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
-    }
-
-    public void HandleCrossButton(GameObject player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleTriangleButton(GameObject player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleCircleButton(GameObject player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleSquareButton(GameObject player)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void PlaceUnit(GameObject location, UnitType type)
-    {
-        throw new System.NotImplementedException();
     }
 }
