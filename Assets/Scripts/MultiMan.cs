@@ -26,8 +26,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer) Debug.Log(gameObject.name + " is the server!");
         else Debug.Log(gameObject.name + " is not the server!");
-        RpcSetupTurnQueue();
-        RpcDoTimeBar();
+        if(isServer) RpcSetupTurnQueue();
+        if(isServer) RpcDoTimeBar();
     }
 
     // Update is called once per frame
