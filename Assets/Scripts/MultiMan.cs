@@ -36,6 +36,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
             RegisterPlayers();
             RpcDoTimeBar();
         }
+        else
+        {
+            GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
+        }
     }
 
     void RegisterPlayers()
