@@ -42,9 +42,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (FindObjectsOfType<Player>().Length < 2) return;
         player1 = FindObjectsOfType<Player>()[0].gameObject;
+        player1.name = "Player1";
         player1.GetComponent<Player>().identity = PlayerEnum.Player1;
         player2 = FindObjectsOfType<Player>()[1].gameObject;
         player2.GetComponent<Player>().identity = PlayerEnum.Player2;
+        player2.name = "Player2";
         SetupTurnQueue();
     }
 
