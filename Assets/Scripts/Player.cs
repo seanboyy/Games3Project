@@ -53,10 +53,12 @@ public class Player : NetworkBehaviour
         {
             gameManager = FindObjectOfType<SingleMan>();
         }
+        /*
         if (gameManager is MultiMan)
         {
             ((MultiMan)gameManager).CmdRegisterPlayer(gameObject);
         }
+        */
     }
 
     void Update()

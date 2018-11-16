@@ -30,21 +30,25 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer)
         {
-            Debug.Log("Deciding who goes first");
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
-            Debug.Log(player1GoesFirst ? "It's player one" : "It's player 2");
-            Debug.Log("Setting up Turn Queue");
+            RegisterPlayers();
             SetupTurnQueue();
-            Debug.Log("Done");
-            Debug.Log("Doing Time Bar");
             RpcDoTimeBar();
         }
-        Debug.Log("Blarch");
-        Debug.Log("Start Complete");
+    }
+
+    void RegisterPlayers()
+    {
+        player1 = FindObjectsOfType<Player>()[0].gameObject;
+        player1.GetComponent<Player>().identity = PlayerEnum.Player1;
+        player2 = FindObjectsOfType<Player>()[1].gameObject;
+        player2.GetComponent<Player>().identity = PlayerEnum.Player2;
     }
 
     // Update is called once per frame
-    void Update() { }
+    void Update() {
+
+    }
 
     public void EndGame()
     {
@@ -173,6 +177,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             activeMenu.HandleSquareButton();
     }
 
+    /*
     [Command]
     public void CmdRegisterPlayer(GameObject player)
     {
@@ -189,6 +194,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player.GetComponent<Player>().identity = PlayerEnum.Player2;
         }
     }
+    */
     
     private void SetupTurnQueue()
     {
