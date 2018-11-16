@@ -45,8 +45,20 @@ public class GridMenu  : Menu
 	// Update is called once per frame
 	void Update ()
     {
+        if(gameMan == null)
+        {
+            FindGameManager();
+            return;
+        }
         if (activeUIMenu && !canPressButtons)
             canPressButtons = true;
+    }
+
+    void FindGameManager()
+    {
+        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
+        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
+
     }
 
     void ActivateElement()

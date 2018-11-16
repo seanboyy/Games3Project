@@ -61,7 +61,11 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
-        if (gameManager == null) FindGameManager();
+        if (gameManager == null)
+        {
+            FindGameManager();
+            return;
+        }
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             gameManager.HandleHorizontalMovement(gameObject, Input.GetAxisRaw("Horizontal"));
         if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
