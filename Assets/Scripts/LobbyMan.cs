@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LobbyMan : Menu {
+public class LobbyMan : NetworkBehaviour
+{
 
     float prevHorAxis = 0F;
     float prevVerAxis = 0F;
@@ -16,8 +17,24 @@ public class LobbyMan : Menu {
 
     public NetworkLobbyManager lobbyManager;
 
+    [Header("Colors for UI Elements")]
+    public static Color defaultColor = Color.white;   // the color for non-selected Buttons
+    public static Color selectedColor = Color.cyan;  // the color for non-active, selected UI elements
+
+    public GameObject selectedGO;
+
+    [Header("Is this menu under active player control?")]
+    public bool activeUIMenu = false;
+
+    protected Color prevColor;    // the color of the previous selectedElement
+    protected Menu prevMenu;
+
+
     // Use this for initialization
-    protected override void Start () {
+    protected virtual void Start()
+    {
+        SelectElement(selectedGO);
+        prevColor = defaultColor;
         lobbyManager = Statics.lobbyManager;
         if (!lobbyManager)
         {
@@ -28,11 +45,19 @@ public class LobbyMan : Menu {
         {
             lobbyManager.gameObject.SetActive(true);
         }
-        base.Start();
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    protected virtual void SelectElement(GameObject newElement)
+    {
+        if (newElement == null) return;
+        selectedGO.GetComponent<Image>().color = prevColor;
+        selectedGO = newElement;
+        prevColor = selectedGO.GetComponent<Image>().color;
+        selectedGO.GetComponent<Image>().color = selectedColor;
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
@@ -54,12 +79,24 @@ public class LobbyMan : Menu {
 
     public void LoadMap0()
     {
-        lobbyManager.playScene = Statics.multiplayerScenes[0];
+        RpcSetScene(Statics.multiplayerScenes[0]);
     }
 
     public void LoadMap1()
     {
         lobbyManager.playScene = Statics.multiplayerScenes[1];
+    }
+
+    [Command]
+    public void CmdSetScene(string sceneName)
+    {
+        RpcSetScene(sceneName);
+    }
+
+    [ClientRpc]
+    public void RpcSetScene(string sceneName)
+    {
+        lobbyManager.playScene = sceneName;
     }
 
     public void ToMenu()
@@ -80,7 +117,7 @@ public class LobbyMan : Menu {
         yield return null;
     }
 
-    public override void HandleHorizontalMovement(float horizontal)
+    public void HandleHorizontalMovement(float horizontal)
     {
         if (horizontal > 0)
         {
@@ -92,7 +129,7 @@ public class LobbyMan : Menu {
         }
     }
 
-    public override void HandleVerticalMovement(float vertical)
+    public void HandleVerticalMovement(float vertical)
     {
         if (vertical > 0)
         {
@@ -104,22 +141,22 @@ public class LobbyMan : Menu {
         }
     }
 
-    public override void HandleCrossButton()
+    public void HandleCrossButton()
     {
         selectedGO.GetComponent<Button>().onClick.Invoke();
     }
 
-    public override void HandleTriangleButton()
+    public void HandleTriangleButton()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void HandleCircleButton()
+    public void HandleCircleButton()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void HandleSquareButton()
+    public void HandleSquareButton()
     {
         throw new System.NotImplementedException();
     }
