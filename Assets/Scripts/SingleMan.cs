@@ -95,11 +95,13 @@ public class SingleMan : MonoBehaviour, IGameMan
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
     {
+        Debug.Log("Handling Horizontal Player Input");
         activeMenu.HandleHorizontalMovement(horizontal);
     }
 
     public void HandleVerticalMovement(GameObject player, float vertical)
     {
+        Debug.Log("Handling Vertical Player Input");
         activeMenu.HandleVerticalMovement(vertical);
     }
 

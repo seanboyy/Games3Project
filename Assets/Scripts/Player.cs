@@ -31,6 +31,8 @@ public class Player : NetworkBehaviour
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
 
+    private bool multiplayer = false;
+
     // Use this for initialization
     void Start()
     {
@@ -49,10 +51,12 @@ public class Player : NetworkBehaviour
         if (FindObjectOfType<MultiMan>())
         {
             gameManager = FindObjectOfType<MultiMan>();
+            multiplayer = true;
         }
         if (FindObjectOfType<SingleMan>())
         {
             gameManager = FindObjectOfType<SingleMan>();
+            multiplayer = false;
         }
         /*
         if (gameManager is MultiMan)
@@ -64,7 +68,7 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
-        if (!isLocalPlayer) return;
+        if (multiplayer && !isLocalPlayer) return;
         if (gameManager == null)
         {
             FindGameManager();
@@ -78,16 +82,16 @@ public class Player : NetworkBehaviour
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (gameManager is MultiMan && isLocalPlayer) CmdHandleCrossButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleCrossButton(gameObject);
             else gameManager.HandleCrossButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (gameManager is MultiMan && isLocalPlayer) CmdHandleCircleButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleCircleButton(gameObject);
             else gameManager.HandleCircleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (gameManager is MultiMan && isLocalPlayer) CmdHandleTriangleButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleTriangleButton(gameObject);
             else gameManager.HandleTriangleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (gameManager is MultiMan && isLocalPlayer) CmdHandleSquareButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleSquareButton(gameObject);
             else gameManager.HandleSquareButton(gameObject);
     }
 
