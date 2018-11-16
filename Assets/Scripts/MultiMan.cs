@@ -27,7 +27,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer) Debug.Log(gameObject.name + " is the server!");
         else Debug.Log(gameObject.name + " is not the server!");
-        if(isServer) RpcDoTimeBar();
+        if (isServer) RpcDoTimeBar();
         if (isServer) player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
     }
 
@@ -182,22 +182,21 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
         if (player1 && player2)
         {
-            if (turnQueue.Count < 2)
-                if (player1GoesFirst)
-                {
-                    activePlayer = player1;
-                    turnQueue.Enqueue(player2);
-                    turnQueue.Enqueue(player1);
-                    turnCount = 1;
-                }
-                else
-                {
-                    activePlayer = player2;
-                    turnQueue.Enqueue(player1);
-                    turnQueue.Enqueue(player2);
-                }
+            if (player1GoesFirst)
+            {
+                activePlayer = player1;
+                turnQueue.Enqueue(player2);
+                turnQueue.Enqueue(player1);
+                turnCount = 1;
+            }
+            else
+            {
+                activePlayer = player2;
+                turnQueue.Enqueue(player1);
+                turnQueue.Enqueue(player2);
+            }
+            StartCoroutine("FlipArrow");
         }
-        StartCoroutine("FlipArrow");
     }
 
     public void SetActiveMenu(Menu newMenu)
