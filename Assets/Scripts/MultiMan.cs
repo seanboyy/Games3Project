@@ -19,6 +19,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     public Queue<GameObject> turnQueue;
     public Image turnArrow;
     private int turnCount = 0;
+    private bool player1GoesFirst = true;
     private bool justSwitched = false;
 
     // Use this for initialization
@@ -26,8 +27,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer) Debug.Log(gameObject.name + " is the server!");
         else Debug.Log(gameObject.name + " is not the server!");
-        if(isServer) RpcSetupTurnQueue();
         if(isServer) RpcDoTimeBar();
+        if (isServer) player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
     }
 
     // Update is called once per frame
@@ -173,7 +174,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player2 = player;
             player.GetComponent<Player>().identity = PlayerEnum.Player2;
         }
-        RpcSetupTurnQueue();
     }
 
     [ClientRpc]
@@ -183,7 +183,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (player1 && player2)
         {
             if (turnQueue.Count < 2)
-                if (Random.Range(0F, 1F) < 0.5)
+                if (player1GoesFirst)
                 {
                     activePlayer = player1;
                     turnQueue.Enqueue(player2);
