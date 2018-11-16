@@ -12,6 +12,7 @@ public enum PlayerEnum
 
 public class Player : NetworkBehaviour
 {
+    [SyncVar]
     public PlayerEnum identity = PlayerEnum.Player1;
     public IGameMan gameManager;
 
