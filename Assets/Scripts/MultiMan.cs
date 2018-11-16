@@ -18,8 +18,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
     public GameObject player1;
     public GameObject player2;
     public Queue<GameObject> turnQueue;
-    [SyncVar]
     public Image turnArrow;
+    [SyncVar]
     private int turnCount = 0;
     [SyncVar]
     private bool player1GoesFirst;
@@ -30,10 +30,17 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer)
         {
-            RpcDoTimeBar();
+            Debug.Log("Deciding who goes first");
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
+            Debug.Log(player1GoesFirst ? "It's player one" : "It's player 2");
+            Debug.Log("Setting up Turn Queue");
             SetupTurnQueue();
+            Debug.Log("Done");
+            Debug.Log("Doing Time Bar");
+            RpcDoTimeBar();
         }
+        Debug.Log("Blarch");
+        Debug.Log("Start Complete");
     }
 
     // Update is called once per frame
@@ -172,11 +179,13 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (!player1)
         {
             player1 = player;
+            Debug.Log("Found Player 1");
             player.GetComponent<Player>().identity = PlayerEnum.Player1;
         }
         else if (!player2)
         {
             player2 = player;
+            Debug.Log("Found Player 2");
             player.GetComponent<Player>().identity = PlayerEnum.Player2;
         }
     }
@@ -184,11 +193,13 @@ public class MultiMan : NetworkBehaviour, IGameMan
     private void SetupTurnQueue()
     {
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
+        Debug.Log(player1 + ", " + player2);
         if (player1 && player2)
         {
             if (player1GoesFirst)
             {
                 activePlayer = player1;
+                Debug.Log("Player 1 is the active player!");
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
                 turnCount = 1;
@@ -196,6 +207,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             else
             {
                 activePlayer = player2;
+                Debug.Log("Player 2 is the active player!");
                 turnQueue.Enqueue(player1);
                 turnQueue.Enqueue(player2);
             }
