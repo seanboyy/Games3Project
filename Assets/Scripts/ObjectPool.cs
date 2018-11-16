@@ -8,7 +8,7 @@ public class ObjectPool
     Stack<GameObject> pool;
     public bool canGrow;
 
-    public ObjectPool(GameObject prefab, bool resizeable, int count)
+    public ObjectPool(GameObject prefab, bool resizeable, int count, Transform parent)
     {
         prototype = prefab;
         canGrow = resizeable;
@@ -16,7 +16,7 @@ public class ObjectPool
 
         for (int i=0; i<count; i++)
         {
-            GameObject temp = Object.Instantiate(prototype);
+            GameObject temp = Object.Instantiate(prototype, parent);
             temp.SetActive(false);
             pool.Push(temp);
         }

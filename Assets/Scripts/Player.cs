@@ -37,11 +37,11 @@ public class Player : NetworkBehaviour
     void Start()
     {
         FindGameManager();
-        unitPool = new ObjectPool(unitPrefab, false, 1);
-        pusherPool = new ObjectPool(pusherPrefab, false, 1);
-        pullerPool = new ObjectPool(pullerPrefab, false, 1);
-        twisterPool = new ObjectPool(twisterPrefab, false, 1);
-        portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1);
+        unitPool = new ObjectPool(unitPrefab, false, 1, transform);
+        pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
+        pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
+        twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
+        portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
         if (gameManager == null)
             FindGameManager();
     }
