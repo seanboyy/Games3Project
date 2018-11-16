@@ -49,7 +49,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (!player1 || !player2) RegisterPlayers();
     }
 
@@ -157,26 +158,23 @@ public class MultiMan : NetworkBehaviour, IGameMan
 
     public void RpcHandleCrossButton(GameObject player)
     {
-        if (player == activePlayer)
-            activeMenu.HandleCrossButton();
+        activeMenu.HandleCrossButton();
     }
 
     public void RpcHandleTriangleButton(GameObject player)
     {
-        if (player == activePlayer && !justSwitched)
+        if (!justSwitched)
             EndTurn();
     }
 
     public void RpcHandleCircleButton(GameObject player)
     {
-        if (player == activePlayer)
-            activeMenu.HandleCircleButton();
+        activeMenu.HandleCircleButton();
     }
 
     public void RpcHandleSquareButton(GameObject player)
     {
-        if (player == activePlayer)
-            activeMenu.HandleSquareButton();
+        activeMenu.HandleSquareButton();
     }
 
     /*
@@ -197,7 +195,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         }
     }
     */
-    
+
     private void SetupTurnQueue()
     {
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
