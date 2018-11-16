@@ -64,6 +64,7 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer) return;
         if (gameManager == null)
         {
             FindGameManager();
@@ -77,16 +78,16 @@ public class Player : NetworkBehaviour
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (gameManager is MultiMan) CmdHandleCrossButton(gameObject);
+            if (gameManager is MultiMan && isLocalPlayer) CmdHandleCrossButton(gameObject);
             else gameManager.HandleCrossButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (gameManager is MultiMan) CmdHandleCircleButton(gameObject);
+            if (gameManager is MultiMan && isLocalPlayer) CmdHandleCircleButton(gameObject);
             else gameManager.HandleCircleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (gameManager is MultiMan) CmdHandleTriangleButton(gameObject);
+            if (gameManager is MultiMan && isLocalPlayer) CmdHandleTriangleButton(gameObject);
             else gameManager.HandleTriangleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (gameManager is MultiMan) CmdHandleSquareButton(gameObject);
+            if (gameManager is MultiMan && isLocalPlayer) CmdHandleSquareButton(gameObject);
             else gameManager.HandleSquareButton(gameObject);
     }
 

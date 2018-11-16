@@ -33,24 +33,23 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (isServer)
         {
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
-            RegisterPlayers();
             RpcDoTimeBar();
         }
-        else
-        {
-            //GetComponent<NetworkIdentity>().AssignClientAuthority(GetComponent<NetworkIdentity>().connectionToClient);
-        }
+        RegisterPlayers();
     }
 
     void RegisterPlayers()
     {
-        if (FindObjectsOfType<Player>().Length < 2) return;
-        player1 = FindObjectsOfType<Player>()[0].gameObject;
-        player1.name = "Player1";
-        player1.GetComponent<Player>().identity = PlayerEnum.Player1;
-        player2 = FindObjectsOfType<Player>()[1].gameObject;
-        player2.GetComponent<Player>().identity = PlayerEnum.Player2;
-        player2.name = "Player2";
+        if (isServer)
+        {
+            if (FindObjectsOfType<Player>().Length < 2) return;
+            player1 = FindObjectsOfType<Player>()[0].gameObject;
+            player1.name = "Player1";
+            player1.GetComponent<Player>().identity = PlayerEnum.Player1;
+            player2 = FindObjectsOfType<Player>()[1].gameObject;
+            player2.GetComponent<Player>().identity = PlayerEnum.Player2;
+            player2.name = "Player2";
+        }
         SetupTurnQueue();
     }
 
@@ -58,12 +57,14 @@ public class MultiMan : NetworkBehaviour, IGameMan
     void Update()
     {
         if (!player1 || !player2) RegisterPlayers();
+        Debug.Log(localPlayerAuthority);
     }
 
     public void EndGame()
     {
         EndLevel();
     }
+    
 
     public void EndLevel()
     {
