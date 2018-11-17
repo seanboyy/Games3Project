@@ -102,13 +102,14 @@ public class Unit : GamePiece
         // Check if gridElement has been assigned (this is for spawning)
         if (!gridElement)
         {
-            FindGridElement();
+            if (!FindGridElement())
+                Debug.Log(gridElement.piece);
         }
         // Handle Collisions; We're assuming newLoc always has a GridElement
         GridElement otherGE = newLoc.GetComponent<GridElement>();
         if (otherGE && otherGE.piece && otherGE.piece != gameObject)
         {
-            Debug.Log("Collided with: " + otherGE.piece.name);
+            //Debug.Log("Collided with: " + otherGE.piece.name);
             // Check to make sure we're working with a unit
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
@@ -135,7 +136,7 @@ public class Unit : GamePiece
                 // Don't forget to kill yourself
                 grid.gameMan.ReturnUnit(gameObject, owner);
                 if (unitType == UnitType.PortalPlacer)
-                    this.GetComponent<PortalPlacer>().PlacePortal(gridElement);
+                    this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                 gridElement.piece = null;
                 return;
             }
@@ -152,7 +153,8 @@ public class Unit : GamePiece
                 {
                     if (unitType == UnitType.PortalPlacer)
                         this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
-                    gridElement.piece = null;
+                    if (gridElement.piece == gameObject) gridElement.piece = null;
+                    if (!grid) grid = FindObjectOfType<GridMenu>();
                     grid.gameMan.ReturnUnit(gameObject, owner);
                     if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
                                 // so if a flag lands on one, it must either destroy the trap or the game is unwinnable

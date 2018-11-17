@@ -25,7 +25,7 @@ public class Trap : GamePiece
         GridElement otherGE = newLoc.GetComponent<GridElement>();
         if (otherGE && otherGE.piece && otherGE.piece != gameObject)
         {
-            Debug.Log("Collided with: " + otherGE.piece.name);
+            //Debug.Log("Collided with: " + otherGE.piece.name);
             // Check to make sure we're working with a unit
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {

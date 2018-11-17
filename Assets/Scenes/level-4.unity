@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0596b68bae2eefd47b7237f298713bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: menu
+  nextSceneName: level-5
   activePlayer: {fileID: 164893270}
   activeMenu: {fileID: 1108008728}
   prevMenu: {fileID: 0}
@@ -5985,8 +5985,6 @@ MonoBehaviour:
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
-  portalLocation: {fileID: 0}
-  portalPlaced: 0
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0

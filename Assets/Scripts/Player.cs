@@ -144,9 +144,9 @@ public class Player : NetworkBehaviour
         if (unitGO)
         {
             Unit uScript = unitGO.GetComponent<Unit>();
+            uScript.owner = gameObject;
             uScript.SetLocation(location);
             uScript.remainingMoves = 2;
-            uScript.owner = gameObject;
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");

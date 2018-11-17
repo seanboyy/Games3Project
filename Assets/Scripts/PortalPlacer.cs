@@ -31,6 +31,5 @@ public class PortalPlacer : Unit {
         }
         portalElement.portal = true;
         portalElement.portalOwner = owner.GetComponent<Player>().identity;
-        Debug.Log("Set Portal");
     }
 }
