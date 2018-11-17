@@ -47,15 +47,19 @@ public class Puller : Unit
         {
             case 0:
                 if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.southNeighbor);
+                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.southNeighbor);
                 break;
             case 1:
                 if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.westNeighbor);
+                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.westNeighbor);
                 break;
             case 2:
                 if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.northNeighbor);
+                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.northNeighbor);
                 break;
             case 3:
                 if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.eastNeighbor);
+                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.eastNeighbor);
                 break;
         }
     }

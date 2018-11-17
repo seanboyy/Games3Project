@@ -252,7 +252,9 @@ public class GridElement : NetworkBehaviour
 
     private void DisplayPusherInfluenceNorth(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!northWall && northNeighbor && northNeighbor.GetComponent<GridElement>().piece && (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!northWall && northNeighbor && northNeighbor.GetComponent<GridElement>().piece && 
+            (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit || 
+             northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
         {
             GridElement north = northNeighbor.GetComponent<GridElement>();
             north.isHighlighted = shouldHighlight;
@@ -270,7 +272,9 @@ public class GridElement : NetworkBehaviour
 
     private void DisplayPusherInfluenceEast(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece && (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece &&
+            (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
+             eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
         {
             GridElement east = eastNeighbor.GetComponent<GridElement>();
             east.isHighlighted = shouldHighlight;
@@ -288,7 +292,9 @@ public class GridElement : NetworkBehaviour
 
     private void DisplayPusherInfluenceSouth(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!southWall && southNeighbor && southNeighbor.GetComponent<GridElement>().piece && (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!southWall && southNeighbor && southNeighbor.GetComponent<GridElement>().piece &&
+            (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
+             southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
         {
             GridElement south = southNeighbor.GetComponent<GridElement>();
             south.isHighlighted = shouldHighlight;
@@ -306,7 +312,9 @@ public class GridElement : NetworkBehaviour
 
     private void DisplayPusherInfluenceWest(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!westWall && westNeighbor && westNeighbor.GetComponent<GridElement>().piece && (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit))
+        if (!westWall && westNeighbor && westNeighbor.GetComponent<GridElement>().piece &&
+            (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
+             westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
         {
             GridElement west = westNeighbor.GetComponent<GridElement>();
             west.isHighlighted = shouldHighlight;
@@ -340,7 +348,7 @@ public class GridElement : NetworkBehaviour
             if (shouldHighlight)
             {
                 north.ChangeColor(GridMenu.pullColor);
-                if (north.piece && north.piece.GetComponent<GamePiece>() is Unit) north.isHighlighted = shouldHighlight;
+                if (north.piece && (north.piece.GetComponent<GamePiece>() is Unit || north.piece.GetComponent<GamePiece>() is Trap)) north.isHighlighted = shouldHighlight;
                 else north.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
@@ -357,7 +365,7 @@ public class GridElement : NetworkBehaviour
             if (shouldHighlight)
             {
                 east.ChangeColor(GridMenu.pullColor);
-                if (east.piece && east.piece.GetComponent<GamePiece>() is Unit) east.isHighlighted = shouldHighlight;
+                if (east.piece && (east.piece.GetComponent<GamePiece>() is Unit || east.piece.GetComponent<GamePiece>() is Trap)) east.isHighlighted = shouldHighlight;
                 else east.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
@@ -374,7 +382,7 @@ public class GridElement : NetworkBehaviour
             if (shouldHighlight)
             {
                 south.ChangeColor(GridMenu.pullColor);
-                if (south.piece && south.piece.GetComponent<GamePiece>() is Unit) south.isHighlighted = shouldHighlight;
+                if (south.piece && (south.piece.GetComponent<GamePiece>() is Unit || south.piece.GetComponent<GamePiece>() is Trap)) south.isHighlighted = shouldHighlight;
                 else south.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
@@ -391,7 +399,7 @@ public class GridElement : NetworkBehaviour
             if (shouldHighlight)
             {
                 west.ChangeColor(GridMenu.pullColor);
-                if (west.piece && west.piece.GetComponent<GamePiece>() is Unit) west.isHighlighted = shouldHighlight;
+                if (west.piece && (west.piece.GetComponent<GamePiece>() is Unit || west.piece.GetComponent<GamePiece>() is Trap)) west.isHighlighted = shouldHighlight;
                 else west.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else

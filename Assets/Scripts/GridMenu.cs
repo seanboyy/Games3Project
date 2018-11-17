@@ -27,8 +27,6 @@ public class GridMenu  : Menu
     public Sprite TwoWallsHall;
     public Sprite ThreeWalls;
     public Sprite FourWalls;
-    public GridElement portalLocation;
-    public bool portalPlaced = false;
 
     private ContextMenu contextMenu;
     private bool canPressButtons = false;

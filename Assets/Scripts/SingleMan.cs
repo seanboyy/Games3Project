@@ -101,7 +101,7 @@ public class SingleMan : MonoBehaviour, IGameMan
 
     public void HandleVerticalMovement(GameObject player, float vertical)
     {
-        Debug.Log("Handling Vertical Player Input");
+        //Debug.Log("Handling Vertical Player Input");
         activeMenu.HandleVerticalMovement(vertical);
     }
 

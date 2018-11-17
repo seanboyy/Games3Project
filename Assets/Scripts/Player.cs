@@ -68,7 +68,7 @@ public class Player : NetworkBehaviour
 
     void Update()
     {
-        Debug.Log(connectionToClient + ", " + connectionToServer);
+        //Debug.Log(connectionToClient + ", " + connectionToServer);
         if (multiplayer && !isLocalPlayer) return;
         if (gameManager == null)
         {

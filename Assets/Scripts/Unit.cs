@@ -113,17 +113,10 @@ public class Unit : GamePiece
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                grid.gameMan.ReturnUnit(otherGE.piece, owner);
+                grid.gameMan.ReturnUnit(otherGE.piece, otherGE.piece.GetComponent<Unit>().owner);
                 if (otherUnit.unitType == UnitType.PortalPlacer)
                 {
-                    if (grid.portalPlaced)
-                    {
-                        grid.portalLocation.portal = false;
-                        grid.portalLocation.ChangeColor(Menu.defaultColor);
-                    }
-                    grid.portalLocation = otherGE;
-                    grid.portalPlaced = true;
-                    otherGE.portal = true;
+                    otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                 }
                 otherGE.piece = null;
                 // check to see if the other piece has the flag
@@ -142,7 +135,7 @@ public class Unit : GamePiece
                 // Don't forget to kill yourself
                 grid.gameMan.ReturnUnit(gameObject, owner);
                 if (unitType == UnitType.PortalPlacer)
-                    otherGE.portal = true;
+                    this.GetComponent<PortalPlacer>().PlacePortal(gridElement);
                 gridElement.piece = null;
                 return;
             }
@@ -157,6 +150,9 @@ public class Unit : GamePiece
                 }
                 else if (otherGE.piece.GetComponent<GamePiece>() is Trap)
                 {
+                    if (unitType == UnitType.PortalPlacer)
+                        this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
+                    gridElement.piece = null;
                     grid.gameMan.ReturnUnit(gameObject, owner);
                     if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
                                 // so if a flag lands on one, it must either destroy the trap or the game is unwinnable
@@ -168,6 +164,7 @@ public class Unit : GamePiece
                         flag.GetComponent<GamePiece>().gridElement = otherGE;
                         flag = null;
                     }
+                    return;
                 }
             }
         }
