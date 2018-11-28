@@ -99,25 +99,29 @@ public class Player : NetworkBehaviour
     [Command]
     public void CmdHandleCrossButton(GameObject player)
     {
-        if (isLocalPlayer) gameManager.HandleCrossButton(player);
+        //if (isLocalPlayer) 
+        gameManager.HandleCrossButton(player);
     }
 
     [Command]
     public void CmdHandleCircleButton(GameObject player)
     {
-        if (isLocalPlayer) gameManager.HandleCircleButton(player);
+        //if (isLocalPlayer) 
+        gameManager.HandleCircleButton(player);
     }
 
     [Command]
     public void CmdHandleTriangleButton(GameObject player)
     {
-        if (isLocalPlayer) gameManager.HandleTriangleButton(player);
+        //if (isLocalPlayer) 
+        gameManager.HandleTriangleButton(player);
     }
 
     [Command]
     public void CmdHandleSquareButton(GameObject player)
     {
-        if (isLocalPlayer) gameManager.HandleSquareButton(player);
+        //if (isLocalPlayer) 
+        gameManager.HandleSquareButton(player);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)
