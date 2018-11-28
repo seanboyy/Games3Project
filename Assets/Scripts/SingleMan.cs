@@ -85,7 +85,7 @@ public class SingleMan : MonoBehaviour, IGameMan
             turnsUsedText.text = "Turns Used: " + ++turnsUsed;
         else
             turnsUsedText.text = "Turns Remaining: " + (moveLimit - ++turnsUsed);
-        if (moveLimit <= turnsUsed)
+        if (limitedMoves && moveLimit <= turnsUsed)
         {
             // Game is over; player has lost
             EndGame();

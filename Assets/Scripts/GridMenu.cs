@@ -83,7 +83,7 @@ public class GridMenu  : Menu
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if (!selectedGE.piece && 
+            else if (!(selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Trap) && 
                     ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<Player>().identity) || 
                      (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<Player>().identity)))
             {
