@@ -149,22 +149,26 @@ public class MultiMan : NetworkBehaviour, IGameMan
             activeMenu.HandleVerticalMovement(vertical);
     }
 
+    [ClientRpc]
     public void RpcHandleCrossButton(GameObject player)
     {
         activeMenu.HandleCrossButton();
     }
 
+    [ClientRpc]
     public void RpcHandleTriangleButton(GameObject player)
     {
         if (!justSwitched)
             EndTurn();
     }
 
+    [ClientRpc]
     public void RpcHandleCircleButton(GameObject player)
     {
         activeMenu.HandleCircleButton();
     }
 
+    [ClientRpc]
     public void RpcHandleSquareButton(GameObject player)
     {
         activeMenu.HandleSquareButton();
