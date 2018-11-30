@@ -627,13 +627,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
     Collab: 0
-    UNet: 1
+    ErrorHub: 0
+    Hub: 0
+    UNet: 0
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: ced028ba-ed7b-4b83-9c79-be8a5de21b89
+  cloudProjectId: 3ffc9eef-ae37-4465-a519-ab557b44d2fd
   projectName: Minos
-  organizationId: thomas-frick
+  organizationId: seanboyy
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
