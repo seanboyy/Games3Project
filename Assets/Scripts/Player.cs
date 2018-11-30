@@ -83,45 +83,37 @@ public class Player : NetworkBehaviour
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (multiplayer && isLocalPlayer) CmdHandleCrossButton(gameObject);
+            if (multiplayer && isLocalPlayer) HandleCrossButton(gameObject);
             else gameManager.HandleCrossButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (multiplayer && isLocalPlayer) CmdHandleCircleButton(gameObject);
+            if (multiplayer && isLocalPlayer) HandleCircleButton(gameObject);
             else gameManager.HandleCircleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (multiplayer && isLocalPlayer) CmdHandleTriangleButton(gameObject);
+            if (multiplayer && isLocalPlayer) HandleTriangleButton(gameObject);
             else gameManager.HandleTriangleButton(gameObject);
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (multiplayer && isLocalPlayer) CmdHandleSquareButton(gameObject);
+            if (multiplayer && isLocalPlayer) HandleSquareButton(gameObject);
             else gameManager.HandleSquareButton(gameObject);
     }
-
-    [Command]
-    public void CmdHandleCrossButton(GameObject player)
+    
+    public void HandleCrossButton(GameObject player)
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleCrossButton(player);
+        ((MultiMan)gameManager).CmdHandleCrossButton(player);
     }
-
-    [Command]
-    public void CmdHandleCircleButton(GameObject player)
+    
+    public void HandleCircleButton(GameObject player)
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleCircleButton(player);
+        ((MultiMan)gameManager).CmdHandleCircleButton(player);
     }
-
-    [Command]
-    public void CmdHandleTriangleButton(GameObject player)
+    
+    public void HandleTriangleButton(GameObject player)
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleTriangleButton(player);
+        ((MultiMan)gameManager).CmdHandleTriangleButton(player);
     }
-
-    [Command]
-    public void CmdHandleSquareButton(GameObject player)
+    
+    public void HandleSquareButton(GameObject player)
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleSquareButton(player);
+        ((MultiMan)gameManager).CmdHandleSquareButton(player);
     }
 
     public void PlaceUnit(GameObject location, UnitType type)

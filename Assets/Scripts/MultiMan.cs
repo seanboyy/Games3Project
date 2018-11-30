@@ -112,6 +112,30 @@ public class MultiMan : NetworkBehaviour, IGameMan
         yield return null;
     }
 
+    [Command]
+    public void CmdHandleCrossButton(GameObject player)
+    {
+        HandleCrossButton(player);
+    }
+
+    [Command]
+    public void CmdHandleCircleButton(GameObject player)
+    {
+        HandleCrossButton(player);
+    }
+
+    [Command]
+    public void CmdHandleTriangleButton(GameObject player)
+    {
+        HandleCrossButton(player);
+    }
+
+    [Command]
+    public void CmdHandleSquareButton(GameObject player)
+    {
+        HandleCrossButton(player);
+    }
+
     public void HandleCrossButton(GameObject player)
     {
         if (player == activePlayer && isServer) RpcHandleCrossButton(player);
