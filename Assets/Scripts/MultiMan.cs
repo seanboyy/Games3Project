@@ -134,7 +134,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
 
     public void PlaceUnit(GameObject location, UnitType type)
     {
-        CmdPlaceUnit(location, type);
+        activePlayer.GetComponent<Player>().CmdPlaceUnit(location, type);
     }
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
@@ -249,11 +249,5 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
-    }
-
-    [Command]
-    public void CmdPlaceUnit(GameObject location, UnitType type)
-    {
-        RpcPlaceUnit(location, type);
     }
 }

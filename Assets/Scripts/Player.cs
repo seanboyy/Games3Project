@@ -179,4 +179,10 @@ public class Player : NetworkBehaviour
                 break;
         }
     }
+
+    [Command]
+    public void CmdPlaceUnit(GameObject location, UnitType type)
+    {
+        ((MultiMan)gameManager).RpcPlaceUnit(location, type);
+    }
 }
