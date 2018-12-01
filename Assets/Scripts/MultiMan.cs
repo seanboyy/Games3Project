@@ -112,53 +112,29 @@ public class MultiMan : NetworkBehaviour, IGameMan
         yield return null;
     }
 
-    [Command]
-    public void CmdHandleCrossButton(GameObject player)
-    {
-        HandleCrossButton(player);
-    }
-
-    [Command]
-    public void CmdHandleCircleButton(GameObject player)
-    {
-        HandleCrossButton(player);
-    }
-
-    [Command]
-    public void CmdHandleTriangleButton(GameObject player)
-    {
-        HandleCrossButton(player);
-    }
-
-    [Command]
-    public void CmdHandleSquareButton(GameObject player)
-    {
-        HandleCrossButton(player);
-    }
-
     public void HandleCrossButton(GameObject player)
     {
-        if (player == activePlayer && isServer) RpcHandleCrossButton(player);
+        if (player == activePlayer) RpcHandleCrossButton(player);
     }
     
     public void HandleCircleButton(GameObject player)
     {
-        if (player == activePlayer && isServer) RpcHandleCircleButton(player);
+        if (player == activePlayer) RpcHandleCircleButton(player);
     }
     
     public void HandleTriangleButton(GameObject player)
     {
-        if (player == activePlayer && isServer) RpcHandleTriangleButton(player);
+        if (player == activePlayer) RpcHandleTriangleButton(player);
     }
     
     public void HandleSquareButton(GameObject player)
     {
-        if (player == activePlayer && isServer) RpcHandleSquareButton(player);
+        if (player == activePlayer) RpcHandleSquareButton(player);
     }
     
     public void PlaceUnit(GameObject location, UnitType type)
     {
-        if(isServer) RpcPlaceUnit(location, type);
+        RpcPlaceUnit(location, type);
     }
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
