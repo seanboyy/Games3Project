@@ -63,7 +63,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         EndLevel();
     }
-    
+
 
     public void EndLevel()
     {
@@ -93,7 +93,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             unit.ResetPiece();
         }
         FindObjectOfType<TimeBar>().StopAllCoroutines();
-        if(isServer) RpcDoTimeBar();
+        if (isServer) RpcDoTimeBar();
     }
 
     private IEnumerator FlipArrow()
@@ -116,25 +116,25 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (player == activePlayer) RpcHandleCrossButton(player);
     }
-    
+
     public void HandleCircleButton(GameObject player)
     {
         if (player == activePlayer) RpcHandleCircleButton(player);
     }
-    
+
     public void HandleTriangleButton(GameObject player)
     {
         if (player == activePlayer) RpcHandleTriangleButton(player);
     }
-    
+
     public void HandleSquareButton(GameObject player)
     {
         if (player == activePlayer) RpcHandleSquareButton(player);
     }
-    
+
     public void PlaceUnit(GameObject location, UnitType type)
     {
-        RpcPlaceUnit(location, type);
+        CmdPlaceUnit(location, type);
     }
 
     public void HandleHorizontalMovement(GameObject player, float horizontal)
@@ -249,5 +249,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
+    }
+
+    [Command]
+    public void CmdPlaceUnit(GameObject location, UnitType type)
+    {
+        RpcPlaceUnit(location, type);
     }
 }
