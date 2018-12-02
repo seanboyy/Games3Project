@@ -34,9 +34,7 @@ public class Player : NetworkBehaviour
     private bool multiplayer = false;
 
     // These are SyncVars so the menu stays the same across client/server
-    [SyncVar]
     public Menu activeMenu;
-    [SyncVar]
     public Menu prevMenu;
     [SyncVar]
     public bool activePlayer = false;
@@ -120,7 +118,7 @@ public class Player : NetworkBehaviour
     [Command]
     public void CmdHandleTriangleButton()
     {
-        activeMenu.HandleTriangleButton();
+        gameManager.EndTurn();
     }
 
     [Command]
