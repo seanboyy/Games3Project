@@ -102,9 +102,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             // This line does on the server what the next line does on the clients
             grid.activePlayer = activePlayer.GetComponent<Player>();
             RpcUpdateGridMenuActivePlayer();
-        }
-        // Update the gridMenu activePlayer object
-        
+        }        
     }
 
     private IEnumerator FlipArrow()
@@ -122,13 +120,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
         justSwitched = false;
         yield return null;
     }
-
-    /*
-    public void PlaceUnit(GameObject location, UnitType type)
-    {
-        activePlayer.GetComponent<Player>().CmdPlaceUnit(location, type);
-    }
-    */
 
     private void SetupTurnQueue()
     {
@@ -161,28 +152,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         grid.activePlayer = activePlayer.GetComponent<Player>();
     }
-
-    /*
-    [ClientRpc]
-    public void RpcPlaceUnit(GameObject location, UnitType type)
-    {
-        if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
-        else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
-    }
-
-    public void ReturnUnit(GameObject unit, GameObject owner)
-    {
-        if (owner.GetComponent<Player>())
-            owner.GetComponent<Player>().ReturnUnit(unit);
-    }
-    */
-    /*
-    [Command]
-    public void CmdDoTimeBar()
-    {
-        RpcDoTimeBar();
-    }
-    */
 
     [ClientRpc]
     public void RpcDoTimeBar()

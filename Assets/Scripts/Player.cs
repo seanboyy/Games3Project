@@ -89,18 +89,14 @@ public class Player : NetworkBehaviour
         prevHorAxis = Input.GetAxisRaw("Horizontal");
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (multiplayer && isLocalPlayer) CmdHandleCrossButton();
-            else activeMenu.HandleCrossButton();
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (multiplayer && isLocalPlayer) CmdHandleCircleButton();
-            else activeMenu.HandleCircleButton();
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (multiplayer && isLocalPlayer) CmdHandleTriangleButton();
-            else activeMenu.HandleTriangleButton();
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (multiplayer && isLocalPlayer) CmdHandleSquareButton();
-            else activeMenu.HandleSquareButton();
+        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            activeMenu.HandleCrossButton();
+        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            activeMenu.HandleCircleButton();
+        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            activeMenu.HandleTriangleButton();
+        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            activeMenu.HandleSquareButton();
     }
 
     [Command]
