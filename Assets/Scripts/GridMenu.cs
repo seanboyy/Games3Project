@@ -165,27 +165,29 @@ public class GridMenu  : Menu
 
     public void PlaceUnit(string unitType)
     {
+        Player activePlayer;
+        if (gameMan is MultiMan) activePlayer = ((MultiMan)gameMan).activePlayer.GetComponent<Player>();
+        else if (gameMan is SingleMan) activePlayer = ((SingleMan)gameMan).activePlayer.GetComponent<Player>();
+        else
+        {
+               return;
+        }
         switch (unitType)
         {
             case "unit":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Unit);
-                else gameMan.PlaceUnit(selectedGO, UnitType.Unit);
+                activePlayer.PlaceUnit(selectedGO, UnitType.Unit);
                 break;
             case "pusher":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Pusher);
-                else gameMan.PlaceUnit(selectedGO, UnitType.Pusher);
+                activePlayer.PlaceUnit(selectedGO, UnitType.Pusher);
                 break;
             case "puller":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Puller);
-                else gameMan.PlaceUnit(selectedGO, UnitType.Puller);
+                activePlayer.PlaceUnit(selectedGO, UnitType.Puller);
                 break;
             case "twister":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.Twister);
-                else gameMan.PlaceUnit(selectedGO, UnitType.Twister);
+                activePlayer.PlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                if (gameMan is MultiMan) ((MultiMan)gameMan).PlaceUnit(selectedGO, UnitType.PortalPlacer);
-                else gameMan.PlaceUnit(selectedGO, UnitType.PortalPlacer);
+                activePlayer.PlaceUnit(selectedGO, UnitType.PortalPlacer);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

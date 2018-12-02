@@ -33,6 +33,15 @@ public class Player : NetworkBehaviour
 
     private bool multiplayer = false;
 
+    // These are SyncVars so the menu stays the same across client/server
+    [SyncVar]
+    public Menu activeMenu;
+    [SyncVar]
+    public Menu prevMenu;
+    [SyncVar]
+    public bool activePlayer = false;
+
+
     // Use this for initialization
     void Start()
     {
@@ -76,52 +85,48 @@ public class Player : NetworkBehaviour
             return;
         }
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
-            gameManager.HandleHorizontalMovement(gameObject, Input.GetAxisRaw("Horizontal"));
+            activeMenu.HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
         if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
-            gameManager.HandleVerticalMovement(gameObject, Input.GetAxisRaw("Vertical"));
+            activeMenu.HandleVerticalMovement(Input.GetAxisRaw("Vertical"));
         prevHorAxis = Input.GetAxisRaw("Horizontal");
         prevVerAxis = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            if (multiplayer && isLocalPlayer) CmdHandleCrossButton(gameObject);
-            else gameManager.HandleCrossButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleCrossButton();
+            else activeMenu.HandleCrossButton();
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            if (multiplayer && isLocalPlayer) CmdHandleCircleButton(gameObject);
-            else gameManager.HandleCircleButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleCircleButton();
+            else activeMenu.HandleCircleButton();
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            if (multiplayer && isLocalPlayer) CmdHandleTriangleButton(gameObject);
-            else gameManager.HandleTriangleButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleTriangleButton();
+            else activeMenu.HandleTriangleButton();
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            if (multiplayer && isLocalPlayer) CmdHandleSquareButton(gameObject);
-            else gameManager.HandleSquareButton(gameObject);
+            if (multiplayer && isLocalPlayer) CmdHandleSquareButton();
+            else activeMenu.HandleSquareButton();
     }
 
     [Command]
-    public void CmdHandleCrossButton(GameObject player)
+    public void CmdHandleCrossButton()
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleCrossButton(player);
+        activeMenu.HandleCrossButton();
     }
 
     [Command]
-    public void CmdHandleCircleButton(GameObject player)
+    public void CmdHandleCircleButton()
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleCircleButton(player);
+        activeMenu.HandleCircleButton();
     }
 
     [Command]
-    public void CmdHandleTriangleButton(GameObject player)
+    public void CmdHandleTriangleButton()
     {
-        //if (isLocalPlayer) 
-        gameManager.HandleTriangleButton(player);
+        activeMenu.HandleTriangleButton();
     }
 
     [Command]
-    public void CmdHandleSquareButton(GameObject player)
-    {
-        //if (isLocalPlayer) 
-        gameManager.HandleSquareButton(player);
+    public void CmdHandleSquareButton()
+    { 
+        activeMenu.HandleSquareButton();
     }
 
     public void PlaceUnit(GameObject location, UnitType type)
@@ -180,9 +185,12 @@ public class Player : NetworkBehaviour
         }
     }
 
+    // SyncVars are only updated to clients if they are changed server side
     [Command]
-    public void CmdPlaceUnit(GameObject location, UnitType type)
+    public void CmdSetActiveMenu(Menu newMenu)
     {
-        ((MultiMan)gameManager).RpcPlaceUnit(location, type);
+        prevMenu = activeMenu;
+        activeMenu = newMenu;
     }
+
 }

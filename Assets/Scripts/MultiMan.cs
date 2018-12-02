@@ -12,9 +12,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [SyncVar]
     public GameObject activePlayer;
 
-    public Menu activeMenu;
-    public Menu prevMenu;
-
     [SyncVar]
     public GameObject player1;
     [SyncVar]
@@ -83,9 +80,12 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (player1 && player2)
         {
             justSwitched = true;
+            activePlayer.GetComponent<Player>().activePlayer = false;
             activePlayer = turnQueue.Dequeue();
+            activePlayer.GetComponent<Player>().activePlayer = true;
             turnQueue.Enqueue(activePlayer);
             turnCount = ++turnCount % 2;
+            // Reason the arrow doesn't flip in sync is because this isn't an RPC
             StartCoroutine("FlipArrow");
         }
         foreach (Unit unit in FindObjectsOfType<Unit>())
@@ -112,84 +112,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
         yield return null;
     }
 
-    public void HandleCrossButton(GameObject player)
-    {
-        if (player == activePlayer) RpcHandleCrossButton(player);
-    }
-
-    public void HandleCircleButton(GameObject player)
-    {
-        if (player == activePlayer) RpcHandleCircleButton(player);
-    }
-
-    public void HandleTriangleButton(GameObject player)
-    {
-        if (player == activePlayer) RpcHandleTriangleButton(player);
-    }
-
-    public void HandleSquareButton(GameObject player)
-    {
-        if (player == activePlayer) RpcHandleSquareButton(player);
-    }
-
+    /*
     public void PlaceUnit(GameObject location, UnitType type)
     {
         activePlayer.GetComponent<Player>().CmdPlaceUnit(location, type);
-    }
-
-    public void HandleHorizontalMovement(GameObject player, float horizontal)
-    {
-        if (player == activePlayer)
-            activeMenu.HandleHorizontalMovement(horizontal);
-    }
-
-    public void HandleVerticalMovement(GameObject player, float vertical)
-    {
-        if (player == activePlayer)
-            activeMenu.HandleVerticalMovement(vertical);
-    }
-
-    [ClientRpc]
-    public void RpcHandleCrossButton(GameObject player)
-    {
-        activeMenu.HandleCrossButton();
-    }
-
-    [ClientRpc]
-    public void RpcHandleTriangleButton(GameObject player)
-    {
-        if (!justSwitched)
-            EndTurn();
-    }
-
-    [ClientRpc]
-    public void RpcHandleCircleButton(GameObject player)
-    {
-        activeMenu.HandleCircleButton();
-    }
-
-    [ClientRpc]
-    public void RpcHandleSquareButton(GameObject player)
-    {
-        activeMenu.HandleSquareButton();
-    }
-
-    /*
-    [Command]
-    public void CmdRegisterPlayer(GameObject player)
-    {
-        if (!player1)
-        {
-            player1 = player;
-            Debug.Log("Found Player 1");
-            player.GetComponent<Player>().identity = PlayerEnum.Player1;
-        }
-        else if (!player2)
-        {
-            player2 = player;
-            Debug.Log("Found Player 2");
-            player.GetComponent<Player>().identity = PlayerEnum.Player2;
-        }
     }
     */
 
@@ -201,6 +127,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             if (player1GoesFirst)
             {
                 activePlayer = player1;
+                player1.GetComponent<Player>().activePlayer = true;
                 Debug.Log("Player 1 is the active player!");
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
@@ -209,6 +136,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             else
             {
                 activePlayer = player2;
+                player2.GetComponent<Player>().activePlayer = true;
                 Debug.Log("Player 2 is the active player!");
                 turnQueue.Enqueue(player1);
                 turnQueue.Enqueue(player2);
@@ -217,12 +145,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         }
     }
 
-    public void SetActiveMenu(Menu newMenu)
-    {
-        prevMenu = activeMenu;
-        activeMenu = newMenu;
-    }
-
+    /*
     [ClientRpc]
     public void RpcPlaceUnit(GameObject location, UnitType type)
     {
@@ -235,7 +158,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
         if (owner.GetComponent<Player>())
             owner.GetComponent<Player>().ReturnUnit(unit);
     }
-
+    */
     /*
     [Command]
     public void CmdDoTimeBar()
@@ -249,5 +172,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
+    }
+
+    public void SetActiveMenu(Menu activeMenu)
+    {
+
     }
 }
