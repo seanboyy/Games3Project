@@ -28,6 +28,8 @@ public class GridMenu  : Menu
     public Sprite ThreeWalls;
     public Sprite FourWalls;
 
+    public Player activePlayer;
+
     private ContextMenu contextMenu;
     private bool canPressButtons = false;
 
@@ -69,7 +71,6 @@ public class GridMenu  : Menu
         //      If there is not, do nothing
         if (activeGO == null)
         {
-            GameObject activePlayer = gameMan is SingleMan ? ((SingleMan)gameMan).activePlayer : ((MultiMan)gameMan).activePlayer;
             GridElement selectedGE = selectedGO.GetComponent<GridElement>();
             activeGO = selectedGO;
             if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
@@ -165,13 +166,6 @@ public class GridMenu  : Menu
 
     public void PlaceUnit(string unitType)
     {
-        Player activePlayer;
-        if (gameMan is MultiMan) activePlayer = ((MultiMan)gameMan).activePlayer.GetComponent<Player>();
-        else if (gameMan is SingleMan) activePlayer = ((SingleMan)gameMan).activePlayer.GetComponent<Player>();
-        else
-        {
-               return;
-        }
         switch (unitType)
         {
             case "unit":

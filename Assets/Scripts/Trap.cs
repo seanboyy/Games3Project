@@ -30,7 +30,7 @@ public class Trap : GamePiece
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                grid.gameMan.ReturnUnit(otherGE.piece, otherUnit.owner);
+                grid.activePlayer.ReturnUnit(otherGE.piece);
                 if (otherUnit is PortalPlacer)
                 {
                     otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);

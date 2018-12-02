@@ -187,10 +187,11 @@ public class Player : NetworkBehaviour
 
     // SyncVars are only updated to clients if they are changed server side
     [Command]
-    public void CmdSetActiveMenu(Menu newMenu)
+    public void CmdSetActiveMenu(GameObject newMenu)
     {
+        if (!newMenu.GetComponent<Menu>()) return;
         prevMenu = activeMenu;
-        activeMenu = newMenu;
+        activeMenu = newMenu.GetComponent<Menu>();
     }
 
 }

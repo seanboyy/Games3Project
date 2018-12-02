@@ -114,7 +114,7 @@ public class Unit : GamePiece
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                grid.gameMan.ReturnUnit(otherGE.piece, otherGE.piece.GetComponent<Unit>().owner);
+                otherUnit.owner.GetComponent<Player>().ReturnUnit(otherGE.piece);
                 if (otherUnit.unitType == UnitType.PortalPlacer)
                 {
                     otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);
@@ -134,7 +134,7 @@ public class Unit : GamePiece
                     flag = null;
                 }
                 // Don't forget to kill yourself
-                grid.gameMan.ReturnUnit(gameObject, owner);
+                owner.GetComponent<Player>().ReturnUnit(gameObject);
                 if (unitType == UnitType.PortalPlacer)
                     this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                 gridElement.piece = null;
@@ -155,7 +155,7 @@ public class Unit : GamePiece
                         this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                     if (gridElement.piece == gameObject) gridElement.piece = null;
                     if (!grid) grid = FindObjectOfType<GridMenu>();
-                    grid.gameMan.ReturnUnit(gameObject, owner);
+                    owner.GetComponent<Player>().ReturnUnit(gameObject);
                     if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
                                 // so if a flag lands on one, it must either destroy the trap or the game is unwinnable
                                 // it may be better to have traps pull/pushable, while the flag remains aloof. This would 

@@ -24,6 +24,9 @@ public class MultiMan : NetworkBehaviour, IGameMan
     private bool player1GoesFirst;
     private bool justSwitched = false;
 
+    // Not sure if we want a reference to the grid, but...
+    public GridMenu grid;
+
     // Use this for initialization
     void Start()
     {
@@ -32,7 +35,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
             RpcDoTimeBar();
         }
-        RegisterPlayers();
+        RegisterPlayers();       
     }
 
     void RegisterPlayers()
@@ -93,7 +96,15 @@ public class MultiMan : NetworkBehaviour, IGameMan
             unit.ResetPiece();
         }
         FindObjectOfType<TimeBar>().StopAllCoroutines();
-        if (isServer) RpcDoTimeBar();
+        if (isServer)
+        {
+            RpcDoTimeBar();
+            // This line does on the server what the next line does on the clients
+            grid.activePlayer = activePlayer.GetComponent<Player>();
+            RpcUpdateGridMenuActivePlayer();
+        }
+        // Update the gridMenu activePlayer object
+        
     }
 
     private IEnumerator FlipArrow()
@@ -143,6 +154,12 @@ public class MultiMan : NetworkBehaviour, IGameMan
             }
             StartCoroutine("FlipArrow");
         }
+    }
+
+    [ClientRpc]
+    private void RpcUpdateGridMenuActivePlayer()
+    {
+        grid.activePlayer = activePlayer.GetComponent<Player>();
     }
 
     /*
