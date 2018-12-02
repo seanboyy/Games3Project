@@ -80,29 +80,32 @@ public class MultiMan : NetworkBehaviour, IGameMan
 
     public void EndTurn()
     {
-        if (player1 && player2)
+        if (!justSwitched)
         {
-            justSwitched = true;
-            activePlayer.GetComponent<Player>().activePlayer = false;
-            activePlayer = turnQueue.Dequeue();
-            activePlayer.GetComponent<Player>().activePlayer = true;
-            turnQueue.Enqueue(activePlayer);
-            turnCount = ++turnCount % 2;
-            // Reason the arrow doesn't flip in sync is because this isn't an RPC
-            StartCoroutine("FlipArrow");
+            if (player1 && player2)
+            {
+                justSwitched = true;
+                activePlayer.GetComponent<Player>().activePlayer = false;
+                activePlayer = turnQueue.Dequeue();
+                activePlayer.GetComponent<Player>().activePlayer = true;
+                turnQueue.Enqueue(activePlayer);
+                turnCount = ++turnCount % 2;
+                // Reason the arrow doesn't flip in sync is because this isn't an RPC
+                StartCoroutine("FlipArrow");
+            }
+            foreach (Unit unit in FindObjectsOfType<Unit>())
+            {
+                unit.ResetPiece();
+            }
+            FindObjectOfType<TimeBar>().StopAllCoroutines();
+            if (isServer)
+            {
+                RpcDoTimeBar();
+                // This line does on the server what the next line does on the clients
+                grid.activePlayer = activePlayer.GetComponent<Player>();
+                RpcUpdateGridMenuActivePlayer();
+            }
         }
-        foreach (Unit unit in FindObjectsOfType<Unit>())
-        {
-            unit.ResetPiece();
-        }
-        FindObjectOfType<TimeBar>().StopAllCoroutines();
-        if (isServer)
-        {
-            RpcDoTimeBar();
-            // This line does on the server what the next line does on the clients
-            grid.activePlayer = activePlayer.GetComponent<Player>();
-            RpcUpdateGridMenuActivePlayer();
-        }        
     }
 
     private IEnumerator FlipArrow()
