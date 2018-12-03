@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Networking;
 
-public class GridElement : NetworkBehaviour
+public class GridElement : MonoBehaviour
 {
     [Header("Can a piece spawn here?")]
     public bool spawnable = true; // Can a unit be spawned here?

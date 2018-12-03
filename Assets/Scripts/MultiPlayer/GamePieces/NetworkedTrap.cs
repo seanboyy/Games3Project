@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : GamePiece
+public class NetworkedTrap : NetworkedGamePiece
 {
-    public GridMenu grid;
-
     // Use this for initialization
     void Start()
     {
         FindGridElement();
-        grid = FindObjectOfType<GridMenu>();
     }
 
     public void SetLocation(GameObject newLoc)
@@ -30,7 +27,7 @@ public class Trap : GamePiece
             if (otherGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                grid.activePlayer.ReturnUnit(otherGE.piece);
+                otherUnit.GetComponent<Player>().ReturnUnit(otherGE.piece);
                 if (otherUnit is PortalPlacer)
                 {
                     otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);

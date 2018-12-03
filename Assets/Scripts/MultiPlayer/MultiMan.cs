@@ -162,9 +162,4 @@ public class MultiMan : NetworkBehaviour, IGameMan
         //Debug.Log("Timebar Activated!");
         FindObjectOfType<TimeBar>().StartCoroutine("DoTimeBar");
     }
-
-    public void SetActiveMenu(Menu activeMenu)
-    {
-
-    }
 }

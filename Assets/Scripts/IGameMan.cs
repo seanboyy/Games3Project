@@ -9,7 +9,4 @@ public interface IGameMan
     void EndGame();
 
     void EndTurn();
-
-    // Tells each player object this gameMan knows about to update the activeMenu
-    void SetActiveMenu(Menu activeMenu);
 }

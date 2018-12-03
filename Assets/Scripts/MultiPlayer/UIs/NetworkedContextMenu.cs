@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContextMenu : Menu
+public class NetworkedContextMenu : NetworkedMenu
 {
     public GameObject menuCanvas;
 
@@ -28,7 +28,18 @@ public class ContextMenu : Menu
         prevMenu = callingMenu;
         prevMenu.activeUIMenu = false;
         if (prevMenu is GridMenu)
-            prevMenu.GetComponent<GridMenu>().gameMan.SetActiveMenu(this);
+        {
+            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
+            if (gameMan is MultiMan)
+            {
+                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu(this);
+                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu(this);
+            }
+            if (gameMan is SingleMan)
+            {
+                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu(this);
+            }
+        }
         activeUIMenu = true;
         menuCanvas.SetActive(true);
     }
@@ -39,7 +50,18 @@ public class ContextMenu : Menu
         menuCanvas.SetActive(false);
         prevMenu.GetComponent<Menu>().activeUIMenu = true;
         if (prevMenu is GridMenu)
-            prevMenu.GetComponent<GridMenu>().gameMan.SetActiveMenu(prevMenu);
+        {
+            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
+            if (gameMan is MultiMan)
+            {
+                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
+                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
+            }
+            if (gameMan is SingleMan)
+            {
+                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
+            }
+        }
         prevMenu = null;
         canPressButtons = false;
     }

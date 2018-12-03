@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public enum PlayerEnum
-{
-    Player1,
-    Player2,
-    none
-}
-
 public class Player : NetworkBehaviour
 {
     [SyncVar]
@@ -179,13 +172,29 @@ public class Player : NetworkBehaviour
         }
     }
 
-    // SyncVars are only updated to clients if they are changed server side
+    // This get's called by ContextMenu
+    public void SetActiveMenu(Menu newMenu)
+    {
+        if (isLocalPlayer)
+        {
+            CmdSetActiveMenu(newMenu.gameObject);
+        }
+    }
+
+    // This gets called only on the server version of this object
     [Command]
     public void CmdSetActiveMenu(GameObject newMenu)
     {
-        if (!newMenu.GetComponent<Menu>()) return;
         prevMenu = activeMenu;
-        activeMenu = newMenu.GetComponent<Menu>();
+        activeMenu = newMenu;
+        RpcSetActiveMenu(newMenu);
     }
 
+    // This gets called on every client
+    [ClientRpc]
+    public void RpcSetActiveMenu(Menu newMenu)
+    {
+        prevMenu = activeMenu;
+        activeMenu = newMenu;
+    }
 }
