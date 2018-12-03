@@ -17,7 +17,7 @@ public abstract class NetworkedMenu : NetworkBehaviour
     public bool activeUIMenu = false;
 
     protected Color prevColor;    // the color of the previous selectedElement
-    protected Menu prevMenu;
+    protected NetworkedMenu prevMenu;
 
 
     // Use this for initialization

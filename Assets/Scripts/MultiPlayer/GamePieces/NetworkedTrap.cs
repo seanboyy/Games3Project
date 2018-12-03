@@ -19,18 +19,18 @@ public class NetworkedTrap : NetworkedGamePiece
             FindGridElement();
         }
         // Handle Collisions; We're assuming newLoc always has a GridElement
-        GridElement otherGE = newLoc.GetComponent<GridElement>();
+        NetworkedGridElement otherGE = newLoc.GetComponent<NetworkedGridElement>();
         if (otherGE && otherGE.piece && otherGE.piece != gameObject)
         {
             //Debug.Log("Collided with: " + otherGE.piece.name);
             // Check to make sure we're working with a unit
-            if (otherGE.piece.GetComponent<GamePiece>() is Unit)
+            if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
-                Unit otherUnit = otherGE.piece.GetComponent<Unit>();
-                otherUnit.GetComponent<Player>().ReturnUnit(otherGE.piece);
-                if (otherUnit is PortalPlacer)
+                NetworkedUnit otherUnit = otherGE.piece.GetComponent<NetworkedUnit>();
+                otherUnit.GetComponent<NetworkedPlayer>().ReturnUnit(otherGE.piece);
+                if (otherUnit is NetworkedPortalPlacer)
                 {
-                    otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);
+                    otherUnit.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                 }
                 otherGE.piece = null;
                 // check to see if the other piece has the flag
@@ -42,11 +42,11 @@ public class NetworkedTrap : NetworkedGamePiece
             else
             {
                 // Check for flag
-                if (otherGE.piece.GetComponent<GamePiece>() is Flag)
+                if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedFlag)
                 {
                     Debug.Log("MAYDAY - A TRAP HAS LANDED ON THE FLAG AND THOMAS HASN'T FIGURED OUT HOW THIS SHOULD ACT.");
                 }
-                else if (otherGE.piece.GetComponent<GamePiece>() is Trap)
+                else if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
                 {
                     Debug.Log("MAYDAY - A TRAP HAS LANDED ON A TRAP AND THOMAS HASN'T FIGURED OUT HOW THIS SHOULD ACT.");
                 }
@@ -54,7 +54,7 @@ public class NetworkedTrap : NetworkedGamePiece
         }
         transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * gameObject.transform.position.z;
         gridElement.piece = null;
-        gridElement = newLoc.GetComponent<GridElement>();
+        gridElement = newLoc.GetComponent<NetworkedGridElement>();
         gridElement.piece = gameObject;
     }
 

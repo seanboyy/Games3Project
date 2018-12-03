@@ -23,21 +23,17 @@ public class NetworkedContextMenu : NetworkedMenu
             canPressButtons = true;
     }
 
-    public void ShowContextMenu(Menu callingMenu)
+    public void ShowContextMenu(NetworkedMenu callingMenu)
     {
         prevMenu = callingMenu;
         prevMenu.activeUIMenu = false;
-        if (prevMenu is GridMenu)
+        if (prevMenu is NetworkedGridMenu)
         {
-            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
+            IGameMan gameMan = prevMenu.GetComponent<NetworkedGridMenu>().gameMan;
             if (gameMan is MultiMan)
             {
-                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu(this);
-                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu(this);
-            }
-            if (gameMan is SingleMan)
-            {
-                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu(this);
+                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
+                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
             }
         }
         activeUIMenu = true;
@@ -48,18 +44,14 @@ public class NetworkedContextMenu : NetworkedMenu
     {
         activeUIMenu = false;
         menuCanvas.SetActive(false);
-        prevMenu.GetComponent<Menu>().activeUIMenu = true;
-        if (prevMenu is GridMenu)
+        prevMenu.GetComponent<NetworkedMenu>().activeUIMenu = true;
+        if (prevMenu is NetworkedGridMenu)
         {
-            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
+            IGameMan gameMan = prevMenu.GetComponent<NetworkedGridMenu>().gameMan;
             if (gameMan is MultiMan)
             {
-                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
-                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
-            }
-            if (gameMan is SingleMan)
-            {
-                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
+                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<NetworkedPlayer>().SetActiveMenu((NetworkedGridMenu)prevMenu);
+                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<NetworkedPlayer>().SetActiveMenu((NetworkedGridMenu)prevMenu);
             }
         }
         prevMenu = null;
@@ -68,11 +60,11 @@ public class NetworkedContextMenu : NetworkedMenu
 
     public void Cancel()
     {
-        if (prevMenu.GetComponent<Menu>() is GridMenu)
+        if (prevMenu.GetComponent<NetworkedMenu>() is NetworkedGridMenu)
         {
-            GridMenu gm = prevMenu.GetComponent<GridMenu>();
+            NetworkedGridMenu gm = prevMenu.GetComponent<NetworkedGridMenu>();
             gm.activeGO = null;
-            gm.SetElementColor(gm.selectedGO, Menu.selectedColor, Menu.defaultColor);
+            gm.SetElementColor(gm.selectedGO, selectedColor, defaultColor);
             HideContextMenu();
         }
     }
@@ -81,18 +73,18 @@ public class NetworkedContextMenu : NetworkedMenu
     {
         if (!activeUIMenu) return;
         if (horizontal > 0)
-            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedContextButton>().southNeighbor);
         else
-            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedContextButton>().northNeighbor);
     }
 
     public override void HandleVerticalMovement(float vertical)
     {
         if (!activeUIMenu) return;
         if (vertical > 0)
-            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedContextButton>().northNeighbor);
         else
-            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedContextButton>().southNeighbor);
     }
 
     public override void HandleCrossButton()

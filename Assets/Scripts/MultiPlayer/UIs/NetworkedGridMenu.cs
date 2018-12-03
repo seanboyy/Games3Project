@@ -28,18 +28,17 @@ public class NetworkedGridMenu : NetworkedMenu
     public Sprite ThreeWalls;
     public Sprite FourWalls;
 
-    public Player activePlayer;
+    public NetworkedPlayer activePlayer;
 
-    private ContextMenu contextMenu;
+    private NetworkedContextMenu contextMenu;
     private bool canPressButtons = false;
 
     // Use this for initialization
     protected override void Start()
     {
         if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
-        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
         base.Start();
-        contextMenu = GetComponent<ContextMenu>();
+        contextMenu = GetComponent<NetworkedContextMenu>();
     }
 
     // Update is called once per frame
@@ -57,8 +56,6 @@ public class NetworkedGridMenu : NetworkedMenu
     void FindGameManager()
     {
         if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
-        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
-
     }
 
     void ActivateElement()
@@ -71,22 +68,22 @@ public class NetworkedGridMenu : NetworkedMenu
         //      If there is not, do nothing
         if (activeGO == null)
         {
-            GridElement selectedGE = selectedGO.GetComponent<GridElement>();
+            NetworkedGridElement selectedGE = selectedGO.GetComponent<NetworkedGridElement>();
             activeGO = selectedGO;
-            if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
+            if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
-                if (selectedGE.piece.GetComponent<Unit>().owner != activePlayer)
+                if (selectedGE.piece.GetComponent<NetworkedUnit>().owner != activePlayer)
                 {
                     activeGO = null;
                     return;
                 }
                 selectedPiece = selectedGE.piece;
-                if (selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
+                if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if (!(selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Trap) &&
-                    ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<Player>().identity) ||
-                     (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<Player>().identity)))
+            else if (!(selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) &&
+                    ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<NetworkedPlayer>().identity) ||
+                     (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<NetworkedPlayer>().identity)))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(this);
@@ -111,9 +108,9 @@ public class NetworkedGridMenu : NetworkedMenu
             if (selectedGO == activeGO)
                 return;
             else if (selectedPiece != null)
-                if (selectedGO.GetComponent<GridElement>().isHighlighted)
+                if (selectedGO.GetComponent<NetworkedGridElement>().isHighlighted)
                 {
-                    selectedPiece.GetComponent<Unit>().PerformAction(selectedGO);
+                    selectedPiece.GetComponent<NetworkedUnit>().PerformAction(selectedGO);
                     SetElementColor(selectedGO, selectedColor, defaultColor);
                     activeGO = null;
                     selectedPiece = null;
@@ -121,16 +118,10 @@ public class NetworkedGridMenu : NetworkedMenu
         }
     }
 
-    public void TurnOnChildren()
-    {
-        foreach (GridElement child in GetComponentsInChildren<GridElement>())
-            child.gameObject.SetActive(true);
-    }
-
     void Cancel()
     {
         if (!selectedPiece) return;
-        if (selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().HideAction();
+        if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().HideAction();
         selectedPiece = null;
     }
 
@@ -138,30 +129,30 @@ public class NetworkedGridMenu : NetworkedMenu
     {
         if (newElement == null) return;
 
-        selectedGO.GetComponent<GridElement>().ChangeColor(prevColor);
+        selectedGO.GetComponent<NetworkedGridElement>().ChangeColor(prevColor);
         selectedGO = newElement;
         prevColor = selectedGO.GetComponent<Image>().color;
         if (activeGO != null)
         {
             if (selectedGO == activeGO)
-                selectedGO.GetComponent<GridElement>().ChangeColor(activeColor);
+                selectedGO.GetComponent<NetworkedGridElement>().ChangeColor(activeColor);
             else
-                selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
+                selectedGO.GetComponent<NetworkedGridElement>().ChangeColor(selectedColor);
         }
         else
-            selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
+            selectedGO.GetComponent<NetworkedGridElement>().ChangeColor(selectedColor);
     }
 
     public void SetElementColor(GameObject element, Color newColor)
     {
         prevColor = element.GetComponent<Image>().color;
-        element.GetComponent<GridElement>().ChangeColor(newColor);
+        element.GetComponent<NetworkedGridElement>().ChangeColor(newColor);
     }
 
     public void SetElementColor(GameObject element, Color newColor, Color newPrevColor)
     {
         prevColor = newPrevColor;
-        element.GetComponent<GridElement>().ChangeColor(newColor);
+        element.GetComponent<NetworkedGridElement>().ChangeColor(newColor);
     }
 
     public void PlaceUnit(string unitType)
@@ -196,18 +187,18 @@ public class NetworkedGridMenu : NetworkedMenu
     {
         if (!activeUIMenu) return;
         if (horizontal > 0)
-            SelectElement(selectedGO.GetComponent<GridElement>().eastNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedGridElement>().eastNeighbor);
         else
-            SelectElement(selectedGO.GetComponent<GridElement>().westNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedGridElement>().westNeighbor);
     }
 
     public override void HandleVerticalMovement(float vertical)
     {
         if (!activeUIMenu) return;
         if (vertical > 0)
-            SelectElement(selectedGO.GetComponent<GridElement>().northNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedGridElement>().northNeighbor);
         else
-            SelectElement(selectedGO.GetComponent<GridElement>().southNeighbor);
+            SelectElement(selectedGO.GetComponent<NetworkedGridElement>().southNeighbor);
     }
 
     public override void HandleCrossButton()

@@ -9,7 +9,7 @@ public class NetworkedGamePiece : NetworkBehaviour
 
     public GameObject canvas;
 
-    public GridElement gridElement; // what grid element this piece is on
+    public NetworkedGridElement gridElement; // what grid element this piece is on
 
     protected string pieceName;
 
@@ -26,9 +26,9 @@ public class NetworkedGamePiece : NetworkBehaviour
         {
             GameObject foundGameObject = info.collider.gameObject;
             // look for a GridElement, indicating this is on the grid
-            if (foundGameObject.GetComponent<GridElement>())
+            if (foundGameObject.GetComponent<NetworkedGridElement>())
             {
-                gridElement = foundGameObject.GetComponent<GridElement>();
+                gridElement = foundGameObject.GetComponent<NetworkedGridElement>();
                 if (gridElement.piece)
                 {
                     // There is probably just a flag here

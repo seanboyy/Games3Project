@@ -28,8 +28,8 @@ public class NetworkedPlayer : NetworkBehaviour
     private bool multiplayer = false;
 
     // These are SyncVars so the menu stays the same across client/server
-    public Menu activeMenu;
-    public Menu prevMenu;
+    public NetworkedMenu activeMenu;
+    public NetworkedMenu prevMenu;
     [SyncVar]
     public bool activePlayer = false;
 
@@ -54,17 +54,6 @@ public class NetworkedPlayer : NetworkBehaviour
             gameManager = FindObjectOfType<MultiMan>();
             multiplayer = true;
         }
-        if (FindObjectOfType<SingleMan>())
-        {
-            gameManager = FindObjectOfType<SingleMan>();
-            multiplayer = false;
-        }
-        /*
-        if (gameManager is MultiMan)
-        {
-            ((MultiMan)gameManager).CmdRegisterPlayer(gameObject);
-        }
-        */
     }
 
     void Update()
@@ -140,7 +129,7 @@ public class NetworkedPlayer : NetworkBehaviour
         }
         if (unitGO)
         {
-            Unit uScript = unitGO.GetComponent<Unit>();
+            NetworkedUnit uScript = unitGO.GetComponent<NetworkedUnit>();
             uScript.owner = gameObject;
             uScript.SetLocation(location);
             uScript.remainingMoves = 2;
@@ -174,7 +163,7 @@ public class NetworkedPlayer : NetworkBehaviour
     }
 
     // This get's called by ContextMenu
-    public void SetActiveMenu(Menu newMenu)
+    public void SetActiveMenu(NetworkedMenu newMenu)
     {
         if (isLocalPlayer)
         {
@@ -187,15 +176,15 @@ public class NetworkedPlayer : NetworkBehaviour
     public void CmdSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu;
+        activeMenu = newMenu.GetComponent<NetworkedMenu>();
         RpcSetActiveMenu(newMenu);
     }
 
     // This gets called on every client
     [ClientRpc]
-    public void RpcSetActiveMenu(Menu newMenu)
+    public void RpcSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu;
+        activeMenu = newMenu.GetComponent<NetworkedMenu>();
     }
 }

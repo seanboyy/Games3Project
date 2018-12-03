@@ -5,7 +5,7 @@ using UnityEngine;
 public class NetworkedPortalPlacer : NetworkedUnit
 {
 
-    private GridElement portalElement;
+    private NetworkedGridElement portalElement;
 
     protected override void Start()
     {
@@ -13,17 +13,17 @@ public class NetworkedPortalPlacer : NetworkedUnit
         unitType = UnitType.PortalPlacer;
     }
 
-    public void PlacePortal(GridElement newPortalLoc)
+    public void PlacePortal(NetworkedGridElement newPortalLoc)
     {
         if (portalElement)
         {
             portalElement.portal = false;
             portalElement.portalOwner = PlayerEnum.none;
-            portalElement.ChangeColor(Menu.defaultColor);
+            portalElement.ChangeColor(NetworkedMenu.defaultColor);
         }
         portalElement = newPortalLoc;
         // Check to make sure enemy portal isn't there
-        if (portalElement.portal && portalElement.owner != owner.GetComponent<Player>().identity)
+        if (portalElement.portal && portalElement.owner != owner.GetComponent<NetworkedPlayer>().identity)
         {
             // if there is one, destory it
             portalElement.portal = false;
@@ -31,6 +31,6 @@ public class NetworkedPortalPlacer : NetworkedUnit
             return;
         }
         portalElement.portal = true;
-        portalElement.portalOwner = owner.GetComponent<Player>().identity;
+        portalElement.portalOwner = owner.GetComponent<NetworkedPlayer>().identity;
     }
 }

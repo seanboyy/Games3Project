@@ -175,6 +175,10 @@ public class Player : NetworkBehaviour
     // This get's called by ContextMenu
     public void SetActiveMenu(Menu newMenu)
     {
+    }
+
+    public void SetActiveMenu(NetworkedMenu newMenu)
+    {
         if (isLocalPlayer)
         {
             CmdSetActiveMenu(newMenu.gameObject);
@@ -186,15 +190,15 @@ public class Player : NetworkBehaviour
     public void CmdSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu;
+        activeMenu = newMenu.GetComponent<Menu>();
         RpcSetActiveMenu(newMenu);
     }
 
     // This gets called on every client
     [ClientRpc]
-    public void RpcSetActiveMenu(Menu newMenu)
+    public void RpcSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu;
+        activeMenu = newMenu.GetComponent<Menu>();
     }
 }

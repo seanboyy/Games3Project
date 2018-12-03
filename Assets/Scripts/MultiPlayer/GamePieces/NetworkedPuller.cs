@@ -42,24 +42,24 @@ public class NetworkedPuller : NetworkedUnit
     {
         action = "";
         gridElement.DisplayPullerInfluence(2, false);
-        GridElement location = pullLoc.GetComponent<GridElement>();
+        NetworkedGridElement location = pullLoc.GetComponent<NetworkedGridElement>();
         switch (FindDirection(pullLoc))
         {
             case 0:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.southNeighbor);
-                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.southNeighbor);
+                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.southNeighbor);
+                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.southNeighbor);
                 break;
             case 1:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.westNeighbor);
-                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.westNeighbor);
+                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.westNeighbor);
+                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.westNeighbor);
                 break;
             case 2:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.northNeighbor);
-                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.northNeighbor);
+                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.northNeighbor);
+                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.northNeighbor);
                 break;
             case 3:
-                if (location.piece.GetComponent<GamePiece>() is Unit) location.piece.GetComponent<Unit>().SetLocation(location.eastNeighbor);
-                else if (location.piece.GetComponent<GamePiece>() is Trap) location.piece.GetComponent<Trap>().SetLocation(location.eastNeighbor);
+                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.eastNeighbor);
+                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.eastNeighbor);
                 break;
         }
     }

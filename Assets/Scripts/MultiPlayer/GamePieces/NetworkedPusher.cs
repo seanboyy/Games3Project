@@ -48,7 +48,7 @@ public class NetworkedPusher : NetworkedUnit
             || gridElement.westNeighbor == pushLoc)
         {
             gridElement.DisplayPusherInfluence(false);
-            GridElement lastGridElement;
+            NetworkedGridElement lastGridElement;
             if (pushLoc == gridElement.northNeighbor)
             {
                 lastGridElement = FindLastPieceInChain(gridElement, 0);
@@ -56,11 +56,11 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.northWall && lastGridElement.northNeighbor)
                     {
-                        if (lastGridElement.piece.GetComponent<GamePiece>() is Unit) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.northNeighbor);
-                        else if (lastGridElement.piece.GetComponent<GamePiece>() is Trap) lastGridElement.piece.GetComponent<Trap>().SetLocation(lastGridElement.northNeighbor);
+                        if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) lastGridElement.piece.GetComponent<NetworkedUnit>().SetLocation(lastGridElement.northNeighbor);
+                        else if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) lastGridElement.piece.GetComponent<NetworkedTrap>().SetLocation(lastGridElement.northNeighbor);
 
                     }
-                    lastGridElement = lastGridElement.southNeighbor.GetComponent<GridElement>();
+                    lastGridElement = lastGridElement.southNeighbor.GetComponent<NetworkedGridElement>();
                 }
             }
             if (pushLoc == gridElement.eastNeighbor)
@@ -70,10 +70,10 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.eastWall && lastGridElement.eastNeighbor)
                     {
-                        if (lastGridElement.piece.GetComponent<GamePiece>() is Unit) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.eastNeighbor);
-                        else if (lastGridElement.piece.GetComponent<GamePiece>() is Trap) lastGridElement.piece.GetComponent<Trap>().SetLocation(lastGridElement.eastNeighbor);
+                        if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) lastGridElement.piece.GetComponent<NetworkedUnit>().SetLocation(lastGridElement.eastNeighbor);
+                        else if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) lastGridElement.piece.GetComponent<NetworkedTrap>().SetLocation(lastGridElement.eastNeighbor);
                     }
-                    lastGridElement = lastGridElement.westNeighbor.GetComponent<GridElement>();
+                    lastGridElement = lastGridElement.westNeighbor.GetComponent<NetworkedGridElement>();
                 }
             }
             if (pushLoc == gridElement.southNeighbor)
@@ -83,10 +83,10 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.southWall && lastGridElement.southNeighbor)
                     {
-                        if (lastGridElement.piece.GetComponent<GamePiece>() is Unit) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.southNeighbor);
-                        else if (lastGridElement.piece.GetComponent<GamePiece>() is Trap) lastGridElement.piece.GetComponent<Trap>().SetLocation(lastGridElement.southNeighbor);
+                        if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) lastGridElement.piece.GetComponent<NetworkedUnit>().SetLocation(lastGridElement.southNeighbor);
+                        else if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) lastGridElement.piece.GetComponent<NetworkedTrap>().SetLocation(lastGridElement.southNeighbor);
                     }
-                    lastGridElement = lastGridElement.northNeighbor.GetComponent<GridElement>();
+                    lastGridElement = lastGridElement.northNeighbor.GetComponent<NetworkedGridElement>();
                 }
             }
             if (pushLoc == gridElement.westNeighbor)
@@ -96,10 +96,10 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.westWall && lastGridElement.westNeighbor)
                     {
-                        if (lastGridElement.piece.GetComponent<GamePiece>() is Unit) lastGridElement.piece.GetComponent<Unit>().SetLocation(lastGridElement.westNeighbor);
-                        else if (lastGridElement.piece.GetComponent<GamePiece>() is Trap) lastGridElement.piece.GetComponent<Trap>().SetLocation(lastGridElement.westNeighbor);
+                        if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) lastGridElement.piece.GetComponent<NetworkedUnit>().SetLocation(lastGridElement.westNeighbor);
+                        else if (lastGridElement.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) lastGridElement.piece.GetComponent<NetworkedTrap>().SetLocation(lastGridElement.westNeighbor);
                     }
-                    lastGridElement = lastGridElement.eastNeighbor.GetComponent<GridElement>();
+                    lastGridElement = lastGridElement.eastNeighbor.GetComponent<NetworkedGridElement>();
                 }
             }
         }
@@ -110,7 +110,7 @@ public class NetworkedPusher : NetworkedUnit
     // 1 = east
     // 2 = south
     // 3 = west
-    private GridElement FindLastPieceInChain(GridElement location, int direction)
+    private NetworkedGridElement FindLastPieceInChain(NetworkedGridElement location, int direction)
     {
         GameObject neighborPiece;
         switch (direction)
@@ -118,33 +118,33 @@ public class NetworkedPusher : NetworkedUnit
             case 0:
                 if (location.northNeighbor && !location.northWall)
                 {
-                    neighborPiece = location.northNeighbor.GetComponent<GridElement>().piece;
-                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit || neighborPiece && neighborPiece.GetComponent<GamePiece>() is Trap)
-                        return FindLastPieceInChain(location.northNeighbor.GetComponent<GridElement>(), 0);
+                    neighborPiece = location.northNeighbor.GetComponent<NetworkedGridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
+                        return FindLastPieceInChain(location.northNeighbor.GetComponent<NetworkedGridElement>(), 0);
                 }
                 break;
             case 1:
                 if (location.eastNeighbor && !location.eastWall)
                 {
-                    neighborPiece = location.eastNeighbor.GetComponent<GridElement>().piece;
-                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit || neighborPiece && neighborPiece.GetComponent<GamePiece>() is Trap)
-                        return FindLastPieceInChain(location.eastNeighbor.GetComponent<GridElement>(), 1);
+                    neighborPiece = location.eastNeighbor.GetComponent<NetworkedGridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
+                        return FindLastPieceInChain(location.eastNeighbor.GetComponent<NetworkedGridElement>(), 1);
                 }
                 break;
             case 2:
                 if (location.southNeighbor && !location.southWall)
                 {
-                    neighborPiece = location.southNeighbor.GetComponent<GridElement>().piece;
-                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit || neighborPiece && neighborPiece.GetComponent<GamePiece>() is Trap)
-                        return FindLastPieceInChain(location.southNeighbor.GetComponent<GridElement>(), 2);
+                    neighborPiece = location.southNeighbor.GetComponent<NetworkedGridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
+                        return FindLastPieceInChain(location.southNeighbor.GetComponent<NetworkedGridElement>(), 2);
                 }
                 break;
             case 3:
                 if (location.westNeighbor && !location.westWall)
                 {
-                    neighborPiece = location.westNeighbor.GetComponent<GridElement>().piece;
-                    if (neighborPiece && neighborPiece.GetComponent<GamePiece>() is Unit || neighborPiece && neighborPiece.GetComponent<GamePiece>() is Trap)
-                        return FindLastPieceInChain(location.westNeighbor.GetComponent<GridElement>(), 3);
+                    neighborPiece = location.westNeighbor.GetComponent<NetworkedGridElement>().piece;
+                    if (neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || neighborPiece && neighborPiece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
+                        return FindLastPieceInChain(location.westNeighbor.GetComponent<NetworkedGridElement>(), 3);
                 }
                 break;
         }

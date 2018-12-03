@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class NetworkedContextButton : MonoBehaviour
+public class NetworkedContextButton : NetworkBehaviour
 {
     public GameObject northNeighbor;
     public GameObject southNeighbor;

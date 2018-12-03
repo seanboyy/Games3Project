@@ -40,9 +40,9 @@ public class NetworkedGridElement : NetworkBehaviour
         FindNeighbors();
         UpdateWalls();
         if (spawnable || portal)
-            GetComponent<Image>().color = GridMenu.spawnColor;
+            GetComponent<Image>().color = NetworkedGridMenu.spawnColor;
         if (goal)
-            GetComponent<Image>().color = GridMenu.goalColor;
+            GetComponent<Image>().color = NetworkedGridMenu.goalColor;
     }
 
     public void ChangeColor(Color color)
@@ -51,9 +51,9 @@ public class NetworkedGridElement : NetworkBehaviour
         if (color == Menu.defaultColor)
         {
             if (spawnable || portal)
-                color = GridMenu.spawnColor;
+                color = NetworkedGridMenu.spawnColor;
             if (goal)
-                color = GridMenu.goalColor;
+                color = NetworkedGridMenu.goalColor;
         }
         image.color = color;
     }
@@ -109,30 +109,30 @@ public class NetworkedGridElement : NetworkBehaviour
         UpdateWallSprite(gameObject);
         if (northWall && northNeighbor)
         {
-            northNeighbor.GetComponent<GridElement>().southWall = true;
+            northNeighbor.GetComponent<NetworkedGridElement>().southWall = true;
             UpdateWallSprite(northNeighbor);
         }
         if (eastWall && eastNeighbor)
         {
-            eastNeighbor.GetComponent<GridElement>().westWall = true;
+            eastNeighbor.GetComponent<NetworkedGridElement>().westWall = true;
             UpdateWallSprite(eastNeighbor);
         }
         if (southWall && southNeighbor)
         {
-            southNeighbor.GetComponent<GridElement>().northWall = true;
+            southNeighbor.GetComponent<NetworkedGridElement>().northWall = true;
             UpdateWallSprite(southNeighbor);
         }
         if (westWall && westNeighbor)
         {
-            westNeighbor.GetComponent<GridElement>().eastWall = true;
+            westNeighbor.GetComponent<NetworkedGridElement>().eastWall = true;
             UpdateWallSprite(westNeighbor);
         }
     }
 
     public static void UpdateWallSprite(GameObject GO)
     {
-        GridMenu grid = FindObjectOfType<GridMenu>();
-        GridElement element = GO.GetComponent<GridElement>();
+        NetworkedGridMenu grid = FindObjectOfType<NetworkedGridMenu>();
+        NetworkedGridElement element = GO.GetComponent<NetworkedGridElement>();
         if (element.northWall && element.eastWall && element.southWall && element.westWall)
         {
             GO.GetComponent<Image>().sprite = grid.FourWalls;
@@ -218,32 +218,32 @@ public class NetworkedGridElement : NetworkBehaviour
         if (showingMoves)
         {
             distance = movesRemaining;
-            ChangeColor(GridMenu.moveColor);
+            ChangeColor(NetworkedGridMenu.moveColor);
         }
         else
         {
             distance = -1;
-            ChangeColor(GridMenu.defaultColor);
+            ChangeColor(NetworkedMenu.defaultColor);
         }
         if (movesRemaining <= 0)
             return;
         if (!eastWall && eastNeighbor != null)
-            eastNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
+            eastNeighbor.GetComponent<NetworkedGridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!westWall && westNeighbor != null)
-            westNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
+            westNeighbor.GetComponent<NetworkedGridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!northWall && northNeighbor != null)
-            northNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
+            northNeighbor.GetComponent<NetworkedGridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
         if (!southWall && southNeighbor != null)
-            southNeighbor.GetComponent<GridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
+            southNeighbor.GetComponent<NetworkedGridElement>().DisplayMoveTiles(movesRemaining - 1, showingMoves);
     }
 
     #region Pusher Influence
     public void DisplayPusherInfluence(bool shouldHighlight)
     {
         if (shouldHighlight)
-            ChangeColor(GridMenu.pushColor);
+            ChangeColor(NetworkedGridMenu.pushColor);
         else
-            ChangeColor(Menu.defaultColor);
+            ChangeColor(NetworkedMenu.defaultColor);
         DisplayPusherInfluenceNorth(shouldHighlight, true);
         DisplayPusherInfluenceEast(shouldHighlight, true);
         DisplayPusherInfluenceSouth(shouldHighlight, true);
@@ -252,80 +252,80 @@ public class NetworkedGridElement : NetworkBehaviour
 
     private void DisplayPusherInfluenceNorth(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!northWall && northNeighbor && northNeighbor.GetComponent<GridElement>().piece &&
-            (northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
-             northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
+        if (!northWall && northNeighbor && northNeighbor.GetComponent<NetworkedGridElement>().piece &&
+            (northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit ||
+             northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap))
         {
-            GridElement north = northNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement north = northNeighbor.GetComponent<NetworkedGridElement>();
             north.isHighlighted = shouldHighlight;
             if (shouldHighlight)
             {
-                north.ChangeColor(GridMenu.pushColor);
+                north.ChangeColor(NetworkedGridMenu.pushColor);
                 if (!immediateNeighbor)
-                    north.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
+                    north.ChangeColor(NetworkedGridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
-                north.ChangeColor(Menu.defaultColor);
+                north.ChangeColor(NetworkedMenu.defaultColor);
             north.DisplayPusherInfluenceNorth(shouldHighlight, false);
         }
     }
 
     private void DisplayPusherInfluenceEast(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<GridElement>().piece &&
-            (eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
-             eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
+        if (!eastWall && eastNeighbor && eastNeighbor.GetComponent<NetworkedGridElement>().piece &&
+            (eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit ||
+             eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap))
         {
-            GridElement east = eastNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement east = eastNeighbor.GetComponent<NetworkedGridElement>();
             east.isHighlighted = shouldHighlight;
             if (shouldHighlight)
             {
-                east.ChangeColor(GridMenu.pushColor);
+                east.ChangeColor(NetworkedGridMenu.pushColor);
                 if (!immediateNeighbor)
-                    east.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
+                    east.ChangeColor(NetworkedGridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
-                east.ChangeColor(Menu.defaultColor);
+                east.ChangeColor(NetworkedMenu.defaultColor);
             east.DisplayPusherInfluenceEast(shouldHighlight, false);
         }
     }
 
     private void DisplayPusherInfluenceSouth(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!southWall && southNeighbor && southNeighbor.GetComponent<GridElement>().piece &&
-            (southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
-             southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
+        if (!southWall && southNeighbor && southNeighbor.GetComponent<NetworkedGridElement>().piece &&
+            (southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit ||
+             southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap))
         {
-            GridElement south = southNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement south = southNeighbor.GetComponent<NetworkedGridElement>();
             south.isHighlighted = shouldHighlight;
             if (shouldHighlight)
             {
-                south.ChangeColor(GridMenu.pushColor);
+                south.ChangeColor(NetworkedGridMenu.pushColor);
                 if (!immediateNeighbor)
-                    south.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
+                    south.ChangeColor(NetworkedGridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
-                south.ChangeColor(Menu.defaultColor);
+                south.ChangeColor(NetworkedMenu.defaultColor);
             south.DisplayPusherInfluenceSouth(shouldHighlight, false);
         }
     }
 
     private void DisplayPusherInfluenceWest(bool shouldHighlight, bool immediateNeighbor)
     {
-        if (!westWall && westNeighbor && westNeighbor.GetComponent<GridElement>().piece &&
-            (westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Unit ||
-             westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>() is Trap))
+        if (!westWall && westNeighbor && westNeighbor.GetComponent<NetworkedGridElement>().piece &&
+            (westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit ||
+             westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap))
         {
-            GridElement west = westNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement west = westNeighbor.GetComponent<NetworkedGridElement>();
             west.isHighlighted = shouldHighlight;
             if (shouldHighlight)
             {
-                west.ChangeColor(GridMenu.pushColor);
+                west.ChangeColor(NetworkedGridMenu.pushColor);
                 if (!immediateNeighbor)
-                    west.ChangeColor(GridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
+                    west.ChangeColor(NetworkedGridMenu.pushColor + new Color(0.4F, 0.4F, 0.4F));
             }
             else
-                west.ChangeColor(Menu.defaultColor);
+                west.ChangeColor(NetworkedMenu.defaultColor);
             west.DisplayPusherInfluenceWest(shouldHighlight, false);
         }
     }
@@ -344,15 +344,15 @@ public class NetworkedGridElement : NetworkBehaviour
     {
         if (!northWall && northNeighbor && distance > 0)
         {
-            GridElement north = northNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement north = northNeighbor.GetComponent<NetworkedGridElement>();
             if (shouldHighlight)
             {
-                north.ChangeColor(GridMenu.pullColor);
-                if (north.piece && (north.piece.GetComponent<GamePiece>() is Unit || north.piece.GetComponent<GamePiece>() is Trap)) north.isHighlighted = shouldHighlight;
+                north.ChangeColor(NetworkedGridMenu.pullColor);
+                if (north.piece && (north.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || north.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)) north.isHighlighted = shouldHighlight;
                 else north.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
-                north.ChangeColor(Menu.defaultColor);
+                north.ChangeColor(NetworkedMenu.defaultColor);
             north.DisplayPullerInfluenceNorth(distance - 1, shouldHighlight);
         }
     }
@@ -361,15 +361,15 @@ public class NetworkedGridElement : NetworkBehaviour
     {
         if (!eastWall && eastNeighbor && distance > 0)
         {
-            GridElement east = eastNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement east = eastNeighbor.GetComponent<NetworkedGridElement>();
             if (shouldHighlight)
             {
-                east.ChangeColor(GridMenu.pullColor);
-                if (east.piece && (east.piece.GetComponent<GamePiece>() is Unit || east.piece.GetComponent<GamePiece>() is Trap)) east.isHighlighted = shouldHighlight;
+                east.ChangeColor(NetworkedGridMenu.pullColor);
+                if (east.piece && (east.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || east.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)) east.isHighlighted = shouldHighlight;
                 else east.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
-                east.ChangeColor(Menu.defaultColor);
+                east.ChangeColor(NetworkedMenu.defaultColor);
             east.DisplayPullerInfluenceEast(distance - 1, shouldHighlight);
         }
     }
@@ -378,15 +378,15 @@ public class NetworkedGridElement : NetworkBehaviour
     {
         if (!southWall && southNeighbor && distance > 0)
         {
-            GridElement south = southNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement south = southNeighbor.GetComponent<NetworkedGridElement>();
             if (shouldHighlight)
             {
-                south.ChangeColor(GridMenu.pullColor);
-                if (south.piece && (south.piece.GetComponent<GamePiece>() is Unit || south.piece.GetComponent<GamePiece>() is Trap)) south.isHighlighted = shouldHighlight;
+                south.ChangeColor(NetworkedGridMenu.pullColor);
+                if (south.piece && (south.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || south.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)) south.isHighlighted = shouldHighlight;
                 else south.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
-                south.ChangeColor(Menu.defaultColor);
+                south.ChangeColor(NetworkedMenu.defaultColor);
             south.DisplayPullerInfluenceSouth(distance - 1, shouldHighlight);
         }
     }
@@ -395,15 +395,15 @@ public class NetworkedGridElement : NetworkBehaviour
     {
         if (!westWall && westNeighbor && distance > 0)
         {
-            GridElement west = westNeighbor.GetComponent<GridElement>();
+            NetworkedGridElement west = westNeighbor.GetComponent<NetworkedGridElement>();
             if (shouldHighlight)
             {
-                west.ChangeColor(GridMenu.pullColor);
-                if (west.piece && (west.piece.GetComponent<GamePiece>() is Unit || west.piece.GetComponent<GamePiece>() is Trap)) west.isHighlighted = shouldHighlight;
+                west.ChangeColor(NetworkedGridMenu.pullColor);
+                if (west.piece && (west.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit || west.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)) west.isHighlighted = shouldHighlight;
                 else west.GetComponent<Image>().color += new Color(0.2F, 0.2F, 0.2F);
             }
             else
-                west.ChangeColor(Menu.defaultColor);
+                west.ChangeColor(NetworkedMenu.defaultColor);
             west.DisplayPullerInfluenceWest(distance - 1, shouldHighlight);
         }
     }

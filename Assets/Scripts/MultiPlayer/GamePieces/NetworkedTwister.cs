@@ -19,7 +19,7 @@ public class NetworkedTwister : NetworkedUnit
             contextMenu.HideContextMenu();
             TwistBoard(gridElement.gameObject);
             grid.activeGO = null;
-            grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
+            grid.SetElementColor(grid.selectedGO, NetworkedMenu.selectedColor, NetworkedMenu.defaultColor);
             canAct = false;
         }
     }
@@ -31,29 +31,29 @@ public class NetworkedTwister : NetworkedUnit
             {
                 List<GameObject> neighbors = new List<GameObject>();
                 #region DisconnectWalls
-                if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor)
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor)
                 {
-                    gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().southWall = false;
-                    gridElement.northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().southWall = false;
-                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().southWall = false;
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().southWall = false;
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().southWall = false;
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().southWall = false;
                 }
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor)
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor)
                 {
-                    gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().westWall = false;
-                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().westWall = false;
-                    gridElement.eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().westWall = false;
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().westWall = false;
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().westWall = false;
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().westWall = false;
                 }
-                if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor)
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor)
                 {
-                    gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().northWall = false;
-                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().northWall = false;
-                    gridElement.southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().northWall = false;
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().northWall = false;
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().northWall = false;
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().northWall = false;
                 }
-                if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor)
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor)
                 {
-                    gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().eastWall = false;
-                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().eastWall = false;
-                    gridElement.westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().eastWall = false;
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().eastWall = false;
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().eastWall = false;
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().eastWall = false;
                 }
                 #endregion
                 #region Rotate Tiles
@@ -62,10 +62,10 @@ public class NetworkedTwister : NetworkedUnit
                 gridElement.eastNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 gridElement.southNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 gridElement.westNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                 #endregion
                 #region Rotate Pieces
                 if (gridElement.piece)
@@ -73,149 +73,149 @@ public class NetworkedTwister : NetworkedUnit
                     gridElement.piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
                     neighbors.Add(gridElement.piece);
                 }
-                if (gridElement.northNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.northNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.eastNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.southNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.southNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.westNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.westNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
-                if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece)
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece)
                 {
-                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
-                    neighbors.Add(gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece);
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece.transform.RotateAround(gridElement.transform.position, Vector3.back, 90);
+                    neighbors.Add(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece);
                 }
                 #endregion
                 #region Fix Neighbors
                 gridElement.FindNeighbors();
-                gridElement.northNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.eastNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.southNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.westNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
-                gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
-                if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor)
+                gridElement.northNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.southNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.westNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor)
                 {
-                    gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().FindNeighbors();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
                 }
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor)
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor)
                 {
-                    gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().FindNeighbors();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
                 }
-                if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor)
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor)
                 {
-                    gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().FindNeighbors();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
                 }
-                if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor)
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor)
                 {
-                    gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
-                    gridElement.westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().FindNeighbors();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().FindNeighbors();
                 }
                 #endregion
                 #region FixWalls
                 //this needs to correctly update neighbors too.
                 UpdateWalls(gridElement);
-                UpdateWalls(gridElement.northNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.eastNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.southNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.westNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>());
-                UpdateWalls(gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>());
+                UpdateWalls(gridElement.northNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.southNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.westNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>());
+                UpdateWalls(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>());
                 #endregion
                 #region FixWallSprites
                 gridElement.UpdateWalls();
-                gridElement.northNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.eastNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.southNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.westNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().UpdateWalls();
-                gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().UpdateWalls();
-                if (gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor)
+                gridElement.northNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.southNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.westNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor)
                 {
-                    gridElement.northNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().UpdateWalls();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
                 }
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor)
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor)
                 {
-                    gridElement.eastNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().UpdateWalls();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
                 }
-                if (gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor)
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor)
                 {
-                    gridElement.southNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().UpdateWalls();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
                 }
-                if (gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor)
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor)
                 {
-                    gridElement.westNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().UpdateWalls();
-                    gridElement.westNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().UpdateWalls();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
+                    gridElement.westNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().UpdateWalls();
                 }
 
                 #endregion
                 #region Fix Piece Rotation and Position
                 if (gridElement.piece)
                     UpdateRotation(gridElement.piece.GetComponent<GamePiece>());
-                if (gridElement.northNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.southNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.westNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
-                if (gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece)
-                    UpdateRotation(gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece)
+                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
                 #endregion
                 #region Fix Grid Attributes and Colors
                 UpdateGridAttributes();
@@ -223,19 +223,19 @@ public class NetworkedTwister : NetworkedUnit
                 #region Fix Flag if carried
                 foreach (GameObject neighbor in neighbors)
                 {
-                    Unit neighborUnit = neighbor.GetComponent<Unit>();
-                    if (neighborUnit && neighborUnit.flag)
+                    NetworkedUnit neighborNetworkedUnit = neighbor.GetComponent<NetworkedUnit>();
+                    if (neighborNetworkedUnit && neighborNetworkedUnit.flag)
                     {
                         Vector3 flagPosn = neighbor.transform.position;
-                        flagPosn.z = neighborUnit.flag.transform.position.z;
-                        neighborUnit.flag.transform.position = flagPosn;
+                        flagPosn.z = neighborNetworkedUnit.flag.transform.position.z;
+                        neighborNetworkedUnit.flag.transform.position = flagPosn;
                     }
                 }
                 #endregion
             }
     }
 
-    private void UpdateWalls(GridElement element)
+    private void UpdateWalls(NetworkedGridElement element)
     {
         bool temp = element.eastWall;
         bool temp2 = element.northWall;
@@ -268,14 +268,14 @@ public class NetworkedTwister : NetworkedUnit
 
     private void UpdateGridAttributes()
     {
-        GridElement north = gridElement.northNeighbor.GetComponent<GridElement>();
-        GridElement east = gridElement.eastNeighbor.GetComponent<GridElement>();
-        GridElement south = gridElement.southNeighbor.GetComponent<GridElement>();
-        GridElement west = gridElement.westNeighbor.GetComponent<GridElement>();
-        GridElement northeast = gridElement.eastNeighbor.GetComponent<GridElement>().northNeighbor.GetComponent<GridElement>();
-        GridElement southeast = gridElement.southNeighbor.GetComponent<GridElement>().eastNeighbor.GetComponent<GridElement>();
-        GridElement northwest = gridElement.northNeighbor.GetComponent<GridElement>().westNeighbor.GetComponent<GridElement>();
-        GridElement southwest = gridElement.westNeighbor.GetComponent<GridElement>().southNeighbor.GetComponent<GridElement>();
+        NetworkedGridElement north = gridElement.northNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement east = gridElement.eastNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement south = gridElement.southNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement west = gridElement.westNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement northeast = gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement southeast = gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement northwest = gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>();
+        NetworkedGridElement southwest = gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>();
         bool temp = north.spawnable;
         bool temp2 = west.spawnable;
         bool temp3 = north.goal;
