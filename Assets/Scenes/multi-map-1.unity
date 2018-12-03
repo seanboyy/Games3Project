@@ -122,12 +122,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1131394557}
+  - component: {fileID: 2241222}
   - component: {fileID: 2241221}
   - component: {fileID: 2241220}
   - component: {fileID: 2241219}
   - component: {fileID: 2241218}
   - component: {fileID: 2241217}
-  - component: {fileID: 2241222}
   m_Layer: 5
   m_Name: Element (2, -4)
   m_TagString: Untagged
@@ -240,13 +240,12 @@ CanvasRenderer:
 --- !u!114 &2241221
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114228393979314084, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2241216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -326,12 +325,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1529554021}
+  - component: {fileID: 15196982}
   - component: {fileID: 15196981}
   - component: {fileID: 15196980}
   - component: {fileID: 15196979}
   - component: {fileID: 15196978}
   - component: {fileID: 15196977}
-  - component: {fileID: 15196982}
   m_Layer: 5
   m_Name: Element (-2, 2)
   m_TagString: Untagged
@@ -444,13 +443,12 @@ CanvasRenderer:
 --- !u!114 &15196981
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114769616767183432, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15196976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -510,12 +508,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952744569}
+  - component: {fileID: 24234615}
   - component: {fileID: 24234614}
   - component: {fileID: 24234613}
   - component: {fileID: 24234612}
   - component: {fileID: 24234611}
   - component: {fileID: 24234610}
-  - component: {fileID: 24234615}
   m_Layer: 5
   m_Name: Element (-3, 2)
   m_TagString: Untagged
@@ -628,13 +626,12 @@ CanvasRenderer:
 --- !u!114 &24234614
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114867615606402250, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 24234609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -943,12 +940,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2072469557}
+  - component: {fileID: 126731520}
   - component: {fileID: 126731519}
   - component: {fileID: 126731518}
   - component: {fileID: 126731517}
   - component: {fileID: 126731516}
   - component: {fileID: 126731515}
-  - component: {fileID: 126731520}
   m_Layer: 5
   m_Name: Element (-2, -5)
   m_TagString: Untagged
@@ -1061,13 +1058,12 @@ CanvasRenderer:
 --- !u!114 &126731519
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114653760966379274, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 126731514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -1127,12 +1123,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1808378835}
+  - component: {fileID: 140227349}
   - component: {fileID: 140227348}
   - component: {fileID: 140227347}
   - component: {fileID: 140227346}
   - component: {fileID: 140227345}
   - component: {fileID: 140227344}
-  - component: {fileID: 140227349}
   m_Layer: 5
   m_Name: Element (-1, 5)
   m_TagString: Untagged
@@ -1245,13 +1241,12 @@ CanvasRenderer:
 --- !u!114 &140227348
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114694934960433738, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 140227343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -1469,12 +1464,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335087534}
+  - component: {fileID: 188968732}
   - component: {fileID: 188968731}
   - component: {fileID: 188968730}
   - component: {fileID: 188968729}
   - component: {fileID: 188968728}
   - component: {fileID: 188968727}
-  - component: {fileID: 188968732}
   m_Layer: 5
   m_Name: Element (1, -2)
   m_TagString: Untagged
@@ -1587,13 +1582,12 @@ CanvasRenderer:
 --- !u!114 &188968731
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114039978753859358, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 188968726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -1732,12 +1726,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 278018602}
+  - component: {fileID: 215585910}
   - component: {fileID: 215585909}
   - component: {fileID: 215585908}
   - component: {fileID: 215585907}
   - component: {fileID: 215585906}
   - component: {fileID: 215585905}
-  - component: {fileID: 215585910}
   m_Layer: 5
   m_Name: Element (1, 2)
   m_TagString: Untagged
@@ -1850,13 +1844,12 @@ CanvasRenderer:
 --- !u!114 &215585909
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114893584074228858, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 215585904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -1916,12 +1909,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1860795983}
+  - component: {fileID: 248864793}
   - component: {fileID: 248864792}
   - component: {fileID: 248864791}
   - component: {fileID: 248864790}
   - component: {fileID: 248864789}
   - component: {fileID: 248864788}
-  - component: {fileID: 248864793}
   m_Layer: 5
   m_Name: Element (-1, 3)
   m_TagString: Untagged
@@ -2034,13 +2027,12 @@ CanvasRenderer:
 --- !u!114 &248864792
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114556460061702528, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 248864787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -2120,12 +2112,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1757639716}
+  - component: {fileID: 301819313}
   - component: {fileID: 301819312}
   - component: {fileID: 301819311}
   - component: {fileID: 301819310}
   - component: {fileID: 301819309}
   - component: {fileID: 301819308}
-  - component: {fileID: 301819313}
   m_Layer: 5
   m_Name: Element (1, -5)
   m_TagString: Untagged
@@ -2238,20 +2230,19 @@ CanvasRenderer:
 --- !u!114 &301819312
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114060848543970122, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 301819307}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
   owner: 1
   portal: 0
   portalOwner: 2
-  goal: 1
+  goal: 0
   northWall: 0
   eastWall: 0
   southWall: 0
@@ -2977,12 +2968,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033919740}
+  - component: {fileID: 422023913}
   - component: {fileID: 422023912}
   - component: {fileID: 422023911}
   - component: {fileID: 422023910}
   - component: {fileID: 422023909}
   - component: {fileID: 422023908}
-  - component: {fileID: 422023913}
   m_Layer: 5
   m_Name: Element (-2, 4)
   m_TagString: Untagged
@@ -3095,13 +3086,12 @@ CanvasRenderer:
 --- !u!114 &422023912
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114647618142864876, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 422023907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -3524,12 +3514,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1554790611}
+  - component: {fileID: 485938671}
   - component: {fileID: 485938670}
   - component: {fileID: 485938669}
   - component: {fileID: 485938668}
   - component: {fileID: 485938667}
   - component: {fileID: 485938666}
-  - component: {fileID: 485938671}
   m_Layer: 5
   m_Name: Element (2, 3)
   m_TagString: Untagged
@@ -3642,13 +3632,12 @@ CanvasRenderer:
 --- !u!114 &485938670
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114107882769013654, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 485938665}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -3787,12 +3776,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 380392913}
+  - component: {fileID: 493676403}
   - component: {fileID: 493676402}
   - component: {fileID: 493676401}
   - component: {fileID: 493676400}
   - component: {fileID: 493676399}
   - component: {fileID: 493676398}
-  - component: {fileID: 493676403}
   m_Layer: 5
   m_Name: Element (3, 2)
   m_TagString: Untagged
@@ -3905,13 +3894,12 @@ CanvasRenderer:
 --- !u!114 &493676402
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114058795401163218, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 493676397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -3971,12 +3959,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1006963582}
+  - component: {fileID: 511916879}
   - component: {fileID: 511916878}
   - component: {fileID: 511916877}
   - component: {fileID: 511916876}
   - component: {fileID: 511916875}
   - component: {fileID: 511916874}
-  - component: {fileID: 511916879}
   m_Layer: 5
   m_Name: Element (3, -4)
   m_TagString: Untagged
@@ -4089,13 +4077,12 @@ CanvasRenderer:
 --- !u!114 &511916878
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114482531516128004, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 511916873}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -4426,12 +4413,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1052587257}
+  - component: {fileID: 523848264}
   - component: {fileID: 523848263}
   - component: {fileID: 523848262}
   - component: {fileID: 523848261}
   - component: {fileID: 523848260}
   - component: {fileID: 523848259}
-  - component: {fileID: 523848264}
   m_Layer: 5
   m_Name: Element (2, -1)
   m_TagString: Untagged
@@ -4544,13 +4531,12 @@ CanvasRenderer:
 --- !u!114 &523848263
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114292931984992396, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 523848258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -4610,12 +4596,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582552258}
+  - component: {fileID: 531357024}
   - component: {fileID: 531357023}
   - component: {fileID: 531357022}
   - component: {fileID: 531357021}
   - component: {fileID: 531357020}
   - component: {fileID: 531357019}
-  - component: {fileID: 531357024}
   m_Layer: 5
   m_Name: Element (3, 5)
   m_TagString: Untagged
@@ -4728,13 +4714,12 @@ CanvasRenderer:
 --- !u!114 &531357023
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114979067792403154, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531357018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -4794,12 +4779,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 319901290}
+  - component: {fileID: 553982653}
   - component: {fileID: 553982652}
   - component: {fileID: 553982651}
   - component: {fileID: 553982650}
   - component: {fileID: 553982649}
   - component: {fileID: 553982648}
-  - component: {fileID: 553982653}
   m_Layer: 5
   m_Name: Element (1, 3)
   m_TagString: Untagged
@@ -4912,13 +4897,12 @@ CanvasRenderer:
 --- !u!114 &553982652
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114307162420668444, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 553982647}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -4998,12 +4982,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 358822432}
+  - component: {fileID: 563353867}
   - component: {fileID: 563353866}
   - component: {fileID: 563353865}
   - component: {fileID: 563353864}
   - component: {fileID: 563353863}
   - component: {fileID: 563353862}
-  - component: {fileID: 563353867}
   m_Layer: 5
   m_Name: Element (-2, -1)
   m_TagString: Untagged
@@ -5116,13 +5100,12 @@ CanvasRenderer:
 --- !u!114 &563353866
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114747733356623774, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 563353861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -5217,11 +5200,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: menu
   activePlayer: {fileID: 0}
-  activeMenu: {fileID: 1108008728}
-  prevMenu: {fileID: 0}
   player1: {fileID: 0}
   player2: {fileID: 0}
   turnArrow: {fileID: 1578091827}
+  grid: {fileID: 0}
 --- !u!114 &571666588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5384,12 +5366,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 337789854}
+  - component: {fileID: 618462254}
   - component: {fileID: 618462253}
   - component: {fileID: 618462252}
   - component: {fileID: 618462251}
   - component: {fileID: 618462250}
   - component: {fileID: 618462249}
-  - component: {fileID: 618462254}
   m_Layer: 5
   m_Name: Element (2, -5)
   m_TagString: Untagged
@@ -5502,13 +5484,12 @@ CanvasRenderer:
 --- !u!114 &618462253
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114458370465605286, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 618462248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -5647,12 +5628,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1426556241}
+  - component: {fileID: 666741239}
   - component: {fileID: 666741238}
   - component: {fileID: 666741237}
   - component: {fileID: 666741236}
   - component: {fileID: 666741235}
   - component: {fileID: 666741234}
-  - component: {fileID: 666741239}
   m_Layer: 5
   m_Name: Element (3, -2)
   m_TagString: Untagged
@@ -5765,13 +5746,12 @@ CanvasRenderer:
 --- !u!114 &666741238
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114403451521733824, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666741233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -5991,12 +5971,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 57336150}
+  - component: {fileID: 724571509}
   - component: {fileID: 724571508}
   - component: {fileID: 724571507}
   - component: {fileID: 724571506}
   - component: {fileID: 724571505}
   - component: {fileID: 724571504}
-  - component: {fileID: 724571509}
   m_Layer: 5
   m_Name: Element (2, -2)
   m_TagString: Untagged
@@ -6109,13 +6089,12 @@ CanvasRenderer:
 --- !u!114 &724571508
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114702395370836756, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 724571503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -6275,7 +6254,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108008728}
+      - m_Target: {fileID: 0}
         m_MethodName: PlaceUnit
         m_Mode: 5
         m_Arguments:
@@ -6362,12 +6341,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010263578}
+  - component: {fileID: 744416560}
   - component: {fileID: 744416559}
   - component: {fileID: 744416558}
   - component: {fileID: 744416557}
   - component: {fileID: 744416556}
   - component: {fileID: 744416555}
-  - component: {fileID: 744416560}
   m_Layer: 5
   m_Name: Element (1, 1)
   m_TagString: Untagged
@@ -6480,13 +6459,12 @@ CanvasRenderer:
 --- !u!114 &744416559
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114228975097152918, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744416554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -6546,12 +6524,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 902813348}
+  - component: {fileID: 763062823}
   - component: {fileID: 763062822}
   - component: {fileID: 763062821}
   - component: {fileID: 763062820}
   - component: {fileID: 763062819}
   - component: {fileID: 763062818}
-  - component: {fileID: 763062823}
   m_Layer: 5
   m_Name: Element (-2, 1)
   m_TagString: Untagged
@@ -6664,13 +6642,12 @@ CanvasRenderer:
 --- !u!114 &763062822
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114007651223458836, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 763062817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -6829,12 +6806,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778577186}
+  - component: {fileID: 832239524}
   - component: {fileID: 832239523}
   - component: {fileID: 832239522}
   - component: {fileID: 832239521}
   - component: {fileID: 832239520}
   - component: {fileID: 832239519}
-  - component: {fileID: 832239524}
   m_Layer: 5
   m_Name: Element (-1, -3)
   m_TagString: Untagged
@@ -6947,13 +6924,12 @@ CanvasRenderer:
 --- !u!114 &832239523
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114249168546920870, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 832239518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -7112,12 +7088,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1807168649}
+  - component: {fileID: 862133165}
   - component: {fileID: 862133164}
   - component: {fileID: 862133163}
   - component: {fileID: 862133162}
   - component: {fileID: 862133161}
   - component: {fileID: 862133160}
-  - component: {fileID: 862133165}
   m_Layer: 5
   m_Name: Element (-1, 4)
   m_TagString: Untagged
@@ -7230,13 +7206,12 @@ CanvasRenderer:
 --- !u!114 &862133164
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114780179128498212, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862133159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -7296,12 +7271,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 561072374}
+  - component: {fileID: 863304719}
   - component: {fileID: 863304718}
   - component: {fileID: 863304717}
   - component: {fileID: 863304716}
   - component: {fileID: 863304715}
   - component: {fileID: 863304714}
-  - component: {fileID: 863304719}
   m_Layer: 5
   m_Name: Element (3, -3)
   m_TagString: Untagged
@@ -7414,13 +7389,12 @@ CanvasRenderer:
 --- !u!114 &863304718
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114540545165982378, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 863304713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -7915,12 +7889,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1054881880}
+  - component: {fileID: 941066911}
   - component: {fileID: 941066910}
   - component: {fileID: 941066909}
   - component: {fileID: 941066908}
   - component: {fileID: 941066907}
   - component: {fileID: 941066906}
-  - component: {fileID: 941066911}
   m_Layer: 5
   m_Name: Element (-3, -4)
   m_TagString: Untagged
@@ -8033,13 +8007,12 @@ CanvasRenderer:
 --- !u!114 &941066910
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114851865716479380, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 941066905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -8198,12 +8171,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620919815}
+  - component: {fileID: 960376421}
   - component: {fileID: 960376420}
   - component: {fileID: 960376419}
   - component: {fileID: 960376418}
   - component: {fileID: 960376417}
   - component: {fileID: 960376416}
-  - component: {fileID: 960376421}
   m_Layer: 5
   m_Name: Element (-3, -5)
   m_TagString: Untagged
@@ -8316,13 +8289,12 @@ CanvasRenderer:
 --- !u!114 &960376420
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114509942789859264, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 960376415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -8382,12 +8354,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521116945}
+  - component: {fileID: 960743665}
   - component: {fileID: 960743664}
   - component: {fileID: 960743663}
   - component: {fileID: 960743662}
   - component: {fileID: 960743661}
   - component: {fileID: 960743660}
-  - component: {fileID: 960743665}
   m_Layer: 5
   m_Name: Element (2, -3)
   m_TagString: Untagged
@@ -8500,13 +8472,12 @@ CanvasRenderer:
 --- !u!114 &960743664
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114233586015321178, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 960743659}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -8645,12 +8616,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 897576350}
+  - component: {fileID: 971032109}
   - component: {fileID: 971032108}
   - component: {fileID: 971032107}
   - component: {fileID: 971032106}
   - component: {fileID: 971032105}
   - component: {fileID: 971032104}
-  - component: {fileID: 971032109}
   m_Layer: 5
   m_Name: Element (-1, 2)
   m_TagString: Untagged
@@ -8763,13 +8734,12 @@ CanvasRenderer:
 --- !u!114 &971032108
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114199521981092364, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 971032103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -8829,12 +8799,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341775801}
+  - component: {fileID: 988497523}
   - component: {fileID: 988497522}
   - component: {fileID: 988497521}
   - component: {fileID: 988497520}
   - component: {fileID: 988497519}
   - component: {fileID: 988497518}
-  - component: {fileID: 988497523}
   m_Layer: 5
   m_Name: Element (-1, -4)
   m_TagString: Untagged
@@ -8947,13 +8917,12 @@ CanvasRenderer:
 --- !u!114 &988497522
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114999643895522320, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 988497517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -9231,12 +9200,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1479924110}
+  - component: {fileID: 1040867462}
   - component: {fileID: 1040867461}
   - component: {fileID: 1040867460}
   - component: {fileID: 1040867459}
   - component: {fileID: 1040867458}
   - component: {fileID: 1040867457}
-  - component: {fileID: 1040867462}
   m_Layer: 5
   m_Name: Element (-3, 5)
   m_TagString: Untagged
@@ -9349,13 +9318,12 @@ CanvasRenderer:
 --- !u!114 &1040867461
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114978364009703536, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040867456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -9415,12 +9383,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559162038}
+  - component: {fileID: 1041526527}
   - component: {fileID: 1041526526}
   - component: {fileID: 1041526525}
   - component: {fileID: 1041526524}
   - component: {fileID: 1041526523}
   - component: {fileID: 1041526522}
-  - component: {fileID: 1041526527}
   m_Layer: 5
   m_Name: Element (-2, 3)
   m_TagString: Untagged
@@ -9533,13 +9501,12 @@ CanvasRenderer:
 --- !u!114 &1041526526
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114725822595443576, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1041526521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -9659,12 +9626,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 840607673}
+  - component: {fileID: 1060328175}
   - component: {fileID: 1060328174}
   - component: {fileID: 1060328173}
   - component: {fileID: 1060328172}
   - component: {fileID: 1060328171}
   - component: {fileID: 1060328170}
-  - component: {fileID: 1060328175}
   m_Layer: 5
   m_Name: Element (-3, -2)
   m_TagString: Untagged
@@ -9777,13 +9744,12 @@ CanvasRenderer:
 --- !u!114 &1060328174
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114486934544581688, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1060328169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -9987,8 +9953,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1108008727}
-  - component: {fileID: 1108008728}
+  - component: {fileID: 1108008730}
   - component: {fileID: 1108008729}
+  - component: {fileID: 1108008728}
   - component: {fileID: 1108008726}
   - component: {fileID: 1108008725}
   - component: {fileID: 1108008724}
@@ -10088,17 +10055,30 @@ RectTransform:
 --- !u!114 &1108008728
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114300849832593974, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1108008723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c49aaddc8fbbb6b40a06aa64ea6b4915, type: 3}
+  m_Script: {fileID: 11500000, guid: d9db9919fbd20d54aa7597a7432981c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedGO: {fileID: 1509582839}
+  activeUIMenu: 0
+  menuCanvas: {fileID: 728810564}
+--- !u!114 &1108008729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1108008723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9989d14ce06808f468c160d8606c846c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 744416554}
-  activeUIMenu: 1
+  activeUIMenu: 0
   activeGO: {fileID: 0}
   selectedPiece: {fileID: 0}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
@@ -10107,21 +10087,39 @@ MonoBehaviour:
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
---- !u!114 &1108008729
+  activePlayer: {fileID: 0}
+--- !u!114 &1108008730
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114726484804542384, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1108008723}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6dda06fb9d1a3f489fb62927d7562ac, type: 3}
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedGO: {fileID: 1509582839}
-  activeUIMenu: 0
-  menuCanvas: {fileID: 728810564}
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &1110646489
 GameObject:
   m_ObjectHideFlags: 0
@@ -10309,12 +10307,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010909132}
+  - component: {fileID: 1149839960}
   - component: {fileID: 1149839959}
   - component: {fileID: 1149839958}
   - component: {fileID: 1149839957}
   - component: {fileID: 1149839956}
   - component: {fileID: 1149839955}
-  - component: {fileID: 1149839960}
   m_Layer: 5
   m_Name: Element (-1, -5)
   m_TagString: Untagged
@@ -10427,20 +10425,19 @@ CanvasRenderer:
 --- !u!114 &1149839959
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114518475113906556, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1149839954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
   owner: 1
   portal: 0
   portalOwner: 2
-  goal: 1
+  goal: 0
   northWall: 0
   eastWall: 0
   southWall: 0
@@ -10592,12 +10589,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585465243}
+  - component: {fileID: 1206248172}
   - component: {fileID: 1206248171}
   - component: {fileID: 1206248170}
   - component: {fileID: 1206248169}
   - component: {fileID: 1206248168}
   - component: {fileID: 1206248167}
-  - component: {fileID: 1206248172}
   m_Layer: 5
   m_Name: Element (2, 1)
   m_TagString: Untagged
@@ -10710,13 +10707,12 @@ CanvasRenderer:
 --- !u!114 &1206248171
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114604398336039724, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1206248166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -10855,12 +10851,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8873198}
+  - component: {fileID: 1227313935}
   - component: {fileID: 1227313934}
   - component: {fileID: 1227313933}
   - component: {fileID: 1227313932}
   - component: {fileID: 1227313931}
   - component: {fileID: 1227313930}
-  - component: {fileID: 1227313935}
   m_Layer: 5
   m_Name: Element (1, -3)
   m_TagString: Untagged
@@ -10973,13 +10969,12 @@ CanvasRenderer:
 --- !u!114 &1227313934
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114891318897228264, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1227313929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -11039,12 +11034,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1053032259}
+  - component: {fileID: 1251722593}
   - component: {fileID: 1251722592}
   - component: {fileID: 1251722591}
   - component: {fileID: 1251722590}
   - component: {fileID: 1251722589}
   - component: {fileID: 1251722588}
-  - component: {fileID: 1251722593}
   m_Layer: 5
   m_Name: Element (-2, -2)
   m_TagString: Untagged
@@ -11157,13 +11152,12 @@ CanvasRenderer:
 --- !u!114 &1251722592
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114909656661348288, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1251722587}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -11467,12 +11461,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1823979788}
+  - component: {fileID: 1299565801}
   - component: {fileID: 1299565800}
   - component: {fileID: 1299565799}
   - component: {fileID: 1299565798}
   - component: {fileID: 1299565797}
   - component: {fileID: 1299565796}
-  - component: {fileID: 1299565801}
   m_Layer: 5
   m_Name: Element (3, -1)
   m_TagString: Untagged
@@ -11585,13 +11579,12 @@ CanvasRenderer:
 --- !u!114 &1299565800
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114808521380235280, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1299565795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -11651,12 +11644,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1275380040}
+  - component: {fileID: 1300284925}
   - component: {fileID: 1300284924}
   - component: {fileID: 1300284923}
   - component: {fileID: 1300284922}
   - component: {fileID: 1300284921}
   - component: {fileID: 1300284920}
-  - component: {fileID: 1300284925}
   m_Layer: 5
   m_Name: Element (1, 4)
   m_TagString: Untagged
@@ -11769,13 +11762,12 @@ CanvasRenderer:
 --- !u!114 &1300284924
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114683905859431316, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1300284919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -11835,12 +11827,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521170222}
+  - component: {fileID: 1301058656}
   - component: {fileID: 1301058655}
   - component: {fileID: 1301058654}
   - component: {fileID: 1301058653}
   - component: {fileID: 1301058652}
   - component: {fileID: 1301058651}
-  - component: {fileID: 1301058656}
   m_Layer: 5
   m_Name: Element (2, 2)
   m_TagString: Untagged
@@ -11953,13 +11945,12 @@ CanvasRenderer:
 --- !u!114 &1301058655
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114963174622877288, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301058650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -12326,12 +12317,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1899356888}
+  - component: {fileID: 1364662392}
   - component: {fileID: 1364662391}
   - component: {fileID: 1364662390}
   - component: {fileID: 1364662389}
   - component: {fileID: 1364662388}
   - component: {fileID: 1364662387}
-  - component: {fileID: 1364662392}
   m_Layer: 5
   m_Name: Element (-3, -1)
   m_TagString: Untagged
@@ -12444,13 +12435,12 @@ CanvasRenderer:
 --- !u!114 &1364662391
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114854362601971520, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1364662386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -12668,12 +12658,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2102940305}
+  - component: {fileID: 1422141825}
   - component: {fileID: 1422141824}
   - component: {fileID: 1422141823}
   - component: {fileID: 1422141822}
   - component: {fileID: 1422141821}
   - component: {fileID: 1422141820}
-  - component: {fileID: 1422141825}
   m_Layer: 5
   m_Name: Element (-3, 4)
   m_TagString: Untagged
@@ -12786,13 +12776,12 @@ CanvasRenderer:
 --- !u!114 &1422141824
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114736254149414710, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1422141819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -12872,12 +12861,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1837793382}
+  - component: {fileID: 1439064108}
   - component: {fileID: 1439064107}
   - component: {fileID: 1439064106}
   - component: {fileID: 1439064105}
   - component: {fileID: 1439064104}
   - component: {fileID: 1439064103}
-  - component: {fileID: 1439064108}
   m_Layer: 5
   m_Name: Element (3, 3)
   m_TagString: Untagged
@@ -12990,13 +12979,12 @@ CanvasRenderer:
 --- !u!114 &1439064107
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114159161618686708, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1439064102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -13352,7 +13340,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108008728}
+      - m_Target: {fileID: 0}
         m_MethodName: PlaceUnit
         m_Mode: 5
         m_Arguments:
@@ -13510,7 +13498,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108008728}
+      - m_Target: {fileID: 0}
         m_MethodName: PlaceUnit
         m_Mode: 5
         m_Arguments:
@@ -13658,12 +13646,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 385822213}
+  - component: {fileID: 1521909328}
   - component: {fileID: 1521909327}
   - component: {fileID: 1521909326}
   - component: {fileID: 1521909325}
   - component: {fileID: 1521909324}
   - component: {fileID: 1521909323}
-  - component: {fileID: 1521909328}
   m_Layer: 5
   m_Name: Element (1, -4)
   m_TagString: Untagged
@@ -13776,13 +13764,12 @@ CanvasRenderer:
 --- !u!114 &1521909327
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114282381537164872, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1521909322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -13842,12 +13829,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198899706}
+  - component: {fileID: 1529199161}
   - component: {fileID: 1529199160}
   - component: {fileID: 1529199159}
   - component: {fileID: 1529199158}
   - component: {fileID: 1529199157}
   - component: {fileID: 1529199156}
-  - component: {fileID: 1529199161}
   m_Layer: 5
   m_Name: Element (-3, -3)
   m_TagString: Untagged
@@ -13960,13 +13947,12 @@ CanvasRenderer:
 --- !u!114 &1529199160
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114954652584000260, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1529199155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -14125,12 +14111,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091510879}
+  - component: {fileID: 1533187444}
   - component: {fileID: 1533187443}
   - component: {fileID: 1533187442}
   - component: {fileID: 1533187441}
   - component: {fileID: 1533187440}
   - component: {fileID: 1533187439}
-  - component: {fileID: 1533187444}
   m_Layer: 5
   m_Name: Element (-1, -1)
   m_TagString: Untagged
@@ -14243,13 +14229,12 @@ CanvasRenderer:
 --- !u!114 &1533187443
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114916993346155642, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1533187438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -14309,12 +14294,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 332290012}
+  - component: {fileID: 1552819953}
   - component: {fileID: 1552819952}
   - component: {fileID: 1552819951}
   - component: {fileID: 1552819950}
   - component: {fileID: 1552819949}
   - component: {fileID: 1552819948}
-  - component: {fileID: 1552819953}
   m_Layer: 5
   m_Name: Element (-1, 1)
   m_TagString: Untagged
@@ -14427,13 +14412,12 @@ CanvasRenderer:
 --- !u!114 &1552819952
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114641817157607148, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1552819947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -14684,12 +14668,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1444511257}
+  - component: {fileID: 1582932908}
   - component: {fileID: 1582932907}
   - component: {fileID: 1582932906}
   - component: {fileID: 1582932905}
   - component: {fileID: 1582932904}
   - component: {fileID: 1582932903}
-  - component: {fileID: 1582932908}
   m_Layer: 5
   m_Name: Element (3, 1)
   m_TagString: Untagged
@@ -14802,13 +14786,12 @@ CanvasRenderer:
 --- !u!114 &1582932907
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114777367920336166, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1582932902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -15263,12 +15246,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1587319050}
+  - component: {fileID: 1686928186}
   - component: {fileID: 1686928185}
   - component: {fileID: 1686928184}
   - component: {fileID: 1686928183}
   - component: {fileID: 1686928182}
   - component: {fileID: 1686928181}
-  - component: {fileID: 1686928186}
   m_Layer: 5
   m_Name: Element (3, 4)
   m_TagString: Untagged
@@ -15381,13 +15364,12 @@ CanvasRenderer:
 --- !u!114 &1686928185
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114956296298261380, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1686928180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -15605,12 +15587,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1326556262}
+  - component: {fileID: 1721335659}
   - component: {fileID: 1721335658}
   - component: {fileID: 1721335657}
   - component: {fileID: 1721335656}
   - component: {fileID: 1721335655}
   - component: {fileID: 1721335654}
-  - component: {fileID: 1721335659}
   m_Layer: 5
   m_Name: Element (1, -1)
   m_TagString: Untagged
@@ -15723,13 +15705,12 @@ CanvasRenderer:
 --- !u!114 &1721335658
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114581901501471116, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1721335653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -16068,12 +16049,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748045192}
+  - component: {fileID: 1794612750}
   - component: {fileID: 1794612749}
   - component: {fileID: 1794612748}
   - component: {fileID: 1794612747}
   - component: {fileID: 1794612746}
   - component: {fileID: 1794612745}
-  - component: {fileID: 1794612750}
   m_Layer: 5
   m_Name: Element (2, 4)
   m_TagString: Untagged
@@ -16186,13 +16167,12 @@ CanvasRenderer:
 --- !u!114 &1794612749
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114365269627868394, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1794612744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -16470,12 +16450,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2004371215}
+  - component: {fileID: 1831536023}
   - component: {fileID: 1831536022}
   - component: {fileID: 1831536021}
   - component: {fileID: 1831536020}
   - component: {fileID: 1831536019}
   - component: {fileID: 1831536018}
-  - component: {fileID: 1831536023}
   m_Layer: 5
   m_Name: Element (-2, -4)
   m_TagString: Untagged
@@ -16588,13 +16568,12 @@ CanvasRenderer:
 --- !u!114 &1831536022
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114269918512026478, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831536017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -16991,12 +16970,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031673695}
+  - component: {fileID: 1910563511}
   - component: {fileID: 1910563510}
   - component: {fileID: 1910563509}
   - component: {fileID: 1910563508}
   - component: {fileID: 1910563507}
   - component: {fileID: 1910563506}
-  - component: {fileID: 1910563511}
   m_Layer: 5
   m_Name: Element (1, 5)
   m_TagString: Untagged
@@ -17109,13 +17088,12 @@ CanvasRenderer:
 --- !u!114 &1910563510
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114648130950141714, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1910563505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -17275,7 +17253,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108008728}
+      - m_Target: {fileID: 0}
         m_MethodName: PlaceUnit
         m_Mode: 5
         m_Arguments:
@@ -17333,12 +17311,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1831571992}
+  - component: {fileID: 1946079275}
   - component: {fileID: 1946079274}
   - component: {fileID: 1946079273}
   - component: {fileID: 1946079272}
   - component: {fileID: 1946079271}
   - component: {fileID: 1946079270}
-  - component: {fileID: 1946079275}
   m_Layer: 5
   m_Name: Element (3, -5)
   m_TagString: Untagged
@@ -17451,13 +17429,12 @@ CanvasRenderer:
 --- !u!114 &1946079274
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114719311742699062, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1946079269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -17616,12 +17593,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1507018751}
+  - component: {fileID: 1972144732}
   - component: {fileID: 1972144731}
   - component: {fileID: 1972144730}
   - component: {fileID: 1972144729}
   - component: {fileID: 1972144728}
   - component: {fileID: 1972144727}
-  - component: {fileID: 1972144732}
   m_Layer: 5
   m_Name: Element (-3, 3)
   m_TagString: Untagged
@@ -17734,13 +17711,12 @@ CanvasRenderer:
 --- !u!114 &1972144731
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114553581931474088, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1972144726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -17800,12 +17776,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313273182}
+  - component: {fileID: 1997230085}
   - component: {fileID: 1997230084}
   - component: {fileID: 1997230083}
   - component: {fileID: 1997230082}
   - component: {fileID: 1997230081}
   - component: {fileID: 1997230080}
-  - component: {fileID: 1997230085}
   m_Layer: 5
   m_Name: Element (-3, 1)
   m_TagString: Untagged
@@ -17918,13 +17894,12 @@ CanvasRenderer:
 --- !u!114 &1997230084
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114844178966244820, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1997230079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 1
@@ -18281,12 +18256,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1019868411}
+  - component: {fileID: 2031956069}
   - component: {fileID: 2031956068}
   - component: {fileID: 2031956067}
   - component: {fileID: 2031956066}
   - component: {fileID: 2031956065}
   - component: {fileID: 2031956064}
-  - component: {fileID: 2031956069}
   m_Layer: 5
   m_Name: Element (-2, -3)
   m_TagString: Untagged
@@ -18399,13 +18374,12 @@ CanvasRenderer:
 --- !u!114 &2031956068
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114033598842431820, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2031956063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -18783,7 +18757,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1108008728}
+      - m_Target: {fileID: 0}
         m_MethodName: PlaceUnit
         m_Mode: 5
         m_Arguments:
@@ -18920,12 +18894,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1842379602}
+  - component: {fileID: 2116998243}
   - component: {fileID: 2116998242}
   - component: {fileID: 2116998241}
   - component: {fileID: 2116998240}
   - component: {fileID: 2116998239}
   - component: {fileID: 2116998238}
-  - component: {fileID: 2116998243}
   m_Layer: 5
   m_Name: Element (-2, 5)
   m_TagString: Untagged
@@ -19038,13 +19012,12 @@ CanvasRenderer:
 --- !u!114 &2116998242
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114568891503934350, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2116998237}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -19104,12 +19077,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1641283774}
+  - component: {fileID: 2130760429}
   - component: {fileID: 2130760428}
   - component: {fileID: 2130760427}
   - component: {fileID: 2130760426}
   - component: {fileID: 2130760425}
   - component: {fileID: 2130760424}
-  - component: {fileID: 2130760429}
   m_Layer: 5
   m_Name: Element (2, 5)
   m_TagString: Untagged
@@ -19222,13 +19195,12 @@ CanvasRenderer:
 --- !u!114 &2130760428
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114189629648070912, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2130760423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
@@ -19288,12 +19260,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1680949056}
+  - component: {fileID: 2141249544}
   - component: {fileID: 2141249543}
   - component: {fileID: 2141249542}
   - component: {fileID: 2141249541}
   - component: {fileID: 2141249540}
   - component: {fileID: 2141249539}
-  - component: {fileID: 2141249544}
   m_Layer: 5
   m_Name: Element (-1, -2)
   m_TagString: Untagged
@@ -19406,13 +19378,12 @@ CanvasRenderer:
 --- !u!114 &2141249543
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 114142848485017774, guid: 55298d80fc168764ca86832366a6ccdd,
-    type: 2}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2141249538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424d57236405ff34e9496b10e0d468e9, type: 3}
+  m_Script: {fileID: 11500000, guid: a18147dcea2f7e24bab6f4fcaf935a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: 0
