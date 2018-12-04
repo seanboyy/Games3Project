@@ -85,7 +85,7 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void Update()
     {
-        //Debug.Log(connectionToClient + ", " + connectionToServer);
+        Debug.Log(gameObject.name + ": " + netId);
         if (multiplayer && !isLocalPlayer) return;
         if (gameManager == null && isLocalPlayer)
         {
@@ -124,6 +124,7 @@ public class NetworkedPlayer : NetworkBehaviour
     [Command]
     public void CmdHandleTriangleButton()
     {
+        gameManager.EndTurn();
         RpcEndTurn();
     }
 
