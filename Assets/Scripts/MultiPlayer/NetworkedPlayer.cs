@@ -87,7 +87,7 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         //Debug.Log(connectionToClient + ", " + connectionToServer);
         if (multiplayer && !isLocalPlayer) return;
-        if (gameManager == null)
+        if (gameManager == null && isLocalPlayer)
         {
             CmdFindGameManager();
             return;
