@@ -40,7 +40,7 @@ public class NetworkedContextMenu : NetworkedMenu
     {
         activeUIMenu = false;
         menuCanvas.SetActive(false);
-        prevMenu.GetComponent<NetworkedMenu>().activeUIMenu = true;
+        prevMenu.activeUIMenu = true;
         if (prevMenu is NetworkedGridMenu)
         {
             MultiMan gameMan = prevMenu.GetComponent<NetworkedGridMenu>().gameMan;
