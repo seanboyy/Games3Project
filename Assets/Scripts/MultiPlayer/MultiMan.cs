@@ -25,7 +25,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     private bool justSwitched = false;
 
     // Not sure if we want a reference to the grid, but...
-    public GridMenu grid;
+    public NetworkedGridMenu grid;
 
     // Use this for initialization
     void Start()
@@ -42,12 +42,12 @@ public class MultiMan : NetworkBehaviour, IGameMan
     {
         if (isServer)
         {
-            if (FindObjectsOfType<Player>().Length < 2) return;
-            player1 = FindObjectsOfType<Player>()[0].gameObject;
+            if (FindObjectsOfType<NetworkedPlayer>().Length < 2) return;
+            player1 = FindObjectsOfType<NetworkedPlayer>()[0].gameObject;
             player1.name = "Player1";
-            player1.GetComponent<Player>().identity = PlayerEnum.Player1;
-            player2 = FindObjectsOfType<Player>()[1].gameObject;
-            player2.GetComponent<Player>().identity = PlayerEnum.Player2;
+            player1.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player1;
+            player2 = FindObjectsOfType<NetworkedPlayer>()[1].gameObject;
+            player2.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player2;
             player2.name = "Player2";
         }
         SetupTurnQueue();
@@ -85,15 +85,15 @@ public class MultiMan : NetworkBehaviour, IGameMan
             if (player1 && player2)
             {
                 justSwitched = true;
-                activePlayer.GetComponent<Player>().activePlayer = false;
+                activePlayer.GetComponent<NetworkedPlayer>().activePlayer = false;
                 activePlayer = turnQueue.Dequeue();
-                activePlayer.GetComponent<Player>().activePlayer = true;
+                activePlayer.GetComponent<NetworkedPlayer>().activePlayer = true;
                 turnQueue.Enqueue(activePlayer);
                 turnCount = ++turnCount % 2;
                 // Reason the arrow doesn't flip in sync is because this isn't an RPC
                 StartCoroutine("FlipArrow");
             }
-            foreach (Unit unit in FindObjectsOfType<Unit>())
+            foreach (NetworkedUnit unit in FindObjectsOfType<NetworkedUnit>())
             {
                 unit.ResetPiece();
             }
@@ -102,7 +102,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             {
                 RpcDoTimeBar();
                 // This line does on the server what the next line does on the clients
-                grid.activePlayer = activePlayer.GetComponent<Player>();
+                grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
                 RpcUpdateGridMenuActivePlayer();
             }
         }
@@ -132,7 +132,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             if (player1GoesFirst)
             {
                 activePlayer = player1;
-                player1.GetComponent<Player>().activePlayer = true;
+                player1.GetComponent<NetworkedPlayer>().activePlayer = true;
                 Debug.Log("Player 1 is the active player!");
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
@@ -141,7 +141,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             else
             {
                 activePlayer = player2;
-                player2.GetComponent<Player>().activePlayer = true;
+                player2.GetComponent<NetworkedPlayer>().activePlayer = true;
                 Debug.Log("Player 2 is the active player!");
                 turnQueue.Enqueue(player1);
                 turnQueue.Enqueue(player2);
@@ -153,7 +153,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [ClientRpc]
     private void RpcUpdateGridMenuActivePlayer()
     {
-        grid.activePlayer = activePlayer.GetComponent<Player>();
+        grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
     }
 
     [ClientRpc]
