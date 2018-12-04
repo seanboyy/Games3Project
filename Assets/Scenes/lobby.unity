@@ -145,6 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 884247788}
   southNeighbor: {fileID: 884247788}
+  gridMenu: {fileID: 0}
+  buttonType: 0
   locked: 0
 --- !u!114 &375011534
 MonoBehaviour:
@@ -492,6 +494,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 375011532}
   southNeighbor: {fileID: 375011532}
+  gridMenu: {fileID: 0}
+  buttonType: 0
   locked: 0
 --- !u!1 &1149953019
 GameObject:

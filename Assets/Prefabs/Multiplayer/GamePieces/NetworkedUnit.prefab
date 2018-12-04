@@ -76,7 +76,8 @@ GameObject:
   - component: {fileID: 114899789028149762}
   - component: {fileID: 114048106224961866}
   - component: {fileID: 65683876828353848}
-  - component: {fileID: 114957450941510098}
+  - component: {fileID: 114592960976111362}
+  - component: {fileID: 114803122510987552}
   m_Layer: 0
   m_Name: Context Button - Move
   m_TagString: Untagged
@@ -352,6 +353,54 @@ MonoBehaviour:
   owner: {fileID: 0}
   canAct: 1
   flag: {fileID: 0}
+--- !u!114 &114592960976111362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557915424624084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 84
+    i1: 26
+    i2: 61
+    i3: 162
+    i4: 33
+    i5: 236
+    i6: 218
+    i7: 180
+    i8: 171
+    i9: 126
+    i10: 46
+    i11: 18
+    i12: 33
+    i13: 214
+    i14: 176
+    i15: 34
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &114803122510987552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1557915424624084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6173090339c2f9d4b9b5567cc38cfe45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 6
+  locked: 0
 --- !u!114 &114807413916485272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,22 +460,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114957450941510098
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1557915424624084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5207e03a788246a439521c13376d279c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  northNeighbor: {fileID: 0}
-  southNeighbor: {fileID: 0}
-  gridMenu: {fileID: 0}
-  buttonType: 6
-  locked: 0
 --- !u!222 &222099645127112056
 CanvasRenderer:
   m_ObjectHideFlags: 1
