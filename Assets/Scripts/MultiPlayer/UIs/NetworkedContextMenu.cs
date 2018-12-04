@@ -38,6 +38,7 @@ public class NetworkedContextMenu : NetworkedMenu
 
     public void HideContextMenu()
     {
+        if (prevMenu == null) return;
         activeUIMenu = false;
         menuCanvas.SetActive(false);
         prevMenu.activeUIMenu = true;

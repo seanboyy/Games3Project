@@ -104,7 +104,7 @@ public class NetworkedPlayer : NetworkBehaviour
         if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
             activeMenu.HandleCircleButton();
         if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            activeMenu.HandleTriangleButton();
+            CmdHandleTriangleButton();
         if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
             activeMenu.HandleSquareButton();
     }
