@@ -56,11 +56,13 @@ public class MultiMan : NetworkBehaviour, IGameMan
             {
                 player1.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player1;
                 player2.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player1;
+                RpcSetupTurnQueue();
             }
             else
             {
                 player1.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player2;
                 player2.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player2;
+                RpcSetupTurnQueue();
             }
             player1.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
             player2.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
@@ -138,6 +140,12 @@ public class MultiMan : NetworkBehaviour, IGameMan
         yield return null;
     }
 
+    [ClientRpc]
+    public void RpcSetupTurnQueue()
+    {
+        SetupTurnQueue();
+    }
+
     private void SetupTurnQueue()
     {
         if (turnQueue == null) turnQueue = new Queue<GameObject>();
@@ -156,6 +164,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             else
             {
                 activePlayer = player2;
+                grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
                 player2.GetComponent<NetworkedPlayer>().activePlayer = true;
                 Debug.Log("Player 2 is the active player!");
                 turnQueue.Enqueue(player1);
