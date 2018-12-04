@@ -77,6 +77,7 @@ public class NetworkedPlayer : NetworkBehaviour
         if (FindObjectOfType<MultiMan>())
         {
             gameManager = FindObjectOfType<MultiMan>();
+            ((MultiMan)gameManager).RegisterPlayers();
             activeMenu.activeUIMenu = true;
             multiplayer = true;
         }
