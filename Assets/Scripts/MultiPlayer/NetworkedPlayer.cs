@@ -8,7 +8,7 @@ public class NetworkedPlayer : NetworkBehaviour
 {
     [SyncVar]
     public PlayerEnum identity = PlayerEnum.Player1;
-    public IGameMan gameManager;
+    public MultiMan gameManager;
 
     public GameObject unitPrefab;
     public GameObject pusherPrefab;
@@ -77,7 +77,7 @@ public class NetworkedPlayer : NetworkBehaviour
         if (FindObjectOfType<MultiMan>())
         {
             gameManager = FindObjectOfType<MultiMan>();
-            ((MultiMan)gameManager).RegisterPlayers();
+            gameManager.RegisterPlayers();
             activeMenu.activeUIMenu = true;
             multiplayer = true;
         }

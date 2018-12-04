@@ -39,20 +39,37 @@ public class MultiMan : NetworkBehaviour, IGameMan
 
     public void RegisterPlayers()
     {
-        if (FindObjectsOfType<NetworkedPlayer>().Length < 2) return;
-        player1 = FindObjectsOfType<NetworkedPlayer>()[0].gameObject;
-        player1.name = "Player1";
-        player1.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player1;
-        player2 = FindObjectsOfType<NetworkedPlayer>()[1].gameObject;
-        player2.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player2;
-        player2.name = "Player2";
-        SetupTurnQueue();
+        if (isServer)
+        {
+            if (FindObjectsOfType<NetworkedPlayer>().Length < 2) return;
+            player1 = FindObjectsOfType<NetworkedPlayer>()[0].gameObject;
+            player1.name = "Player1";
+            player1.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player1;
+            player2 = FindObjectsOfType<NetworkedPlayer>()[1].gameObject;
+            player2.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player2;
+            player2.name = "Player2";
+            player1.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
+            player2.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
+            if (player1GoesFirst)
+            {
+                player1.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player1;
+                player2.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player1;
+            }
+            else
+            {
+                player1.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player2;
+                player2.GetComponent<NetworkedPlayer>().gameManager.activePlayer = player2;
+            }
+            player1.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
+            player2.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!player1 || !player2) RegisterPlayers();
+        Debug.Log(netId);
     }
 
     public void EndGame()
