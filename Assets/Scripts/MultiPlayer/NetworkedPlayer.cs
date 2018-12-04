@@ -234,6 +234,20 @@ public class NetworkedPlayer : NetworkBehaviour
         }
     }
 
+    public void SetActiveMenu(GameObject newMenu)
+    {
+        prevMenu = activeMenu;
+        NetworkedMenu[] menus = newMenu.GetComponents<NetworkedMenu>();
+        foreach(NetworkedMenu menu in menus)
+        {
+            if (menu.activeUIMenu)
+            {
+                activeMenu = menu;
+                break;
+            }
+        }
+    }
+
     // This gets called only on the server version of this object
     [Command]
     public void CmdSetActiveMenu(GameObject newMenu)
