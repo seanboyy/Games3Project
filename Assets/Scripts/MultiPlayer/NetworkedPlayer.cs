@@ -292,13 +292,21 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         NetworkedUnit unit;
         NetworkedTrap trap;
-        if(unit = piece.GetComponent<NetworkedUnit>())
+        if((unit = piece.GetComponent<NetworkedUnit>()) != null)
         {
             unit.SetLocation(location);
         }
-        if(trap = piece.GetComponent<NetworkedTrap>())
+        else
+        {
+            Debug.Log("No piece here!" + piece);
+        }
+        if((trap = piece.GetComponent<NetworkedTrap>()) != null)
         {
             trap.SetLocation(location);
+        }
+        else
+        {
+            Debug.Log("No trap here!" + piece);
         }
     }
 
