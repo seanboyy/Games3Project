@@ -224,6 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 6
   locked: 0
 --- !u!114 &114089464551170670
 MonoBehaviour:

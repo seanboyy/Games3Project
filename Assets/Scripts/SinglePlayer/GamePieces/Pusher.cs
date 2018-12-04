@@ -10,7 +10,7 @@ public class Pusher : Unit
         unitType = UnitType.Pusher;
     }
 
-    public void ActivatePushButtion()
+    public void ActivatePushButton()
     {
         if (canAct)
         {

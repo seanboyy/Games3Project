@@ -319,6 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 1605501509403510}
+  gridMenu: {fileID: 0}
+  buttonType: 6
   locked: 0
 --- !u!114 &114318638182025638
 MonoBehaviour:
@@ -594,6 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1908822733367298}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 7
   locked: 0
 --- !u!114 &114997767799368034
 MonoBehaviour:

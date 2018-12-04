@@ -261,6 +261,7 @@ MonoBehaviour:
   remainingMoves: 2
   grid: {fileID: 0}
   unitType: 0
+  owner: {fileID: 0}
   canAct: 1
   flag: {fileID: 0}
 --- !u!114 &114335407548677990
@@ -290,6 +291,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 6
+  locked: 0
 --- !u!114 &114515091852257254
 MonoBehaviour:
   m_ObjectHideFlags: 1

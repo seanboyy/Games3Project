@@ -271,6 +271,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 1537969394526174}
+  gridMenu: {fileID: 0}
+  buttonType: 6
+  locked: 0
 --- !u!114 &114268598971666622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,6 +287,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1410819120978252}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 8
+  locked: 0
 --- !u!114 &114386306162739828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,6 +516,7 @@ MonoBehaviour:
   remainingMoves: 2
   grid: {fileID: 0}
   unitType: 0
+  owner: {fileID: 0}
   canAct: 1
   flag: {fileID: 0}
 --- !u!114 &114925394009415286

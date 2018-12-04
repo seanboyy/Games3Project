@@ -6200,6 +6200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 2113935966}
   southNeighbor: {fileID: 1481248838}
+  gridMenu: {fileID: 0}
+  buttonType: 2
   locked: 0
 --- !u!65 &726211194
 BoxCollider:
@@ -13319,6 +13321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 726211191}
   southNeighbor: {fileID: 1941062089}
+  gridMenu: {fileID: 0}
+  buttonType: 3
   locked: 0
 --- !u!65 &1481248841
 BoxCollider:
@@ -13509,6 +13513,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 2113935966}
+  gridMenu: {fileID: 0}
+  buttonType: 0
   locked: 0
 --- !u!65 &1509582841
 BoxCollider:
@@ -17296,6 +17302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1481248838}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 4
   locked: 0
 --- !u!65 &1941062092
 BoxCollider:
@@ -18832,6 +18840,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1509582839}
   southNeighbor: {fileID: 726211191}
+  gridMenu: {fileID: 0}
+  buttonType: 1
   locked: 0
 --- !u!65 &2113935969
 BoxCollider:

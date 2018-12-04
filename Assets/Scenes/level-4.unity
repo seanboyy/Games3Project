@@ -676,58 +676,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 143436989}
   m_CullTransparentMesh: 0
---- !u!1001 &164893269
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4636035693008994, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114133773903870066, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
-        type: 2}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 571666587}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 74f67aec4ff16f64ca0e89b9a099ff76, type: 2}
-  m_IsPrefabAsset: 0
---- !u!1 &164893270 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1569881800512948, guid: 74f67aec4ff16f64ca0e89b9a099ff76,
-    type: 2}
-  m_PrefabInternal: {fileID: 164893269}
 --- !u!1 &188968726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +2987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: level-5
-  activePlayer: {fileID: 164893270}
+  activePlayer: {fileID: 0}
   activeMenu: {fileID: 1108008728}
   prevMenu: {fileID: 0}
   limitedMoves: 1
@@ -3564,6 +3512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 2113935966}
   southNeighbor: {fileID: 1481248838}
+  gridMenu: {fileID: 0}
+  buttonType: 3
   locked: 0
 --- !u!65 &726211194
 BoxCollider:
@@ -5985,6 +5935,7 @@ MonoBehaviour:
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
+  activePlayer: {fileID: 0}
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7968,6 +7919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 726211191}
   southNeighbor: {fileID: 1941062089}
+  gridMenu: {fileID: 0}
+  buttonType: 4
   locked: 0
 --- !u!65 &1481248841
 BoxCollider:
@@ -8126,6 +8079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 0}
   southNeighbor: {fileID: 2113935966}
+  gridMenu: {fileID: 0}
+  buttonType: 1
   locked: 0
 --- !u!65 &1509582841
 BoxCollider:
@@ -10251,6 +10206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1481248838}
   southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 5
   locked: 0
 --- !u!65 &1941062092
 BoxCollider:
@@ -11227,6 +11184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northNeighbor: {fileID: 1509582839}
   southNeighbor: {fileID: 726211191}
+  gridMenu: {fileID: 0}
+  buttonType: 2
   locked: 0
 --- !u!65 &2113935969
 BoxCollider:
