@@ -10,13 +10,16 @@ public class NetworkedContextButton : NetworkBehaviour
     public GameObject southNeighbor;
     public NetworkedGridMenu gridMenu;
 
+    private bool alreadyDone = false;
+
     public ButtonTypeEnum buttonType;
 
     public bool locked = false;
     // TO-DO - MAKE MENU HANDLE THINGS BEING LOCKED
 
-    private void Start()
+    private void OnEnable()
     {
+        if (alreadyDone) return;
         gridMenu = FindObjectOfType<NetworkedGridMenu>();
         if(buttonType != ButtonTypeEnum.None) gameObject.GetComponent<Button>().onClick.RemoveAllListeners();
         switch (buttonType)
@@ -49,5 +52,6 @@ public class NetworkedContextButton : NetworkBehaviour
                 gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedTwister>().ActivateTwistButton(); });
                 break;
         }
+        alreadyDone = true;
     }
 }
