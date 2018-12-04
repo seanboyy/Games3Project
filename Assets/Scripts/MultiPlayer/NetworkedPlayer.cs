@@ -16,6 +16,17 @@ public class NetworkedPlayer : NetworkBehaviour
     public GameObject twisterPrefab;
     public GameObject portalPlacerPrefab;
 
+    [HideInInspector]
+    public GameObject unitPiece;
+    [HideInInspector]
+    public GameObject pusherPiece;
+    [HideInInspector]
+    public GameObject pullerPiece;
+    [HideInInspector]
+    public GameObject twisterPiece;
+    [HideInInspector]
+    public GameObject portalPlacerPiece;
+
     private ObjectPool unitPool;
     private ObjectPool pusherPool;
     private ObjectPool pullerPool;
@@ -97,6 +108,12 @@ public class NetworkedPlayer : NetworkBehaviour
     [Command]
     public void CmdHandleTriangleButton()
     {
+        RpcEndTurn();
+    }
+
+    [ClientRpc]
+    public void RpcEndTurn()
+    {
         gameManager.EndTurn();
     }
 
@@ -106,6 +123,18 @@ public class NetworkedPlayer : NetworkBehaviour
         activeMenu.HandleSquareButton();
     }
 
+    [Command]
+    public void CmdPlaceUnit(GameObject location, UnitType type)
+    {
+        RpcPlaceUnit(location, type);
+    }
+
+    [ClientRpc]
+    public void RpcPlaceUnit(GameObject location, UnitType type)
+    {
+        PlaceUnit(location, type);
+    }
+
     public void PlaceUnit(GameObject location, UnitType type)
     {
         GameObject unitGO = null;
@@ -113,18 +142,23 @@ public class NetworkedPlayer : NetworkBehaviour
         {
             case UnitType.Unit:
                 unitGO = unitPool.GetObject();
+                unitPiece = unitGO;
                 break;
             case UnitType.Puller:
                 unitGO = pullerPool.GetObject();
+                pullerPiece = unitGO;
                 break;
             case UnitType.Pusher:
                 unitGO = pusherPool.GetObject();
+                pusherPiece = unitGO;
                 break;
             case UnitType.Twister:
                 unitGO = twisterPool.GetObject();
+                twisterPiece = unitGO;
                 break;
             case UnitType.PortalPlacer:
                 unitGO = portalPlacerPool.GetObject();
+                portalPlacerPiece = unitGO;
                 break;
         }
         if (unitGO)
@@ -136,6 +170,18 @@ public class NetworkedPlayer : NetworkBehaviour
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");
+    }
+    
+    [Command]
+    public void CmdReturnUnit(GameObject unit)
+    {
+        RpcReturnUnit(unit);
+    }
+
+    [ClientRpc]
+    public void RpcReturnUnit(GameObject unit)
+    {
+        ReturnUnit(unit);
     }
 
     public void ReturnUnit(GameObject unit)
@@ -186,5 +232,38 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         prevMenu = activeMenu;
         activeMenu = newMenu.GetComponent<NetworkedMenu>();
+    }
+
+    [Command]
+    public void CmdMovePiece(GameObject location, GameObject piece)
+    {
+        RpcMovePiece(location, piece);
+    }
+
+    [ClientRpc]
+    public void RpcMovePiece(GameObject location, GameObject piece)
+    {
+        NetworkedUnit unit;
+        NetworkedTrap trap;
+        if(unit = piece.GetComponent<NetworkedUnit>())
+        {
+            unit.SetLocation(location);
+        }
+        if(trap = piece.GetComponent<NetworkedTrap>())
+        {
+            trap.SetLocation(location);
+        }
+    }
+
+    [Command]
+    public void CmdHandleTwist(GameObject twister, GameObject location)
+    {
+        RpcHandleTwist(twister, location);
+    }
+
+    [ClientRpc]
+    public void RpcHandleTwist(GameObject twister, GameObject location)
+    {
+        twister.GetComponent<NetworkedTwister>().TwistBoard(location);
     }
 }

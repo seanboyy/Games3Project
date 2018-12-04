@@ -17,14 +17,14 @@ public class NetworkedTwister : NetworkedUnit
         if (canAct)
         {
             contextMenu.HideContextMenu();
-            TwistBoard(gridElement.gameObject);
+            owner.GetComponent<NetworkedPlayer>().CmdHandleTwist(gameObject, gridElement.gameObject);
             grid.activeGO = null;
             grid.SetElementColor(grid.selectedGO, NetworkedMenu.selectedColor, NetworkedMenu.defaultColor);
             canAct = false;
         }
     }
 
-    private void TwistBoard(GameObject twistLoc)
+    public void TwistBoard(GameObject twistLoc)
     {
         if (gridElement.northNeighbor && gridElement.eastNeighbor && gridElement.southNeighbor && gridElement.westNeighbor)
             for (int i = 0; i < rotationAmount; ++i)

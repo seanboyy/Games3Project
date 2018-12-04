@@ -46,20 +46,16 @@ public class NetworkedPuller : NetworkedUnit
         switch (FindDirection(pullLoc))
         {
             case 0:
-                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.southNeighbor);
-                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.southNeighbor);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.southNeighbor, location.piece);
                 break;
             case 1:
-                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.westNeighbor);
-                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.westNeighbor);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.westNeighbor, location.piece);
                 break;
             case 2:
-                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.northNeighbor);
-                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.northNeighbor);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.northNeighbor, location.piece);
                 break;
             case 3:
-                if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) location.piece.GetComponent<NetworkedUnit>().SetLocation(location.eastNeighbor);
-                else if (location.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) location.piece.GetComponent<NetworkedTrap>().SetLocation(location.eastNeighbor);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.eastNeighbor, location.piece);
                 break;
         }
     }

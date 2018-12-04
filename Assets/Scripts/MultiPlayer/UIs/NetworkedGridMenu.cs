@@ -160,19 +160,19 @@ public class NetworkedGridMenu : NetworkedMenu
         switch (unitType)
         {
             case "unit":
-                activePlayer.PlaceUnit(selectedGO, UnitType.Unit);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Unit);
                 break;
             case "pusher":
-                activePlayer.PlaceUnit(selectedGO, UnitType.Pusher);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Pusher);
                 break;
             case "puller":
-                activePlayer.PlaceUnit(selectedGO, UnitType.Puller);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Puller);
                 break;
             case "twister":
-                activePlayer.PlaceUnit(selectedGO, UnitType.Twister);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                activePlayer.PlaceUnit(selectedGO, UnitType.PortalPlacer);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

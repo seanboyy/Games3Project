@@ -76,7 +76,7 @@ public class NetworkedUnit : NetworkedGamePiece
         gridElement.DisplayMoveTiles(remainingMoves, false);
         // Set the remaining moves appropriately
         remainingMoves = distance;
-        SetLocation(newLoc);
+        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(newLoc, gameObject);
     }
 
     public void SetLocation(GameObject newLoc)
@@ -104,7 +104,7 @@ public class NetworkedUnit : NetworkedGamePiece
             if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
                 NetworkedUnit otherUnit = otherGE.piece.GetComponent<NetworkedUnit>();
-                otherUnit.owner.GetComponent<NetworkedPlayer>().ReturnUnit(otherGE.piece);
+                otherUnit.owner.GetComponent<NetworkedPlayer>().CmdReturnUnit(otherGE.piece);
                 if (otherUnit.unitType == UnitType.PortalPlacer)
                 {
                     otherUnit.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
@@ -124,9 +124,9 @@ public class NetworkedUnit : NetworkedGamePiece
                     flag = null;
                 }
                 // Don't forget to kill yourself
-                owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
+                owner.GetComponent<NetworkedPlayer>().CmdReturnUnit(gameObject);
                 if (unitType == UnitType.PortalPlacer)
-                    this.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
+                    GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                 gridElement.piece = null;
                 return;
             }
@@ -145,7 +145,7 @@ public class NetworkedUnit : NetworkedGamePiece
                         this.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                     if (gridElement.piece == gameObject) gridElement.piece = null;
                     if (!grid) grid = FindObjectOfType<NetworkedGridMenu>();
-                    owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
+                    owner.GetComponent<NetworkedPlayer>().CmdReturnUnit(gameObject);
                     if (flag)   // flags will destroy traps; currently no piece can destroy traps, 
                                 // so if a flag lands on one, it must either destroy the trap or the game is unwinnable
                                 // it may be better to have traps pull/pushable, while the flag remains aloof. This would 

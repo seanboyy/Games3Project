@@ -27,7 +27,7 @@ public class NetworkedTrap : NetworkedGamePiece
             if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
                 NetworkedUnit otherUnit = otherGE.piece.GetComponent<NetworkedUnit>();
-                otherUnit.GetComponent<NetworkedPlayer>().ReturnUnit(otherGE.piece);
+                otherUnit.GetComponent<NetworkedPlayer>().CmdReturnUnit(otherGE.piece);
                 if (otherUnit is NetworkedPortalPlacer)
                 {
                     otherUnit.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
