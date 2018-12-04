@@ -29,12 +29,9 @@ public class NetworkedContextMenu : NetworkedMenu
         prevMenu.activeUIMenu = false;
         if (prevMenu is NetworkedGridMenu)
         {
-            IGameMan gameMan = prevMenu.GetComponent<NetworkedGridMenu>().gameMan;
-            if (gameMan is MultiMan)
-            {
-                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
-                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
-            }
+            MultiMan gameMan = prevMenu.GetComponent<NetworkedGridMenu>().gameMan;
+            if (gameMan.player1) gameMan.player1.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
+            if (gameMan.player2) gameMan.player2.GetComponent<NetworkedPlayer>().SetActiveMenu(this);
         }
         activeUIMenu = true;
         menuCanvas.SetActive(true);

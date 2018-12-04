@@ -17,7 +17,7 @@ public class NetworkedGridMenu : NetworkedMenu
     public GameObject activeGO;
 
     [Header("GameManager")]
-    public IGameMan gameMan;
+    public MultiMan gameMan;
     public GameObject selectedPiece;
 
     [Header("Other Miscellaneous")]
