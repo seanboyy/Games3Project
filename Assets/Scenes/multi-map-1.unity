@@ -6255,18 +6255,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 726211196}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108008729}
-        m_MethodName: PlaceUnit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: puller
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &726211196
@@ -10099,6 +10088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 1509582839}
   activeUIMenu: 0
+  prevMenu: {fileID: 0}
   menuCanvas: {fileID: 728810564}
 --- !u!114 &1108008729
 MonoBehaviour:
@@ -10113,6 +10103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 744416554}
   activeUIMenu: 0
+  prevMenu: {fileID: 0}
   activeGO: {fileID: 0}
   gameMan: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -13376,18 +13367,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1481248843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108008729}
-        m_MethodName: PlaceUnit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: twister
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1481248843
@@ -13568,18 +13548,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1509582843}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108008729}
-        m_MethodName: PlaceUnit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: unit
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1509582843
@@ -17357,18 +17326,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1941062094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108008729}
-        m_MethodName: PlaceUnit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: portalPlacer
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1941062094
@@ -18895,18 +18853,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2113935971}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1108008729}
-        m_MethodName: PlaceUnit
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: pusher
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2113935971

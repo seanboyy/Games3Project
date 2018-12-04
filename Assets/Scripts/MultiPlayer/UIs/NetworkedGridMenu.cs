@@ -158,30 +158,27 @@ public class NetworkedGridMenu : NetworkedMenu
 
     public void PlaceUnit(string unitType)
     {
-        if (!isServer)
+        switch (unitType)
         {
-            switch (unitType)
-            {
-                case "unit":
-                    activePlayer.CmdPlaceUnit(selectedGO, UnitType.Unit);
-                    break;
-                case "pusher":
-                    activePlayer.CmdPlaceUnit(selectedGO, UnitType.Pusher);
-                    break;
-                case "puller":
-                    activePlayer.CmdPlaceUnit(selectedGO, UnitType.Puller);
-                    break;
-                case "twister":
-                    activePlayer.CmdPlaceUnit(selectedGO, UnitType.Twister);
-                    break;
-                case "portalPlacer":
-                    activePlayer.CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
-                    break;
-                default:
-                    Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);
-                    break;
-            };
-        }
+            case "unit":
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Unit);
+                break;
+            case "pusher":
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Pusher);
+                break;
+            case "puller":
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Puller);
+                break;
+            case "twister":
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Twister);
+                break;
+            case "portalPlacer":
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
+                break;
+            default:
+                Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);
+                break;
+        };
         contextMenu.HideContextMenu();
         SetElementColor(selectedGO, selectedColor, defaultColor);
         activeGO = null;
