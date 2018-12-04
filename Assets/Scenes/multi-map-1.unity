@@ -5203,7 +5203,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   turnArrow: {fileID: 1578091827}
-  grid: {fileID: 0}
+  grid: {fileID: 1108008729}
 --- !u!114 &571666588
 MonoBehaviour:
   m_ObjectHideFlags: 0
