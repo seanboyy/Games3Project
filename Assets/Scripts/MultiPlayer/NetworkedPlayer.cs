@@ -48,6 +48,7 @@ public class NetworkedPlayer : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        activeMenu = FindObjectOfType<NetworkedGridMenu>();
         FindGameManager();
         unitPool = new ObjectPool(unitPrefab, false, 1, transform);
         pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
@@ -74,6 +75,11 @@ public class NetworkedPlayer : NetworkBehaviour
         if (gameManager == null)
         {
             FindGameManager();
+            return;
+        }
+        if(activeMenu == null)
+        {
+            activeMenu = FindObjectOfType<NetworkedGridMenu>();
             return;
         }
         if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
