@@ -238,7 +238,15 @@ public class NetworkedPlayer : NetworkBehaviour
     public void CmdSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu.GetComponent<NetworkedMenu>();
+        NetworkedMenu[] menus = newMenu.GetComponents<NetworkedMenu>();
+        foreach (NetworkedMenu menu in menus)
+        {
+            if (menu.activeUIMenu)
+            {
+                activeMenu = menu;
+                break;
+            }
+        }
         RpcSetActiveMenu(newMenu);
     }
 
@@ -247,7 +255,15 @@ public class NetworkedPlayer : NetworkBehaviour
     public void RpcSetActiveMenu(GameObject newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu.GetComponent<NetworkedMenu>();
+        NetworkedMenu[] menus = newMenu.GetComponents<NetworkedMenu>();
+        foreach (NetworkedMenu menu in menus)
+        {
+            if (menu.activeUIMenu)
+            {
+                activeMenu = menu;
+                break;
+            }
+        }
     }
 
     [Command]
