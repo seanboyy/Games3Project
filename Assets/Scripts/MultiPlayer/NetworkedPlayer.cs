@@ -290,9 +290,9 @@ public class NetworkedPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcMovePiece(GameObject location, GameObject piece)
     {
-        NetworkedUnit unit;
-        NetworkedTrap trap;
-        if((unit = piece.GetComponent<NetworkedUnit>()) != null)
+        NetworkedUnit unit = piece.GetComponent<NetworkedUnit>() ?? null;
+        NetworkedTrap trap = piece.GetComponent<NetworkedTrap>() ?? null;
+        if(unit != null)
         {
             unit.SetLocation(location);
         }
@@ -300,7 +300,7 @@ public class NetworkedPlayer : NetworkBehaviour
         {
             Debug.Log("No piece here!" + piece);
         }
-        if((trap = piece.GetComponent<NetworkedTrap>()) != null)
+        if(trap != null)
         {
             trap.SetLocation(location);
         }
