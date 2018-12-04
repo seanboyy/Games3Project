@@ -49,13 +49,13 @@ public class NetworkedPlayer : NetworkBehaviour
     void Start()
     {
         activeMenu = FindObjectOfType<NetworkedGridMenu>();
-        CmdFindGameManager();
+        if(isLocalPlayer) CmdFindGameManager();
         unitPool = new ObjectPool(unitPrefab, false, 1, transform);
         pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
         pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
         twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
-        if (gameManager == null)
+        if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
     }
 

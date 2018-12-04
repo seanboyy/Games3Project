@@ -48,6 +48,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player2 = FindObjectsOfType<NetworkedPlayer>()[1].gameObject;
             player2.GetComponent<NetworkedPlayer>().identity = PlayerEnum.Player2;
             player2.name = "Player2";
+            player1.GetComponent<NetworkedPlayer>().gameManager = this;
+            player2.GetComponent<NetworkedPlayer>().gameManager = this;
             player1.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
             player2.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
             if (player1GoesFirst)
@@ -69,7 +71,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
     void Update()
     {
         if (!player1 || !player2) RegisterPlayers();
-        Debug.Log(netId);
     }
 
     public void EndGame()
