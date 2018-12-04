@@ -2242,7 +2242,7 @@ MonoBehaviour:
   owner: 1
   portal: 0
   portalOwner: 2
-  goal: 0
+  goal: 1
   northWall: 0
   eastWall: 0
   southWall: 0
@@ -10437,7 +10437,7 @@ MonoBehaviour:
   owner: 1
   portal: 0
   portalOwner: 2
-  goal: 0
+  goal: 1
   northWall: 0
   eastWall: 0
   southWall: 0
