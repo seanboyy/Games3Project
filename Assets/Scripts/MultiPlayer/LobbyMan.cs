@@ -76,12 +76,6 @@ public class LobbyMan : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
             HandleCrossButton();
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            HandleCircleButton();
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            HandleTriangleButton();
-        if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            HandleSquareButton();
     }
 
     public void LoadMap(int mapNum)
@@ -148,20 +142,5 @@ public class LobbyMan : NetworkBehaviour
     public void HandleCrossButton()
     {
         selectedGO.GetComponent<Button>().onClick.Invoke();
-    }
-
-    public void HandleTriangleButton()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleCircleButton()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void HandleSquareButton()
-    {
-        throw new System.NotImplementedException();
     }
 }
