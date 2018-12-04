@@ -28,6 +28,11 @@ public class NetworkedUnit : NetworkedGamePiece
         unitType = UnitType.Unit;
     }
 
+    private void OnEnable()
+    {
+        owner = transform.root.gameObject;
+    }
+
     public void ShowContextMenu()
     {
         contextMenu.ShowContextMenu(grid);

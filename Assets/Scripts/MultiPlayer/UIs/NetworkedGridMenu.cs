@@ -72,13 +72,13 @@ public class NetworkedGridMenu : NetworkedMenu
             activeGO = selectedGO;
             if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
-                if (selectedGE.piece.GetComponent<NetworkedUnit>().owner != activePlayer)
+                if (selectedGE.piece.GetComponent<NetworkedUnit>().owner.GetComponent<NetworkedPlayer>() != activePlayer)
                 {
                     activeGO = null;
                     return;
                 }
                 selectedPiece = selectedGE.piece;
-                if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().ShowContextMenu();
+                selectedPiece.GetComponent<NetworkedUnit>().ShowContextMenu();
                 canPressButtons = false;
             }
             else if (!(selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) &&
