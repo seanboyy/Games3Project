@@ -50,6 +50,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player2.name = "Player2";
             player1.GetComponent<NetworkedPlayer>().gameManager = this;
             player2.GetComponent<NetworkedPlayer>().gameManager = this;
+            player1.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
+            player1.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
+            player2.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
+            player2.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
             player1.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
             player2.GetComponent<NetworkedPlayer>().gameManager.player1GoesFirst = player1GoesFirst;
             if (player1GoesFirst)
