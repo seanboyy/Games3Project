@@ -67,10 +67,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player1.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
             player2.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
         }
-        player1.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
-        player1.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
-        player2.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
-        player2.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
+        if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
+        if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
+        if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
+        if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
     }
 
     // Update is called once per frame

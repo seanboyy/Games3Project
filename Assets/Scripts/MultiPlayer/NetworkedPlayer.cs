@@ -49,12 +49,43 @@ public class NetworkedPlayer : NetworkBehaviour
     void Start()
     {
         activeMenu = FindObjectOfType<NetworkedGridMenu>();
-        if(isLocalPlayer) CmdFindGameManager();
-        unitPool = new ObjectPool(unitPrefab, false, 1, transform);
-        pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
-        pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
-        twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
-        portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
+        if (isLocalPlayer) CmdFindGameManager();
+        if (isServer)
+        { 
+            unitPool = new ObjectPool(unitPrefab, false, 1, transform);
+            GameObject unit = unitPool.GetObject();
+            NetworkServer.Spawn(unit);
+            unitPool.ReturnObject(unit);
+
+            pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
+            GameObject pusher = pusherPool.GetObject();
+            NetworkServer.Spawn(pusher);
+            pusherPool.ReturnObject(pusher);
+
+            pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
+            GameObject puller = pullerPool.GetObject();
+            NetworkServer.Spawn(puller);
+            pullerPool.ReturnObject(puller);
+
+            twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
+            GameObject twister = twisterPool.GetObject();
+            NetworkServer.Spawn(twister);
+            twisterPool.ReturnObject(twister);
+
+            portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
+            GameObject portalPlacer = portalPlacerPool.GetObject();
+            NetworkServer.Spawn(portalPlacer);
+            portalPlacerPool.ReturnObject(portalPlacer);
+        }
+        if (isLocalPlayer)
+        {
+            unitPool = new ObjectPool(unitPrefab, false, 0, transform);
+            pusherPool = new ObjectPool(pusherPrefab, false, 0, transform);
+            pullerPool = new ObjectPool(pullerPrefab, false, 0, transform);
+            twisterPool = new ObjectPool(twisterPrefab, false, 0, transform);
+            portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 0, transform);
+
+        }
         if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
     }

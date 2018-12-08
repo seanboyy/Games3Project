@@ -26,6 +26,8 @@ public class NetworkedUnit : NetworkedGamePiece
         grid = FindObjectOfType<NetworkedGridMenu>();
         //FindGridElement();
         unitType = UnitType.Unit;
+        owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
+        Debug.Log(name + netId);
     }
 
     private void OnEnable()
