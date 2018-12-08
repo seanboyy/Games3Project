@@ -225,7 +225,7 @@ public class NetworkedPlayer : NetworkBehaviour
         }
     }
 
-    // This get's called by ContextMenu
+    // This gets called by ContextMenu
     public void SetActiveMenu(NetworkedMenu newMenu)
     {
         if (isLocalPlayer)
@@ -284,12 +284,32 @@ public class NetworkedPlayer : NetworkBehaviour
     [Command]
     public void CmdMovePiece(GameObject location, GameObject piece)
     {
+        NetworkedUnit unit = piece.GetComponent<NetworkedUnit>() ?? null;
+        NetworkedTrap trap = piece.GetComponent<NetworkedTrap>() ?? null;
+        if (unit != null)
+        {
+            unit.SetLocation(location);
+        }
+        else
+        {
+            Debug.Log("No piece here!" + piece);
+        }
+        if (trap != null)
+        {
+            trap.SetLocation(location);
+        }
+        else
+        {
+            Debug.Log("No trap here!" + piece);
+        }
+        Debug.Log(piece);
         RpcMovePiece(location, piece);
     }
 
     [ClientRpc]
     public void RpcMovePiece(GameObject location, GameObject piece)
     {
+        if (piece == null) return;
         NetworkedUnit unit = piece.GetComponent<NetworkedUnit>() ?? null;
         NetworkedTrap trap = piece.GetComponent<NetworkedTrap>() ?? null;
         if(unit != null)
