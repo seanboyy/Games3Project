@@ -2987,9 +2987,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: level-5
-  activePlayer: {fileID: 0}
-  activeMenu: {fileID: 1108008728}
-  prevMenu: {fileID: 0}
   limitedMoves: 1
   moveLimit: 2
   turnsUsedText: {fileID: 1474303023}
@@ -4872,6 +4869,64 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 947397599}
   m_CullTransparentMesh: 0
+--- !u!1001 &949843338
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519280166288086, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114485392156055608, guid: e807e876fedc9a844b405460000f13c7,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 571666587}
+    - target: {fileID: 114485392156055608, guid: e807e876fedc9a844b405460000f13c7,
+        type: 2}
+      propertyPath: activeMenu
+      value: 
+      objectReference: {fileID: 1108008728}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e807e876fedc9a844b405460000f13c7, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!114 &949843339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114485392156055608, guid: e807e876fedc9a844b405460000f13c7,
+    type: 2}
+  m_PrefabInternal: {fileID: 949843338}
+  m_Script: {fileID: 11500000, guid: 5caffcd8c97b6504fa2ede9ea3e46c29, type: 3}
 --- !u!224 &952744569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5917,14 +5972,15 @@ MonoBehaviour:
   selectedGO: {fileID: 744416554}
   activeUIMenu: 1
   activeGO: {fileID: 0}
+  gameMan: {fileID: 571666587}
   selectedPiece: {fileID: 0}
+  activePlayer: {fileID: 949843339}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
   OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}
   TwoWallsL: {fileID: 21300000, guid: 90c249ef19801404eaa12e3801667177, type: 3}
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
-  activePlayer: {fileID: 0}
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0

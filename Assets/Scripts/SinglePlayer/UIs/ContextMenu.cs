@@ -29,15 +29,10 @@ public class ContextMenu : Menu
         prevMenu.activeUIMenu = false;
         if (prevMenu is GridMenu)
         {
-            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
-            if (gameMan is MultiMan)
+            Player player = prevMenu.GetComponent<GridMenu>().activePlayer;
+            if (player)
             {
-                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu(this);
-                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu(this);
-            }
-            if (gameMan is SingleMan)
-            {
-                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu(this);
+                player.GetComponent<Player>().SetActiveMenu(this);
             }
         }
         activeUIMenu = true;
@@ -51,15 +46,10 @@ public class ContextMenu : Menu
         prevMenu.GetComponent<Menu>().activeUIMenu = true;
         if (prevMenu is GridMenu)
         {
-            IGameMan gameMan = prevMenu.GetComponent<GridMenu>().gameMan;
-            if (gameMan is MultiMan)
+            Player player = prevMenu.GetComponent<GridMenu>().activePlayer;
+            if (player)
             {
-                if (((MultiMan)gameMan).player1) ((MultiMan)gameMan).player1.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
-                if (((MultiMan)gameMan).player2) ((MultiMan)gameMan).player2.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
-            }
-            if (gameMan is SingleMan)
-            {
-                if (((SingleMan)gameMan).activePlayer) ((SingleMan)gameMan).activePlayer.GetComponent<Player>().SetActiveMenu((GridMenu)prevMenu);
+                player.GetComponent<Player>().SetActiveMenu(prevMenu);
             }
         }
         prevMenu = null;
@@ -72,7 +62,7 @@ public class ContextMenu : Menu
         {
             GridMenu gm = prevMenu.GetComponent<GridMenu>();
             gm.activeGO = null;
-            gm.SetElementColor(gm.selectedGO, Menu.selectedColor, Menu.defaultColor);
+            gm.SetElementColor(gm.selectedGO, selectedColor, defaultColor);
             HideContextMenu();
         }
     }
@@ -117,4 +107,13 @@ public class ContextMenu : Menu
         throw new System.NotImplementedException();
     }
 
+    public override void HandleLeftShoulderBumper()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleRightShoulderBumper()
+    {
+        throw new System.NotImplementedException();
+    }
 }

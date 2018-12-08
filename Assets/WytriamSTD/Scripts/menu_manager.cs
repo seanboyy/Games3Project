@@ -126,4 +126,14 @@ public class menu_manager : Menu
         returnButton.SetActive(false);
         instructions.SetActive(false);
     }
+
+    public override void HandleLeftShoulderBumper()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void HandleRightShoulderBumper()
+    {
+        throw new System.NotImplementedException();
+    }
 }
