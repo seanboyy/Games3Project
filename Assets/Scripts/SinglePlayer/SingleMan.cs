@@ -7,10 +7,6 @@ using UnityEngine.SceneManagement;
 public class SingleMan : MonoBehaviour, IGameMan
 {
     public string nextSceneName;
-    public GameObject activePlayer;
-
-    public Menu activeMenu;
-    public Menu prevMenu;
 
     public bool limitedMoves = false;
     public int moveLimit = 5;
@@ -28,9 +24,6 @@ public class SingleMan : MonoBehaviour, IGameMan
     {
         if (limitedMoves)
             turnsUsedText.text = "Turns Remaining: " + (moveLimit - turnsUsed);
-        if (activePlayer && !activePlayer.activeInHierarchy)
-            activePlayer.SetActive(true);
-        if (activeMenu is GridMenu) ((GridMenu)activeMenu).TurnOnChildren();
     }
 
     private void Update()
@@ -91,56 +84,5 @@ public class SingleMan : MonoBehaviour, IGameMan
             EndGame();
         }
 
-    }
-
-    public void HandleHorizontalMovement(GameObject player, float horizontal)
-    {
-        Debug.Log("Handling Horizontal Player Input");
-        activeMenu.HandleHorizontalMovement(horizontal);
-    }
-
-    public void HandleVerticalMovement(GameObject player, float vertical)
-    {
-        //Debug.Log("Handling Vertical Player Input");
-        activeMenu.HandleVerticalMovement(vertical);
-    }
-
-    public void HandleCrossButton(GameObject player)
-    {
-        activeMenu.HandleCrossButton();
-    }
-
-    public void HandleTriangleButton(GameObject player)
-    {
-        if (!nextLevel && !gameOver)
-            EndTurn();
-    }
-
-    public void HandleCircleButton(GameObject player)
-    {
-        activeMenu.HandleCircleButton();
-    }
-
-    public void HandleSquareButton(GameObject player)
-    {
-        activeMenu.HandleSquareButton();
-    }
-
-    public void SetActiveMenu(Menu newMenu)
-    {
-        prevMenu = activeMenu;
-        activeMenu = newMenu;
-    }
-
-    public void PlaceUnit(GameObject location, UnitType type)
-    {
-        if (activePlayer) activePlayer.GetComponent<Player>().PlaceUnit(location, type);
-        else Debug.Log("GameMan::PlaceUnit - Active Player not defined");
-    }
-
-    public void ReturnUnit(GameObject unit, GameObject owner)
-    {
-        if (owner.GetComponent<Player>())
-            owner.GetComponent<Player>().ReturnUnit(unit);
     }
 }

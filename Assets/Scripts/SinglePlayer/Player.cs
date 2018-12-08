@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class Player : MonoBehaviour
 {
     public PlayerEnum identity = PlayerEnum.Player1;
-    public IGameMan gameManager;
+    public SingleMan gameManager;
 
     public GameObject unitPrefab;
     public GameObject pusherPrefab;
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
+    private DoublyLinkedListNode head;
 
     // These are SyncVars so the menu stays the same across client/server
     public Menu activeMenu;
@@ -52,9 +53,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
             activeMenu.HandleCircleButton();
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            activeMenu.HandleTriangleButton();
+            gameManager.EndTurn();
         if (Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
             activeMenu.HandleSquareButton();
+        if (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.JoystickButton4))
+            activeMenu.HandleLeftShoulderBumper();
+        if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.JoystickButton5))
+            activeMenu.HandleRightShoulderBumper();
     }
 
     public void PlaceUnit(GameObject location, UnitType type)
@@ -84,6 +89,23 @@ public class Player : MonoBehaviour
             uScript.owner = gameObject;
             uScript.SetLocation(location);
             uScript.remainingMoves = 2;
+            // Set up linked list
+            if (head != null)
+            {
+                DoublyLinkedListNode current = head;
+                while (current.forward != head)
+                    current = current.forward;
+                DoublyLinkedListNode newNode = new DoublyLinkedListNode(unitGO.GetComponent<Unit>(), current, head);
+                current.forward = newNode;
+                head.prev = newNode;
+            }
+            else
+            {
+                DoublyLinkedListNode newHead = new DoublyLinkedListNode(unitGO.GetComponent<Unit>());
+                newHead.forward = newHead;
+                newHead.prev = newHead;
+                head = newHead;
+            }
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");
@@ -111,12 +133,52 @@ public class Player : MonoBehaviour
                 portalPlacerPool.ReturnObject(unit);
                 break;
         }
+        DoublyLinkedListNode curNode = FindNode(unit.GetComponent<Unit>());
+        curNode.RemoveItem();
     }
 
     // This get's called by ContextMenu
     public void SetActiveMenu(Menu newMenu)
     {
         prevMenu = activeMenu;
-        activeMenu = newMenu.GetComponent<Menu>();
+        activeMenu = newMenu;
+    }
+
+    public void RotateLeft(GridElement selectedGE)
+    {
+        DoublyLinkedListNode curNode = head;
+        if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
+        {
+            Unit selectedUnit = selectedGE.piece.GetComponent<Unit>();
+            curNode = FindNode(selectedUnit);
+        }
+
+        if (activeMenu is GridMenu)
+            ((GridMenu)activeMenu).ChangeElementSelected(curNode.forward.item.GetComponent<Unit>().gridElement.gameObject);
+    }
+
+    public void RotateRight(GridElement selectedGE)
+    {
+        DoublyLinkedListNode curNode = head;
+        if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
+        {
+            Unit selectedUnit = selectedGE.piece.GetComponent<Unit>();
+            curNode = FindNode(selectedUnit);
+        }
+
+        if (activeMenu is GridMenu)
+            ((GridMenu)activeMenu).ChangeElementSelected(curNode.prev.item.GetComponent<Unit>().gridElement.gameObject);
+    }
+
+    private DoublyLinkedListNode FindNode(Unit unit)
+    {
+        DoublyLinkedListNode current = head;
+        do
+        {
+            if (current.item == unit)
+                break;
+            current = current.forward;
+        } while (current.forward != head);
+        return current;
     }
 }

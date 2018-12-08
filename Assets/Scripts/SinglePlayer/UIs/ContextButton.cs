@@ -13,7 +13,7 @@ public class ContextButton : MonoBehaviour
 
     public bool locked = false;
     // TO-DO - MAKE MENU HANDLE THINGS BEING LOCKED
-
+    
     private void Start()
     {
         gridMenu = FindObjectOfType<GridMenu>();
@@ -36,17 +36,19 @@ public class ContextButton : MonoBehaviour
                 gameObject.GetComponent<Button>().onClick.AddListener(delegate { gridMenu.PlaceUnit("portalPlacer"); });
                 break;
             case ButtonTypeEnum.Move:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { transform.root.gameObject.GetComponent<Unit>().ActivateMoveButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Unit>().ActivateMoveButton(); });
                 break;
             case ButtonTypeEnum.Push:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { transform.root.gameObject.GetComponent<Pusher>().ActivatePushButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Pusher>().ActivatePushButton(); });
                 break;
             case ButtonTypeEnum.Pull:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { transform.root.gameObject.GetComponent<Puller>().ActivatePullButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Puller>().ActivatePullButton(); });
                 break;
             case ButtonTypeEnum.Twist:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { transform.root.gameObject.GetComponent<Twister>().ActivateTwistButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Twister>().ActivateTwistButton(); });
                 break;
+
         }
     }
+    
 }

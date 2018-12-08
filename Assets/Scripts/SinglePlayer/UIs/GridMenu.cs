@@ -17,8 +17,9 @@ public class GridMenu  : Menu
     public GameObject activeGO;
 
     [Header("GameManager")]
-    public IGameMan gameMan;
+    public SingleMan gameMan;
     public GameObject selectedPiece;
+    public Player activePlayer;
 
     [Header("Other Miscellaneous")]
     public Sprite NoWalls;
@@ -28,16 +29,12 @@ public class GridMenu  : Menu
     public Sprite ThreeWalls;
     public Sprite FourWalls;
 
-    public Player activePlayer;
-
     private ContextMenu contextMenu;
     private bool canPressButtons = false;
 
     // Use this for initialization
     protected override void Start ()
     {
-        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
-        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
         base.Start();
         contextMenu = GetComponent<ContextMenu>();
 	}
@@ -45,21 +42,10 @@ public class GridMenu  : Menu
 	// Update is called once per frame
 	void Update ()
     {
-        if(gameMan == null)
-        {
-            FindGameManager();
-            return;
-        }
         if (activeUIMenu && !canPressButtons)
             canPressButtons = true;
     }
 
-    void FindGameManager()
-    {
-        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
-        if (FindObjectOfType<SingleMan>()) gameMan = FindObjectOfType<SingleMan>();
-
-    }
 
     void ActivateElement()
     {
@@ -75,18 +61,11 @@ public class GridMenu  : Menu
             activeGO = selectedGO;
             if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
             {
-                if (selectedGE.piece.GetComponent<Unit>().owner != activePlayer)
-                {
-                    activeGO = null;
-                    return;
-                }
                 selectedPiece = selectedGE.piece;
                 if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
                 canPressButtons = false;
             }
-            else if (!(selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Trap) && 
-                    ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<Player>().identity) || 
-                     (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<Player>().identity)))
+            else if (!(selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Trap) &&  selectedGE.spawnable || selectedGE.portal) 
             {
                 // Display a ContextMenu with all the pieces that can be spawned
                 contextMenu.ShowContextMenu(this);
@@ -132,6 +111,11 @@ public class GridMenu  : Menu
         if (!selectedPiece) return;
         if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().HideAction();
         selectedPiece = null;
+    }
+
+    public void ChangeElementSelected(GameObject newElement)
+    {
+        SelectElement(newElement);
     }
 
     protected override void SelectElement(GameObject newElement)
@@ -230,5 +214,15 @@ public class GridMenu  : Menu
     public override void HandleSquareButton()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void HandleLeftShoulderBumper()
+    {
+        activePlayer.RotateLeft(selectedGO.GetComponent<GridElement>());
+    }
+
+    public override void HandleRightShoulderBumper()
+    {
+        activePlayer.RotateRight(selectedGO.GetComponent<GridElement>());
     }
 }
