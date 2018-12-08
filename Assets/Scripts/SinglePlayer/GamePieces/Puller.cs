@@ -10,12 +10,12 @@ public class Puller : Unit
         unitType = UnitType.Puller;
     }
 
-    public void ActivatePullButton()
+    public override void DisplayActionGrid()
     {
         if (canAct)
         {
             action = "pull";
-            contextMenu.HideContextMenu();
+            //contextMenu.HideContextMenu();
             gridElement.DisplayPullerInfluence(2, true);
             canAct = false;
         }

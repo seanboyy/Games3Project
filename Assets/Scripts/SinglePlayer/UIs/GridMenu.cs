@@ -62,8 +62,9 @@ public class GridMenu  : Menu
             if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 selectedPiece = selectedGE.piece;
-                if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
-                canPressButtons = false;
+                //if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().ShowContextMenu();
+                //canPressButtons = false;
+                if(selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().DisplayMoveGrid();
             }
             else if (!(selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Trap) &&  selectedGE.spawnable || selectedGE.portal) 
             {
@@ -97,6 +98,23 @@ public class GridMenu  : Menu
                     activeGO = null;
                     selectedPiece = null;
                 }
+        }
+    }
+
+    public void ActivateElementAction()
+    {
+
+        if (activeGO == null)
+        {
+            GridElement selectedGE = selectedGO.GetComponent<GridElement>();
+            activeGO = selectedGO;
+            if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
+            {
+                selectedPiece = selectedGE.piece;
+                if (selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().DisplayActionGrid();
+            }
+            else
+                activeGO = null;
         }
     }
 
@@ -213,7 +231,7 @@ public class GridMenu  : Menu
 
     public override void HandleSquareButton()
     {
-        throw new System.NotImplementedException();
+        ActivateElementAction();
     }
 
     public override void HandleLeftShoulderBumper()

@@ -36,16 +36,16 @@ public class ContextButton : MonoBehaviour
                 gameObject.GetComponent<Button>().onClick.AddListener(delegate { gridMenu.PlaceUnit("portalPlacer"); });
                 break;
             case ButtonTypeEnum.Move:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Unit>().ActivateMoveButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Unit>().DisplayMoveGrid(); });
                 break;
             case ButtonTypeEnum.Push:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Pusher>().ActivatePushButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Pusher>().DisplayActionGrid(); });
                 break;
             case ButtonTypeEnum.Pull:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Puller>().ActivatePullButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Puller>().DisplayActionGrid(); });
                 break;
             case ButtonTypeEnum.Twist:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Twister>().ActivateTwistButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<Twister>().DisplayActionGrid(); });
                 break;
 
         }

@@ -12,11 +12,11 @@ public class Twister : Unit
         unitType = UnitType.Twister;
     }
 
-    public void ActivateTwistButton()
+    public override void DisplayActionGrid()
     {
         if (canAct)
         {
-            contextMenu.HideContextMenu();
+            //contextMenu.HideContextMenu();
             TwistBoard(gridElement.gameObject);
             grid.activeGO = null;
             grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);

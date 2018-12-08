@@ -10,12 +10,12 @@ public class Pusher : Unit
         unitType = UnitType.Pusher;
     }
 
-    public void ActivatePushButton()
+    public override void DisplayActionGrid()
     {
         if (canAct)
         {
             action = "push";
-            contextMenu.HideContextMenu();
+            //contextMenu.HideContextMenu();
             gridElement.DisplayPusherInfluence(true);
             canAct = false;
         }

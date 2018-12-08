@@ -38,17 +38,20 @@ public class Unit : GamePiece
         contextMenu.HideContextMenu();
     }
 
-    public void ActivateMoveButton()
+    public void DisplayMoveGrid()
     {
         // set the action to "move"
         action = "move";
         // Close the ContextMenu
-        contextMenu.HideContextMenu();
+        //contextMenu.HideContextMenu();
         // Show the Movement Grid
         gridElement.DisplayMoveTiles(remainingMoves, true);
         grid.SetElementColor(gridElement.gameObject, GridMenu.activeColor);
         grid.activeGO = gridElement.gameObject;
     }
+
+    // This function should do nothing in the generic Unit. It is implemented on the Puller, Pusher, and Twister
+    public virtual void DisplayActionGrid() {}
 
     public virtual void PerformAction(GameObject actionLocGO)
     {
