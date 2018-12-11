@@ -40,16 +40,16 @@ public class NetworkedContextButton : NetworkBehaviour
                 gameObject.GetComponent<Button>().onClick.AddListener(delegate { gridMenu.PlaceUnit("portalPlacer"); });
                 break;
             case ButtonTypeEnum.Move:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedUnit>().ActivateMoveButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedUnit>().DisplayMoveGrid(); });
                 break;
             case ButtonTypeEnum.Push:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedPusher>().ActivatePushButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedPusher>().DisplayActionGrid(); });
                 break;
             case ButtonTypeEnum.Pull:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedPuller>().ActivatePullButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedPuller>().DisplayActionGrid(); });
                 break;
             case ButtonTypeEnum.Twist:
-                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedTwister>().ActivateTwistButton(); });
+                gameObject.GetComponent<Button>().onClick.AddListener(delegate { GetComponentInParent<NetworkedTwister>().DisplayActionGrid(); });
                 break;
         }
         alreadyDone = true;

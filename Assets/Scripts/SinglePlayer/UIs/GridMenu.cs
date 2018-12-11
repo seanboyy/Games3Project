@@ -118,12 +118,6 @@ public class GridMenu  : Menu
         }
     }
 
-    public void TurnOnChildren()
-    {
-        foreach (GridElement child in GetComponentsInChildren<GridElement>())
-            child.gameObject.SetActive(true);
-    }
-
     void Cancel()
     {
         if (!selectedPiece) return;

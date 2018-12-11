@@ -12,11 +12,11 @@ public class NetworkedTwister : NetworkedUnit
         unitType = UnitType.Twister;
     }
 
-    public void ActivateTwistButton()
+    public override void DisplayActionGrid()
     {
         if (canAct)
         {
-            contextMenu.HideContextMenu();
+            //contextMenu.HideContextMenu();
             owner.GetComponent<NetworkedPlayer>().CmdHandleTwist(gameObject, gridElement.gameObject);
             grid.activeGO = null;
             grid.SetElementColor(grid.selectedGO, NetworkedMenu.selectedColor, NetworkedMenu.defaultColor);

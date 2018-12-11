@@ -93,7 +93,7 @@ public class ContextMenu : Menu
 
     public override void HandleTriangleButton()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void HandleCircleButton()
@@ -104,16 +104,16 @@ public class ContextMenu : Menu
 
     public override void HandleSquareButton()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void HandleLeftShoulderBumper()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public override void HandleRightShoulderBumper()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }

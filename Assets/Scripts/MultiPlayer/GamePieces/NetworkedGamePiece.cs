@@ -7,8 +7,6 @@ public class NetworkedGamePiece : NetworkBehaviour
 {
     public GameObject visualObject;
 
-    public GameObject canvas;
-
     public NetworkedGridElement gridElement; // what grid element this piece is on
 
     protected string pieceName;

@@ -9,7 +9,6 @@ public class NetworkedUnit : NetworkedGamePiece
     public int remainingMoves = 2;
 
     public NetworkedGridMenu grid;
-    protected NetworkedContextMenu contextMenu;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
     public GameObject owner;
@@ -22,7 +21,6 @@ public class NetworkedUnit : NetworkedGamePiece
     // Use this for initialization
     protected virtual void Start()
     {
-        contextMenu = GetComponent<NetworkedContextMenu>();
         grid = FindObjectOfType<NetworkedGridMenu>();
         //FindGridElement();
         unitType = UnitType.Unit;
@@ -30,27 +28,20 @@ public class NetworkedUnit : NetworkedGamePiece
         Debug.Log(name + netId);
     }
 
+    // This function should do nothing in the generic Unit. It is implemented on the Puller, Pusher, and Twister
+    public virtual void DisplayActionGrid() { }
+
     private void OnEnable()
     {
         owner = transform.root.gameObject;
     }
 
-    public void ShowContextMenu()
-    {
-        contextMenu.ShowContextMenu(grid);
-    }
-
-    public void HideContextMenu()
-    {
-        contextMenu.HideContextMenu();
-    }
-
-    public void ActivateMoveButton()
+    public void DisplayMoveGrid()
     {
         // set the action to "move"
         action = "move";
         // Close the ContextMenu
-        contextMenu.HideContextMenu();
+        //contextMenu.HideContextMenu();
         // Show the Movement Grid
         gridElement.DisplayMoveTiles(remainingMoves, true);
         grid.SetElementColor(gridElement.gameObject, NetworkedGridMenu.activeColor);

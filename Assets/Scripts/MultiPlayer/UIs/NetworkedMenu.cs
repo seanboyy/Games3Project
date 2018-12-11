@@ -54,4 +54,9 @@ public abstract class NetworkedMenu : NetworkBehaviour
 
     // Handle the square button being pressed
     public abstract void HandleSquareButton();
+    
+    public abstract void HandleLeftShoulderBumper();
+
+    public abstract void HandleRightShoulderBumper();
+
 }

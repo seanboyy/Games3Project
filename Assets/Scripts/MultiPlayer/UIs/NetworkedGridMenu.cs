@@ -36,7 +36,7 @@ public class NetworkedGridMenu : NetworkedMenu
     // Use this for initialization
     protected override void Start()
     {
-        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
+        FindGameManager();
         base.Start();
         contextMenu = GetComponent<NetworkedContextMenu>();
     }
@@ -55,7 +55,7 @@ public class NetworkedGridMenu : NetworkedMenu
 
     void FindGameManager()
     {
-        if (FindObjectOfType<MultiMan>()) gameMan = FindObjectOfType<MultiMan>();
+        gameMan = FindObjectOfType<MultiMan>();
     }
 
     void ActivateElement()
@@ -78,8 +78,8 @@ public class NetworkedGridMenu : NetworkedMenu
                     return;
                 }
                 selectedPiece = selectedGE.piece;
-                selectedPiece.GetComponent<NetworkedUnit>().ShowContextMenu();
-                canPressButtons = false;
+                selectedPiece.GetComponent<NetworkedUnit>().DisplayMoveGrid();
+                //canPressButtons = false;
             }
             else if (!(selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap) &&
                     ((selectedGE.spawnable && selectedGE.owner == activePlayer.GetComponent<NetworkedPlayer>().identity) ||
@@ -119,11 +119,33 @@ public class NetworkedGridMenu : NetworkedMenu
         }
     }
 
+    public void ActivateElementAction()
+    {
+
+        if (activeGO == null)
+        {
+            NetworkedGridElement selectedGE = selectedGO.GetComponent<NetworkedGridElement>();
+            activeGO = selectedGO;
+            if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
+            {
+                selectedPiece = selectedGE.piece;
+                if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().DisplayActionGrid();
+            }
+            else
+                activeGO = null;
+        }
+    }
+
     void Cancel()
     {
         if (!selectedPiece) return;
         if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().HideAction();
         selectedPiece = null;
+    }
+
+    public void ChangeElementSelected(GameObject newElement)
+    {
+        SelectElement(newElement);
     }
 
     protected override void SelectElement(GameObject newElement)
@@ -222,5 +244,15 @@ public class NetworkedGridMenu : NetworkedMenu
     public override void HandleSquareButton()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void HandleLeftShoulderBumper()
+    {
+        activePlayer.RotateLeft(selectedGO.GetComponent<NetworkedGridElement>());
+    }
+
+    public override void HandleRightShoulderBumper()
+    {
+        activePlayer.RotateRight(selectedGO.GetComponent<NetworkedGridElement>());
     }
 }

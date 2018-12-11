@@ -35,8 +35,7 @@ public class NetworkedPlayer : NetworkBehaviour
 
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
-
-    private bool multiplayer = false;
+    private DoublyLinkedListNode head;
 
     // These are SyncVars so the menu stays the same across client/server
     public NetworkedMenu activeMenu;
@@ -105,19 +104,15 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void FindGameManager()
     {
-        if (FindObjectOfType<MultiMan>())
-        {
-            gameManager = FindObjectOfType<MultiMan>();
-            gameManager.RegisterPlayers();
-            activeMenu.activeUIMenu = true;
-            multiplayer = true;
-        }
+        gameManager = FindObjectOfType<MultiMan>();
+        if (gameManager) gameManager.RegisterPlayers();
+        activeMenu.activeUIMenu = true;   
     }
 
     void Update()
     {
         Debug.Log(gameObject.name + ": " + netId);
-        if (multiplayer && !isLocalPlayer) return;
+        if (!isLocalPlayer) return;
         if (gameManager == null && isLocalPlayer)
         {
             CmdFindGameManager();
@@ -215,6 +210,24 @@ public class NetworkedPlayer : NetworkBehaviour
             uScript.owner = gameObject;
             uScript.SetLocation(location);
             uScript.remainingMoves = 2;
+            // Set up linked list
+            if (head != null)
+            {
+                DoublyLinkedListNode current = head;
+                while (current.forward != head)
+                    current = current.forward;
+                DoublyLinkedListNode newNode = new DoublyLinkedListNode(unitGO.GetComponent<Unit>(), current, head);
+                current.forward = newNode;
+                head.prev = newNode;
+            }
+            else
+            {
+                DoublyLinkedListNode newHead = new DoublyLinkedListNode(unitGO.GetComponent<Unit>());
+                newHead.forward = newHead;
+                newHead.prev = newHead;
+                head = newHead;
+            }
+
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");
@@ -371,5 +384,43 @@ public class NetworkedPlayer : NetworkBehaviour
     public void RpcHandleTwist(GameObject twister, GameObject location)
     {
         twister.GetComponent<NetworkedTwister>().TwistBoard(location);
+    }
+
+    public void RotateLeft(NetworkedGridElement selectedGE)
+    {
+        DoublyLinkedListNode curNode = head;
+        if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
+        {
+            NetworkedUnit selectedUnit = selectedGE.piece.GetComponent<NetworkedUnit>();
+            curNode = FindNode(selectedUnit);
+        }
+
+        if (activeMenu is NetworkedGridMenu)
+            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.forward.item.GetComponent<Unit>().gridElement.gameObject);
+    }
+
+    public void RotateRight(NetworkedGridElement selectedGE)
+    {
+        DoublyLinkedListNode curNode = head;
+        if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
+        {
+            NetworkedUnit selectedUnit = selectedGE.piece.GetComponent<NetworkedUnit>();
+            curNode = FindNode(selectedUnit);
+        }
+
+        if (activeMenu is NetworkedGridMenu)
+            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.prev.item.GetComponent<Unit>().gridElement.gameObject);
+    }
+
+    private DoublyLinkedListNode FindNode(NetworkedUnit unit)
+    {
+        DoublyLinkedListNode current = head;
+        do
+        {
+            if (current.item == unit)
+                break;
+            current = current.forward;
+        } while (current.forward != head);
+        return current;
     }
 }
