@@ -26,6 +26,7 @@ public class NetworkedPlayer : NetworkBehaviour
     private float prevVerAxis = 0;
     private DoublyLinkedListNode head;
 
+    private bool piecesHaveSprites = false;
     private bool canInput = true;
 
     // These are SyncVars so the menu stays the same across client/server
@@ -104,54 +105,18 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Pusher:
                 pusherPiece = _unit;
                 pusherPiece.SetActive(false);
-                switch (identity)
-                {
-                    case PlayerEnum.Player1:
-                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[0];
-                        break;
-                    case PlayerEnum.Player2:
-                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[1];
-                        break;
-                }
                 break;
             case UnitType.Puller:
                 pullerPiece = _unit;
                 pullerPiece.SetActive(false);
-                switch (identity)
-                {
-                    case PlayerEnum.Player1:
-                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[0];
-                        break;
-                    case PlayerEnum.Player2:
-                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[1];
-                        break;
-                }
                 break;
             case UnitType.Twister:
                 twisterPiece = _unit;
                 twisterPiece.SetActive(false);
-                switch (identity)
-                {
-                    case PlayerEnum.Player1:
-                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[0];
-                        break;
-                    case PlayerEnum.Player2:
-                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[1];
-                        break;
-                }
                 break;
             case UnitType.PortalPlacer:
                 portalPlacerPiece = _unit;
                 portalPlacerPiece.SetActive(false);
-                switch (identity)
-                {
-                    case PlayerEnum.Player1:
-                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[0];
-                        break;
-                    case PlayerEnum.Player2:
-                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[1];
-                        break;
-                }
                 break;
         }
 
@@ -187,6 +152,26 @@ public class NetworkedPlayer : NetworkBehaviour
         {
             CmdFindGameManager();
             return;
+        }
+        if(gameManager != null && !piecesHaveSprites)
+        {
+            switch (identity)
+            {
+                case PlayerEnum.Player1:
+                    pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[0];
+                    pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[0];
+                    twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[0];
+                    portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[0];
+                    break;
+                case PlayerEnum.Player2:
+                    pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[1];
+                    pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[1];
+                    twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[1];
+                    portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[1];
+                    break;
+            }
+            piecesHaveSprites = true;
+
         }
         if (canInput)
         {
