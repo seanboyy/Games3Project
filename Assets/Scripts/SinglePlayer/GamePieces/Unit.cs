@@ -175,6 +175,7 @@ public class Unit : GamePiece
                 // Player has moved the flag into the goal!
                 // Someone should probably contact the gamemanager
                 grid.gameMan.EndLevel();
+                grid.activeUIMenu = false;
             }
         }
     }

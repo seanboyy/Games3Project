@@ -1045,7 +1045,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hint: \n\nPushers can move pieces carrying the flag!"
+  m_Text: "Hint: \n\nPushers can move pieces carrying the flag!\n\nActivate the Pusher
+    by moving the cursor over the Pusher and pressing left-control."
 --- !u!222 &216531615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2615,7 +2616,10 @@ MonoBehaviour:
   m_Text: 'Instructions:
 
 
-    This level has a limited number of turns. Good luck!'
+    This level has a limited number of turns. Good luck!
+
+
+    Press Space on a highlisted unit to push that unit away from you.'
 --- !u!222 &529162781
 CanvasRenderer:
   m_ObjectHideFlags: 0

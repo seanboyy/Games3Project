@@ -1045,9 +1045,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Instructions:
-
-'
+  m_Text: "Instructions:\n\nActivate the Puller by selecting the Puller's space and
+    pressing left-control. \n\nPress Space on a highlisted grid element to the unit
+    on that space towrds you.\n"
 --- !u!222 &216531615
 CanvasRenderer:
   m_ObjectHideFlags: 0

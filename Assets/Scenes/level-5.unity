@@ -1045,10 +1045,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Instructions:
-
-
-    Traps will kill your pieces. They can be pushed and pulled. '
+  m_Text: "Instructions:\n\nTraps will kill your pieces. They can be pushed and pulled.
+    \n\nHint: \n\nPortal Placers can't activate their special ability at any time,
+    so pressing left-control won't do anything."
 --- !u!222 &216531615
 CanvasRenderer:
   m_ObjectHideFlags: 0

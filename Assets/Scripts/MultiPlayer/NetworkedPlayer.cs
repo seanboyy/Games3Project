@@ -60,33 +60,48 @@ public class NetworkedPlayer : NetworkBehaviour
         switch (type)
         {
             case UnitType.Unit:
-                _unit = Instantiate(unitPrefab, transform);
-                NetworkServer.Spawn(_unit);
-                unitPiece = _unit;
+                if (!unitPiece)
+                {
+                    unitPiece = Instantiate(unitPrefab, transform);
+                    NetworkServer.Spawn(unitPiece);
+                }
+                _unit = unitPiece;
                 unitPiece.SetActive(false);
                 break;
             case UnitType.Pusher:
-                _unit = Instantiate(pusherPrefab, transform);
-                NetworkServer.Spawn(_unit);
-                pusherPiece = _unit;
+                if (!pusherPiece)
+                {
+                    pusherPiece = Instantiate(pusherPrefab, transform);
+                    NetworkServer.Spawn(pusherPiece);
+                }
+                _unit = pusherPiece;
                 pusherPiece.SetActive(false);
                 break;
             case UnitType.Puller:
-                _unit = Instantiate(pullerPrefab, transform);
-                NetworkServer.Spawn(_unit);
-                pullerPiece = _unit;
+                if (!pullerPiece)
+                {
+                    pullerPiece = Instantiate(pullerPrefab, transform);
+                    NetworkServer.Spawn(pullerPiece);
+                }
+                _unit = pullerPiece;
                 pullerPiece.SetActive(false);
                 break;
             case UnitType.Twister:
-                _unit = Instantiate(twisterPrefab, transform);
-                NetworkServer.Spawn(_unit);
-                twisterPiece = _unit;
+                if (!twisterPiece)
+                {
+                    twisterPiece = Instantiate(twisterPrefab, transform);
+                    NetworkServer.Spawn(twisterPiece);
+                }
+                _unit = twisterPiece;
                 twisterPiece.SetActive(false);
                 break;
             case UnitType.PortalPlacer:
-                _unit = Instantiate(portalPlacerPrefab, transform);
-                NetworkServer.Spawn(_unit);
-                portalPlacerPiece = _unit;
+                if (!portalPlacerPiece)
+                {
+                    portalPlacerPiece = Instantiate(portalPlacerPrefab, transform);
+                    NetworkServer.Spawn(portalPlacerPiece);
+                }
+                _unit = portalPlacerPiece;
                 portalPlacerPiece.SetActive(false);
                 break;
         }

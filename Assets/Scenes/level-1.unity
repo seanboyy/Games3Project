@@ -2686,10 +2686,10 @@ MonoBehaviour:
     Press Space on Green Tiles to spawn a piece
 
 
-    Press Space on pieces to move them or use their actions
+    Press Space on pieces to show where they can move.
 
 
-    Press Space on a highlighted tile to move or perform an action there'
+    Press Space on a highlighted tile to move there'
 --- !u!222 &529162781
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5989,13 +5989,13 @@ MonoBehaviour:
   activeGO: {fileID: 0}
   gameMan: {fileID: 571666587}
   selectedPiece: {fileID: 0}
+  activePlayer: {fileID: 235673451}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
   OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}
   TwoWallsL: {fileID: 21300000, guid: 90c249ef19801404eaa12e3801667177, type: 3}
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
-  activePlayer: {fileID: 235673451}
 --- !u!114 &1108008729
 MonoBehaviour:
   m_ObjectHideFlags: 0

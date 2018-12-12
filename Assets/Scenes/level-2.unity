@@ -668,7 +668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &94792109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -722,10 +722,7 @@ MonoBehaviour:
   m_Text: 'Instructions:
 
 
-    Press Enter to end the turn (reset all movement points and actions)
-
-
-    Move the Flag to any of the purple squares to advance to the next level'
+    Activate the Twister by selecting it and pressing left-control.'
 --- !u!222 &94792111
 CanvasRenderer:
   m_ObjectHideFlags: 0
