@@ -5198,6 +5198,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ad5d03f8c333f4ab52c192a73d860d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pullerSprites:
+  - {fileID: 21300000, guid: 2f3378384d365f24ea91d1fa29f67b95, type: 3}
+  - {fileID: 21300000, guid: 2f3378384d365f24ea91d1fa29f67b95, type: 3}
+  pusherSprites:
+  - {fileID: 21300000, guid: 32b70a76f36834344a56a49c403a8bed, type: 3}
+  - {fileID: 21300002, guid: 32b70a76f36834344a56a49c403a8bed, type: 3}
+  twisterSprites:
+  - {fileID: 21300000, guid: 3f4f4a02043edef46a838ffe196c1ec8, type: 3}
+  - {fileID: 21300002, guid: 3f4f4a02043edef46a838ffe196c1ec8, type: 3}
+  portalPlacerSprites:
+  - {fileID: 21300000, guid: eedc80bdadd112d41b878bd89310ad0a, type: 3}
+  - {fileID: 21300002, guid: eedc80bdadd112d41b878bd89310ad0a, type: 3}
   nextSceneName: menu
   activePlayer: {fileID: 0}
   player1: {fileID: 0}

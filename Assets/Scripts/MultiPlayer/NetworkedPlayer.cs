@@ -22,12 +22,6 @@ public class NetworkedPlayer : NetworkBehaviour
     public GameObject twisterPiece;
     public GameObject portalPlacerPiece;
 
-    private ObjectPool unitPool;
-    private ObjectPool pusherPool;
-    private ObjectPool pullerPool;
-    private ObjectPool twisterPool;
-    private ObjectPool portalPlacerPool;
-
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
     private DoublyLinkedListNode head;
@@ -110,18 +104,54 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Pusher:
                 pusherPiece = _unit;
                 pusherPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[1];
+                        break;
+                }
                 break;
             case UnitType.Puller:
                 pullerPiece = _unit;
                 pullerPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[1];
+                        break;
+                }
                 break;
             case UnitType.Twister:
                 twisterPiece = _unit;
                 twisterPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[1];
+                        break;
+                }
                 break;
             case UnitType.PortalPlacer:
                 portalPlacerPiece = _unit;
                 portalPlacerPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[1];
+                        break;
+                }
                 break;
         }
 

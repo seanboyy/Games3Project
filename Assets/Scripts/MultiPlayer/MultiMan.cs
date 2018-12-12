@@ -7,7 +7,10 @@ using UnityEngine.Networking;
 
 public class MultiMan : NetworkBehaviour, IGameMan
 {
-
+    public Sprite[] pullerSprites;
+    public Sprite[] pusherSprites;
+    public Sprite[] twisterSprites;
+    public Sprite[] portalPlacerSprites;
     public string nextSceneName;
     [SyncVar]
     public GameObject activePlayer;
