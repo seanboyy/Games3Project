@@ -7,6 +7,7 @@ public class DoublyLinkedListNode
     public DoublyLinkedListNode prev;
     public DoublyLinkedListNode forward;
     public Unit item;
+    public NetworkedUnit _item;
 
     public DoublyLinkedListNode(Unit item, DoublyLinkedListNode prev = null, DoublyLinkedListNode forward = null)
     {
@@ -14,6 +15,15 @@ public class DoublyLinkedListNode
         this.prev = prev;
         this.forward = forward;
     }
+
+    public DoublyLinkedListNode(NetworkedUnit item, DoublyLinkedListNode prev = null, DoublyLinkedListNode forward = null)
+    {
+        _item = item;
+        this.prev = prev;
+        this.forward = forward;
+    }
+
+
 
     public void RemoveItem()
     {

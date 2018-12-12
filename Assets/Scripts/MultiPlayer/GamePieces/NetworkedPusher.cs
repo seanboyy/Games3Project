@@ -56,7 +56,7 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.northWall && lastGridElement.northNeighbor)
                     {
-                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.northNeighbor, lastGridElement.piece);
+                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.northNeighbor, lastGridElement.gameObject);
 
                     }
                     lastGridElement = lastGridElement.southNeighbor.GetComponent<NetworkedGridElement>();
@@ -69,7 +69,7 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.eastWall && lastGridElement.eastNeighbor)
                     {
-                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.eastNeighbor, lastGridElement.piece);
+                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.eastNeighbor, lastGridElement.gameObject);
                     }
                     lastGridElement = lastGridElement.westNeighbor.GetComponent<NetworkedGridElement>();
                 }
@@ -81,7 +81,7 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.southWall && lastGridElement.southNeighbor)
                     {
-                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.southNeighbor, lastGridElement.piece);
+                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.southNeighbor, lastGridElement.gameObject);
                     }
                     lastGridElement = lastGridElement.northNeighbor.GetComponent<NetworkedGridElement>();
                 }
@@ -93,7 +93,7 @@ public class NetworkedPusher : NetworkedUnit
                 {
                     if (!lastGridElement.westWall && lastGridElement.westNeighbor)
                     {
-                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.westNeighbor, lastGridElement.piece);
+                        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(lastGridElement.westNeighbor, lastGridElement.gameObject);
                     }
                     lastGridElement = lastGridElement.eastNeighbor.GetComponent<NetworkedGridElement>();
                 }

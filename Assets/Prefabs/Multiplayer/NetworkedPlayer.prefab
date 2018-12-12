@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   identity: 0
+  gameManager: {fileID: 0}
   unitPrefab: {fileID: 1396435369528746, guid: 541a3da221ecdab4ab7e2e1221d6b022, type: 2}
   pusherPrefab: {fileID: 1591093131526424, guid: bdfb0bd3e74b4514898a02aa92d91b97,
     type: 2}
@@ -62,6 +63,11 @@ MonoBehaviour:
     type: 2}
   portalPlacerPrefab: {fileID: 1849988873937572, guid: 7149695a37aaa6140abe22c91b9302c9,
     type: 2}
+  unitPiece: {fileID: 0}
+  pusherPiece: {fileID: 0}
+  pullerPiece: {fileID: 0}
+  twisterPiece: {fileID: 0}
+  portalPlacerPiece: {fileID: 0}
   activeMenu: {fileID: 0}
   prevMenu: {fileID: 0}
   activePlayer: 0

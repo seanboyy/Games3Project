@@ -24,7 +24,7 @@ public class NetworkedUnit : NetworkedGamePiece
         grid = FindObjectOfType<NetworkedGridMenu>();
         //FindGridElement();
         unitType = UnitType.Unit;
-        owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
+        //owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
         Debug.Log(name + netId);
     }
 
@@ -74,7 +74,7 @@ public class NetworkedUnit : NetworkedGamePiece
         gridElement.DisplayMoveTiles(remainingMoves, false);
         // Set the remaining moves appropriately
         remainingMoves = distance;
-        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(newLoc, gameObject);
+        owner.GetComponent<NetworkedPlayer>().CmdMovePiece(newLoc, gridElement.gameObject);
     }
 
     public void SetLocation(GameObject newLoc)

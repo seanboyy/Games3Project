@@ -67,10 +67,14 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player1.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
             player2.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
         }
+        /*
         if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
         if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
         if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
         if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
+        */
+        if (player1) player1.name = "Player1";
+        if (player2) player2.name = "Player2";
     }
 
     // Update is called once per frame
@@ -160,7 +164,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
                 activePlayer = player1;
                 grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
                 player1.GetComponent<NetworkedPlayer>().activePlayer = true;
-                Debug.Log("Player 1 is the active player!");
                 turnQueue.Enqueue(player2);
                 turnQueue.Enqueue(player1);
                 turnCount = 1;
@@ -170,7 +173,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
                 activePlayer = player2;
                 grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
                 player2.GetComponent<NetworkedPlayer>().activePlayer = true;
-                Debug.Log("Player 2 is the active player!");
                 turnQueue.Enqueue(player1);
                 turnQueue.Enqueue(player2);
             }

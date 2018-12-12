@@ -46,16 +46,16 @@ public class NetworkedPuller : NetworkedUnit
         switch (FindDirection(pullLoc))
         {
             case 0:
-                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.southNeighbor, location.piece);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.southNeighbor, location.gameObject);
                 break;
             case 1:
-                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.westNeighbor, location.piece);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.westNeighbor, location.gameObject);
                 break;
             case 2:
-                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.northNeighbor, location.piece);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.northNeighbor, location.gameObject);
                 break;
             case 3:
-                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.eastNeighbor, location.piece);
+                owner.GetComponent<NetworkedPlayer>().CmdMovePiece(location.eastNeighbor, location.gameObject);
                 break;
         }
     }

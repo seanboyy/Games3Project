@@ -16,15 +16,10 @@ public class NetworkedPlayer : NetworkBehaviour
     public GameObject twisterPrefab;
     public GameObject portalPlacerPrefab;
 
-    [HideInInspector]
     public GameObject unitPiece;
-    [HideInInspector]
     public GameObject pusherPiece;
-    [HideInInspector]
     public GameObject pullerPiece;
-    [HideInInspector]
     public GameObject twisterPiece;
-    [HideInInspector]
     public GameObject portalPlacerPiece;
 
     private ObjectPool unitPool;
@@ -36,6 +31,8 @@ public class NetworkedPlayer : NetworkBehaviour
     private float prevHorAxis = 0;
     private float prevVerAxis = 0;
     private DoublyLinkedListNode head;
+
+    private bool canInput = true;
 
     // These are SyncVars so the menu stays the same across client/server
     public NetworkedMenu activeMenu;
@@ -49,44 +46,85 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         activeMenu = FindObjectOfType<NetworkedGridMenu>();
         if (isLocalPlayer) CmdFindGameManager();
-        if (isServer)
-        { 
-            unitPool = new ObjectPool(unitPrefab, false, 1, transform);
-            GameObject unit = unitPool.GetObject();
-            NetworkServer.Spawn(unit);
-            unitPool.ReturnObject(unit);
-
-            pusherPool = new ObjectPool(pusherPrefab, false, 1, transform);
-            GameObject pusher = pusherPool.GetObject();
-            NetworkServer.Spawn(pusher);
-            pusherPool.ReturnObject(pusher);
-
-            pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
-            GameObject puller = pullerPool.GetObject();
-            NetworkServer.Spawn(puller);
-            pullerPool.ReturnObject(puller);
-
-            twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
-            GameObject twister = twisterPool.GetObject();
-            NetworkServer.Spawn(twister);
-            twisterPool.ReturnObject(twister);
-
-            portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
-            GameObject portalPlacer = portalPlacerPool.GetObject();
-            NetworkServer.Spawn(portalPlacer);
-            portalPlacerPool.ReturnObject(portalPlacer);
-        }
         if (isLocalPlayer)
         {
-            unitPool = new ObjectPool(unitPrefab, false, 0, transform);
-            pusherPool = new ObjectPool(pusherPrefab, false, 0, transform);
-            pullerPool = new ObjectPool(pullerPrefab, false, 0, transform);
-            twisterPool = new ObjectPool(twisterPrefab, false, 0, transform);
-            portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 0, transform);
-
+            CmdRequestUnit(UnitType.Unit);
+            CmdRequestUnit(UnitType.Pusher);
+            CmdRequestUnit(UnitType.Puller);
+            CmdRequestUnit(UnitType.Twister);
+            CmdRequestUnit(UnitType.PortalPlacer);
         }
         if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
+    }
+
+    [Command]
+    public void CmdRequestUnit(UnitType type)
+    {
+        GameObject _unit = null;
+        switch (type)
+        {
+            case UnitType.Unit:
+                _unit = Instantiate(unitPrefab, transform);
+                NetworkServer.Spawn(_unit);
+                unitPiece = _unit;
+                unitPiece.SetActive(false);
+                break;
+            case UnitType.Pusher:
+                _unit = Instantiate(pusherPrefab, transform);
+                NetworkServer.Spawn(_unit);
+                pusherPiece = _unit;
+                pusherPiece.SetActive(false);
+                break;
+            case UnitType.Puller:
+                _unit = Instantiate(pullerPrefab, transform);
+                NetworkServer.Spawn(_unit);
+                pullerPiece = _unit;
+                pullerPiece.SetActive(false);
+                break;
+            case UnitType.Twister:
+                _unit = Instantiate(twisterPrefab, transform);
+                NetworkServer.Spawn(_unit);
+                twisterPiece = _unit;
+                twisterPiece.SetActive(false);
+                break;
+            case UnitType.PortalPlacer:
+                _unit = Instantiate(portalPlacerPrefab, transform);
+                NetworkServer.Spawn(_unit);
+                portalPlacerPiece = _unit;
+                portalPlacerPiece.SetActive(false);
+                break;
+        }
+        RpcRequestUnit(type, _unit);
+    }
+
+    [ClientRpc]
+    public void RpcRequestUnit(UnitType type, GameObject _unit)
+    {
+        switch (type)
+        {
+            case UnitType.Unit:
+                unitPiece = _unit;
+                unitPiece.SetActive(false);
+                break;
+            case UnitType.Pusher:
+                pusherPiece = _unit;
+                pusherPiece.SetActive(false);
+                break;
+            case UnitType.Puller:
+                pullerPiece = _unit;
+                pullerPiece.SetActive(false);
+                break;
+            case UnitType.Twister:
+                twisterPiece = _unit;
+                twisterPiece.SetActive(false);
+                break;
+            case UnitType.PortalPlacer:
+                portalPlacerPiece = _unit;
+                portalPlacerPiece.SetActive(false);
+                break;
+        }
+
     }
 
     [Command]
@@ -104,35 +142,42 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void FindGameManager()
     {
-        gameManager = FindObjectOfType<MultiMan>();
-        if (gameManager) gameManager.RegisterPlayers();
-        activeMenu.activeUIMenu = true;   
+        if (FindObjectOfType<MultiMan>())
+        {
+            gameManager = FindObjectOfType<MultiMan>();
+            gameManager.RegisterPlayers();
+            activeMenu.activeUIMenu = true;
+        }
     }
 
     void Update()
     {
-        Debug.Log(gameObject.name + ": " + netId);
         if (!isLocalPlayer) return;
         if (gameManager == null && isLocalPlayer)
         {
             CmdFindGameManager();
             return;
         }
-        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
-            activeMenu.HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
-        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
-            activeMenu.HandleVerticalMovement(Input.GetAxisRaw("Vertical"));
-        prevHorAxis = Input.GetAxisRaw("Horizontal");
-        prevVerAxis = Input.GetAxisRaw("Vertical");
+        if (canInput)
+        {
+            if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
+            { activeMenu.HandleHorizontalMovement(Input.GetAxisRaw("Horizontal")); canInput = false; }
+            if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
+            { activeMenu.HandleVerticalMovement(Input.GetAxisRaw("Vertical")); canInput = false; }
+            prevHorAxis = Input.GetAxisRaw("Horizontal");
+            prevVerAxis = Input.GetAxisRaw("Vertical");
 
-        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            activeMenu.HandleCrossButton();
-        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
-            activeMenu.HandleCircleButton();
-        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
-            CmdHandleTriangleButton();
-        if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
-            activeMenu.HandleSquareButton();
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+            { activeMenu.HandleCrossButton(); canInput = false; }
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
+            { activeMenu.HandleCircleButton(); canInput = false; }
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            { CmdHandleTriangleButton(); canInput = false; }
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            { activeMenu.HandleSquareButton(); canInput = false; }
+        }
+        else
+            canInput = true;
     }
 
     [Command]
@@ -169,70 +214,78 @@ public class NetworkedPlayer : NetworkBehaviour
     [Command]
     public void CmdPlaceUnit(GameObject location, UnitType type)
     {
+        switch (type)
+        {
+            case UnitType.Unit:
+                DoPlaceUnit(unitPiece, location);
+                break;
+            case UnitType.Puller:
+                DoPlaceUnit(pullerPiece, location);
+                break;
+            case UnitType.Pusher:
+                DoPlaceUnit(pusherPiece, location);
+                break;
+            case UnitType.Twister:
+                DoPlaceUnit(twisterPiece, location);
+                break;
+            case UnitType.PortalPlacer:
+                DoPlaceUnit(portalPlacerPiece, location);
+                break;
+        }
         RpcPlaceUnit(location, type);
     }
 
     [ClientRpc]
     public void RpcPlaceUnit(GameObject location, UnitType type)
     {
-        PlaceUnit(location, type);
-    }
-
-    public void PlaceUnit(GameObject location, UnitType type)
-    {
-        GameObject unitGO = null;
         switch (type)
         {
             case UnitType.Unit:
-                unitGO = unitPool.GetObject();
-                unitPiece = unitGO;
+                DoPlaceUnit(unitPiece, location);
                 break;
             case UnitType.Puller:
-                unitGO = pullerPool.GetObject();
-                pullerPiece = unitGO;
+                DoPlaceUnit(pullerPiece, location);
                 break;
             case UnitType.Pusher:
-                unitGO = pusherPool.GetObject();
-                pusherPiece = unitGO;
+                DoPlaceUnit(pusherPiece, location);
                 break;
             case UnitType.Twister:
-                unitGO = twisterPool.GetObject();
-                twisterPiece = unitGO;
+                DoPlaceUnit(twisterPiece, location);
                 break;
             case UnitType.PortalPlacer:
-                unitGO = portalPlacerPool.GetObject();
-                portalPlacerPiece = unitGO;
+                DoPlaceUnit(portalPlacerPiece, location);
                 break;
         }
-        if (unitGO)
+    }
+
+    private void DoPlaceUnit(GameObject piece, GameObject location)
+    {
+        if (piece.activeInHierarchy) return;
+        piece.SetActive(true);
+        piece.GetComponent<NetworkedUnit>().SetLocation(location);
+        piece.GetComponent<NetworkedUnit>().owner = gameObject;
+        piece.GetComponent<NetworkedUnit>().remainingMoves = 2;
+        if (!isServer)
         {
-            NetworkedUnit uScript = unitGO.GetComponent<NetworkedUnit>();
-            uScript.owner = gameObject;
-            uScript.SetLocation(location);
-            uScript.remainingMoves = 2;
-            // Set up linked list
             if (head != null)
             {
                 DoublyLinkedListNode current = head;
                 while (current.forward != head)
                     current = current.forward;
-                DoublyLinkedListNode newNode = new DoublyLinkedListNode(unitGO.GetComponent<Unit>(), current, head);
+                DoublyLinkedListNode newNode = new DoublyLinkedListNode(piece.GetComponent<NetworkedUnit>(), current, head);
                 current.forward = newNode;
                 head.prev = newNode;
             }
             else
             {
-                DoublyLinkedListNode newHead = new DoublyLinkedListNode(unitGO.GetComponent<Unit>());
+                DoublyLinkedListNode newHead = new DoublyLinkedListNode(piece.GetComponent<NetworkedUnit>());
                 newHead.forward = newHead;
                 newHead.prev = newHead;
                 head = newHead;
             }
-
         }
-        else
-            Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");
     }
-    
+
     [Command]
     public void CmdReturnUnit(GameObject unit)
     {
@@ -248,25 +301,31 @@ public class NetworkedPlayer : NetworkBehaviour
     public void ReturnUnit(GameObject unit)
     {
         unit.transform.position = new Vector3(-50, -50, unit.transform.position.z);
-        UnitType unitType = unit.GetComponent<Unit>().unitType;
+        UnitType unitType = unit.GetComponent<NetworkedUnit>().unitType;
         switch (unitType)
         {
             case UnitType.Unit:
-                unitPool.ReturnObject(unit);
+                DoReturnUnit(unitPiece);
                 break;
             case UnitType.Puller:
-                pullerPool.ReturnObject(unit);
+                DoReturnUnit(pullerPiece);
                 break;
             case UnitType.Pusher:
-                pusherPool.ReturnObject(unit);
+                DoReturnUnit(pusherPiece);
                 break;
             case UnitType.Twister:
-                twisterPool.ReturnObject(unit);
+                DoReturnUnit(twisterPiece);
                 break;
             case UnitType.PortalPlacer:
-                portalPlacerPool.ReturnObject(unit);
+                DoReturnUnit(portalPlacerPiece);
                 break;
         }
+    }
+
+    private void DoReturnUnit(GameObject piece)
+    {
+        if (!piece.activeInHierarchy) return;
+        piece.SetActive(false);
     }
 
     // This gets called by ContextMenu
@@ -282,7 +341,7 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         prevMenu = activeMenu;
         NetworkedMenu[] menus = newMenu.GetComponents<NetworkedMenu>();
-        foreach(NetworkedMenu menu in menus)
+        foreach (NetworkedMenu menu in menus)
         {
             if (menu.activeUIMenu)
             {
@@ -326,52 +385,20 @@ public class NetworkedPlayer : NetworkBehaviour
     }
 
     [Command]
-    public void CmdMovePiece(GameObject location, GameObject piece)
+    public void CmdMovePiece(GameObject newLocation, GameObject oldLocation)
     {
-        NetworkedUnit unit = piece.GetComponent<NetworkedUnit>() ?? null;
-        NetworkedTrap trap = piece.GetComponent<NetworkedTrap>() ?? null;
-        if (unit != null)
-        {
-            unit.SetLocation(location);
-        }
-        else
-        {
-            Debug.Log("No piece here!" + piece);
-        }
-        if (trap != null)
-        {
-            trap.SetLocation(location);
-        }
-        else
-        {
-            Debug.Log("No trap here!" + piece);
-        }
-        Debug.Log(piece);
-        RpcMovePiece(location, piece);
+        RpcMovePiece(newLocation, oldLocation);
     }
 
     [ClientRpc]
-    public void RpcMovePiece(GameObject location, GameObject piece)
+    public void RpcMovePiece(GameObject newLocation, GameObject oldLocation)
     {
-        if (piece == null) return;
-        NetworkedUnit unit = piece.GetComponent<NetworkedUnit>() ?? null;
-        NetworkedTrap trap = piece.GetComponent<NetworkedTrap>() ?? null;
-        if(unit != null)
-        {
-            unit.SetLocation(location);
-        }
-        else
-        {
-            Debug.Log("No piece here!" + piece);
-        }
-        if(trap != null)
-        {
-            trap.SetLocation(location);
-        }
-        else
-        {
-            Debug.Log("No trap here!" + piece);
-        }
+        NetworkedGridElement nge = oldLocation.GetComponent<NetworkedGridElement>();
+        if (!nge) return;
+        if (nge.piece.GetComponent<NetworkedUnit>())
+            nge.piece.GetComponent<NetworkedUnit>().SetLocation(newLocation);
+        else if (nge.piece.GetComponent<NetworkedTrap>())
+            nge.piece.GetComponent<NetworkedTrap>().SetLocation(newLocation);
     }
 
     [Command]
@@ -385,6 +412,8 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         twister.GetComponent<NetworkedTwister>().TwistBoard(location);
     }
+
+
 
     public void RotateLeft(NetworkedGridElement selectedGE)
     {
@@ -417,7 +446,7 @@ public class NetworkedPlayer : NetworkBehaviour
         DoublyLinkedListNode current = head;
         do
         {
-            if (current.item == unit)
+            if (current._item == unit)
                 break;
             current = current.forward;
         } while (current.forward != head);
