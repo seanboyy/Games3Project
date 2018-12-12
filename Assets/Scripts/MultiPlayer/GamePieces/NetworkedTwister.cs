@@ -12,7 +12,7 @@ public class NetworkedTwister : NetworkedUnit
         unitType = UnitType.Twister;
     }
 
-    public override void DisplayActionGrid()
+    public override bool DisplayActionGrid()
     {
         if (canAct)
         {
@@ -22,6 +22,7 @@ public class NetworkedTwister : NetworkedUnit
             grid.SetElementColor(grid.selectedGO, NetworkedMenu.selectedColor, NetworkedMenu.defaultColor);
             canAct = false;
         }
+        return true;
     }
 
     public void TwistBoard(GameObject twistLoc)

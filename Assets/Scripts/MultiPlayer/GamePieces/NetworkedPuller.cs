@@ -10,7 +10,7 @@ public class NetworkedPuller : NetworkedUnit
         unitType = UnitType.Puller;
     }
 
-    public override void DisplayActionGrid()
+    public override bool DisplayActionGrid()
     {
         if (canAct)
         {
@@ -19,6 +19,7 @@ public class NetworkedPuller : NetworkedUnit
             gridElement.DisplayPullerInfluence(2, true);
             canAct = false;
         }
+        return true;
     }
 
     public override void PerformAction(GameObject actionLocGO)

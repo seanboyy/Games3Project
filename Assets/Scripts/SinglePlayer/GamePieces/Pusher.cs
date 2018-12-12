@@ -10,7 +10,7 @@ public class Pusher : Unit
         unitType = UnitType.Pusher;
     }
 
-    public override void DisplayActionGrid()
+    public override bool DisplayActionGrid()
     {
         if (canAct)
         {
@@ -19,6 +19,7 @@ public class Pusher : Unit
             gridElement.DisplayPusherInfluence(true);
             canAct = false;
         }
+        return true;
     }
 
     public override void PerformAction(GameObject actionLocGO)

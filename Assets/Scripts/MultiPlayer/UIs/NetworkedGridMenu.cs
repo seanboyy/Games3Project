@@ -129,7 +129,9 @@ public class NetworkedGridMenu : NetworkedMenu
             if (selectedGE.piece && selectedGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
             {
                 selectedPiece = selectedGE.piece;
-                if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit) selectedPiece.GetComponent<NetworkedUnit>().DisplayActionGrid();
+                if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
+                    if (selectedPiece.GetComponent<NetworkedUnit>().DisplayActionGrid())
+                        activeGO = null;
             }
             else
                 activeGO = null;

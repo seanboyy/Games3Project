@@ -51,7 +51,7 @@ public class Unit : GamePiece
     }
 
     // This function should do nothing in the generic Unit. It is implemented on the Puller, Pusher, and Twister
-    public virtual void DisplayActionGrid() {}
+    public virtual bool DisplayActionGrid() { return false; }
 
     public virtual void PerformAction(GameObject actionLocGO)
     {

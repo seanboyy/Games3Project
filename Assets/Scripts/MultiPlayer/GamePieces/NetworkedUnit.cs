@@ -29,7 +29,7 @@ public class NetworkedUnit : NetworkedGamePiece
     }
 
     // This function should do nothing in the generic Unit. It is implemented on the Puller, Pusher, and Twister
-    public virtual void DisplayActionGrid() { }
+    public virtual bool DisplayActionGrid() { return false; }
 
     private void OnEnable()
     {

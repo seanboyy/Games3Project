@@ -12,7 +12,7 @@ public class Twister : Unit
         unitType = UnitType.Twister;
     }
 
-    public override void DisplayActionGrid()
+    public override bool DisplayActionGrid()
     {
         if (canAct)
         {
@@ -22,6 +22,7 @@ public class Twister : Unit
             grid.SetElementColor(grid.selectedGO, Menu.selectedColor, Menu.defaultColor);
             canAct = false;
         }
+        return true;
     }
 
     private void TwistBoard(GameObject twistLoc)

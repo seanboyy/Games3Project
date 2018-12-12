@@ -111,7 +111,10 @@ public class GridMenu  : Menu
             if (selectedGE.piece && selectedGE.piece.GetComponent<GamePiece>() is Unit)
             {
                 selectedPiece = selectedGE.piece;
-                if (selectedPiece.GetComponent<GamePiece>() is Unit) selectedPiece.GetComponent<Unit>().DisplayActionGrid();
+                if (selectedPiece.GetComponent<GamePiece>() is Unit)
+                    if (!selectedPiece.GetComponent<Unit>().DisplayActionGrid())    // try to open the action grid, but if you can't (like with unit and portal placer)
+                                                                                    // then deselect this GridElement
+                        activeGO = null;
             }
             else
                 activeGO = null;
