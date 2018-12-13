@@ -26,8 +26,8 @@ public class NetworkedPlayer : NetworkBehaviour
     private float prevVerAxis = 0;
     private DoublyLinkedListNode head;
 
-    private bool piecesHaveSprites = false;
     private bool canInput = true;
+    private bool onLocalMulti = false;
 
     // These are SyncVars so the menu stays the same across client/server
     public NetworkedMenu activeMenu;
@@ -41,16 +41,21 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         activeMenu = FindObjectOfType<NetworkedGridMenu>();
         if (isLocalPlayer) CmdFindGameManager();
-        if (isLocalPlayer)
-        {
-            CmdRequestUnit(UnitType.Unit);
-            CmdRequestUnit(UnitType.Pusher);
-            CmdRequestUnit(UnitType.Puller);
-            CmdRequestUnit(UnitType.Twister);
-            CmdRequestUnit(UnitType.Portalist);
-        }
         if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
+        if (localPlayerAuthority && !onLocalMulti)
+        { 
+            NetworkedPlayer[] otherPlayers = FindObjectsOfType<NetworkedPlayer>();
+            foreach (NetworkedPlayer player in otherPlayers)
+            {
+                if (player != this && player.localPlayerAuthority)
+                {
+                    onLocalMulti = true;
+                    player.onLocalMulti = true;
+                    break;
+                }
+            }
+        }
     }
 
     // Set up the piece pool server side
@@ -127,18 +132,54 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Pusher:
                 pusherPiece = _unit;
                 pusherPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[1];
+                        break;
+                };
                 break;
             case UnitType.Puller:
                 pullerPiece = _unit;
                 pullerPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[1];
+                        break;
+                };
                 break;
             case UnitType.Twister:
                 twisterPiece = _unit;
                 twisterPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[1];
+                        break;
+                };
                 break;
             case UnitType.Portalist:
                 portalPlacerPiece = _unit;
                 portalPlacerPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[1];
+                        break;
+                };
                 break;
         }
 
@@ -169,33 +210,13 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void Update()
     {
-        if (!isLocalPlayer || !activePlayer) return;
-        if (gameManager == null && isLocalPlayer)
+        if (gameManager == null)
         {
-            CmdFindGameManager();
+            FindGameManager();
             return;
         }
-        if(gameManager != null && !piecesHaveSprites)
-        {
-            switch (identity)
-            {
-                case PlayerEnum.Player1:
-                    pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[0];
-                    pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[0];
-                    twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[0];
-                    portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[0];
-                    break;
-                case PlayerEnum.Player2:
-                    pusherPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pusherSprites[1];
-                    pullerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.pullerSprites[1];
-                    twisterPiece.GetComponent<SpriteRenderer>().sprite = gameManager.twisterSprites[1];
-                    portalPlacerPiece.GetComponent<SpriteRenderer>().sprite = gameManager.portalPlacerSprites[1];
-                    break;
-            }
-            piecesHaveSprites = true;
-
-        }
-        if (canInput)
+        if (!isLocalPlayer) return;
+        if (canInput && !(onLocalMulti && !activePlayer))
         {
             // Try to find the active menu and if you still can't, bail out
             if (activeMenu == null) { activeMenu = FindObjectOfType<NetworkedGridMenu>(); activeMenu.activeUIMenu = true; }
@@ -206,7 +227,7 @@ public class NetworkedPlayer : NetworkBehaviour
             { activeMenu.HandleVerticalMovement(Input.GetAxisRaw("Vertical")); canInput = false; }
             prevHorAxis = Input.GetAxisRaw("Horizontal");
             prevVerAxis = Input.GetAxisRaw("Vertical");
-
+            if (!activePlayer) return;
             if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
             { activeMenu.HandleCrossButton(); canInput = false; }
             if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
@@ -247,6 +268,7 @@ public class NetworkedPlayer : NetworkBehaviour
     [ClientRpc]
     public void RpcEndTurn()
     {
+        if (!gameManager) FindGameManager();
         gameManager.EndTurn();
     }
 
@@ -263,19 +285,64 @@ public class NetworkedPlayer : NetworkBehaviour
         switch (type)
         {
             case UnitType.Unit:
-                DoPlaceUnit(unitPiece, location);
+                if (unitPiece)
+                    DoPlaceUnit(unitPiece, location);
+                else
+                {
+                    unitPiece = Instantiate(unitPrefab, transform);
+                    unitPiece.name = "Unit " + identity;
+                    NetworkServer.Spawn(unitPiece);
+                    RpcRequestUnit(UnitType.Unit, unitPiece);
+                    DoPlaceUnit(unitPiece, location);
+                }
                 break;
             case UnitType.Puller:
-                DoPlaceUnit(pullerPiece, location);
+                if (pullerPiece)
+                    DoPlaceUnit(pullerPiece, location);
+                else
+                {
+                    pullerPiece = Instantiate(pullerPrefab, transform);
+                    pullerPiece.name = "Puller " + identity;
+                    NetworkServer.Spawn(pullerPiece);
+                    RpcRequestUnit(UnitType.Puller, pullerPiece);
+                    DoPlaceUnit(pullerPiece, location);
+                }
                 break;
             case UnitType.Pusher:
-                DoPlaceUnit(pusherPiece, location);
+                if (pusherPiece)
+                    DoPlaceUnit(pusherPiece, location);
+                else
+                {
+                    pusherPiece = Instantiate(pusherPrefab, transform);
+                    pusherPiece.name = "Pusher " + identity;
+                    NetworkServer.Spawn(pusherPiece);
+                    RpcRequestUnit(UnitType.Pusher, pusherPiece);
+                    DoPlaceUnit(pusherPiece, location);
+                }
                 break;
             case UnitType.Twister:
-                DoPlaceUnit(twisterPiece, location);
+                if (twisterPiece)
+                    DoPlaceUnit(twisterPiece, location);
+                else
+                {
+                    twisterPiece = Instantiate(twisterPrefab, transform);
+                    twisterPiece.name = "Twister " + identity;
+                    NetworkServer.Spawn(twisterPiece);
+                    RpcRequestUnit(UnitType.Twister, twisterPiece);
+                    DoPlaceUnit(twisterPiece, location);
+                }
                 break;
             case UnitType.Portalist:
-                DoPlaceUnit(portalPlacerPiece, location);
+                if (portalPlacerPiece)
+                    DoPlaceUnit(portalPlacerPiece, location);
+                else
+                {
+                    portalPlacerPiece = Instantiate(portalPlacerPrefab, transform);
+                    portalPlacerPiece.name = "Portalist " + identity;
+                    NetworkServer.Spawn(portalPlacerPiece);
+                    RpcRequestUnit(UnitType.Portalist, portalPlacerPiece);
+                    DoPlaceUnit(portalPlacerPiece, location);
+                }
                 break;
         }
         RpcPlaceUnit(location, type);
