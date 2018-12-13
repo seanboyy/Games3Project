@@ -7,10 +7,18 @@ public class NetworkedPortalPlacer : NetworkedUnit
 
     private NetworkedGridElement portalElement;
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
-        unitType = UnitType.PortalPlacer;
+        if (!initialized)
+        {
+            base.OnEnable();
+            unitType = UnitType.Portalist;
+            //name = "" + unitType + owner.GetComponent<Player>().identity;
+        }
+        if (!grid)
+        {
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        }
     }
 
     public void PlacePortal(NetworkedGridElement newPortalLoc)

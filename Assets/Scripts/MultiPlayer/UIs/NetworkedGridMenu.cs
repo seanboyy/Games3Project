@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class NetworkedGridMenu : NetworkedMenu
 {
@@ -36,26 +37,24 @@ public class NetworkedGridMenu : NetworkedMenu
     // Use this for initialization
     protected override void Start()
     {
-        FindGameManager();
         base.Start();
+        gameMan = FindObjectOfType<MultiMan>();
         contextMenu = GetComponent<NetworkedContextMenu>();
+        Debug.Log("Connected to Server");
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        /*
         if (gameMan == null)
         {
-            FindGameManager();
+            gameMan = FindObjectOfType<MultiMan>();
             return;
         }
+        */
         if (activeUIMenu && !canPressButtons)
             canPressButtons = true;
-    }
-
-    void FindGameManager()
-    {
-        gameMan = FindObjectOfType<MultiMan>();
     }
 
     void ActivateElement()
@@ -86,7 +85,6 @@ public class NetworkedGridMenu : NetworkedMenu
                      (selectedGE.portal && selectedGE.portalOwner == activePlayer.GetComponent<NetworkedPlayer>().identity)))
             {
                 // Display a ContextMenu with all the pieces that can be spawned
-                Debug.Log(this);
                 contextMenu.ShowContextMenu(this);
                 // Move the canvas to SelectedGO's location
                 contextMenu.menuCanvas.transform.position = selectedGO.transform.position + contextMenu.menuCanvas.transform.position.z * Vector3.forward;
@@ -130,7 +128,7 @@ public class NetworkedGridMenu : NetworkedMenu
             {
                 selectedPiece = selectedGE.piece;
                 if (selectedPiece.GetComponent<NetworkedGamePiece>() is NetworkedUnit)
-                    if (selectedPiece.GetComponent<NetworkedUnit>().DisplayActionGrid())
+                    if (!selectedPiece.GetComponent<NetworkedUnit>().DisplayActionGrid())
                         activeGO = null;
             }
             else
@@ -197,7 +195,7 @@ public class NetworkedGridMenu : NetworkedMenu
                 activePlayer.CmdPlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                activePlayer.CmdPlaceUnit(selectedGO, UnitType.PortalPlacer);
+                activePlayer.CmdPlaceUnit(selectedGO, UnitType.Portalist);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);
@@ -245,7 +243,7 @@ public class NetworkedGridMenu : NetworkedMenu
 
     public override void HandleSquareButton()
     {
-        throw new System.NotImplementedException();
+        ActivateElementAction();
     }
 
     public override void HandleLeftShoulderBumper()

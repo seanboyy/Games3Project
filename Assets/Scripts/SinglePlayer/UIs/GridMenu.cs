@@ -180,7 +180,7 @@ public class GridMenu  : Menu
                 activePlayer.PlaceUnit(selectedGO, UnitType.Twister);
                 break;
             case "portalPlacer":
-                activePlayer.PlaceUnit(selectedGO, UnitType.PortalPlacer);
+                activePlayer.PlaceUnit(selectedGO, UnitType.Portalist);
                 break;
             default:
                 Debug.Log("GridMenu::PlaceUnit() - Unit not recognized: " + unitType);

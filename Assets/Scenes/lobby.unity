@@ -354,6 +354,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114435618212138106, guid: 9966e5ed2de16884689c724d0e28d6e8,
+        type: 2}
+      propertyPath: m_PlayScene
+      value: multi-map-1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9966e5ed2de16884689c724d0e28d6e8, type: 2}
   m_IsPrefabAsset: 0

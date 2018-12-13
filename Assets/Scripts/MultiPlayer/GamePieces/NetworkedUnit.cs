@@ -14,27 +14,33 @@ public class NetworkedUnit : NetworkedGamePiece
     public GameObject owner;
     [HideInInspector]
     public bool canAct = true;
+    protected bool initialized = false;
 
     //[HideInInspector]
     public GameObject flag;            // a reference to the flag; only used if this unit has the flag
 
     // Use this for initialization
-    protected virtual void Start()
+    protected virtual void OnEnable()
     {
-        grid = FindObjectOfType<NetworkedGridMenu>();
-        //FindGridElement();
-        unitType = UnitType.Unit;
-        //owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
-        Debug.Log(name + netId);
+        if (!initialized)
+        {
+            grid = FindObjectOfType<NetworkedGridMenu>();
+            //FindGridElement();
+            unitType = UnitType.Unit;
+            owner = transform.root.gameObject;
+            //name = "" + unitType + owner.GetComponent<Player>().identity;
+            //owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
+            //Debug.Log(name + netId + " Initialized");
+            initialized = true;
+        }
+        if (!grid)
+        {
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        }
     }
 
     // This function should do nothing in the generic Unit. It is implemented on the Puller, Pusher, and Twister
     public virtual bool DisplayActionGrid() { return false; }
-
-    private void OnEnable()
-    {
-        owner = transform.root.gameObject;
-    }
 
     public void DisplayMoveGrid()
     {
@@ -103,7 +109,7 @@ public class NetworkedUnit : NetworkedGamePiece
             {
                 NetworkedUnit otherUnit = otherGE.piece.GetComponent<NetworkedUnit>();
                 otherUnit.owner.GetComponent<NetworkedPlayer>().CmdReturnUnit(otherGE.piece);
-                if (otherUnit.unitType == UnitType.PortalPlacer)
+                if (otherUnit.unitType == UnitType.Portalist)
                 {
                     otherUnit.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                 }
@@ -123,7 +129,7 @@ public class NetworkedUnit : NetworkedGamePiece
                 }
                 // Don't forget to kill yourself
                 owner.GetComponent<NetworkedPlayer>().CmdReturnUnit(gameObject);
-                if (unitType == UnitType.PortalPlacer)
+                if (unitType == UnitType.Portalist)
                     GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                 gridElement.piece = null;
                 return;
@@ -139,7 +145,7 @@ public class NetworkedUnit : NetworkedGamePiece
                 }
                 else if (otherGE.piece.GetComponent<NetworkedGamePiece>() is NetworkedTrap)
                 {
-                    if (unitType == UnitType.PortalPlacer)
+                    if (unitType == UnitType.Portalist)
                         this.GetComponent<NetworkedPortalPlacer>().PlacePortal(otherGE);
                     if (gridElement.piece == gameObject) gridElement.piece = null;
                     if (!grid) grid = FindObjectOfType<NetworkedGridMenu>();

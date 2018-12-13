@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class NetworkedPuller : NetworkedUnit
 {
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
-        unitType = UnitType.Puller;
+        if (!initialized)
+        {
+            base.OnEnable();
+            unitType = UnitType.Puller;
+            //name = "" + unitType + owner.GetComponent<Player>().identity;
+        }
+        if (!grid)
+        {
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        }
     }
 
     public override bool DisplayActionGrid()

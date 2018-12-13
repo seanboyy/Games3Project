@@ -16,6 +16,7 @@ public abstract class NetworkedMenu : NetworkBehaviour
     [Header("Is this menu under active player control?")]
     public bool activeUIMenu = false;
 
+    [SerializeField]
     protected Color prevColor;    // the color of the previous selectedElement
     [SerializeField]
     protected NetworkedMenu prevMenu;

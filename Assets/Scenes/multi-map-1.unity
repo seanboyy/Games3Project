@@ -10100,6 +10100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 1509582839}
   activeUIMenu: 0
+  prevColor: {r: 0, g: 0, b: 0, a: 0}
   prevMenu: {fileID: 0}
   menuCanvas: {fileID: 728810564}
 --- !u!114 &1108008729
@@ -10115,6 +10116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedGO: {fileID: 744416554}
   activeUIMenu: 0
+  prevColor: {r: 0, g: 0, b: 0, a: 0}
   prevMenu: {fileID: 0}
   activeGO: {fileID: 0}
   gameMan: {fileID: 0}
@@ -13325,7 +13327,7 @@ MonoBehaviour:
   northNeighbor: {fileID: 726211191}
   southNeighbor: {fileID: 1941062089}
   gridMenu: {fileID: 0}
-  buttonType: 3
+  buttonType: 4
   locked: 0
 --- !u!65 &1481248841
 BoxCollider:

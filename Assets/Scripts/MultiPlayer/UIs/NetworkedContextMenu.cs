@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class NetworkedContextMenu : NetworkedMenu
 {
@@ -21,6 +22,9 @@ public class NetworkedContextMenu : NetworkedMenu
     {
         if (activeUIMenu && !canPressButtons)
             canPressButtons = true;
+        if (!activeUIMenu && isActiveAndEnabled)
+            menuCanvas.SetActive(false);
+
     }
 
     public void ShowContextMenu(NetworkedMenu callingMenu)

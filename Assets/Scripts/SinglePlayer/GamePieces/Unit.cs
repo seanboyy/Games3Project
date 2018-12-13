@@ -108,7 +108,7 @@ public class Unit : GamePiece
             {
                 Unit otherUnit = otherGE.piece.GetComponent<Unit>();
                 otherUnit.owner.GetComponent<Player>().ReturnUnit(otherGE.piece);
-                if (otherUnit.unitType == UnitType.PortalPlacer)
+                if (otherUnit.unitType == UnitType.Portalist)
                 {
                     otherUnit.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                 }
@@ -128,7 +128,7 @@ public class Unit : GamePiece
                 }
                 // Don't forget to kill yourself
                 owner.GetComponent<Player>().ReturnUnit(gameObject);
-                if (unitType == UnitType.PortalPlacer)
+                if (unitType == UnitType.Portalist)
                     this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                 gridElement.piece = null;
                 return;
@@ -144,7 +144,7 @@ public class Unit : GamePiece
                 }
                 else if (otherGE.piece.GetComponent<GamePiece>() is Trap)
                 {
-                    if (unitType == UnitType.PortalPlacer)
+                    if (unitType == UnitType.Portalist)
                         this.GetComponent<PortalPlacer>().PlacePortal(otherGE);
                     if (gridElement.piece == gameObject) gridElement.piece = null;
                     if (!grid) grid = FindObjectOfType<GridMenu>();

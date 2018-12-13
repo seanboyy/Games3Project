@@ -9,7 +9,7 @@ public class PortalPlacer : Unit {
     protected override void Start()
     {
         base.Start();
-        unitType = UnitType.PortalPlacer;
+        unitType = UnitType.Portalist;
     }
 
     public void PlacePortal(GridElement newPortalLoc)

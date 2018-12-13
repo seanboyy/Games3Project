@@ -6,10 +6,18 @@ public class NetworkedTwister : NetworkedUnit
 {
     public int rotationAmount = 1;
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
-        unitType = UnitType.Twister;
+        if (!initialized)
+        {
+            base.OnEnable();
+            unitType = UnitType.Twister;
+            //name = "" + unitType + owner.GetComponent<Player>().identity;
+        }
+        if (!grid)
+        {
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        }
     }
 
     public override bool DisplayActionGrid()

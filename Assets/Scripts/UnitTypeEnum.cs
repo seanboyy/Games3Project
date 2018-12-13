@@ -5,5 +5,5 @@
     Puller,
     Twister,
     Flagbearer,
-    PortalPlacer
+    Portalist
 }

@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
             case UnitType.Twister:
                 unitGO = twisterPool.GetObject();
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 unitGO = portalPlacerPool.GetObject();
                 break;
         }
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour
             case UnitType.Twister:
                 twisterPool.ReturnObject(unit);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 portalPlacerPool.ReturnObject(unit);
                 break;
         }

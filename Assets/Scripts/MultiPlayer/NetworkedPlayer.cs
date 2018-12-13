@@ -47,12 +47,13 @@ public class NetworkedPlayer : NetworkBehaviour
             CmdRequestUnit(UnitType.Pusher);
             CmdRequestUnit(UnitType.Puller);
             CmdRequestUnit(UnitType.Twister);
-            CmdRequestUnit(UnitType.PortalPlacer);
+            CmdRequestUnit(UnitType.Portalist);
         }
         if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
     }
 
+    // Set up the piece pool server side
     [Command]
     public void CmdRequestUnit(UnitType type)
     {
@@ -63,6 +64,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!unitPiece)
                 {
                     unitPiece = Instantiate(unitPrefab, transform);
+                    unitPiece.name = "Unit ";
                     NetworkServer.Spawn(unitPiece);
                 }
                 _unit = unitPiece;
@@ -72,6 +74,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!pusherPiece)
                 {
                     pusherPiece = Instantiate(pusherPrefab, transform);
+                    pusherPiece.name = "Pusher ";
                     NetworkServer.Spawn(pusherPiece);
                 }
                 _unit = pusherPiece;
@@ -81,6 +84,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!pullerPiece)
                 {
                     pullerPiece = Instantiate(pullerPrefab, transform);
+                    pullerPiece.name = "Puller ";
                     NetworkServer.Spawn(pullerPiece);
                 }
                 _unit = pullerPiece;
@@ -90,15 +94,17 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!twisterPiece)
                 {
                     twisterPiece = Instantiate(twisterPrefab, transform);
+                    twisterPiece.name = "Twister ";
                     NetworkServer.Spawn(twisterPiece);
                 }
                 _unit = twisterPiece;
                 twisterPiece.SetActive(false);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 if (!portalPlacerPiece)
                 {
                     portalPlacerPiece = Instantiate(portalPlacerPrefab, transform);
+                    portalPlacerPiece.name = "Portalist ";
                     NetworkServer.Spawn(portalPlacerPiece);
                 }
                 _unit = portalPlacerPiece;
@@ -108,6 +114,7 @@ public class NetworkedPlayer : NetworkBehaviour
         RpcRequestUnit(type, _unit);
     }
 
+    // Set up the piece pool client side
     [ClientRpc]
     public void RpcRequestUnit(UnitType type, GameObject _unit)
     {
@@ -129,7 +136,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 twisterPiece = _unit;
                 twisterPiece.SetActive(false);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 portalPlacerPiece = _unit;
                 portalPlacerPiece.SetActive(false);
                 break;
@@ -152,9 +159,9 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void FindGameManager()
     {
-        if (FindObjectOfType<MultiMan>())
+        gameManager = FindObjectOfType<MultiMan>();
+        if (gameManager)
         {
-            gameManager = FindObjectOfType<MultiMan>();
             gameManager.RegisterPlayers();
             activeMenu.activeUIMenu = true;
         }
@@ -162,7 +169,7 @@ public class NetworkedPlayer : NetworkBehaviour
 
     void Update()
     {
-        if (!isLocalPlayer) return;
+        if (!isLocalPlayer || !activePlayer) return;
         if (gameManager == null && isLocalPlayer)
         {
             CmdFindGameManager();
@@ -190,6 +197,9 @@ public class NetworkedPlayer : NetworkBehaviour
         }
         if (canInput)
         {
+            // Try to find the active menu and if you still can't, bail out
+            if (activeMenu == null) { activeMenu = FindObjectOfType<NetworkedGridMenu>(); activeMenu.activeUIMenu = true; }
+            if (activeMenu == null) { Debug.Log("Active Menu not yet found"); return; }
             if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             { activeMenu.HandleHorizontalMovement(Input.GetAxisRaw("Horizontal")); canInput = false; }
             if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
@@ -205,6 +215,11 @@ public class NetworkedPlayer : NetworkBehaviour
             { CmdHandleTriangleButton(); canInput = false; }
             if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
             { activeMenu.HandleSquareButton(); canInput = false; }
+            if (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.JoystickButton4))
+            { activeMenu.HandleLeftShoulderBumper(); canInput = false; }
+            if (Input.GetKeyDown(KeyCode.Period) || Input.GetKeyDown(KeyCode.JoystickButton5))
+            { activeMenu.HandleRightShoulderBumper(); canInput = false; }
+
         }
         else
             canInput = true;
@@ -241,6 +256,7 @@ public class NetworkedPlayer : NetworkBehaviour
         activeMenu.HandleSquareButton();
     }
 
+    // Get a piece server side
     [Command]
     public void CmdPlaceUnit(GameObject location, UnitType type)
     {
@@ -258,13 +274,14 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Twister:
                 DoPlaceUnit(twisterPiece, location);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 DoPlaceUnit(portalPlacerPiece, location);
                 break;
         }
         RpcPlaceUnit(location, type);
     }
 
+    // Get a piece client side
     [ClientRpc]
     public void RpcPlaceUnit(GameObject location, UnitType type)
     {
@@ -282,7 +299,7 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Twister:
                 DoPlaceUnit(twisterPiece, location);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 DoPlaceUnit(portalPlacerPiece, location);
                 break;
         }
@@ -292,17 +309,19 @@ public class NetworkedPlayer : NetworkBehaviour
     {
         if (piece.activeInHierarchy) return;
         piece.SetActive(true);
+        piece.name = "" + piece.GetComponent<NetworkedUnit>().unitType + identity;
         piece.GetComponent<NetworkedUnit>().SetLocation(location);
         piece.GetComponent<NetworkedUnit>().owner = gameObject;
         piece.GetComponent<NetworkedUnit>().remainingMoves = 2;
-        if (!isServer)
+        if (isLocalPlayer)
         {
             if (head != null)
             {
                 DoublyLinkedListNode current = head;
                 while (current.forward != head)
                     current = current.forward;
-                DoublyLinkedListNode newNode = new DoublyLinkedListNode(piece.GetComponent<NetworkedUnit>(), current, head);
+                NetworkedUnit unit = piece.GetComponent<NetworkedUnit>();
+                DoublyLinkedListNode newNode = new DoublyLinkedListNode(unit, current, head);
                 current.forward = newNode;
                 head.prev = newNode;
             }
@@ -346,7 +365,7 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Twister:
                 DoReturnUnit(twisterPiece);
                 break;
-            case UnitType.PortalPlacer:
+            case UnitType.Portalist:
                 DoReturnUnit(portalPlacerPiece);
                 break;
         }
@@ -453,9 +472,9 @@ public class NetworkedPlayer : NetworkBehaviour
             NetworkedUnit selectedUnit = selectedGE.piece.GetComponent<NetworkedUnit>();
             curNode = FindNode(selectedUnit);
         }
-
+        if (curNode == null) return;
         if (activeMenu is NetworkedGridMenu)
-            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.forward.item.GetComponent<Unit>().gridElement.gameObject);
+            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.forward._item.GetComponent<NetworkedUnit>().gridElement.gameObject);
     }
 
     public void RotateRight(NetworkedGridElement selectedGE)
@@ -466,14 +485,15 @@ public class NetworkedPlayer : NetworkBehaviour
             NetworkedUnit selectedUnit = selectedGE.piece.GetComponent<NetworkedUnit>();
             curNode = FindNode(selectedUnit);
         }
-
+        if (curNode == null) return;
         if (activeMenu is NetworkedGridMenu)
-            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.prev.item.GetComponent<Unit>().gridElement.gameObject);
+            ((NetworkedGridMenu)activeMenu).ChangeElementSelected(curNode.prev._item.GetComponent<NetworkedUnit>().gridElement.gameObject);
     }
 
     private DoublyLinkedListNode FindNode(NetworkedUnit unit)
     {
         DoublyLinkedListNode current = head;
+        if (current == null) return null;
         do
         {
             if (current._item == unit)
