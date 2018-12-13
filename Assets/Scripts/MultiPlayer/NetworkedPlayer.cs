@@ -204,6 +204,8 @@ public class NetworkedPlayer : NetworkBehaviour
         if (gameManager)
         {
             gameManager.RegisterPlayers();
+            if (activeMenu == null)
+                activeMenu = FindObjectOfType<NetworkedGridMenu>();
             activeMenu.activeUIMenu = true;
         }
     }
