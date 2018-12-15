@@ -20,6 +20,7 @@ public class NetworkedGridMenu : NetworkedMenu
     [Header("GameManager")]
     public MultiMan gameMan;
     public GameObject selectedPiece;
+    public NetworkedPlayer activePlayer;
 
     [Header("Other Miscellaneous")]
     public Sprite NoWalls;
@@ -28,8 +29,6 @@ public class NetworkedGridMenu : NetworkedMenu
     public Sprite TwoWallsHall;
     public Sprite ThreeWalls;
     public Sprite FourWalls;
-
-    public NetworkedPlayer activePlayer;
 
     private NetworkedContextMenu contextMenu;
     private bool canPressButtons = false;
@@ -46,13 +45,6 @@ public class NetworkedGridMenu : NetworkedMenu
     // Update is called once per frame
     void Update()
     {   
-        /*
-        if (gameMan == null)
-        {
-            gameMan = FindObjectOfType<MultiMan>();
-            return;
-        }
-        */
         if (activeUIMenu && !canPressButtons)
             canPressButtons = true;
     }

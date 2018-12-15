@@ -7,10 +7,6 @@ using UnityEngine.Networking;
 
 public class MultiMan : NetworkBehaviour, IGameMan
 {
-    public Sprite[] pullerSprites;
-    public Sprite[] pusherSprites;
-    public Sprite[] twisterSprites;
-    public Sprite[] portalPlacerSprites;
     public string nextSceneName;
     [SyncVar]
     public GameObject activePlayer;
@@ -26,6 +22,10 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [SyncVar]
     private bool player1GoesFirst;
     private bool justSwitched = false;
+    public Sprite[] pullerSprites;
+    public Sprite[] pusherSprites;
+    public Sprite[] twisterSprites;
+    public Sprite[] portalPlacerSprites;
 
     // Not sure if we want a reference to the grid, but...
     public NetworkedGridMenu grid;
@@ -70,12 +70,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player1.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
             player2.GetComponent<NetworkedPlayer>().gameManager.SetupTurnQueue();
         }
-        /*
-        if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
-        if (player1) player1.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
-        if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player1.name = "Player1";
-        if (player2) player2.GetComponent<NetworkedPlayer>().gameManager.player2.name = "Player2";
-        */
         if (player1) player1.name = "Player1";
         if (player2) player2.name = "Player2";
     }
@@ -129,7 +123,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
             if (isServer)
             {
                 RpcDoTimeBar();
-                // This line does on the server what the next line does on the clients
             }
         }
     }
@@ -180,12 +173,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
             }
             StartCoroutine("FlipArrow");
         }
-    }
-
-    [ClientRpc]
-    private void RpcUpdateGridMenuActivePlayer()
-    {
-        grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
     }
 
     [ClientRpc]
