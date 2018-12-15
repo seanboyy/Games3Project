@@ -31,6 +31,8 @@ public class NetworkedGridElement : NetworkBehaviour
     public int distance = -1;
     public GameObject piece;
 
+    private bool neighborsFound = false;
+
     //private GridMenu grid;
 
     // Use this for initialization
@@ -77,6 +79,8 @@ public class NetworkedGridElement : NetworkBehaviour
         if (info.collider != null)
         {
             eastNeighbor = info.collider.gameObject;
+            eastNeighbor.GetComponent<NetworkedGridElement>().westNeighbor = gameObject;
+            neighborsFound = true;
         }
 
         // look to the left (west)
@@ -85,6 +89,8 @@ public class NetworkedGridElement : NetworkBehaviour
         if (info.collider != null)
         {
             westNeighbor = info.collider.gameObject;
+            westNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor = gameObject;
+            neighborsFound = true;
         }
 
         // look to the up (north)
@@ -93,6 +99,8 @@ public class NetworkedGridElement : NetworkBehaviour
         if (info.collider != null)
         {
             northNeighbor = info.collider.gameObject;
+            northNeighbor.GetComponent<NetworkedGridElement>().southNeighbor = gameObject;
+            neighborsFound = true;
         }
 
         // look to the down (south)
@@ -101,7 +109,12 @@ public class NetworkedGridElement : NetworkBehaviour
         if (info.collider != null)
         {
             southNeighbor = info.collider.gameObject;
+            southNeighbor.GetComponent<NetworkedGridElement>().northNeighbor = gameObject;
+            neighborsFound = true;
         }
+
+        if (!neighborsFound)
+            FindNeighbors();
     }
 
     public void UpdateWalls()
