@@ -106,6 +106,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
             if (player1 && player2)
             {
                 justSwitched = true;
+                activePlayer.GetComponent<NetworkedPlayer>().activeMenu.HandleCircleButton();
                 activePlayer.GetComponent<NetworkedPlayer>().activePlayer = false;
                 activePlayer = turnQueue.Dequeue();
                 activePlayer.GetComponent<NetworkedPlayer>().activePlayer = true;
