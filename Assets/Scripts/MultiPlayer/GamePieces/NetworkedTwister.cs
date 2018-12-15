@@ -208,23 +208,23 @@ public class NetworkedTwister : NetworkedUnit
                 #endregion
                 #region Fix Piece Rotation and Position
                 if (gridElement.piece)
-                    UpdateRotation(gridElement.piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.northNeighbor.GetComponent<NetworkedGridElement>().westNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.eastNeighbor.GetComponent<NetworkedGridElement>().northNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.southNeighbor.GetComponent<NetworkedGridElement>().eastNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 if (gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece)
-                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<GamePiece>());
+                    UpdateRotation(gridElement.westNeighbor.GetComponent<NetworkedGridElement>().southNeighbor.GetComponent<NetworkedGridElement>().piece.GetComponent<NetworkedGamePiece>());
                 #endregion
                 #region Fix Grid Attributes and Colors
                 UpdateGridAttributes();
@@ -270,7 +270,7 @@ public class NetworkedTwister : NetworkedUnit
         }
     }
 
-    private void UpdateRotation(GamePiece piece)
+    private void UpdateRotation(NetworkedGamePiece piece)
     {
         piece.gameObject.transform.rotation = Quaternion.identity;
     }
