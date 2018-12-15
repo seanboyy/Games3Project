@@ -125,12 +125,11 @@ public class MultiMan : NetworkBehaviour, IGameMan
                 unit.ResetPiece();
             }
             FindObjectOfType<TimeBar>().StopAllCoroutines();
+            grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
             if (isServer)
             {
                 RpcDoTimeBar();
                 // This line does on the server what the next line does on the clients
-                grid.activePlayer = activePlayer.GetComponent<NetworkedPlayer>();
-                RpcUpdateGridMenuActivePlayer();
             }
         }
     }
