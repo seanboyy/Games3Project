@@ -27,6 +27,7 @@ public class NetworkedPlayer : NetworkBehaviour
     private DoublyLinkedListNode head;
 
     private bool canInput = true;
+    [SerializeField]
     private bool onLocalMulti = false;
 
     // These are SyncVars so the menu stays the same across client/server
@@ -43,12 +44,12 @@ public class NetworkedPlayer : NetworkBehaviour
         if (isLocalPlayer) CmdFindGameManager();
         if (gameManager == null && isLocalPlayer)
             CmdFindGameManager();
-        if (localPlayerAuthority && !onLocalMulti)
+        if (hasAuthority && !onLocalMulti)
         { 
             NetworkedPlayer[] otherPlayers = FindObjectsOfType<NetworkedPlayer>();
             foreach (NetworkedPlayer player in otherPlayers)
             {
-                if (player != this && player.localPlayerAuthority)
+                if (player != this && player.hasAuthority)
                 {
                     onLocalMulti = true;
                     player.onLocalMulti = true;
@@ -223,6 +224,7 @@ public class NetworkedPlayer : NetworkBehaviour
             // Try to find the active menu and if you still can't, bail out
             if (activeMenu == null) { activeMenu = FindObjectOfType<NetworkedGridMenu>(); activeMenu.activeUIMenu = true; }
             if (activeMenu == null) { Debug.Log("Active Menu not yet found"); return; }
+
             if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
             { activeMenu.HandleHorizontalMovement(Input.GetAxisRaw("Horizontal")); canInput = false; }
             if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
