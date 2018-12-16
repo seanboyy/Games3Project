@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LobbyMan : NetworkBehaviour
+public class LobbyMan : MonoBehaviour
 {
 
     float prevHorAxis = 0F;
@@ -81,10 +81,16 @@ public class LobbyMan : NetworkBehaviour
     public void LoadMap(int mapNum)
     {
         Debug.Log(Statics.multiplayerScenes[mapNum]);
-        CmdSetScene(Statics.multiplayerScenes[mapNum]);
+        SetScene(Statics.multiplayerScenes[mapNum]);
         //else RpcSetScene(Statics.multiplayerScenes[mapNum]);
     }
 
+    public void SetScene(string sceneName)
+    {
+        lobbyManager.playScene = sceneName;
+    }
+
+    /*
     [Command]
     public void CmdSetScene(string sceneName)
     {
@@ -96,6 +102,7 @@ public class LobbyMan : NetworkBehaviour
     {
         lobbyManager.playScene = sceneName;
     }
+    */
 
     public void ToMenu()
     {

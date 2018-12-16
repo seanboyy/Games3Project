@@ -21,6 +21,7 @@ public class NetworkMan : NetworkLobbyManager
     void Start()
     {
         Cancel();
+        Statics.lobbyManager = this;
         singleton.StartMatchMaker();
     }
 
