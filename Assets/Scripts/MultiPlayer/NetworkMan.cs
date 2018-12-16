@@ -9,10 +9,12 @@ public class NetworkMan : NetworkLobbyManager
 {
     public LobbyMan lobbyMan;
     public Button findMatchButton;
-    public Button readyToPlayButton;
-    public Button notReadyToPlayButton;
+    public Button mapButton;
+    public Button menuButton;
     public Button addPlayerButton;
     public Button cancelButton;
+    bool position1Set = false;
+    bool position2Set = false;
 
 
     // Use this for initialization
@@ -26,11 +28,28 @@ public class NetworkMan : NetworkLobbyManager
     void Update()
     {
         if (!lobbyMan.gameObject.activeInHierarchy) lobbyMan.gameObject.SetActive(true);
+        if (!position1Set)
+        {
+            if (FindObjectsOfType<LobbyPlayer>().Length > 0)
+            {
+                FindObjectsOfType<LobbyPlayer>()[0].gameObject.transform.position = new Vector3(-3, 0, 0);
+                position1Set = true;
+            }
+        }
+        if (!position2Set)
+        {
+            if(FindObjectsOfType<LobbyPlayer>().Length > 1)
+            {
+                FindObjectsOfType<LobbyPlayer>()[1].gameObject.transform.position = new Vector3(3, 0, 0);
+                position2Set = true;
+            }
+        }
     }
 
     public void FindMatch()
     {
         findMatchButton.gameObject.SetActive(false);
+        addPlayerButton.gameObject.SetActive(true);
         singleton.matchMaker.ListMatches(0, 10, "", true, 0, 0, OnInternetMatchList);
     }
 
@@ -69,6 +88,7 @@ public class NetworkMan : NetworkLobbyManager
             Debug.Log("Joined Internet Match!");
             MatchInfo hostInfo = matchInfo;
             singleton.StartClient(hostInfo);
+            Debug.Log(playScene);
         }
         else
         {
@@ -76,25 +96,14 @@ public class NetworkMan : NetworkLobbyManager
             matchMaker.CreateMatch("", 2, true, "", "", "", 0, 0, OnInternetMatchCreate);
         }
     }
-
-    public void ReadyToPlay()
-    {
-        readyToPlayButton.gameObject.SetActive(false);
-        notReadyToPlayButton.gameObject.SetActive(true);
-    }
-
-    public void NotReadyToPlay()
-    {
-        notReadyToPlayButton.gameObject.SetActive(false);
-        readyToPlayButton.gameObject.SetActive(true);
-    }
-
     public void Cancel()
     {
         findMatchButton.gameObject.SetActive(true);
-        if (readyToPlayButton != null) readyToPlayButton.gameObject.SetActive(false);
-        if (notReadyToPlayButton != null) notReadyToPlayButton.gameObject.SetActive(false);
         addPlayerButton.gameObject.SetActive(false);
-        cancelButton.gameObject.SetActive(false);
+    }
+
+    public void AddPlayer()
+    {
+        FindMatch();
     }
 }
