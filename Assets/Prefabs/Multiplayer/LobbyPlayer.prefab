@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 222410259366424058}
   - component: {fileID: 114799250390450424}
   - component: {fileID: 114289502371179582}
+  - component: {fileID: 114241690512670614}
   m_Layer: 0
   m_Name: NotReadyButton
   m_TagString: Untagged
@@ -93,6 +94,7 @@ GameObject:
   - component: {fileID: 222799821847360358}
   - component: {fileID: 114646741183209978}
   - component: {fileID: 114726241361250932}
+  - component: {fileID: 114029206156472408}
   m_Layer: 0
   m_Name: ReadyButton
   m_TagString: Untagged
@@ -131,6 +133,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114029206156472408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890465655093340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3170fab1bd646db4da39a1cb0b9d5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 0
+  locked: 0
+  westNeighbor: {fileID: 0}
+  eastNeighbor: {fileID: 0}
 --- !u!114 &114042359136428776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,6 +281,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Not Ready
+--- !u!114 &114241690512670614
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1777926049054912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3170fab1bd646db4da39a1cb0b9d5739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  northNeighbor: {fileID: 0}
+  southNeighbor: {fileID: 0}
+  gridMenu: {fileID: 0}
+  buttonType: 0
+  locked: 0
+  westNeighbor: {fileID: 0}
+  eastNeighbor: {fileID: 0}
 --- !u!114 &114289502371179582
 MonoBehaviour:
   m_ObjectHideFlags: 1
