@@ -105,8 +105,10 @@ public class NetworkMan : NetworkLobbyManager
 
     public override void OnLobbyServerPlayersReady()
     {
+        LobbyPlayer[] players = FindObjectsOfType<LobbyPlayer>();
+        foreach (LobbyPlayer player in players)
+            player.gameObject.SetActive(false);
         base.OnLobbyServerPlayersReady();
-        print("Both players ready!");
     }
 
     public override void OnLobbyServerSceneChanged(string sceneName)
