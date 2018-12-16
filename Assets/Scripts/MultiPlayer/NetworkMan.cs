@@ -83,11 +83,11 @@ public class NetworkMan : NetworkLobbyManager
     public void AddPlayer()
     {
         ClientScene.AddPlayer(1);
-        FindMatch();
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+        base.OnServerAddPlayer(conn, playerControllerId);
         LobbyPlayer[] players = FindObjectsOfType<LobbyPlayer>();
         if(players.Length == 2)
         {
@@ -96,7 +96,6 @@ public class NetworkMan : NetworkLobbyManager
                 print("2 players on this connection");
             }
         }
-        base.OnServerAddPlayer(conn, playerControllerId);
     }
 
     public override void OnLobbyClientConnect(NetworkConnection conn)

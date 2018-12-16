@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class LobbyPlayer : NetworkBehaviour {
 
-    public static NetworkLobbyPlayer lobbyPlayer;
+    public NetworkLobbyPlayer lobbyPlayer;
     public LobbyMan lobbyMan;
     public NetworkMan networkMan;
     public Button readyButton;
@@ -66,6 +66,7 @@ public class LobbyPlayer : NetworkBehaviour {
     public void NotReady()
     {
         lobbyPlayer.SendNotReadyToBeginMessage();
+        Debug.Log(lobbyPlayer.readyToBegin);
         notReadyButton.gameObject.SetActive(false);
         readyButton.gameObject.SetActive(true);
         networkMan.mapButton.gameObject.GetComponent<_2DContextButton>().westNeighbor = readyButton.gameObject;
@@ -73,6 +74,4 @@ public class LobbyPlayer : NetworkBehaviour {
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().northNeighbor = readyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().southNeighbor = readyButton.gameObject;
     }
-    
-
 }
