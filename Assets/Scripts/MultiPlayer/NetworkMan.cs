@@ -28,7 +28,7 @@ public class NetworkMan : NetworkLobbyManager
     // Update is called once per frame
     void Update()
     {
-        if (!lobbyMan.gameObject.activeInHierarchy) lobbyMan.gameObject.SetActive(true);
+        //if (!lobbyMan.gameObject.activeInHierarchy) lobbyMan.gameObject.SetActive(true);
         if (!position1Set)
         {
             if (FindObjectsOfType<LobbyPlayer>().Length > 0)
