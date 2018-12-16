@@ -1416,8 +1416,8 @@ MonoBehaviour:
   lobbySlots: []
   lobbyMan: {fileID: 1980453588}
   findMatchButton: {fileID: 1733642363}
-  mapButton: {fileID: 0}
-  menuButton: {fileID: 0}
+  mapButton: {fileID: 884247790}
+  menuButton: {fileID: 375011534}
   addPlayerButton: {fileID: 914035304}
   cancelButton: {fileID: 113571837}
 --- !u!4 &1335697961
