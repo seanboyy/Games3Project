@@ -27,6 +27,7 @@ public class LobbyPlayer : NetworkBehaviour {
         if (isLocalPlayer)
         {
             lobbyPlayer = GetComponent<NetworkLobbyPlayer>();
+            networkMan = FindObjectOfType<NetworkMan>();
             readyButton.gameObject.GetComponent<_2DContextButton>().eastNeighbor = networkMan.mapButton.gameObject;
             readyButton.gameObject.GetComponent<_2DContextButton>().westNeighbor = networkMan.mapButton.gameObject;
             readyButton.gameObject.GetComponent<_2DContextButton>().northNeighbor = networkMan.addPlayerButton.gameObject;
