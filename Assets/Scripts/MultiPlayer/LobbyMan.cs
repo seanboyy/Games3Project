@@ -29,6 +29,11 @@ public class LobbyMan : MonoBehaviour
     protected Color prevColor;    // the color of the previous selectedElement
     protected Menu prevMenu;
 
+    [Header("References to Important Buttons")]
+    public GameObject addPlayerButton;
+    public GameObject returnToMenuButton;
+    public GameObject findMatchButton;
+
 
     private void Awake()
     {
@@ -54,7 +59,7 @@ public class LobbyMan : MonoBehaviour
         if (!Statics.lobbyManager) Statics.lobbyManager = lobbyManager;
     }
 
-    protected virtual void SelectElement(GameObject newElement)
+    public void SelectElement(GameObject newElement)
     {
         if (newElement == null) return;
         selectedGO.GetComponent<Image>().color = prevColor;
@@ -80,9 +85,7 @@ public class LobbyMan : MonoBehaviour
 
     public void LoadMap(int mapNum)
     {
-        Debug.Log(Statics.multiplayerScenes[mapNum]);
         SetScene(Statics.multiplayerScenes[mapNum]);
-        //else RpcSetScene(Statics.multiplayerScenes[mapNum]);
     }
 
     public void SetScene(string sceneName)
@@ -90,19 +93,6 @@ public class LobbyMan : MonoBehaviour
         lobbyManager.playScene = sceneName;
     }
 
-    /*
-    [Command]
-    public void CmdSetScene(string sceneName)
-    {
-        RpcSetScene(sceneName);
-    }
-
-    [ClientRpc]
-    public void RpcSetScene(string sceneName)
-    {
-        lobbyManager.playScene = sceneName;
-    }
-    */
 
     public void ToMenu()
     {
@@ -126,17 +116,17 @@ public class LobbyMan : MonoBehaviour
     {
         if (horizontal > 0)
         {
-            SelectElement(selectedGO.GetComponent<_2DContextButton>().westNeighbor);
+            SelectElement(selectedGO.GetComponent<_2DContextButton>().eastNeighbor);
         }
         else
         {
-            SelectElement(selectedGO.GetComponent<_2DContextButton>().eastNeighbor);
+            SelectElement(selectedGO.GetComponent<_2DContextButton>().westNeighbor);
         }
     }
 
     public void HandleVerticalMovement(float vertical)
     {
-        if (vertical < 0)
+        if (vertical > 0)
         {
             SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
         }

@@ -35,6 +35,13 @@ public class NetworkMan : NetworkLobbyManager
     {
         findMatchButton.gameObject.SetActive(false);
         addPlayerButton.gameObject.SetActive(true);
+        // Turn off all the references to this findmatch button
+        _2DContextButton findButton = findMatchButton.GetComponent<_2DContextButton>();
+        if (findButton.northNeighbor) findButton.northNeighbor.GetComponent<_2DContextButton>().southNeighbor = null;
+        if (findButton.southNeighbor) findButton.southNeighbor.GetComponent<_2DContextButton>().northNeighbor = null;
+        if (findButton.westNeighbor) findButton.westNeighbor.GetComponent<_2DContextButton>().eastNeighbor = null;
+        if (findButton.eastNeighbor) findButton.eastNeighbor.GetComponent<_2DContextButton>().westNeighbor = null;
+
         singleton.matchMaker.ListMatches(0, 10, "", true, 0, 0, OnInternetMatchList);
     }
 
@@ -88,14 +95,6 @@ public class NetworkMan : NetworkLobbyManager
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         base.OnServerAddPlayer(conn, playerControllerId);
-        LobbyPlayer[] players = FindObjectsOfType<LobbyPlayer>();
-        if(players.Length == 2)
-        {
-            if(players[0].connectionToServer == players[1].connectionToServer)
-            {
-                print("2 players on this connection");
-            }
-        }
     }
 
     public override void OnLobbyClientConnect(NetworkConnection conn)
