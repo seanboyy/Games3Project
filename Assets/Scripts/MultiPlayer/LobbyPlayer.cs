@@ -74,5 +74,5 @@ public class LobbyPlayer : NetworkBehaviour {
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().northNeighbor = readyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().southNeighbor = readyButton.gameObject;
     }
-    
+
 }

@@ -136,7 +136,7 @@ public class LobbyMan : MonoBehaviour
 
     public void HandleVerticalMovement(float vertical)
     {
-        if (vertical > 0)
+        if (vertical < 0)
         {
             SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
         }
