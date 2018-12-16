@@ -98,4 +98,36 @@ public class NetworkMan : NetworkLobbyManager
         }
         base.OnServerAddPlayer(conn, playerControllerId);
     }
+
+    public override void OnLobbyClientConnect(NetworkConnection conn)
+    {
+
+        base.OnLobbyClientConnect(conn);
+    }
+
+    public override void OnLobbyServerPlayersReady()
+    {
+        base.OnLobbyServerPlayersReady();
+        print("Both players ready!");
+    }
+
+    public override void OnLobbyServerSceneChanged(string sceneName)
+    {
+        base.OnLobbyServerSceneChanged(sceneName);
+        foreach(LobbyPlayer player in FindObjectsOfType<LobbyPlayer>())
+        {
+            player.readyButton.gameObject.SetActive(false);
+            player.notReadyButton.gameObject.SetActive(false);
+        }
+    }
+
+    public override GameObject OnLobbyServerCreateLobbyPlayer(NetworkConnection conn, short playerControllerId)
+    {
+        return base.OnLobbyServerCreateLobbyPlayer(conn, playerControllerId);
+    }
+
+    public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
+    {
+        return base.OnLobbyServerSceneLoadedForPlayer(lobbyPlayer, gamePlayer);
+    }
 }

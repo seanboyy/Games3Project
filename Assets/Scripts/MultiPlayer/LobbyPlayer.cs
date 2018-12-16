@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class LobbyPlayer : NetworkBehaviour {
 
     public static NetworkLobbyPlayer lobbyPlayer;
-    public NetworkLobbyManager lobbyManager;
     public LobbyMan lobbyMan;
     public NetworkMan networkMan;
     public Button readyButton;
@@ -16,7 +15,6 @@ public class LobbyPlayer : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         lobbyMan = FindObjectOfType<LobbyMan>();
-        lobbyManager = FindObjectOfType<NetworkLobbyManager>();
         networkMan = FindObjectOfType<NetworkMan>();
         readyButton.gameObject.SetActive(true);
         notReadyButton.gameObject.SetActive(false);
@@ -50,7 +48,8 @@ public class LobbyPlayer : NetworkBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (isLocalPlayer && lobbyManager && lobbyManager.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId)) (lobbyManager.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId)).GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToServer);
+        if (isLocalPlayer && networkMan && networkMan.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId))
+            networkMan.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId).GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToServer);
 	}
 
     public void Ready()
@@ -74,5 +73,6 @@ public class LobbyPlayer : NetworkBehaviour {
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().northNeighbor = readyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().southNeighbor = readyButton.gameObject;
     }
+    
 
 }
