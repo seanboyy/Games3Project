@@ -40,10 +40,12 @@ public class NetworkMan : NetworkLobbyManager
         {
             if (matches.Count != 0)
             {
+                Debug.Log("Found Match! Joining!");
                 singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
             }
             else
             {
+                Debug.Log("Could not find a match! Creating!");
                 matchMaker.CreateMatch("", 2, true, "", "", "", 0, 0, OnInternetMatchCreate);
             }
         }
