@@ -119,11 +119,11 @@ public class LobbyMan : NetworkBehaviour
     {
         if (horizontal > 0)
         {
-            SelectElement(selectedGO.GetComponent<ContextButton>().southNeighbor);
+            SelectElement(selectedGO.GetComponent<_2DContextButton>().westNeighbor);
         }
         else
         {
-            SelectElement(selectedGO.GetComponent<ContextButton>().northNeighbor);
+            SelectElement(selectedGO.GetComponent<_2DContextButton>().eastNeighbor);
         }
     }
 
