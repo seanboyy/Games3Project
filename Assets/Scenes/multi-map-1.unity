@@ -5198,6 +5198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ad5d03f8c333f4ab52c192a73d860d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextSceneName: menu
+  activePlayer: {fileID: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  turnArrow: {fileID: 1578091827}
+  unitSprites:
+  - {fileID: 21300000, guid: 582da0a1e801fb24199d59f84184bf8b, type: 3}
+  - {fileID: 21300002, guid: 582da0a1e801fb24199d59f84184bf8b, type: 3}
   pullerSprites:
   - {fileID: 21300000, guid: 2f3378384d365f24ea91d1fa29f67b95, type: 3}
   - {fileID: 21300002, guid: 2f3378384d365f24ea91d1fa29f67b95, type: 3}
@@ -5210,11 +5218,6 @@ MonoBehaviour:
   portalPlacerSprites:
   - {fileID: 21300000, guid: eedc80bdadd112d41b878bd89310ad0a, type: 3}
   - {fileID: 21300002, guid: eedc80bdadd112d41b878bd89310ad0a, type: 3}
-  nextSceneName: menu
-  activePlayer: {fileID: 0}
-  player1: {fileID: 0}
-  player2: {fileID: 0}
-  turnArrow: {fileID: 1578091827}
   grid: {fileID: 1108008729}
 --- !u!114 &571666588
 MonoBehaviour:
@@ -10163,13 +10166,13 @@ MonoBehaviour:
   activeGO: {fileID: 0}
   gameMan: {fileID: 0}
   selectedPiece: {fileID: 0}
+  activePlayer: {fileID: 0}
   NoWalls: {fileID: 21300000, guid: b27c53bbb862d5a41bde522983aef2f3, type: 3}
   OneWall: {fileID: 21300000, guid: ed626401e2dafd34abef5b685265c168, type: 3}
   TwoWallsL: {fileID: 21300000, guid: 90c249ef19801404eaa12e3801667177, type: 3}
   TwoWallsHall: {fileID: 21300000, guid: 6c24fc573cfae964c88e6a06ed8005cf, type: 3}
   ThreeWalls: {fileID: 21300000, guid: 6cd106a0710e26c4cbcaed5a8bcc72e4, type: 3}
   FourWalls: {fileID: 21300000, guid: 61e1824042fb2e247a2f7ac88896663e, type: 3}
-  activePlayer: {fileID: 0}
 --- !u!114 &1108008730
 MonoBehaviour:
   m_ObjectHideFlags: 0

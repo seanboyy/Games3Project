@@ -24,13 +24,6 @@ public class NetworkMan : NetworkLobbyManager
         maxPlayersPerConnection = 2;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (FindObjectsOfType<LobbyPlayer>().Length > 0) FindObjectsOfType<LobbyPlayer>()[0].gameObject.transform.position = new Vector3(-3, 0, 0);
-        if (FindObjectsOfType<LobbyPlayer>().Length > 1) FindObjectsOfType<LobbyPlayer>()[1].gameObject.transform.position = new Vector3(3, 0, 0);
-    }
-
     public void FindMatch()
     {
         findMatchButton.gameObject.SetActive(false);
@@ -105,9 +98,6 @@ public class NetworkMan : NetworkLobbyManager
 
     public override void OnLobbyServerPlayersReady()
     {
-        LobbyPlayer[] players = FindObjectsOfType<LobbyPlayer>();
-        foreach (LobbyPlayer player in players)
-            player.gameObject.SetActive(false);
         base.OnLobbyServerPlayersReady();
     }
 

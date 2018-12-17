@@ -106,6 +106,8 @@ public class LobbyMan : MonoBehaviour
     private IEnumerator GotoMenu()
     {
         yield return new WaitForSeconds(0.1F);
+        if (!lobbyManager)
+            lobbyManager = FindObjectOfType<NetworkLobbyManager>();
         lobbyManager.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.1F);
         SceneManager.LoadScene("menu");

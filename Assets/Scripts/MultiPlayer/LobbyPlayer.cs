@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class LobbyPlayer : NetworkBehaviour {
-
+public class LobbyPlayer : NetworkBehaviour
+{
     public NetworkLobbyPlayer lobbyPlayer;
     public LobbyMan lobbyMan;
     public NetworkMan networkMan;
@@ -14,7 +15,9 @@ public class LobbyPlayer : NetworkBehaviour {
 
     // This is to make the menu work nice
     public bool multiplePlayers = false;
-    private bool playerOnRight;
+    private bool playerOnRight = false;
+
+    [SerializeField]
     private LobbyPlayer otherPlayer;
     [HideInInspector]
     public GameObject activeButton;
@@ -35,13 +38,20 @@ public class LobbyPlayer : NetworkBehaviour {
                 else
                     playerOnRight = false;
                 otherPlayer = player;
+                player.otherPlayer = this;
+                player.multiplePlayers = true;
             }
+            transform.position = new Vector3(-3, 0, 0);
         }
+        else
+            transform.position = new Vector3(3, 0, 0);
         if (isLocalPlayer)
         {
             lobbyMan = FindObjectOfType<LobbyMan>();
             lobbyPlayer = GetComponent<NetworkLobbyPlayer>();
             networkMan = FindObjectOfType<NetworkMan>();
+            readyButton.gameObject.SetActive(true);
+            notReadyButton.gameObject.SetActive(false);
             SetUpButton(readyButton.GetComponent<_2DContextButton>());
         }
         else
@@ -63,7 +73,7 @@ public class LobbyPlayer : NetworkBehaviour {
             }
             else
             {
-                button.westNeighbor = activeButton;
+                button.westNeighbor = otherPlayer.activeButton;
                 if (button.westNeighbor) button.westNeighbor.GetComponent<_2DContextButton>().eastNeighbor = button.gameObject;
             }
         }
@@ -78,6 +88,17 @@ public class LobbyPlayer : NetworkBehaviour {
         lobbyMan.SelectElement(button.gameObject);
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "multi-map-1")
+            gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update () {
         if (isLocalPlayer && networkMan && networkMan.OnLobbyServerCreateGamePlayer(connectionToServer, playerControllerId))
@@ -90,10 +111,12 @@ public class LobbyPlayer : NetworkBehaviour {
         lobbyPlayer.SendReadyToBeginMessage();
         readyButton.gameObject.SetActive(false);
         notReadyButton.gameObject.SetActive(true);
+        /*
         networkMan.mapButton.gameObject.GetComponent<_2DContextButton>().westNeighbor = notReadyButton.gameObject;
         networkMan.mapButton.gameObject.GetComponent<_2DContextButton>().eastNeighbor = notReadyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().northNeighbor = notReadyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().southNeighbor = notReadyButton.gameObject;
+        */
     }
 
     public void NotReady()
@@ -102,9 +125,11 @@ public class LobbyPlayer : NetworkBehaviour {
         lobbyPlayer.SendNotReadyToBeginMessage();
         notReadyButton.gameObject.SetActive(false);
         readyButton.gameObject.SetActive(true);
+        /*
         networkMan.mapButton.gameObject.GetComponent<_2DContextButton>().westNeighbor = readyButton.gameObject;
         networkMan.mapButton.gameObject.GetComponent<_2DContextButton>().eastNeighbor = readyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().northNeighbor = readyButton.gameObject;
         networkMan.addPlayerButton.GetComponent<_2DContextButton>().southNeighbor = readyButton.gameObject;
+        */
     }
 }

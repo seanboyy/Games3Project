@@ -22,6 +22,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [SyncVar]
     private bool player1GoesFirst;
     private bool justSwitched = false;
+    public Sprite[] unitSprites;
     public Sprite[] pullerSprites;
     public Sprite[] pusherSprites;
     public Sprite[] twisterSprites;

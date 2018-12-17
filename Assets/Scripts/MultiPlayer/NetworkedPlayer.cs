@@ -129,6 +129,15 @@ public class NetworkedPlayer : NetworkBehaviour
             case UnitType.Unit:
                 unitPiece = _unit;
                 unitPiece.SetActive(false);
+                switch (identity)
+                {
+                    case PlayerEnum.Player1:
+                        unitPiece.GetComponent<SpriteRenderer>().sprite = gameManager.unitSprites[0];
+                        break;
+                    case PlayerEnum.Player2:
+                        unitPiece.GetComponent<SpriteRenderer>().sprite = gameManager.unitSprites[1];
+                        break;
+                };
                 break;
             case UnitType.Pusher:
                 pusherPiece = _unit;
