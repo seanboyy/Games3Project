@@ -252,9 +252,9 @@ public class NetworkedPlayer : NetworkBehaviour
             { activeMenu.HandleCrossButton(); canInput = false; }
             if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton1))
             { activeMenu.HandleCircleButton(); canInput = false; }
-            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2))
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton3))
             { CmdHandleTriangleButton(); canInput = false; }
-            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton3))
+            if (isLocalPlayer && activePlayer && Input.GetKeyDown(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.JoystickButton2))
             { activeMenu.HandleSquareButton(); canInput = false; }
             if (Input.GetKeyDown(KeyCode.Comma) || Input.GetKeyDown(KeyCode.JoystickButton4))
             { activeMenu.HandleLeftShoulderBumper(); canInput = false; }

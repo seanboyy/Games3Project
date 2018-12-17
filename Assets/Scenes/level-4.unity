@@ -1044,9 +1044,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Instructions:\n\nActivate the Puller by selecting the Puller's space and
-    pressing left-control. \n\nPress Space on a highlisted grid element to the unit
-    on that space towrds you.\n"
+  m_Text: "Hints:\n\nThe Puller can pull units up to two spaces away towards itself.
+    \n\nCareful, if you a pull a piece onto the Puller, it will destroy them both!"
 --- !u!222 &216531615
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2613,9 +2612,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Instructions:\n\nThe Puller can pull unts up to two spaces away towards
-    itself. \n\nCareful, if you a pull a piece onto the puller, it will destroy them
-    both!"
+  m_Text: "Instructions:\n\nActivate the Puller by selecting the Puller's space and
+    pressing Box. \n\nPress Cross on a highlisted grid element to the unit on that
+    space towards you."
 --- !u!222 &529162781
 CanvasRenderer:
   m_ObjectHideFlags: 0

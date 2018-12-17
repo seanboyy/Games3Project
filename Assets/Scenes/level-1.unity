@@ -1171,13 +1171,13 @@ MonoBehaviour:
   m_Text: 'Instructions:
 
 
-    Press Enter to end the turn (reset all movement points and actions)
+    Press Triangle to end the turn (reset all movement points and actions)
 
 
     Move the Flag to any of the purple squares to advance to the next level
 
 
-    Press Escape when any menu is open or any squares  are highlighted to close the
+    Press Circle when any menu is open or any squares  are highlighted to close the
     menu or cancel the action.'
 --- !u!222 &216531615
 CanvasRenderer:
@@ -2673,13 +2673,13 @@ MonoBehaviour:
   m_Text: 'Instructions:
 
 
-    Press Space on Green Tiles to spawn a piece
+    Press Cross on Green Tiles to spawn a piece
 
 
-    Press Space on pieces to show where they can move.
+    Press Cross on pieces to show where they can move.
 
 
-    Press Space on a highlighted tile to move there'
+    Press Cross on a highlighted tile to move there'
 --- !u!222 &529162781
 CanvasRenderer:
   m_ObjectHideFlags: 0

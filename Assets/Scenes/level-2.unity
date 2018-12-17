@@ -717,10 +717,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Instructions:
-
-
-    Activate the Twister by selecting it and pressing left-control.'
+  m_Text: "Hint: \n\nYou can cycle through the piece you are on top of with the shoulder
+    buttons."
 --- !u!222 &94792111
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9330,6 +9328,9 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'Instructions:
+
+
+    Activate the Twister by moving over it and pressing Box.
 
 
     Use the Twsiter to twist walls, flags, and other units to where you want them!'
