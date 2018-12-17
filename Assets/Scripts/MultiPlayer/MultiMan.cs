@@ -121,6 +121,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
     [TargetRpc]
     public void TargetLoadScreen(NetworkConnection conn, bool didWin)
     {
+        grid.pieceDescription.transform.root.gameObject.SetActive(false);
         if (didWin) gameOverWin.SetActive(true);
         else gameOverLoss.SetActive(true);
         StartCoroutine("Wait11SecondsThenLoadLobby");
