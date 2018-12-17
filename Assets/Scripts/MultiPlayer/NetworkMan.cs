@@ -26,6 +26,7 @@ public class NetworkMan : NetworkLobbyManager
 
     public void FindMatch()
     {
+        lobbyMan.canInput = false;
         findMatchButton.gameObject.SetActive(false);
         addPlayerButton.gameObject.SetActive(true);
         // Turn off all the references to this findmatch button
@@ -88,6 +89,7 @@ public class NetworkMan : NetworkLobbyManager
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         base.OnServerAddPlayer(conn, playerControllerId);
+        lobbyMan.canInput = true;
     }
 
     public override void OnLobbyClientConnect(NetworkConnection conn)

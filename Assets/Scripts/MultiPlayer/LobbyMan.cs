@@ -34,6 +34,7 @@ public class LobbyMan : MonoBehaviour
     public GameObject returnToMenuButton;
     public GameObject findMatchButton;
 
+    public bool canInput = true;
 
     private void Awake()
     {
@@ -71,16 +72,19 @@ public class LobbyMan : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
-            HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
-        if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
-            HandleVerticalMovement(Input.GetAxisRaw("Vertical"));
+        if (canInput)
+        {
+            if (prevHorAxis == 0 && Input.GetAxisRaw("Horizontal") != 0)
+                HandleHorizontalMovement(Input.GetAxisRaw("Horizontal"));
+            if (prevVerAxis == 0 && Input.GetAxisRaw("Vertical") != 0)
+                HandleVerticalMovement(Input.GetAxisRaw("Vertical"));
 
-        prevHorAxis = Input.GetAxisRaw("Horizontal");
-        prevVerAxis = Input.GetAxisRaw("Vertical");
+            prevHorAxis = Input.GetAxisRaw("Horizontal");
+            prevVerAxis = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
-            HandleCrossButton();
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0))
+                HandleCrossButton();
+        }
     }
 
     public void LoadMap(int mapNum)
