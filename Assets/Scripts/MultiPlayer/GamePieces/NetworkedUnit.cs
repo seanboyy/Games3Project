@@ -87,7 +87,10 @@ public class NetworkedUnit : NetworkedGamePiece
             flag.transform.position = newLoc.transform.TransformPoint(Vector3.zero) + Vector3.forward * flag.transform.position.z;
             flag.GetComponent<NetworkedGamePiece>().gridElement = newLoc.GetComponent<NetworkedGridElement>();
             if (newLoc.GetComponent<NetworkedGridElement>().goal)
-                grid.gameMan.EndLevel();
+            {
+                owner.GetComponent<NetworkedPlayer>().CmdEndLevel(owner.GetComponent<NetworkedPlayer>().identity);
+                //grid.gameMan.EndLevel(owner.GetComponent<NetworkedPlayer>().identity);
+            }
         }
         // Check if gridElement has been assigned (this is for spawning)
         if (!gridElement)
@@ -171,7 +174,8 @@ public class NetworkedUnit : NetworkedGamePiece
             {
                 // Player has moved the flag into the goal!
                 // Someone should probably contact the gamemanager
-                grid.gameMan.EndLevel();
+                owner.GetComponent<NetworkedPlayer>().CmdEndLevel(owner.GetComponent<NetworkedPlayer>().identity);
+                //grid.gameMan.EndLevel();
             }
         }
 

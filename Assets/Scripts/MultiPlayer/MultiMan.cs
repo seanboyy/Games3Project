@@ -8,6 +8,13 @@ using UnityEngine.Networking;
 public class MultiMan : NetworkBehaviour, IGameMan
 {
     public string nextSceneName;
+
+    public GameObject gameOverLoss;
+    public GameObject gameOverWin;
+
+    public NetworkedPlayer winner;
+    public NetworkedPlayer loser;
+
     [SyncVar]
     public GameObject activePlayer;
 
@@ -91,9 +98,44 @@ public class MultiMan : NetworkBehaviour, IGameMan
         gameOver = true;
     }
 
+    public void EndLevel(PlayerEnum identity)
+    {
+        foreach(NetworkedPlayer player in FindObjectsOfType<NetworkedPlayer>())
+        {
+            if (player.identity == identity) winner = player;
+            else loser = player;
+        }
+        EndLevel();
+    }
 
     public void EndLevel()
     {
+        if (isServer)
+        {
+            TargetLoadScreen(winner.connectionToClient, true);
+            TargetLoadScreen(loser.connectionToClient, false);
+            StartCoroutine("Wait10SecondsThenCloseServer");
+        }
+    }
+
+    [TargetRpc]
+    public void TargetLoadScreen(NetworkConnection conn, bool didWin)
+    {
+        if (didWin) gameOverWin.SetActive(true);
+        else gameOverLoss.SetActive(true);
+        StartCoroutine("Wait11SecondsThenLoadLobby");
+    }
+
+    public IEnumerator Wait11SecondsThenLoadLobby()
+    {
+        yield return new WaitForSeconds(11F);
+        SceneManager.LoadScene("lobby");
+    }
+
+    public IEnumerator Wait10SecondsThenCloseServer()
+    {
+        StartCoroutine("Wait11SecondsThenLoadLobby");
+        yield return new WaitForSeconds(10F);
         Debug.Log("Stopping Client");
         NetworkManager.singleton.StopClient();
         Debug.Log("Stopping Host");
@@ -102,7 +144,6 @@ public class MultiMan : NetworkBehaviour, IGameMan
         NetworkManager.singleton.StopServer();
         Debug.Log("Disconnecting connections");
         NetworkServer.DisconnectAll();
-        SceneManager.LoadScene("lobby");
     }
 
     public void EndTurn()
