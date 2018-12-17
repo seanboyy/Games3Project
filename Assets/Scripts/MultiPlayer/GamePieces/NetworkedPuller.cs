@@ -10,7 +10,6 @@ public class NetworkedPuller : NetworkedUnit
         {
             base.OnEnable();
             unitType = UnitType.Puller;
-            //name = "" + unitType + owner.GetComponent<Player>().identity;
         }
         if (!grid)
         {

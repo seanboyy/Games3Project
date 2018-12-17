@@ -21,6 +21,7 @@ public class NetworkedGridMenu : NetworkedMenu
     public MultiMan gameMan;
     public GameObject selectedPiece;
     public NetworkedPlayer activePlayer;
+    public Text pieceDescription;
 
     [Header("Other Miscellaneous")]
     public Sprite NoWalls;
@@ -156,6 +157,19 @@ public class NetworkedGridMenu : NetworkedMenu
         }
         else
             selectedGO.GetComponent<NetworkedGridElement>().ChangeColor(selectedColor);
+
+        UpdateDescription();
+    }
+
+    public void UpdateDescription()
+    {
+        NetworkedGridElement selectedGE = selectedGO.GetComponent<NetworkedGridElement>();
+        if (selectedGE && selectedGE.piece)
+            pieceDescription.text = selectedGE.piece.name;
+        else
+        {
+            pieceDescription.text = "";
+        }
     }
 
     public void SetElementColor(GameObject element, Color newColor)

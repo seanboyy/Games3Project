@@ -178,6 +178,8 @@ public class Unit : GamePiece
                 grid.activeUIMenu = false;
             }
         }
+        if (!grid) grid = FindObjectOfType<GridMenu>();
+        grid.UpdateDescription();
     }
 
     public void HideMovementGrid()

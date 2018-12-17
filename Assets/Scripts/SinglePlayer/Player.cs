@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     public Menu activeMenu;
     public Menu prevMenu;
 
+    private GridMenu grid;
+
     // Use this for initialization
     void Start()
     {
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         pullerPool = new ObjectPool(pullerPrefab, false, 1, transform);
         twisterPool = new ObjectPool(twisterPrefab, false, 1, transform);
         portalPlacerPool = new ObjectPool(portalPlacerPrefab, false, 1, transform);
+        grid = FindObjectOfType<GridMenu>();
     }
 
 
@@ -106,6 +109,9 @@ public class Player : MonoBehaviour
                 newHead.prev = newHead;
                 head = newHead;
             }
+            if (grid == null)
+                grid = FindObjectOfType<GridMenu>();
+            grid.UpdateDescription();
         }
         else
             Debug.Log("Player::PlaceUnit() - Insufficient " + type + " units");

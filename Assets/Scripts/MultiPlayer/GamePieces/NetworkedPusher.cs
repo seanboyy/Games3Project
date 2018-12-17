@@ -10,7 +10,6 @@ public class NetworkedPusher : NetworkedUnit
         {
             base.OnEnable();
             unitType = UnitType.Pusher;
-            //name = "" + unitType + owner.GetComponent<Player>().identity;
         }
         if (!grid)
         {

@@ -25,12 +25,8 @@ public class NetworkedUnit : NetworkedGamePiece
         if (!initialized)
         {
             grid = FindObjectOfType<NetworkedGridMenu>();
-            //FindGridElement();
             unitType = UnitType.Unit;
             owner = transform.root.gameObject;
-            //name = "" + unitType + owner.GetComponent<Player>().identity;
-            //owner.GetComponent<NetworkedPlayer>().ReturnUnit(gameObject);
-            //Debug.Log(name + netId + " Initialized");
             initialized = true;
         }
         if (!grid)
@@ -178,6 +174,10 @@ public class NetworkedUnit : NetworkedGamePiece
                 grid.gameMan.EndLevel();
             }
         }
+
+        if (grid == null)
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        grid.UpdateDescription();
     }
 
     public void HideMovementGrid()
