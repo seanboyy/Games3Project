@@ -33,6 +33,7 @@ public class NetworkedPlayer : NetworkBehaviour
     // These are SyncVars so the menu stays the same across client/server
     public NetworkedMenu activeMenu;
     public NetworkedMenu prevMenu;
+    private NetworkedGridMenu grid;
     [SyncVar]
     public bool activePlayer = false;
 
@@ -57,6 +58,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 }
             }
         }
+        grid = FindObjectOfType<NetworkedGridMenu>();
     }
 
     // Set up the piece pool server side
@@ -70,7 +72,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!unitPiece)
                 {
                     unitPiece = Instantiate(unitPrefab, transform);
-                    unitPiece.name = "Unit ";
+                    unitPiece.name = "Unit ()";
                     NetworkServer.Spawn(unitPiece);
                 }
                 _unit = unitPiece;
@@ -80,7 +82,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!pusherPiece)
                 {
                     pusherPiece = Instantiate(pusherPrefab, transform);
-                    pusherPiece.name = "Pusher ";
+                    pusherPiece.name = "Pusher ()";
                     NetworkServer.Spawn(pusherPiece);
                 }
                 _unit = pusherPiece;
@@ -90,7 +92,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!pullerPiece)
                 {
                     pullerPiece = Instantiate(pullerPrefab, transform);
-                    pullerPiece.name = "Puller ";
+                    pullerPiece.name = "Puller ()";
                     NetworkServer.Spawn(pullerPiece);
                 }
                 _unit = pullerPiece;
@@ -100,7 +102,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!twisterPiece)
                 {
                     twisterPiece = Instantiate(twisterPrefab, transform);
-                    twisterPiece.name = "Twister ";
+                    twisterPiece.name = "Twister ()";
                     NetworkServer.Spawn(twisterPiece);
                 }
                 _unit = twisterPiece;
@@ -110,7 +112,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 if (!portalPlacerPiece)
                 {
                     portalPlacerPiece = Instantiate(portalPlacerPrefab, transform);
-                    portalPlacerPiece.name = "Portalist ";
+                    portalPlacerPiece.name = "Portalist ()";
                     NetworkServer.Spawn(portalPlacerPiece);
                 }
                 _unit = portalPlacerPiece;
@@ -192,6 +194,11 @@ public class NetworkedPlayer : NetworkBehaviour
                 };
                 break;
         }
+
+        if (grid == null)
+            grid = FindObjectOfType<NetworkedGridMenu>();
+        grid.UpdateDescription();
+
 
     }
 
@@ -303,7 +310,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 else
                 {
                     unitPiece = Instantiate(unitPrefab, transform);
-                    unitPiece.name = "Unit " + identity;
+                    unitPiece.name = "Unit (" + identity + ")";
                     NetworkServer.Spawn(unitPiece);
                     RpcRequestUnit(UnitType.Unit, unitPiece);
                     DoPlaceUnit(unitPiece, location);
@@ -315,7 +322,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 else
                 {
                     pullerPiece = Instantiate(pullerPrefab, transform);
-                    pullerPiece.name = "Puller " + identity;
+                    pullerPiece.name = "Puller (" + identity + ")";
                     NetworkServer.Spawn(pullerPiece);
                     RpcRequestUnit(UnitType.Puller, pullerPiece);
                     DoPlaceUnit(pullerPiece, location);
@@ -327,7 +334,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 else
                 {
                     pusherPiece = Instantiate(pusherPrefab, transform);
-                    pusherPiece.name = "Pusher " + identity;
+                    pusherPiece.name = "Pusher (" + identity + ")";
                     NetworkServer.Spawn(pusherPiece);
                     RpcRequestUnit(UnitType.Pusher, pusherPiece);
                     DoPlaceUnit(pusherPiece, location);
@@ -339,7 +346,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 else
                 {
                     twisterPiece = Instantiate(twisterPrefab, transform);
-                    twisterPiece.name = "Twister " + identity;
+                    twisterPiece.name = "Twister (" + identity + ")";
                     NetworkServer.Spawn(twisterPiece);
                     RpcRequestUnit(UnitType.Twister, twisterPiece);
                     DoPlaceUnit(twisterPiece, location);
@@ -351,7 +358,7 @@ public class NetworkedPlayer : NetworkBehaviour
                 else
                 {
                     portalPlacerPiece = Instantiate(portalPlacerPrefab, transform);
-                    portalPlacerPiece.name = "Portalist " + identity;
+                    portalPlacerPiece.name = "Portalist (" + identity + ")";
                     NetworkServer.Spawn(portalPlacerPiece);
                     RpcRequestUnit(UnitType.Portalist, portalPlacerPiece);
                     DoPlaceUnit(portalPlacerPiece, location);

@@ -20,6 +20,7 @@ public class GridMenu  : Menu
     public SingleMan gameMan;
     public GameObject selectedPiece;
     public Player activePlayer;
+    public Text pieceDescription;
 
     [Header("Other Miscellaneous")]
     public Sprite NoWalls;
@@ -140,15 +141,28 @@ public class GridMenu  : Menu
         selectedGO.GetComponent<GridElement>().ChangeColor(prevColor);
         selectedGO = newElement;
         prevColor = selectedGO.GetComponent<Image>().color;
+        GridElement selectedGE = selectedGO.GetComponent<GridElement>();
         if (activeGO != null)
         {
             if (selectedGO == activeGO)
-                selectedGO.GetComponent<GridElement>().ChangeColor(activeColor);
+                selectedGE.ChangeColor(activeColor);
             else
-                selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
+                selectedGE.ChangeColor(selectedColor);
         }
         else
             selectedGO.GetComponent<GridElement>().ChangeColor(selectedColor);
+        UpdateDescription();
+    }
+
+    public void UpdateDescription()
+    {
+        GridElement selectedGE = selectedGO.GetComponent<GridElement>();
+        if (selectedGE && selectedGE.piece)
+            pieceDescription.text = selectedGE.piece.name;
+        else
+        {
+            pieceDescription.text = "";
+        }
     }
 
     public void SetElementColor(GameObject element, Color newColor)
