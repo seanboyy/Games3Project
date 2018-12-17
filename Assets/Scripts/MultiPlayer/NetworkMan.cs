@@ -120,4 +120,10 @@ public class NetworkMan : NetworkLobbyManager
     {
         return base.OnLobbyServerSceneLoadedForPlayer(lobbyPlayer, gamePlayer);
     }
+
+    public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
+    {
+        GameObject retVal = base.OnLobbyServerCreateGamePlayer(conn, playerControllerId);
+        return retVal;
+    }
 }

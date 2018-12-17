@@ -28,6 +28,8 @@ public class MultiMan : NetworkBehaviour, IGameMan
     public Sprite[] twisterSprites;
     public Sprite[] portalPlacerSprites;
 
+    private bool gameOver = true;
+
     // Not sure if we want a reference to the grid, but...
     public NetworkedGridMenu grid;
 
@@ -39,6 +41,9 @@ public class MultiMan : NetworkBehaviour, IGameMan
             player1GoesFirst = Random.Range(0F, 1F) < 0.5F;
             RpcDoTimeBar();
         }
+        if (gameOver)
+            if (Input.anyKeyDown)
+                EndLevel();
     }
 
     public void RegisterPlayers()
@@ -83,7 +88,7 @@ public class MultiMan : NetworkBehaviour, IGameMan
 
     public void EndGame()
     {
-        EndLevel();
+        gameOver = true;
     }
 
 
