@@ -582,4 +582,10 @@ public class NetworkedPlayer : NetworkBehaviour
         } while (current.forward != head);
         return current;
     }
+
+    [Command]
+    public void CmdEndLevel(PlayerEnum identity)
+    {
+        gameManager.EndLevel(identity);
+    }
 }
