@@ -242,6 +242,8 @@ public class NetworkedTwister : NetworkedUnit
                 }
                 #endregion
             }
+        GetComponent<AudioSource>().clip = act;
+        GetComponent<AudioSource>().Play();
     }
 
     private void UpdateWalls(NetworkedGridElement element)

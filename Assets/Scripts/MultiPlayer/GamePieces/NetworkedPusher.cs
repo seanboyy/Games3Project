@@ -25,6 +25,8 @@ public class NetworkedPusher : NetworkedUnit
             //contextMenu.HideContextMenu();
             gridElement.DisplayPusherInfluence(true);
             canAct = false;
+            GetComponent<AudioSource>().clip = act;
+            GetComponent<AudioSource>().Play();
         }
         return true;
     }

@@ -8,6 +8,9 @@ public class NetworkedUnit : NetworkedGamePiece
     public const int MAX_NUM_MOVES = 2;
     public int remainingMoves = 2;
 
+    public AudioClip move;
+    public AudioClip act;
+
     public NetworkedGridMenu grid;
     protected string action = "";     // what action this piece is to perform; should we make this an enum?
     public UnitType unitType;
@@ -55,6 +58,8 @@ public class NetworkedUnit : NetworkedGamePiece
         if (action == "move")
         {
             MoveUnit(actionLocGO);
+            GetComponent<AudioSource>().clip = move;
+            GetComponent<AudioSource>().Play();
         }
     }
 
